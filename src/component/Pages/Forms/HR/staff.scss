@@ -1,0 +1,193 @@
+@import "../../../../styles/mixin";
+@import "../../../../styles/variables";
+
+.form__container {
+  width: 100%;
+  height: 100%;
+  // scroll-behavior: hidden;
+
+  .form__content {
+    width: 95%;
+    height: 100%;
+    margin: 0px auto;
+    padding: 20px 2%;
+    background-color: #fff;
+    border-radius: 4px;
+    box-shadow: 0px 0px 12px #ddd;
+    margin-bottom: 1.5rem;
+
+    .title-display {
+      display: flex;
+      justify-content: space-between;
+
+      .create-back {
+        background-color: $color-primary;
+        // color: white;
+        color: $color-white;
+      }
+
+      .title {
+        font-size: 1.3rem;
+        font-weight: 600;
+        color: $text-color;
+        margin-bottom: 1.3rem;
+      }
+    }
+
+    .form__wrapper {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: flex-start;
+      gap: 40px;
+
+      .form__left {
+        width: 100%;
+        margin-bottom: 5px;
+
+        Input {
+          width: 65%;
+        }
+
+        label {
+          width: 35%;
+        }
+
+        .fields {
+          width: 100%;
+          margin-bottom: 5px;
+        }
+
+        .field__row {
+          width: 100%;
+          display: flex;
+          align-items: center;
+          gap: 8px;
+        }
+      }
+
+      .form__right {
+        width: 100%;
+        margin-bottom: 5px;
+
+        Input {
+          width: 85%;
+          margin-bottom: 5px;
+        }
+
+        label {
+          width: 15%;
+        }
+
+        .fields {
+          width: 100%;
+          margin-bottom: 5px;
+        }
+
+        .field__row {
+          width: 100%;
+          display: flex;
+          align-items: center;
+          gap: 8px;
+        }
+      }
+      .department-select {
+        margin-left: 7px;
+        width: 100%;
+      }
+      .status-select {
+        margin-left: 47px;
+        width: 100%;
+      }
+
+      .report-select {
+        width: 100%;
+        margin-left: 10px;
+      }
+
+      .employee-select {
+        width: 100%;
+      }
+      .lead-select {
+        margin-left: 90%;
+      }
+
+      .education-select {
+        width: 100%;
+        margin-left: 12px;
+      }
+      .department-select {
+        margin-left: -71px;
+        width: 100%;
+      }
+
+      .designation-select {
+        width: 100%;
+        margin-left: -71px;
+      }
+      .status-select {
+        width: 100%;
+        margin-left: 15px;
+      }
+
+      .report-select {
+        width: 100%;
+        margin-left: -71px;
+      }
+
+      .employee-select {
+        width: 100%;
+        margin-left: -71px;
+      }
+
+      .gender-select {
+        width: 55%;
+        margin-left: -5px;
+      }
+
+      .marital-select {
+        width: 62%;
+        margin-left: -4px;
+      }
+
+      .blood-select {
+        width: 55%;
+        margin-left: -5px;
+      }
+
+      .religion-select {
+        width: 55%;
+        margin-left: -5px;
+      }
+
+      .nation-select {
+        width: 65%;
+        margin-left: -5px;
+      }
+
+      .textarea-select {
+        margin-left: 20px;
+      }
+
+      .education-select {
+        width: 100%;
+        margin-left: 10px;
+      }
+      .status-select {
+        margin-left: 47px;
+      }
+      .source-select {
+        margin-left: 12px;
+      }
+    }
+
+    .btn__holder {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 10px;
+      margin-top: 20px;
+    }
+  }
+}
