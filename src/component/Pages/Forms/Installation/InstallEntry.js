@@ -68,6 +68,75 @@ const InstallEntry = () => {
 
   const [refOpt, setRefOpt] = useState(false);
 
+  const Category1 = ["WonderPOS", "Healthy Fly", "Edu Fly"];
+  const Softwares = {
+    WonderPOS: [
+      "General Retail & Wholesale",
+      "Pharmacy Retail & Wholesale",
+      "Restaurant",
+      "Hypermarket",
+      "Supermarket",
+      "Department Stores",
+      "Kirana /Grocery Retail & Wholesale",
+      "FMCC Distribution",
+      "Jewellery Retail & Wholesale",
+      "Hallmarking Centre Software",
+      "Gas Agency",
+      "Readymade Retail & Wholesale",
+      "Textiles Retail & Wholesale",
+      "Fruits & Vegetables",
+      "Rice Traders / Mundy",
+      "Fancy Store",
+      "Footwear Shop",
+      "Mobile Sales & Service",
+      "Computer Sales & Service",
+      "Electrical Shop",
+      "Spa & Saloon",
+      "Laundry / Dry Clean",
+      "Books Shop",
+      "Florists",
+      "Home Decor & Furniture",
+      "Optical Shop",
+      "Stationery Shop",
+      "Toys & Gift Shop",
+      "Watches",
+      "Home Appliances",
+      "Surgical",
+      "Chemists & Druggists",
+      "Auto Parts",
+      "Fertilizer & Agro Products",
+      "Hardware Shop",
+      "Sports & Fitness",
+      "Tyre",
+      "Vessel Shop",
+      "Oil Shop",
+      "Paints Shop",
+      "Water Companies",
+      "Pizza Shop",
+      "Coffee Shop",
+      "Bakery",
+      "Sweet Shop",
+      "Bar /Pubs",
+      "Ice Cream Shop",
+      "Juice Shop",
+      "Tea Shop",
+      "Food Court",
+      "Auto Finance",
+      "Jewellery Loan",
+      "Crackers Shop",
+    ],
+    "Healthy Fly": [
+      "Hospital",
+      "Multi-Specialty Hospital",
+      "Clinic / Homecare",
+      "Ayurvedic Hospital",
+    ],
+    "Edu Fly": ["School", "College / University", "Study Centre / Institute"],
+  };
+
+  const [selectedState, setSelectedState] = useState("");
+  console.log("SelectState::", selectedState);
+
   // Form Validations
 
   const handleChange = (e) => {
@@ -267,7 +336,7 @@ const InstallEntry = () => {
                       />
                     </Row>
                     <Row>
-                      <Select
+                      {/* <Select
                         label="Category"
                         placeholder="-- Select Category --"
                         options={Category}
@@ -275,10 +344,22 @@ const InstallEntry = () => {
                         onChange={(e) => handleSelectCategory(e)}
                         defaultValue={Category[0]}
                         isError
-                      />
+                      /> */}
+                      <div className="select">
+                        <label htmlFor="" className="label">
+                          Category
+                        </label>
+                        <select
+                          onChange={(e) => setSelectedState(e.target.value)}
+                        >
+                          {Category1.map((values) => {
+                            return <option>{values}</option>;
+                          })}
+                        </select>
+                      </div>
                     </Row>
                     <Row>
-                      <Input
+                      {/* <Input
                         label="Software"
                         type="text"
                         name="software"
@@ -287,7 +368,20 @@ const InstallEntry = () => {
                         onChange={handleChange}
                         isError
                         errorMsg={formErrors.software}
-                      />
+                      /> */}
+
+                      <div className="select">
+                        <label htmlFor="" className="label">
+                          Software
+                        </label>
+                        {selectedState && (
+                          <select>
+                            {Softwares[selectedState].map((values) => {
+                              return <option>{values}</option>;
+                            })}
+                          </select>
+                        )}
+                      </div>
                     </Row>
 
                     <Row>
