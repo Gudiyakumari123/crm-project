@@ -2,7 +2,6 @@ import React, { Fragment } from "react";
 import "./Login.scss";
 
 import Logo from "../../Assets/Images/logo.png";
-// import Logo from "../../Images/logo.png";
 
 import { Link } from "react-router-dom";
 
@@ -29,7 +28,64 @@ class Login extends React.Component {
   render() {
     return (
       <Fragment>
-      
+        {/* <div className="login-container">
+        <div className="row">
+          <div className=""></div>
+          <div className=" login-box">
+            <div className=" login-key">
+              <i className="bx bxs-key" aria-hidden="true"></i>
+            </div>
+            <div className="col-lg-12 login-title">ADMIN PANEL</div>
+            {Object.keys(formErrors).length === 0 && isSubmit ? (
+              <div className="ui message success">Signed in successfully</div>
+            ) : // <pre>{JSON.stringify(formValues, undefined, 2)}</pre>
+            null}
+            <div className="col-lg-12 login-form">
+              <div className="col-lg-12 login-form">
+                <form onSubmit={handleSubmit}>
+                  <div className="form-group">
+                    <label className="form-control-label">USERNAME</label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      name="email"
+                      onChange={handleChange}
+                      value={formValues.email}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label className="form-control-label">PASSWORD</label>
+                    <input
+                      type="password"
+                      className="form-control"
+                      name="password"
+                      onChange={handleChange}
+                      value={formValues.password}
+                    />
+                  </div>
+
+                  <div className="col-lg-12 loginbttm">
+                    <div className="col-lg-6 login-btm login-text">
+                     
+                    </div>
+                    <div className="col-lg-6 login-btm login-button">
+                      <button
+                        type="submit"
+                        className="btn btn-outline-primary"
+                        onClick={handleClick}
+                      >
+                        LOGIN
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <div className="col-lg-3 col-md-2"></div>
+          </div>
+        </div> 
+      </div> */}
+
         {/* Animated Login Start */}
         <div className="login-container">
           {/* <h2>Weekly Coding Challenge #1: Sign in/up Form</h2> */}
@@ -38,6 +94,17 @@ class Login extends React.Component {
             <div className="form-container sign-up-container">
               <form action="#">
                 <h1>Create Account</h1>
+                {/* <div className="social-container">
+                  <a href="#" className="social">
+                    <i className="bx bxl-facebook"></i>
+                  </a>
+                  <a href="#" className="social">
+                    <i className="bx bxl-google-plus"></i>
+                  </a>
+                  <a href="#" className="social">
+                    <i className="bx bxl-linkedin"></i>
+                  </a>
+                </div> */}
                 <figure>
                   <img src={Logo} alt="" />
                 </figure>
@@ -128,4 +195,3 @@ class Login extends React.Component {
   }
 }
 export default Login;
-

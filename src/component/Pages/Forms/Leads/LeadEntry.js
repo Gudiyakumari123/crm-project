@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 // components
 import Header from "../../../../shared/Header/Header";
 import SubHeader from "../../../../shared/SubHeader/SubHeader";
 import Footer from "../../../../shared/Footer/Footer";
-import { Form, Button, Row, Col, Container } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 
 // Reusable Component
 import Input from "../../../../shared/Reusable/Input";
@@ -16,38 +16,95 @@ import Try from "../HR/tryPhone";
 // Constants
 import {
   Source,
-  Category,
   ConversionRatio,
   Status,
-  WonderPOS,
-  HealthFly,
-  EduFly,
 } from "../../../../data/crm-constants";
 
 const LeadEntry = () => {
+  const [formValues, setFormValues] = useState({
+    category: "",
+  });
+
+  const Category1 = ["WonderPOS", "Healthy Fly", "Edu Fly"];
+  const Softwares = {
+    WonderPOS: [
+      "General Retail & Wholesale",
+      "Pharmacy Retail & Wholesale",
+      "Restaurant",
+      "Hypermarket",
+      "Supermarket",
+      "Department Stores",
+      "Kirana /Grocery Retail & Wholesale",
+      "FMCC Distribution",
+      "Jewellery Retail & Wholesale",
+      "Hallmarking Centre Software",
+      "Gas Agency",
+      "Readymade Retail & Wholesale",
+      "Textiles Retail & Wholesale",
+      "Fruits & Vegetables",
+      "Rice Traders / Mundy",
+      "Fancy Store",
+      "Footwear Shop",
+      "Mobile Sales & Service",
+      "Computer Sales & Service",
+      "Electrical Shop",
+      "Spa & Saloon",
+      "Laundry / Dry Clean",
+      "Books Shop",
+      "Florists",
+      "Home Decor & Furniture",
+      "Optical Shop",
+      "Stationery Shop",
+      "Toys & Gift Shop",
+      "Watches",
+      "Home Appliances",
+      "Surgical",
+      "Chemists & Druggists",
+      "Auto Parts",
+      "Fertilizer & Agro Products",
+      "Hardware Shop",
+      "Sports & Fitness",
+      "Tyre",
+      "Vessel Shop",
+      "Oil Shop",
+      "Paints Shop",
+      "Water Companies",
+      "Pizza Shop",
+      "Coffee Shop",
+      "Bakery",
+      "Sweet Shop",
+      "Bar /Pubs",
+      "Ice Cream Shop",
+      "Juice Shop",
+      "Tea Shop",
+      "Food Court",
+      "Auto Finance",
+      "Jewellery Loan",
+      "Crackers Shop",
+    ],
+    "Healthy Fly": [
+      "Hospital",
+      "Multi-Specialty Hospital",
+      "Clinic / Homecare",
+      "Ayurvedic Hospital",
+    ],
+    "Edu Fly": ["School", "College / University", "Study Centre / Institute"],
+  };
+
   const [sourceOption, setSourceOption] = useState(false);
+  const [selectedState, setSelectedState] = useState("");
+  console.log("SelectState::", selectedState);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    this.setState({
+    setFormValues({
+      ...formValues,
       [name]: value,
     });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-  };
-
-  const handleSelectChange = () => {
-    if (Category.value === "Wonder POS") {
-      return WonderPOS;
-    }
-    if (Category.value === "Health Fly") {
-      return HealthFly;
-    }
-    if (Category.value === "Edu Fly") {
-      return EduFly;
-    }
   };
 
   return (
@@ -62,20 +119,30 @@ const LeadEntry = () => {
           <div className="form__wrapper">
             <div className="form__left">
               <div className="fields">
-                <Select
-                  label="Category"
-                  options={Category}
-                  className="select-control bill-select department-select"
-                  defaultValue={Category[0]}
-                />
+                <div className="select">
+                  <label htmlFor="" className="label">
+                    Category
+                  </label>
+                  <select onChange={(e) => setSelectedState(e.target.value)}>
+                    {Category1.map((values) => {
+                      return <option>{values}</option>;
+                    })}
+                  </select>
+                </div>
               </div>
               <div className="fields">
-                <Select
-                  label="Software"
-                  // options={handleSelectChange}
-                  className="select-control bill-select department-select"
-                  defaultValue={handleSelectChange[0]}
-                />
+                <div className="select">
+                  <label htmlFor="" className="label">
+                    Software
+                  </label>
+                  {selectedState && (
+                    <select>
+                      {Softwares[selectedState].map((values) => {
+                        return <option>{values}</option>;
+                      })}
+                    </select>
+                  )}
+                </div>
               </div>
               <div className="field__row">
                 <div className="fields">
