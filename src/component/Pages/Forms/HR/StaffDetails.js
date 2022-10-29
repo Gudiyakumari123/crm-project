@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{Component} from 'react';
 import Header from "../../../../shared/Header/Header";
 import SubHeader from "../../../../shared/SubHeader/SubHeader";
 import Footer from "../../../../shared/Footer/Footer";
@@ -9,7 +9,6 @@ import "./staff.scss";
 import Input from "../../../../shared/Reusable/Input";
 import Select from "../../../../shared/Reusable/Select";
 import TextArea from "../../../../shared/Reusable/TextArea";
-import { Component } from 'react';
 import Country from './tryCountry';
 import Nationality from './nationality';
 import Try from './tryPhone';
@@ -31,7 +30,6 @@ const ReportLine = [
   {value:"Selvakumar",label:"Selvakumar"},
   {value:"Ismail Faisal",label:"Ismail Faisal"},
   {value:"Melfer Elizaga",label:"Melfer Elizaga"},
-
 ];
 
 const employeeType = [
@@ -100,26 +98,6 @@ class Staff extends Component {
   getEmailId() {
     return this.state.newUser.firstName.toLowerCase() + "." + this.state.newUser.lastName.toLowerCase() + "@selromsoft.com";
   }
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     firstName: "",
-  //     lastName: "",
-  //     email: "",
-  //   };
-  // }
-  // handleChange = (e) => {
-  //   const { name, value } = e.target;
-  //   this.setState({
-  //     [name]: value,
-  //     email: this.state.firstName + this.state.lastName + "@selrom.com",
-  //   });
-  //   console.log("value::", this.state);
-  // };
-
-  // handleSubmit = (e) => {
-  //   e.preventDefault();
-  // };
   render() {
     const date = new Date();
     const futureDate = date.getDate();

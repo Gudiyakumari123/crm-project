@@ -2,7 +2,8 @@
 @import "../../styles/variables";
 
 // Input
-.input-fields {
+.input-fields,
+.select {
   width: 100%;
   display: flex;
   align-items: center;
@@ -20,7 +21,8 @@
     align-items: center;
     position: relative;
   }
-  .form-control {
+  .form-control,
+  select {
     width: 100%;
     outline: none;
     &:focus {
@@ -92,4 +94,10 @@
 
 input.PhoneInputInput {
   outline: none;
+}
+select {
+  min-width: 82%;
+  border: 1px solid #ddd;
+  padding: 0.375rem 0.75rem;
+  border-radius: 0.25rem;
 }
