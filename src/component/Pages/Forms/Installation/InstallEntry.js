@@ -1,5 +1,4 @@
 import React, { useState, Fragment, useEffect } from "react";
-import "./style.scss";
 
 import { Category, payMode, Reference } from "../../../../data/crm-constants";
 // Reusable Component

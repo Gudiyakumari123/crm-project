@@ -51,6 +51,7 @@
 
         label {
           width: 35%;
+          white-space: nowrap;
         }
 
         .fields {
@@ -77,6 +78,7 @@
 
         label {
           width: 15%;
+          white-space: nowrap;
         }
 
         .fields {
@@ -91,6 +93,26 @@
           gap: 8px;
         }
       }
+
+      // Three Fields
+      .field__row__three {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        label {
+          width: 25%;
+          white-space: nowrap;
+        }
+        Input {
+          width: 65%;
+          margin-bottom: 5px;
+        }
+        .three__row {
+          margin-left: 38px;
+        }
+      }
+
       .department-select {
         margin-left: 7px;
         width: 100%;
