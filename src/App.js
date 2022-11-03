@@ -1,18 +1,23 @@
-import React, { useState } from "react";
-import './App.css';
+import React from "react";
+
+// Styles Files
+import "./App.css";
+import "./Assets/scss/Forms.scss";
+import "./Assets/scss/Staff.scss";
 // import Login from './shared/Login/Login';
-import { Link } from "react-router-dom";
-import useInterval from "use-interval";
 
 //Components
 // import Home from "./components/Home/Home";
 import Home from "./component/Home/Home";
 import Login from "./shared/Login/Login";
-import Loading from "./shared/Loading/Loading";
+// import Loading from "./shared/Loading/Loading";
 import Table from "./shared/Table";
 
+// Payment Gateway
+import Payment from "./component/Payment/Payment";
+
 // Leads Routes
-import LeadEntry from './component/Pages/Forms/Leads/LeadEntry';
+import LeadEntry from "./component/Pages/Forms/Leads/LeadEntry";
 // import TodayFollowups from './component/Pages/Forms/Leads/TodayFollow';
 // import Unfollows from './component/Pages/Forms/Leads/Unfollow';
 // import FollowupList from './component/Pages/Forms/Leads/FollowList';
@@ -29,8 +34,8 @@ import LeadEntry from './component/Pages/Forms/Leads/LeadEntry';
 // import LeadSummary from "./components/Pages/Forms/Leads/LeadSummery";
 
 // Installation Routes
-import InstallationEntry from './component/Pages/Forms/Installation/InstallEntry';
-import ReInstallationEntry from './component/Pages/Forms/Installation/ReInstall';
+import InstallationEntry from "./component/Pages/Forms/Installation/InstallEntry";
+import ReInstallationEntry from "./component/Pages/Forms/Installation/ReInstall";
 
 //  import InstallationEntry from "./components/Pages/Forms/Installation/InstallEntry";
 //  import DemoInstallation from "./components/Pages/Forms/Installation/DemoInstall";
@@ -40,10 +45,9 @@ import ReInstallationEntry from './component/Pages/Forms/Installation/ReInstall'
 //  import DemoInstallationReport from "./components/Pages/Forms/Installation/DemoInstallReport";
 //  import InstallationHistory from "./components/Pages/Forms/Installation/InstallHistory";
 
-
 // Services Routes
 
-import ServiceEntry from './component/Pages/Forms/Services/ServiceEntry';
+import ServiceEntry from "./component/Pages/Forms/Services/ServiceEntry";
 // import ServiceEntry from "./components/Pages/Forms/Services/ServiceEntry";
 // import TrackService from "./components/Pages/Forms/Services/TrackService";
 // import UnclearedServices from "./components/Pages/Forms/Services/UnclearService";
@@ -53,7 +57,7 @@ import ServiceEntry from './component/Pages/Forms/Services/ServiceEntry';
 // import SoftwareWiseService from "./components/Pages/Forms/Services/SoftwareService";
 
 // Dealer Routes
-import DealerRegistration from './component/Pages/Forms/Dealer/DealerRegister';
+import DealerRegistration from "./component/Pages/Forms/Dealer/DealerRegister";
 
 // import DealersList from "./components/Pages/Forms/Dealer/DealerList";
 // import AreaWiseDealersList from "./components/Pages/Forms/Dealer/AreaDealerList";
@@ -62,8 +66,8 @@ import DealerRegistration from './component/Pages/Forms/Dealer/DealerRegister';
 // import InactiveDealers from "./components/Pages/Forms/Dealer/InactiveDealer";
 
 // Customer Routes
-import CustomerRegistration from './component/Pages/Forms/Customer/CustomerRegister';
-import CustomerReceiptEntry from './component/Pages/Forms/Customer/CustomerReceipt'
+import CustomerRegistration from "./component/Pages/Forms/Customer/CustomerRegister";
+import CustomerReceiptEntry from "./component/Pages/Forms/Customer/CustomerReceipt";
 
 // import CustomerSearch from "./components/Pages/Forms/Customer/CusSearch";
 // import DuesReport from "./components/Pages/Forms/Customer/DuesReport";
@@ -74,13 +78,11 @@ import CustomerReceiptEntry from './component/Pages/Forms/Customer/CustomerRecei
 // import CountryWiseCustomersList from "./components/Pages/Forms/Customer/CountryCusList";
 // import CustomersSummary from "./components/Pages/Forms/Customer/CustomerSummary";
 
-
-
 //HR routes
 import StaffList from "./component/Pages/Forms/HR/staffList";
-import StaffDetails from './component/Pages/Forms/HR/StaffDetails';
-import Attendance from './component/Pages/Forms/HR/Attendance';
-import StaffPayrol from './component/Pages/Forms/HR/staffPayroll';
+import StaffDetails from "./component/Pages/Forms/HR/StaffDetails";
+import Attendance from "./component/Pages/Forms/HR/Attendance";
+import StaffPayrol from "./component/Pages/Forms/HR/staffPayroll";
 // import StaffList from "./components/Pages/Forms/HR/staffList";
 // import StaffDetails from "./components/Pages/Forms/HR/StaffDetails";
 // import Attendance from "./components/Pages/Forms/HR/Attendance";
@@ -206,6 +208,9 @@ function App() {
           <Route path="/staff-list" element={<StaffList />} />
           <Route path="/staff-attendence" element={<Attendance />} />
           <Route path="/staff-payroll" element={<StaffPayrol />} />
+
+          {/* Payment */}
+          <Route path="/payment" element={<Payment />} />
         </Routes>
       </BrowserRouter>
     </>

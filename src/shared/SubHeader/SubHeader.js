@@ -1,8 +1,6 @@
 import React, { Component, Fragment } from "react";
 import "./SubHeader.scss";
 
-import classNames from "classnames";
-
 import { NavDropdown } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
@@ -301,11 +299,14 @@ class subHeader extends Component {
                     </Link>
                     <Link to="/voucher-entry" className="dropdown-item">
                       <i className="bx bx-cabinet"></i> Transaction / Sales
-                    </Link> <Link to="/voucher-entry" className="dropdown-item">
+                    </Link>{" "}
+                    <Link to="/voucher-entry" className="dropdown-item">
                       <i className="bx bx-cabinet"></i> Operational
-                    </Link> <Link to="/voucher-entry" className="dropdown-item">
+                    </Link>{" "}
+                    <Link to="/voucher-entry" className="dropdown-item">
                       <i className="bx bx-cabinet"></i> Financial
-                    </Link> <Link to="/voucher-entry" className="dropdown-item">
+                    </Link>{" "}
+                    <Link to="/voucher-entry" className="dropdown-item">
                       <i className="bx bx-cabinet"></i> Tax
                     </Link>
                     <Link to="/voucher-entry" className="dropdown-item">
@@ -370,6 +371,9 @@ class subHeader extends Component {
                       <i className="bx bx-buildings"></i> Company Setting
                     </Link>
                   </NavDropdown> */}
+                  <Link to="/payment" className="dropdown-item">
+                    <i className="bx bx-cabinet"></i> Payment Gateway
+                  </Link>
                 </li>
               </ul>
             </div>

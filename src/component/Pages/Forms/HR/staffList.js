@@ -1,22 +1,14 @@
-import React from "react";
+import React, { Component } from "react";
 // import React from 'react';
 import Header from "../../../../shared/Header/Header";
 import SubHeader from "../../../../shared/SubHeader/SubHeader";
 import Footer from "../../../../shared/Footer/Footer";
-import { Form, Button, Row, Col, Container } from "react-bootstrap";
-import "./staff.scss";
+import { Button } from "react-bootstrap";
 import { NavDropdown } from "react-bootstrap";
 
 // Reusable Component
-import Input from "../../../../shared/Reusable/Input";
-import Select from "../../../../shared/Reusable/Select";
-import TextArea from "../../../../shared/Reusable/TextArea";
-import { Component } from "react";
-import Country from "./tryCountry";
-import Nationality from "./nationality";
-import Try from "./tryPhone";
 import { Link } from "react-router-dom";
-import Toggle from "./toggle";
+
 function StaffList() {
   return (
     <>
@@ -27,10 +19,9 @@ function StaffList() {
           <div className="title-display">
             <div className="title"> Staff Details </div>
             <Button className=" create-back">
-              {" "}
               <Link to="/staff-details" className="dropdown-item">
                 Create New Staff
-              </Link>{" "}
+              </Link>
             </Button>
           </div>
           <div className="form__wrapper">

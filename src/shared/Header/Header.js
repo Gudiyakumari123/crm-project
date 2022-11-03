@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment } from "react";
 import "./Header.scss";
 
 import classNames from "classnames";
@@ -153,7 +153,7 @@ class Header extends React.Component {
                       Entry
                     </Link>
                   </NavDropdown>
-                  <NavDropdown 
+                  <NavDropdown
                     title={
                       <span>
                         <i className="bx bx-book-open"></i> Accounts

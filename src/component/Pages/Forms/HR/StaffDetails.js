@@ -1,17 +1,16 @@
-import React,{Component} from 'react';
+import React, { Component } from "react";
 import Header from "../../../../shared/Header/Header";
 import SubHeader from "../../../../shared/SubHeader/SubHeader";
 import Footer from "../../../../shared/Footer/Footer";
 import { Form, Button, Row, Col, Container } from "react-bootstrap";
-import "./staff.scss";
 
 // Reusable Component
 import Input from "../../../../shared/Reusable/Input";
 import Select from "../../../../shared/Reusable/Select";
 import TextArea from "../../../../shared/Reusable/TextArea";
-import Country from './tryCountry';
-import Nationality from './nationality';
-import Try from './tryPhone';
+import Country from "../../../../shared/Reusable/CountryState";
+import Nationality from "../../../../shared/Reusable/CountryOnly";
+import Try from "../../../../shared/Reusable/tryPhone";
 
 // Selectedddd
 const Status = [
@@ -27,9 +26,9 @@ const ReportLine = [
   { value: "Deva Subramani", label: "Deva Subramani" },
   { value: "Dhanasekaran J", label: "Dhanasekaran J" },
   { value: "Amutha", label: "Amutha" },
-  {value:"Selvakumar",label:"Selvakumar"},
-  {value:"Ismail Faisal",label:"Ismail Faisal"},
-  {value:"Melfer Elizaga",label:"Melfer Elizaga"},
+  { value: "Selvakumar", label: "Selvakumar" },
+  { value: "Ismail Faisal", label: "Ismail Faisal" },
+  { value: "Melfer Elizaga", label: "Melfer Elizaga" },
 ];
 
 const employeeType = [
@@ -74,55 +73,62 @@ const educationAttainment = [
 
 class Staff extends Component {
   state = {
-    newUser: { firstName: "", lastName: "" }
+    newUser: { firstName: "", lastName: "" },
   };
   handleFirstName(e) {
     let value = e.target.value;
-    this.setState(prevState => ({
+    this.setState((prevState) => ({
       newUser: {
         ...prevState.newUser,
-        firstName: value
-      }
+        firstName: value,
+      },
     }));
   }
   handleLastName(e) {
     let value = e.target.value;
-    this.setState(prevState => ({
+    this.setState((prevState) => ({
       newUser: {
         ...prevState.newUser,
-        lastName: value
-      }
+        lastName: value,
+      },
     }));
   }
 
   getEmailId() {
-    return this.state.newUser.firstName.toLowerCase() + "." + this.state.newUser.lastName.toLowerCase() + "@selromsoft.com";
+    return (
+      this.state.newUser.firstName.toLowerCase() +
+      "." +
+      this.state.newUser.lastName.toLowerCase() +
+      "@selromsoft.com"
+    );
   }
   render() {
     const date = new Date();
     const futureDate = date.getDate();
     date.setDate(futureDate);
-    const defaultValue = date.toLocaleDateString('en-CA');
+    const defaultValue = date.toLocaleDateString("en-CA");
     return (
       <>
         <Header />
         <SubHeader />
         <div className="form__container">
           <div className="form__content">
-          <div className='title-display'>
-            <div className="title"> Staff Entry </div></div>
+            <div className="title-display">
+              <div className="title"> Staff Entry </div>
+            </div>
             <div className="form__wrapper">
               <div className="form__left">
                 <div className="field__row">
                   <div className="fields">
-                    <Input type="text"
-                      label="Entry No"
-                      readOnly="true"
-                    />
+                    <Input type="text" label="Entry No" readOnly="true" />
                   </div>
                   <div className="fields">
-                    <Input id="dateRequired" type="date" label="Date"
-                      name="dateRequired" defaultValue={defaultValue}
+                    <Input
+                      id="dateRequired"
+                      type="date"
+                      label="Date"
+                      name="dateRequired"
+                      defaultValue={defaultValue}
                     />
                   </div>
                 </div>
@@ -156,19 +162,19 @@ class Staff extends Component {
                 </div>
                 <div className="field__row">
                   <div className="fields">
-                    <Input type="text" label="Staff Id" 
-                      readOnly="true"
-                    />
+                    <Input type="text" label="Staff Id" readOnly="true" />
                   </div>
                   <div className="fields">
                     <Input type="date" label="Date Of Join" />
                   </div>
                 </div>
                 <div className="fields">
-                  <Input type="text" label="Staff Name"
+                  <Input
+                    type="text"
+                    label="Staff Name"
                     style={{
                       marginLeft: "-70px",
-                      width: "100%"
+                      width: "100%",
                     }}
                   />
                 </div>
@@ -189,11 +195,12 @@ class Staff extends Component {
                   </div>
                 </div>
                 <div className="fields">
-                  <Input type="text"
+                  <Input
+                    type="text"
                     label="Father Name"
                     style={{
                       marginLeft: "-71px",
-                      width: "100%"
+                      width: "100%",
                     }}
                   />
                 </div>
@@ -225,16 +232,19 @@ class Staff extends Component {
                     <Input type="date" label="Date Of Birth" />
                   </div>
                 </div>
-                <Nationality/>
+                <Nationality />
                 <div className="fields">
-                  <TextArea type="text"
+                  <TextArea
+                    type="text"
                     label="Address"
                     style={{ marginLeft: "-70px", marginButtom: "5px" }}
                   />
                 </div>
                 <div className="field__row">
                   <div className="fields">
-                    <Input type="text" label="Area/City"
+                    <Input
+                      type="text"
+                      label="Area/City"
                       style={{ marginButtom: "5px" }}
                     />
                   </div>
@@ -291,7 +301,6 @@ class Staff extends Component {
                 <div className="fields">
                   <Input type="text" label="Remarks" />
                 </div>
-
               </div>
             </div>
             <div className="btn__holder">
@@ -309,9 +318,8 @@ class Staff extends Component {
           </div>
         </div>
         <Footer />
-
       </>
     );
   }
-};
+}
 export default Staff;

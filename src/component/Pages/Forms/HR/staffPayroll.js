@@ -4,7 +4,6 @@ import SubHeader from "../../../../shared/SubHeader/SubHeader";
 import Footer from "../../../../shared/Footer/Footer";
 import { Form, Button, Row, Col, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import "./staffPayroll.scss";
 function StaffPayrol() {
   return (
     <>

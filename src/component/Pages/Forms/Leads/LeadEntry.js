@@ -10,8 +10,8 @@ import { Button } from "react-bootstrap";
 import Input from "../../../../shared/Reusable/Input";
 import Select from "../../../../shared/Reusable/Select";
 import TextArea from "../../../../shared/Reusable/TextArea";
-import Country from "../HR/tryCountry";
-import Try from "../HR/tryPhone";
+import Country from "../../../../shared/Reusable/CountryState";
+import Try from "../../../../shared/Reusable/tryPhone";
 
 // Constants
 import {
@@ -146,7 +146,7 @@ const LeadEntry = () => {
               </div>
               <div className="field__row">
                 <div className="fields">
-                  <Input type="text" label="Company" />
+                  <Input type="text" label="Company" name="company" isError />
                 </div>
                 <div className="fields">
                   <Input type="text" label="ContPerson" />
