@@ -1,4 +1,4 @@
-import React, { useState, useEffect,Fragment } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 
 // components
 import Header from "../../../../shared/Header/Header";
@@ -111,8 +111,7 @@ const ReInstall = ({ initialValue, props }) => {
   }
 
   /***MOve ito seprate file */
-  const onBlurEvent = (event) =>
-   {
+  const onBlurEvent = (event) => {
     console.log("Event for Tab Press:", event.target.name);
 
     switch (event.target.name) {
@@ -234,54 +233,55 @@ const ReInstall = ({ initialValue, props }) => {
                   label="Date"
                   className="date-picker"
                   style={{ marginLeft: "-68px" }}
-                // isError
+                  // isError
                 />
               </div>
 
               <div className="field__row">
                 <div className="fields">
-                  <Input type="text"
-                    label="Cust Id"
-                    style={{marginLeft:"60px"}}
-                    />
+                  <Input label="Cust Id" className=" form-control three__row" />
                 </div>
                 <div className="fields">
-                  <Input type="text"
-                    label="Company" />
+                  <Input label="Two" />
                 </div>
                 <div className="fields">
-                  <Input type="text"
-                    label="Company" />
+                  <Input label="Two" />
                 </div>
               </div>
-              {/* <Try /> */}
-              {/* <Country /> */}
+              <div className="field__row">
+                <div className="fields">
+                  <Input label="Cust Id" className=" form-control three__row" />
+                </div>
+                <div className="fields">
+                  <Input label="Two" />
+                </div>
+                <div className="fields">
+                  <Input label="Two" />
+                </div>
+              </div>
+
               <div className="field__row">
                 <div className="fields">
                   <div className="input-fields">
                     <label htmlFor="" className="label">
                       Phone
-                      {/* <div className="require"></div> */}
                     </label>
                     <PhoneInput
                       style={{
                         marginLeft: "8px",
-                        width: "208px"
+                        width: "208px",
                       }}
                       // value={phone}
                       name="mobileNumber"
                       className="form-control"
                       international
                       defaultCountry="IN"
-                    // onChange={setPhone}
+                      // onChange={setPhone}
                     />
                   </div>
                 </div>
                 <div className="fields">
-                  <Input
-                    type="text"
-                    label="Area/City"
-                  />
+                  <Input type="text" label="Area/City" />
                 </div>
               </div>
 
@@ -310,156 +310,39 @@ const ReInstall = ({ initialValue, props }) => {
                   label="Paid/Free"
                   options={Paid}
                   className="select-control source-select"
-                  defaultValue={Paid[1]}
+                  defaultValue={Paid[0]}
                   onChange={setPaid}
                 />
               </div>
 
               {paid.value === "Paid" ? (
                 <>
-                  <div className="field__row">
-
+                  <div className="field__row__three">
                     <div className="fields">
-
                       <Input
-                        // style={{ marginLeft: "26px" }}
-                        label="Amt"
-                        type="number"
-                        name="amount"
-                        value={formValues.amount}
-                        onChange={handleChange}
-                        // className="form-control"
-                        isError
-                        errorMsg={formErrors.amount}
+                        label="Total Amt"
+                        className=" form-control three__row"
                       />
                     </div>
                     <div className="fields">
-
-                      <Input
-                        label="Discoun"
-                        type="number"
-                        name="discountPer"
-                        // className="form-control"
-                        placeholder="%"
-                        value={formValues.discountPer}
-                        onBlur={onBlurEvent}
-                        onChange={handleChange}
-                      />
+                      <Input label="Dis%" />
                     </div>
                     <div className="fields">
-
-                      <Input
-                        label="Discoun"
-                        type="number"
-                        name="discountAmt"
-                        // className="form-control"
-                        placeholder="Amt"
-                        value={formValues.discountAmt}
-                        onBlur={onBlurEvent}
-                        onChange={handleChange}
-                      />
+                      <Input label="DisAmt" />
                     </div>
                   </div>
-                  <div className="field__row">
-
+                  <div className="field__row__three">
                     <div className="fields">
-
                       <Input
-                        label="Grs&nbsp;&nbsp;Amt."
-                        type="number"
-                        name="grossAmt"
-                        // className="form-control"
-                        value={formValues.grossAmt}
-                        onChange={handleChange}
-                        readOnly={true}
+                        label="Grs Amt."
+                        className=" form-control three__row"
                       />
                     </div>
                     <div className="fields">
-
-                      <Input
-                        // style={{ marginLeft: "17px" }}
-                        label="Tax% "
-                        type="number"
-                        name="tax"
-                        // className="form-control"
-                        value={formValues.tax}
-                        onChange={handleChange}
-                        onBlur={onBlurEvent}
-                      />
+                      <Input label="Tax%" />
                     </div>
                     <div className="fields">
-
-                      <Input
-                        // style={{ marginLeft: "22px" }}
-                        label="Tax&#8377; "
-                        type="number"
-                        name="totalTaxAmount"
-                        placeholder="&#8377;"
-                        // className="form-control"
-                        value={formValues.totalTaxAmount}
-                        onChange={handleChange}
-                        onBlur={onBlurEvent}
-                      />
-                    </div>
-                  </div>
-                  <div className="field__row">
-
-                    <div className="fields">
-
-                      <Input
-                        // style={{ marginLeft: "14px" }}
-                        label="Round"
-                        type="number"
-                        name="roundAmt"
-                        // className="form-control"
-                        onChange={handleChange}
-                        value={formValues.roundAmt}
-                        onBlur={onBlurEvent}
-                      />
-                    </div>
-                    <div className="fields">
-
-                      <Input
-                        // style={{ marginLeft: "7px" }}
-                        label="NetAmt"
-                        type="number"
-                        name="number"
-                        // className="form-control"
-                        value={formValues.netAmt}
-                        onChange={handleChange}
-                        onBlur={onBlurEvent}
-                        readOnly={true}
-                      />
-                    </div>
-                  </div>
-
-                  <div className="field__row">
-
-                    <div className="fields">
-
-                      <Input
-                        label="PaidAmt"
-                        type="number"
-                        name="paidAmt"
-                        // className="form-control"
-                        value={formValues.paidAmt}
-                        onChange={handleChange}
-                        onBlur={onBlurEvent}
-                        isError
-                        errorMsg={formErrors.paidAmt}
-                      />
-                    </div>
-                    <div className="fields">
-
-                      <Input
-                        label="Bal.Amt."
-                        type="number"
-                        name="balAmt"
-                        // className="form-control"
-                        value={formValues.balAmt}
-                        onChange={handleChange}
-                        readOnly={true}
-                      />
+                      <Input label="Tax₹" />
                     </div>
                   </div>
                 </>
@@ -478,9 +361,7 @@ const ReInstall = ({ initialValue, props }) => {
                   />
                 </div>
                 <div className="fields">
-                  <Input type="date"
-                    label="Date" />
-
+                  <Input type="date" label="Date" />
                 </div>
               </div>
 
