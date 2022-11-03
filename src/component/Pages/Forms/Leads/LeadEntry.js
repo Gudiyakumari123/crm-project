@@ -11,7 +11,7 @@ import Input from "../../../../shared/Reusable/Input";
 import Select from "../../../../shared/Reusable/Select";
 import TextArea from "../../../../shared/Reusable/TextArea";
 import Country from "../../../../shared/Reusable/CountryState";
-import Try from "../../../../shared/Reusable/tryPhone";
+import Try from "../../../../shared/Reusable/Phone&Alt";
 
 // Constants
 import {

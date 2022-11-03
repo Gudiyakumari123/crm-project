@@ -2,7 +2,7 @@ import React from "react";
 // Country State City
 import { useFormik } from "formik";
 import csc from "country-state-city";
-import Select from "./Select";
+import Select from "react-select";
 
 const Religion = [
   { value: "Hindu", label: "Hindu" },

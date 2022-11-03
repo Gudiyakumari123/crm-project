@@ -2,8 +2,10 @@ import React from "react";
 
 // Styles Files
 import "./App.css";
-import "./Assets/scss/Forms.scss";
-import "./Assets/scss/Staff.scss";
+import "./Assets/scss/ReusableStyles.scss"; // All Reusable Styles
+import "./Assets/scss/Forms.scss"; // All Forms Styles
+import "./Assets/scss/Staff.scss"; // All Forms Styles
+import "./Assets/scss/AllStyles.scss"; // All Others Styles
 // import Login from './shared/Login/Login';
 
 //Components

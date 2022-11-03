@@ -10,7 +10,7 @@ import Select from "../../../../shared/Reusable/Select";
 import TextArea from "../../../../shared/Reusable/TextArea";
 import Country from "../../../../shared/Reusable/CountryState";
 import Nationality from "../../../../shared/Reusable/CountryOnly";
-import Try from "../../../../shared/Reusable/tryPhone";
+import Try from "../../../../shared/Reusable/Phone&Alt";
 
 // Selectedddd
 const Status = [
