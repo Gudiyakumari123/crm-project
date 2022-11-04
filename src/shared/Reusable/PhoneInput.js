@@ -27,7 +27,7 @@ function PhoneInputBox({
           name={name}
           defaultCountry="IN"
           placeholder={placeholder}
-          onChange={setPhone}
+          onChange={onChange}
           {...props}
         />
       </div>

@@ -319,7 +319,7 @@ const InstallEntry = ({ initialValue }) => {
                 </div>
               </div>
 
-              <div className="field__row__three">
+              {/* <div className="field__row__three">
                 <div className="fields">
                   <Input
                     label="Total Amt"
@@ -331,6 +331,7 @@ const InstallEntry = ({ initialValue }) => {
                     className=" form-control three__row"
                   />
                 </div>
+
                 <div className="fields">
                   <Input
                     label="Dis%"
@@ -352,7 +353,45 @@ const InstallEntry = ({ initialValue }) => {
                     onChange={handleChange}
                   />
                 </div>
-              </div>
+              </div> */}
+              <div className="field__row__three">
+                <div className="fields">
+                  <Input
+                    label="grossAmt"
+                    type="number"
+                    name="grossAmt"
+                    value={formValues.grossAmt}
+                    onChange={handleChange}
+                    isError
+                    errorMsg={formErrors.grossAmt}
+                    className=" form-control three__row"
+                  />
+                  <p className="show-errors-left"> {formErrors.grossAmt} </p>
+                </div>
+                <div className="fields">
+                  <Input
+                    label="GST% "
+                    type="number"
+                    name="gst"
+                    className="form-control"
+                    // onBlur={onBlurEvent}
+                    value={formValues.gst}
+                    onChange={handleChange}
+                  />
+                </div>
+                <div className="fields">
+                  <Input
+                    label="GST"
+                    type="number"
+                    name="totalTaxAmount"
+                    placeholder="Amt"
+                    value={formValues.totalTaxAmount}
+                    // onBlur={onBlurEvent}
+                    onChange={handleChange}
+                    readOnly={true}
+                  />
+                </div>
+              </div>  
 
               {/* 2nd */}
 

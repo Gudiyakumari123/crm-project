@@ -185,6 +185,9 @@ const ReInstall = ({ initialValue, props }) => {
     if (!values.city) {
       errors.city = "Enter city";
     }
+    if (!values.phone) {
+      errors.phone = "Enter phone";
+    }
     if (!values.software) {
       errors.software = "Enter software";
     }
@@ -271,13 +274,13 @@ const ReInstall = ({ initialValue, props }) => {
                       width: "208px",
                     }}
                     value={phone}
-                    name="mobileNumber"
+                    name="phone"
                     className="form-control"
                     international
                     defaultCountry="IN"
                     onChange={setPhone}
                   />
-                  <p className="show-errors-left"> {formErrors.city} </p>
+                  <p className="show-errors-left"> {formErrors.phone} </p>
                 </div>
                 <div className="fields">
                   <Input

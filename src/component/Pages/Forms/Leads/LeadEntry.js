@@ -165,6 +165,7 @@ const LeadEntry = ({ initialValue }) => {
   const [isSubmit, setIsSubmit] = useState(false);
   const [phone, setPhone] = useState("");
 
+
   const [paid, setPaid] = useState({});
 
   // Form Validations
@@ -190,6 +191,7 @@ const LeadEntry = ({ initialValue }) => {
       ...formValues,
       [name]: value,
     });
+    setPhone();
   };
 
   const Category1 = ["WonderPOS", "Healthy Fly", "Edu Fly"];
@@ -260,7 +262,6 @@ const LeadEntry = ({ initialValue }) => {
 
   const [sourceOption, setSourceOption] = useState(false);
   const [selectedState, setSelectedState] = useState("");
-  console.log("SelectState::", selectedState);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -383,14 +384,14 @@ const LeadEntry = ({ initialValue }) => {
                   <PhoneInput
                     type="text"
                     label="Phone"
-                    name="phone"
-                    value={phone}
-                    onChange={setPhone}
+                    name="mobileNumber"
+                    value={formValues.mobileNumber}
+                    // onChange={setForm}
                     isError
                     // errorMsg={formErrors.mobileNumber}
                     style={{ marginLeft: "32px" }}
                   />
-                  {/* <p className="show-errors-left">{formErrors.mobileNumber}</p> */}
+                  <p className="show-errors-left">{formErrors.mobileNumber}</p>
                 </div>
                 <div className="fields">
                   <Input
@@ -455,7 +456,7 @@ const LeadEntry = ({ initialValue }) => {
                       />
                     </div>
                     <div className="fields">
-                      <Input label="Name" type="email" name="dealerName" />
+                      <Input label="Name" type="email" />
                     </div>
                   </div>
                 </>
