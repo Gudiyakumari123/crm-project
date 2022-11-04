@@ -25,22 +25,12 @@ const bounce = cssTransition({
   exit: "animate__animated animate__bounceOut",
 });
 
-const Category = [
-  { value: "Company", label: "Company" },
-  { value: "Freelancer", label: "Freelancer" },
-];
-
-
 const swirl = cssTransition({
   enter: "swirl-in-fwd",
   exit: "swirl-out-bck",
 });
 
 
-const Status = [
-  { value: "Active", label: "Active" },
-  { value: "Completed", label: "Completed" },
-];
 const BillNo = [
   { value: "Bill No 1", label: "Bill No 1" },
   { value: "Bill No 2", label: "Bill No 2" },
@@ -63,8 +53,9 @@ const CustomerReceipt = ({ initialValue }) => {
 
   // Form Validations
   const [formValues, setFormValues] = useState({
+    customerId:"",
     companyName: "",
-    contactPerson: "",
+    paidAmt:"",
     category: "",
     address: "",
     city: "",
@@ -113,14 +104,14 @@ const CustomerReceipt = ({ initialValue }) => {
   const validate = (values) => {
     const errors = {};
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
+    if (!values.customerId) {
+      errors.customerId = "Enter customerId ";
+    }
     if (!values.companyName) {
-      errors.companyName = "Enter Company Name";
+      errors.companyName = "Enter company Name";
     }
-    if (!values.contactPerson) {
-      errors.contactPerson = "Enter contactPerson";
-    }
-    if (!values.category) {
-      errors.category = "Enter category";
+    if (!values.paidAmt) {
+      errors.paidAmt = "Enter paid Amt";
     }
     if (!values.city) {
       errors.city = "Enter city";
@@ -163,11 +154,13 @@ const CustomerReceipt = ({ initialValue }) => {
                   errorMsg={formErrors.customerId}
                 />
               </div>
+              <p className="show-errors-left"> {formErrors.customerId}</p>
+
 
               <div className="fields">
                 <Input
                   type="text"
-                  label="Comp.Name"
+                  label="Company Name"
                   style={{
                     marginLeft: "-70px",
                     width: "100%",
@@ -179,6 +172,8 @@ const CustomerReceipt = ({ initialValue }) => {
                   errorMsg={formErrors.companyName}
                 />
               </div>
+              <p className="show-errors-left"> {formErrors.companyName}</p>
+
 
               <div className="fields">
                 <div className="input-fields">
@@ -219,6 +214,7 @@ const CustomerReceipt = ({ initialValue }) => {
                   options={payMode}
                   className="select-control source-select"
                   defaultValue={payMode[0]}
+                  isError
                 />
               </div>
 
@@ -230,9 +226,11 @@ const CustomerReceipt = ({ initialValue }) => {
                   value={formValues.paidAmt}
                   onChange={handleChange}
                   isError
-                  errorMsg={formErrors.gstNo}
+                  errorMsg={formErrors.paidAmt}
                 />
               </div>
+              <p className="show-errors"> {formErrors.paidAmt}</p>
+
               <div className="fields">
                 <TextArea
                   type="text"

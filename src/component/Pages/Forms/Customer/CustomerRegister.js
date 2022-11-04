@@ -108,11 +108,11 @@ const CustomerRegister = ({ initialValue }) => {
     if (!values.contactPerson) {
       errors.contactPerson = "Enter contactPerson";
     }
-    if (!values.category) {
-      errors.category = "Enter category";
-    }
     if (!values.city) {
       errors.city = "Enter city";
+    }
+    if (!values.gstNo) {
+      errors.gstNo = "Enter Gst No";
     }
     return errors;
   };
@@ -152,6 +152,8 @@ const CustomerRegister = ({ initialValue }) => {
                   errorMsg={formErrors.companyName}
                 />
               </div>
+              <p className="show-errors-left"> {formErrors.companyName}</p>
+
 
               <div className="fields">
                 <Input
@@ -168,21 +170,19 @@ const CustomerRegister = ({ initialValue }) => {
                   errorMsg={formErrors.contactPerson}
                 />
               </div>
-              <PhoneAlt />
+              <p className="show-errors-left"> {formErrors.contactPerson}</p>
 
+              <PhoneAlt />
               <div className="fields">
-                <Input
-                  type="text"
+                <Select
                   label="Category"
-                  style={{
-                    marginLeft: "-70px",
-                    width: "100%",
-                  }}
-                  name="category"
-                  value={formValues.category}
-                  onChange={handleChange}
+                  placeholder="Select Category No."
+                  options={Category}
+                  defaultValue={Category[0]}
+                  className="select-control bill-select department-select"
                   isError
-                  errorMsg={formErrors.category}
+                  errorMsg={formErrors.companyName}
+
                 />
               </div>
               <div className="fields">
@@ -216,7 +216,7 @@ const CustomerRegister = ({ initialValue }) => {
                   }}
                 />
               </div>
-
+              <p className="show-errors-left"> {formErrors.city}</p>
 
             </div>
             {/* Left Side End */}
@@ -231,8 +231,11 @@ const CustomerRegister = ({ initialValue }) => {
                   onChange={handleChange}
                   isError
                   errorMsg={formErrors.gstNo}
+
                 />
               </div>
+              <p className="show-errors"> {formErrors.gstNo}</p>
+
 
               <div className="fields">
                 <Input
