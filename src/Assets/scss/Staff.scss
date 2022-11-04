@@ -57,8 +57,7 @@
         .fields {
           width: 100%;
           margin-bottom: 5px;
-
-
+          position: relative;
         }
 
         // .show-errors-left {
@@ -74,8 +73,6 @@
           align-items: center;
           gap: 8px;
           // position: relative;
-
-
         }
       }
 
@@ -96,6 +93,7 @@
         .fields {
           width: 100%;
           margin-bottom: 5px;
+          position: relative;
         }
 
         .field__row {
@@ -150,7 +148,6 @@
       .lead-select {
         margin-left: 90%;
       }
-
 
       .customer-country {
         margin-left: -50px;
@@ -235,7 +232,6 @@
       .show-errors {
         color: red;
         margin-left: 100px;
-
       }
 
       .show-errors-left {

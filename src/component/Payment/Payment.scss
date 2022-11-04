@@ -1,0 +1,138 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,600;1,300&display=swap");
+
+.pricing__container {
+  width: 100%;
+  height: 100vh;
+  background-color: #00b388;
+  font-family: "Poppins", sans-serif !important;
+  .pricing__content {
+    width: 100%;
+    padding: 50px 0;
+    .pro-content {
+      width: 100%;
+      text-align: center;
+      h2 {
+        font-size: 2.3rem;
+        font-weight: bold;
+        margin-bottom: 10px;
+        // padding-top: 60px;
+        color: #3a3a3a;
+      }
+      p {
+        font-size: 18px;
+        color: #ddd;
+        margin-bottom: 1.5rem;
+      }
+    }
+
+    .Product-section {
+      text-align: center;
+      font-size: 1rem;
+    }
+
+    .product-card {
+      width: 70%;
+      margin: 0px auto;
+      display: flex;
+      gap: 30px;
+      justify-content: space-evenly;
+      /* align-items: center; */
+      text-align: left;
+      position: relative;
+    }
+
+    .card1 {
+      background-color: white;
+      width: 100%;
+      padding: 20px;
+      border-radius: 10px;
+      cursor: pointer;
+      padding-bottom: 0;
+      &:hover {
+        background-color: #0a1e28;
+        color: white;
+        transform: translateY(-5%);
+        transition: 0.3s all;
+      }
+    }
+
+    .head {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: bold;
+      font-size: 1.3rem;
+    }
+
+    .para {
+      margin: 5px 0;
+      font-size: 14px;
+      color: #6d6d6d;
+    }
+
+    .amount {
+      display: flex;
+      align-items: center;
+      font-size: 2rem;
+      font-weight: bold;
+      span {
+        font-size: 1.5rem;
+        color: #7bc6ff;
+        margin-right: 7px;
+      }
+      p {
+        font-size: 14px;
+        margin: 0;
+        margin-left: 9px;
+        margin-bottom: -15px;
+        font-weight: lighter;
+      }
+    }
+
+    .login1 {
+      margin: 15px 0;
+      width: 250px;
+      height: 40px;
+      outline: none;
+      padding: 0 10px;
+      color: white;
+      border: none;
+      background-color: #71a2e2;
+      border-radius: 4px;
+    }
+
+    .card__footer {
+      .card__title {
+        width: 100%;
+        font-size: 1.2rem;
+        font-weight: 600;
+        margin-bottom: 14px;
+      }
+      .p1 {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        i {
+          color: #2196f3;
+          font-size: 1.5rem;
+        }
+      }
+      .btn__seemore {
+        margin-top: 15px;
+        margin-bottom: 16px;
+        width: 250px;
+        height: 40px;
+        border: none;
+        outline: none;
+        font-size: 12px;
+        padding: 0 10px;
+        color: black;
+        background-color: #e9f5ff;
+        border-radius: 4px;
+        text-transform: uppercase;
+        font-weight: bold;
+        letter-spacing: 1px;
+      }
+    }
+  }
+}

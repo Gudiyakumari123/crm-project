@@ -16,7 +16,7 @@ import Login from "./shared/Login/Login";
 import Table from "./shared/Table";
 
 // Payment Gateway
-import Payment from "./component/Payment/Payment";
+import Payment from "./component/Payment/PaymentDesign";
 
 // Leads Routes
 import LeadEntry from "./component/Pages/Forms/Leads/LeadEntry";

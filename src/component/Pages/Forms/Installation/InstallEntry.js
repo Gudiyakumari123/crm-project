@@ -70,8 +70,6 @@ const InstallEntry = ({ initialValue }) => {
     remarks: "",
   });
 
-
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormValues({
@@ -148,8 +146,6 @@ const InstallEntry = ({ initialValue }) => {
   const [selectedState, setSelectedState] = useState("");
   console.log("SelectState::", selectedState);
 
-
-
   const handleSubmit = (e) => {
     e.preventDefault();
     setFormErrors(validate(formValues));
@@ -210,7 +206,6 @@ const InstallEntry = ({ initialValue }) => {
                   label="Date"
                   // className="date-picker"
                   style={{ marginLeft: "-68px" }}
-
                 />
               </div>
               <div className="fields">
@@ -218,9 +213,7 @@ const InstallEntry = ({ initialValue }) => {
                   <label htmlFor="" className="label">
                     Category
                   </label>
-                  <select
-                    onChange={(e) => setSelectedState(e.target.value)}
-                  >
+                  <select onChange={(e) => setSelectedState(e.target.value)}>
                     {Category1.map((values) => {
                       return <option>{values}</option>;
                     })}
@@ -248,10 +241,7 @@ const InstallEntry = ({ initialValue }) => {
                   type="text"
                   label="Version"
                   name="version"
-                  style={{marginLeft:"-70px",
-                  width:"100%"
-                
-                }}
+                  style={{ marginLeft: "-70px", width: "100%" }}
                   value={formValues.version}
                   onChange={handleChange}
                   isError
@@ -274,17 +264,16 @@ const InstallEntry = ({ initialValue }) => {
                   <p> {formErrors.software}</p>
                 </div>
                 <div className="fields">
-                  <Input type="text"
+                  <Input
+                    type="text"
                     label="Company"
                     name="companyName"
                     value={formValues.companyName}
                     onChange={handleChange}
                     isError
                     errorMsg={formErrors.companyName}
-
                   />
                 </div>
-
               </div>
 
               <div className="field__row">
@@ -293,12 +282,11 @@ const InstallEntry = ({ initialValue }) => {
                     <label htmlFor="" className="label">
                       Phone
                       <div className="require"> </div>
-
                     </label>
                     <PhoneInput
                       style={{
                         marginLeft: "8px",
-                        width: "208px"
+                        width: "208px",
                       }}
                       value={phone}
                       name="mobileNumber"
@@ -322,8 +310,6 @@ const InstallEntry = ({ initialValue }) => {
                 </div>
               </div>
 
-
-
               <div className="field__row__three">
                 <div className="fields">
                   <Input
@@ -331,15 +317,14 @@ const InstallEntry = ({ initialValue }) => {
                     name="amount"
                     value={formValues.amount}
                     onChange={handleChange}
-
                     isError
                     errorMsg={formErrors.amount}
-
                     className=" form-control three__row"
                   />
                 </div>
                 <div className="fields">
-                  <Input label="Dis%"
+                  <Input
+                    label="Dis%"
                     name="discountPer"
                     placeholder="%"
                     value={formValues.discountPer}
@@ -348,7 +333,8 @@ const InstallEntry = ({ initialValue }) => {
                   />
                 </div>
                 <div className="fields">
-                  <Input label="DisAmt"
+                  <Input
+                    label="DisAmt"
                     type="number"
                     name="discountAmt"
                     placeholder="Amt"
@@ -369,10 +355,8 @@ const InstallEntry = ({ initialValue }) => {
                     name="grossAmt"
                     value={formValues.grossAmt}
                     onChange={handleChange}
-
                     isError
                     errorMsg={formErrors.grossAmt}
-
                     className=" form-control three__row"
                   />
                 </div>
@@ -380,16 +364,16 @@ const InstallEntry = ({ initialValue }) => {
                   <Input
                     label="GST% "
                     type="number"
-                          name="gst"
-                          className="form-control"
-                          // onBlur={onBlurEvent}
-                          value={formValues.gst}
-                          onChange={handleChange}
+                    name="gst"
+                    className="form-control"
+                    // onBlur={onBlurEvent}
+                    value={formValues.gst}
+                    onChange={handleChange}
                   />
                 </div>
                 <div className="fields">
-                  <Input 
-                  label="GST"
+                  <Input
+                    label="GST"
                     type="number"
                     name="totalTaxAmount"
                     placeholder="Amt"
@@ -397,7 +381,6 @@ const InstallEntry = ({ initialValue }) => {
                     // onBlur={onBlurEvent}
                     onChange={handleChange}
                     readOnly={true}
-
                   />
                 </div>
               </div>
@@ -414,34 +397,34 @@ const InstallEntry = ({ initialValue }) => {
 
                     isError
                     errorMsg={formErrors.amount}
-
                     className=" form-control three__row"
                   />
                 </div>
                 <div className="fields">
-                  <Input l
-                  label="NetAmt"
-                  type="number"
-                  name="netAmt"
-                  value={formValues.netAmt}
-                  onChange={handleChange}
-                  // onBlur={onBlurEvent}
-                  readOnly={true}
+                  <Input
+                    l
+                    label="NetAmt"
+                    type="number"
+                    name="netAmt"
+                    value={formValues.netAmt}
+                    onChange={handleChange}
+                    // onBlur={onBlurEvent}
+                    readOnly={true}
                   />
                 </div>
                 <div className="fields">
-                  <Input label="PaidAmt"
+                  <Input
+                    label="PaidAmt"
                     type="number"
                     name="paidAmt"
-                          value={formValues.paidAmt}
-                          onChange={handleChange}
-                          // onBlur={onBlurEvent}
-                          isError
-                          errorMsg={formErrors.paidAmt}
+                    value={formValues.paidAmt}
+                    onChange={handleChange}
+                    // onBlur={onBlurEvent}
+                    isError
+                    errorMsg={formErrors.paidAmt}
                   />
                 </div>
               </div>
-
             </div>
             {/* Left Side End */}
             {/* Right Side Start */}
@@ -455,7 +438,7 @@ const InstallEntry = ({ initialValue }) => {
                   value={formValues.details}
                   onChange={handleChange}
                   style={{
-                    marginLeft: "13px"
+                    marginLeft: "13px",
                   }}
                 />
               </div>
@@ -483,11 +466,12 @@ const InstallEntry = ({ initialValue }) => {
                   className="date-picker"
                   style={{ marginLeft: "15px" }}
 
-                // isError
+                  // isError
                 />
               </div>
               <div className="fields">
-                <TextArea label="Remarks"
+                <TextArea
+                  label="Remarks"
                   style={{ marginLeft: "15px" }}
                   name="remarks"
                   value={formValues.remarks}
@@ -501,14 +485,14 @@ const InstallEntry = ({ initialValue }) => {
               type="submit"
               className="btn btn-primary"
               onClick={handleSubmit}
-            // id="animate.css"
-            // value="isSubmit"
+              // id="animate.css"
+              // value="isSubmit"
             >
               Save
             </Button>
-            <Button className="btn btn-secondary"
-              onClick={refreshPage}
-            >Clear</Button>
+            <Button className="btn btn-secondary" onClick={refreshPage}>
+              Clear
+            </Button>
           </div>
         </div>
       </div>

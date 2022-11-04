@@ -12,9 +12,8 @@ import { ToastContainer, toast, cssTransition } from "react-toastify";
 import Input from "../../../../shared/Reusable/Input";
 import Select from "../../../../shared/Reusable/Select";
 import TextArea from "../../../../shared/Reusable/TextArea";
-// Phone Number
-import PhoneInput from "react-phone-number-input";
-import "react-phone-number-input/style.css";
+import PhoneInput from "../../../../shared/Reusable/PhoneInput";
+
 const bounce = cssTransition({
   enter: "animate__animated animate__bounceIn",
   exit: "animate__animated animate__bounceOut",
@@ -141,7 +140,6 @@ const ReInstall = ({ initialValue }) => {
                   label="Date"
                   // className="date-picker"
                   style={{ marginLeft: "-68px" }}
-
                 />
               </div>
 
@@ -156,48 +154,38 @@ const ReInstall = ({ initialValue }) => {
                     isError
                     errorMsg={formErrors.customerId}
                   />
-
-                  <p className="show-errors-left"> {formErrors.customerId}</p>
+                  <p className="show-errors-left"> {formErrors.customerId} </p>
                 </div>
                 <div className="fields">
-                  <Input type="text"
+                  <Input
+                    type="text"
                     label="Company"
                     name="companyName"
                     value={formValues.companyName}
                     onChange={handleChange}
                     isError
                     errorMsg={formErrors.companyName}
-
                   />
+                  <p className="show-errors-left"> {formErrors.companyName} </p>
                 </div>
-                <p className="show-errors-left"> {formErrors.companyName}</p>
-
               </div>
-
 
               <div className="field__row">
                 <div className="fields">
-                  <div className="input-fields">
-                    <label htmlFor="" className="label">
-                      Phone
-                      <div className="require"> </div>
-
-                    </label>
-                    <PhoneInput
-                      style={{
-                        marginLeft: "8px",
-                        width: "208px"
-                      }}
-                      value={phone}
-                      name="mobileNumber"
-                      className="form-control"
-                      international
-                      defaultCountry="IN"
-                      onChange={setPhone}
-                    />
-                  </div>
-                  <p className="show-errors"> {formErrors.companyName}</p>
-
+                  <PhoneInput
+                    label="Phone"
+                    style={{
+                      marginLeft: "8px",
+                      width: "208px",
+                    }}
+                    value={phone}
+                    name="mobileNumber"
+                    className="form-control"
+                    international
+                    defaultCountry="IN"
+                    onChange={setPhone}
+                  />
+                  <p className="show-errors-left"> {formErrors.city} </p>
                 </div>
                 <div className="fields">
                   <Input
@@ -209,9 +197,8 @@ const ReInstall = ({ initialValue }) => {
                     isError
                     errorMsg={formErrors.city}
                   />
+                  <p className="show-errors-left"> {formErrors.city} </p>
                 </div>
-                <p className="show-errors-left"> {formErrors.city}</p>
-
               </div>
 
               <div className="fields">
@@ -223,8 +210,6 @@ const ReInstall = ({ initialValue }) => {
                   className="select-control bill-select department-select"
                   isError
                 />
-                <p className="show-errors-left"> {formErrors.city}</p>
-
               </div>
               <div className="fields">
                 <Input
@@ -240,8 +225,7 @@ const ReInstall = ({ initialValue }) => {
                   isError
                   errorMsg={formErrors.software}
                 />
-                <p className="show-errors-left"> {formErrors.software}</p>
-
+                <p className="show-errors-left"> {formErrors.software} </p>
               </div>
 
               <div className="fields">
@@ -252,11 +236,8 @@ const ReInstall = ({ initialValue }) => {
                   defaultValue={Category[0]}
                   className="select-control bill-select department-select"
                   isError
-
                 />
               </div>
-              <p className="show-errors-left"> {formErrors.category}</p>
-
             </div>
             {/* Left Side End */}
             {/* Right Side Start */}
@@ -270,7 +251,7 @@ const ReInstall = ({ initialValue }) => {
                   value={formValues.details}
                   onChange={handleChange}
                   style={{
-                    marginLeft: "13px"
+                    marginLeft: "13px",
                   }}
                 />
               </div>
@@ -283,8 +264,6 @@ const ReInstall = ({ initialValue }) => {
                   defaultValue={Status[0]}
                   isError
                 />
-                <p className="show-errors"> {formErrors.software}</p>
-
               </div>
               <div className="fields">
                 <Select
@@ -300,11 +279,12 @@ const ReInstall = ({ initialValue }) => {
                   className="date-picker"
                   style={{ marginLeft: "15px" }}
 
-                // isError
+                  // isError
                 />
               </div>
               <div className="fields">
-                <TextArea label="Remarks"
+                <TextArea
+                  label="Remarks"
                   style={{ marginLeft: "15px" }}
                   name="remarks"
                   value={formValues.remarks}
@@ -318,14 +298,14 @@ const ReInstall = ({ initialValue }) => {
               type="submit"
               className="btn btn-primary"
               onClick={handleSubmit}
-            // id="animate.css"
-            // value="isSubmit"
+              // id="animate.css"
+              // value="isSubmit"
             >
               Save
             </Button>
-            <Button className="btn btn-secondary"
-              onClick={refreshPage}
-            >Clear</Button>
+            <Button className="btn btn-secondary" onClick={refreshPage}>
+              Clear
+            </Button>
           </div>
         </div>
       </div>
