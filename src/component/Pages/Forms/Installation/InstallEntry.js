@@ -56,6 +56,7 @@ const InstallEntry = ({ initialValue }) => {
 
   // Form Validations
   const [formValues, setFormValues] = useState({
+    amount:"",
     date: "",
     customerId: "",
     companyName: "",
@@ -163,17 +164,24 @@ const InstallEntry = ({ initialValue }) => {
   const validate = (values) => {
     const errors = {};
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
-    if (!values.customerId) {
-      errors.customerId = "Enter customerId";
+    
+    if (!values.version) {
+      errors.version = "Enter version";
     }
     if (!values.companyName) {
       errors.companyName = "Enter companyName";
     }
+    if (!values.customerId) {
+      errors.customerId = "Enter customerId";
+    }
     if (!values.city) {
       errors.city = "Enter city";
     }
-    if (!values.software) {
-      errors.software = "Enter software";
+    if (!values.amount) {
+      errors.amount = "Enter amount";
+    }
+    if (!values.grossAmt) {
+      errors.grossAmt = "Enter grossAmt";
     }
     return errors;
   };
@@ -248,6 +256,7 @@ const InstallEntry = ({ initialValue }) => {
                   errorMsg={formErrors.version}
                 />
               </div>
+              <p className="show-errors-left"> {formErrors.version} </p>
 
               <div className="field__row">
                 <div className="fields">
@@ -260,8 +269,7 @@ const InstallEntry = ({ initialValue }) => {
                     isError
                     errorMsg={formErrors.customerId}
                   />
-
-                  <p> {formErrors.software}</p>
+                  <p className="show-errors-left"> {formErrors.customerId} </p>
                 </div>
                 <div className="fields">
                   <Input
@@ -273,8 +281,11 @@ const InstallEntry = ({ initialValue }) => {
                     isError
                     errorMsg={formErrors.companyName}
                   />
+                  <p className="show-errors-left"> {formErrors.companyName} </p>
                 </div>
               </div>
+
+
 
               <div className="field__row">
                 <div className="fields">
@@ -319,9 +330,12 @@ const InstallEntry = ({ initialValue }) => {
                     onChange={handleChange}
                     isError
                     errorMsg={formErrors.amount}
+
                     className=" form-control three__row"
                   />
                 </div>
+                {/* <p className="show-errors-left"> {formErrors.amount} </p> */}
+
                 <div className="fields">
                   <Input
                     label="Dis%"
@@ -466,7 +480,7 @@ const InstallEntry = ({ initialValue }) => {
                   className="date-picker"
                   style={{ marginLeft: "15px" }}
 
-                  // isError
+                // isError
                 />
               </div>
               <div className="fields">
@@ -485,8 +499,8 @@ const InstallEntry = ({ initialValue }) => {
               type="submit"
               className="btn btn-primary"
               onClick={handleSubmit}
-              // id="animate.css"
-              // value="isSubmit"
+            // id="animate.css"
+            // value="isSubmit"
             >
               Save
             </Button>

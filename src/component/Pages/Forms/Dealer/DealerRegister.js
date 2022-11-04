@@ -108,11 +108,17 @@ const DealerRegister = ({ initialValue }) => {
     if (!values.companyName) {
       errors.companyName = "Enter companyName";
     }
+    if (!values.contactPerson) {
+      errors.contactPerson = "Enter contactPerson";
+    }
+    if (!values.nature) {
+      errors.nature = "Enter nature";
+    }
     if (!values.city) {
       errors.city = "Enter city";
     }
-    if (!values.software) {
-      errors.software = "Enter software";
+    if (!values.email) {
+      errors.email = "Enter email";
     }
     return errors;
   };
@@ -155,11 +161,11 @@ const DealerRegister = ({ initialValue }) => {
                   defaultValue={Category[0]}
                   className="select-control bill-select department-select"
                   isError
-                  errorMsg={formErrors.companyName}
+                  // errorMsg={formErrors.companyName}
 
                 />
               </div>
-              <p className="show-errors-left"> {formErrors.customerId}</p>
+              {/* <p className="show-errors-left"> {formErrors.customerId}</p> */}
 
 
               <div className="fields">
@@ -177,7 +183,7 @@ const DealerRegister = ({ initialValue }) => {
                   errorMsg={formErrors.companyName}
                 />
               </div>
-              <p className="show-errors-left"> {formErrors.customerId}</p>
+              <p className="show-errors-left"> {formErrors.companyName}</p>
 
               <div className="fields">
                 <Input
@@ -191,12 +197,12 @@ const DealerRegister = ({ initialValue }) => {
                   value={formValues.contactPerson}
                   onChange={handleChange}
                   isError
-                  errorMsg={formErrors.companyName}
+                  errorMsg={formErrors.contactPerson}
 
                 />
 
               </div>
-              <p className="show-errors-left"> {formErrors.customerId}</p>
+              <p className="show-errors-left"> {formErrors.contactPerson}</p>
 
 
               <div className="fields">
@@ -214,7 +220,7 @@ const DealerRegister = ({ initialValue }) => {
                   errorMsg={formErrors.nature}
                 />
               </div>
-              <p className="show-errors-left"> {formErrors.customerId}</p>
+              <p className="show-errors-left"> {formErrors.nature}</p>
 
 
               <CountryState
@@ -271,7 +277,7 @@ const DealerRegister = ({ initialValue }) => {
                   errorMsg={formErrors.city}
                 />
               </div>
-              <p className="show-errors"> {formErrors.customerId}</p>
+              <p className="show-errors"> {formErrors.city}</p>
 
 
 
@@ -283,9 +289,9 @@ const DealerRegister = ({ initialValue }) => {
                   value={formValues.email}
                   onChange={handleChange}
                   isError
-                  errorMsg={formErrors.city}
+                  errorMsg={formErrors.email}
                 />
-                <p className="show-errors"> {formErrors.customerId}</p>
+                <p className="show-errors"> {formErrors.email}</p>
 
               </div>
 

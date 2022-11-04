@@ -239,13 +239,62 @@ const ReInstall = ({ initialValue, props }) => {
 
               <div className="field__row">
                 <div className="fields">
-                  <Input type="text" label="Cust Id" />
+                  <Input
+                    type="text"
+                    label="Cust Id"
+                    name="customerId"
+                    value={formValues.customerId}
+                    onChange={handleChange}
+                    isError
+                    errorMsg={formErrors.customerId}
+                  />
+                  <p className="show-errors-left"> {formErrors.customerId} </p>
                 </div>
                 <div className="fields">
-                  <Input type="text" label="Company" />
+                  <Input
+                    type="text"
+                    label="Company"
+                    name="companyName"
+                    value={formValues.companyName}
+                    onChange={handleChange}
+                    isError
+                    errorMsg={formErrors.companyName}
+                  />
+                  <p className="show-errors-left"> {formErrors.companyName} </p>
                 </div>
               </div>
 
+              <div className="field__row">
+                <div className="fields">
+                  <PhoneInput
+                    label="Phone"
+
+                    style={{
+                      marginLeft: "110px",
+                      width: "208px",
+                    }}
+                    value={phone}
+                    name="mobileNumber"
+                    className="form-control"
+                    international
+                    defaultCountry="IN"
+                    onChange={setPhone}
+                  />
+                  <p className="show-errors-left"> {formErrors.city} </p>
+                </div>
+                <div className="fields">
+                  <Input
+                    type="text"
+                    label="City"
+                    name="city"
+                    value={formValues.city}
+                    onChange={handleChange}
+                    isError
+                    errorMsg={formErrors.city}
+                  />
+                  <p className="show-errors-left"> {formErrors.city} </p>
+                </div>
+              </div>
 
               <div className="field__row">
                 <div className="fields">
@@ -299,6 +348,7 @@ const ReInstall = ({ initialValue, props }) => {
                   className="select-control source-select"
                   defaultValue={Paid[0]}
                   onChange={setPaid}
+                  isError
                 />
               </div>
 
@@ -383,7 +433,7 @@ const ReInstall = ({ initialValue, props }) => {
                       />
                     </div>
                     <div className="fields">
-                      <Input 
+                      <Input
                         label="NetAmt"
                         type="number"
                         name="number"
@@ -432,6 +482,7 @@ const ReInstall = ({ initialValue, props }) => {
                     className="select-control status-select"
                     label="PayMode"
                     defaultValue={payMode[0]}
+                    isError
                   />
                 </div>
                 <div className="fields">
@@ -448,7 +499,7 @@ const ReInstall = ({ initialValue, props }) => {
             <Button
               type="isSubmit"
               className="btn btn-primary"
-              // onClick={handleSubmit}
+              onClick={handleSubmit}
               id="animate.css"
               value="isSubmit"
             >
