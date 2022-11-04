@@ -173,7 +173,7 @@ const LeadEntry = ({ initialValue }) => {
 
   // Form Validations
   const [formValues, setFormValues] = useState({
-    amount:"",
+    amount: "",
     date: "",
     customerId: "",
     companyName: "",
@@ -262,9 +262,9 @@ const LeadEntry = ({ initialValue }) => {
   };
 
   const [sourceOption, setSourceOption] = useState(false);
-    const [selectedState, setSelectedState] = useState("");
-    console.log("SelectState::", selectedState);
-  
+  const [selectedState, setSelectedState] = useState("");
+  console.log("SelectState::", selectedState);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setFormErrors(validate(formValues));
@@ -282,7 +282,7 @@ const LeadEntry = ({ initialValue }) => {
   const validate = (values) => {
     const errors = {};
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
-    
+
     if (!values.version) {
       errors.version = "Enter version";
     }
