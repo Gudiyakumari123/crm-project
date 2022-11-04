@@ -38,14 +38,14 @@ function NationTry() {
 
   return (
     <>
-      <div className="field__row">
-        <div className="fields">
+      {/* <div className="field__row"> */}
+        {/* <div className="fields">
           <Select
             label="Religion"
             options={Religion}
             className="select-control religion-select"
           />
-        </div>
+        </div> */}
         <div className="input-fields">
           <label htmlFor="" className="label">
             Nationality
@@ -54,7 +54,7 @@ function NationTry() {
           <Select
             id="country"
             name="country"
-            className="react-select country-select "
+            className="react-select country-select1 "
             options={updatedCountries}
             value={values.country}
             onChange={(value) => {
@@ -64,7 +64,7 @@ function NationTry() {
             }}
           />
         </div>
-      </div>
+      {/* </div> */}
     </>
   );
 }

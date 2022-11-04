@@ -2,7 +2,7 @@ import React from "react";
 // Phone Number
 import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
-export default function Try() {
+export default function Try({ isError }) {
   return (
     <>
       <div className="field__row">
@@ -20,6 +20,7 @@ export default function Try() {
             defaultCountry="IN"
             onChange={console.log}
           />
+          <p className="show-errors-left"> {isError} </p>
         </div>
 
         <div className="input-fields">

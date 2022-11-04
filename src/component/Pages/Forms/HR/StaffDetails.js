@@ -232,7 +232,20 @@ class Staff extends Component {
                     <Input type="date" label="Date Of Birth" />
                   </div>
                 </div>
-                <Nationality />
+                <div className="field__row">
+                  <div className="fields">
+                    <Select
+                      label="Religion"
+                      options={Religion}
+                      className="select-control gender-select"
+                    />
+                  </div>
+                 
+                  <Nationality />
+
+                </div>
+                
+
                 <div className="fields">
                   <TextArea
                     type="text"

@@ -56,7 +56,7 @@ const InstallEntry = ({ initialValue }) => {
 
   // Form Validations
   const [formValues, setFormValues] = useState({
-    amount:"",
+    amount: "",
     date: "",
     customerId: "",
     companyName: "",
@@ -164,7 +164,7 @@ const InstallEntry = ({ initialValue }) => {
   const validate = (values) => {
     const errors = {};
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
-    
+
     if (!values.version) {
       errors.version = "Enter version";
     }
@@ -178,10 +178,10 @@ const InstallEntry = ({ initialValue }) => {
       errors.city = "Enter city";
     }
     if (!values.amount) {
-      errors.amount = "Enter amount";
+      errors.amount = "amount";
     }
     if (!values.grossAmt) {
-      errors.grossAmt = "Enter grossAmt";
+      errors.grossAmt = "grossAmt";
     }
     return errors;
   };
@@ -285,8 +285,6 @@ const InstallEntry = ({ initialValue }) => {
                 </div>
               </div>
 
-
-
               <div className="field__row">
                 <div className="fields">
                   <div className="input-fields">
@@ -330,12 +328,9 @@ const InstallEntry = ({ initialValue }) => {
                     onChange={handleChange}
                     isError
                     errorMsg={formErrors.amount}
-
                     className=" form-control three__row"
                   />
                 </div>
-                {/* <p className="show-errors-left"> {formErrors.amount} </p> */}
-
                 <div className="fields">
                   <Input
                     label="Dis%"
@@ -373,6 +368,7 @@ const InstallEntry = ({ initialValue }) => {
                     errorMsg={formErrors.grossAmt}
                     className=" form-control three__row"
                   />
+                  <p className="show-errors-left"> {formErrors.grossAmt} </p>
                 </div>
                 <div className="fields">
                   <Input
@@ -408,7 +404,6 @@ const InstallEntry = ({ initialValue }) => {
                     onChange={handleChange}
                     value={formValues.roundAmt}
                     // onBlur={onBlurEvent}
-
                     isError
                     errorMsg={formErrors.amount}
                     className=" form-control three__row"
@@ -480,7 +475,7 @@ const InstallEntry = ({ initialValue }) => {
                   className="date-picker"
                   style={{ marginLeft: "15px" }}
 
-                // isError
+                  // isError
                 />
               </div>
               <div className="fields">
@@ -499,8 +494,8 @@ const InstallEntry = ({ initialValue }) => {
               type="submit"
               className="btn btn-primary"
               onClick={handleSubmit}
-            // id="animate.css"
-            // value="isSubmit"
+              // id="animate.css"
+              // value="isSubmit"
             >
               Save
             </Button>
