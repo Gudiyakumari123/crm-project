@@ -51,12 +51,21 @@
 
         label {
           width: 35%;
-          white-space: nowrap;
+          // white-space: nowrap;
         }
 
         .fields {
           width: 100%;
           margin-bottom: 5px;
+
+
+        }
+
+        .show-errors-left {
+          position: absolute;
+          left: 0;
+          bottom: 0;
+          z-index: 99;
         }
 
         .field__row {
@@ -64,6 +73,9 @@
           display: flex;
           align-items: center;
           gap: 8px;
+          // position: relative;
+
+
         }
       }
 
@@ -73,12 +85,12 @@
 
         Input {
           width: 85%;
-          margin-bottom: 5px;
+          // margin-bottom: 5px;
         }
 
         label {
           width: 15%;
-          white-space: nowrap;
+          // white-space: nowrap;
         }
 
         .fields {
@@ -100,14 +112,17 @@
         display: flex;
         align-items: center;
         gap: 14px;
+
         label {
           width: 25%;
           white-space: nowrap;
         }
+
         Input {
           width: 65%;
           margin-bottom: 5px;
         }
+
         .three__row {
           margin-left: 38px;
         }
@@ -117,6 +132,7 @@
         margin-left: 7px;
         width: 100%;
       }
+
       .status-select {
         margin-left: 47px;
         width: 100%;
@@ -130,14 +146,25 @@
       .employee-select {
         width: 100%;
       }
+
       .lead-select {
         margin-left: 90%;
+      }
+
+
+      .customer-country {
+        margin-left: -50px;
+      }
+
+      .dealer-select {
+        margin-left: 50px;
       }
 
       .education-select {
         width: 100%;
         margin-left: 12px;
       }
+
       .department-select {
         margin-left: -71px;
         width: 100%;
@@ -147,6 +174,7 @@
         width: 100%;
         margin-left: -71px;
       }
+
       .status-select {
         width: 100%;
         margin-left: 15px;
@@ -195,11 +223,24 @@
         width: 100%;
         margin-left: 10px;
       }
+
       .status-select {
         margin-left: 47px;
       }
+
       .source-select {
         margin-left: 12px;
+      }
+
+      .show-errors {
+        color: red;
+        margin-left: 100px;
+
+      }
+
+      .show-errors-left {
+        color: red;
+        margin-left: 110px;
       }
     }
 

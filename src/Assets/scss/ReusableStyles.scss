@@ -84,7 +84,8 @@
   justify-content: center;
   &:after {
     content: "*";
-    position: absolute;
+    // position: absolute;
+    margin-left: 2px;
     right: -8px;
     top: 2px;
     color: #ff5050;

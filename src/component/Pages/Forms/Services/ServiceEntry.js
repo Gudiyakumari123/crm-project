@@ -46,7 +46,7 @@ const Status = [
   { value: "Completed", label: "Completed" },
 ];
 
-const ReInstall = ({ initialValue}) => {
+const ReInstall = ({ initialValue }) => {
   const [phone, setPhone] = useState(initialValue);
 
   const [formErrors, setFormErrors] = useState({});
@@ -54,8 +54,8 @@ const ReInstall = ({ initialValue}) => {
 
   const [paid, setPaid] = useState({});
 
-   // Form Validations
-   const [formValues, setFormValues] = useState({
+  // Form Validations
+  const [formValues, setFormValues] = useState({
     date: "",
     customerId: "",
     companyName: "",
@@ -107,6 +107,9 @@ const ReInstall = ({ initialValue}) => {
     if (!values.software) {
       errors.software = "Enter software";
     }
+    if (!values.category) {
+      errors.category = "Enter software";
+    }
     return errors;
   };
 
@@ -144,43 +147,71 @@ const ReInstall = ({ initialValue}) => {
 
               <div className="field__row">
                 <div className="fields">
-                  <Input type="text"
+                  <Input
+                    type="text"
                     label="Cust Id"
+                    name="customerId"
+                    value={formValues.customerId}
+                    onChange={handleChange}
+                    isError
+                    errorMsg={formErrors.customerId}
                   />
+
+                  <p className="show-errors-left"> {formErrors.customerId}</p>
                 </div>
                 <div className="fields">
                   <Input type="text"
-                    label="Company" />
+                    label="Company"
+                    name="companyName"
+                    value={formValues.companyName}
+                    onChange={handleChange}
+                    isError
+                    errorMsg={formErrors.companyName}
+
+                  />
                 </div>
+                <p className="show-errors-left"> {formErrors.companyName}</p>
 
               </div>
+
 
               <div className="field__row">
                 <div className="fields">
                   <div className="input-fields">
                     <label htmlFor="" className="label">
                       Phone
+                      <div className="require"> </div>
+
                     </label>
                     <PhoneInput
                       style={{
                         marginLeft: "8px",
                         width: "208px"
                       }}
-                      // value={phone}
+                      value={phone}
                       name="mobileNumber"
                       className="form-control"
                       international
                       defaultCountry="IN"
-                    // onChange={setPhone}
+                      onChange={setPhone}
                     />
                   </div>
+                  <p className="show-errors"> {formErrors.companyName}</p>
+
                 </div>
                 <div className="fields">
                   <Input
                     type="text"
                     label="City"
+                    name="city"
+                    value={formValues.city}
+                    onChange={handleChange}
+                    isError
+                    errorMsg={formErrors.city}
                   />
                 </div>
+                <p className="show-errors-left"> {formErrors.city}</p>
+
               </div>
 
               <div className="fields">
@@ -190,17 +221,27 @@ const ReInstall = ({ initialValue}) => {
                   options={Installation}
                   defaultValue={Installation[0]}
                   className="select-control bill-select department-select"
+                  isError
                 />
+                <p className="show-errors-left"> {formErrors.city}</p>
+
               </div>
               <div className="fields">
                 <Input
                   type="text"
-                  label="Staff Name"
+                  label="Software"
                   style={{
                     marginLeft: "-70px",
                     width: "100%",
                   }}
+                  name="software"
+                  value={formValues.software}
+                  onChange={handleChange}
+                  isError
+                  errorMsg={formErrors.software}
                 />
+                <p className="show-errors-left"> {formErrors.software}</p>
+
               </div>
 
               <div className="fields">
@@ -210,8 +251,11 @@ const ReInstall = ({ initialValue}) => {
                   options={Category}
                   defaultValue={Category[0]}
                   className="select-control bill-select department-select"
+                  isError
+
                 />
               </div>
+              <p className="show-errors-left"> {formErrors.category}</p>
 
             </div>
             {/* Left Side End */}
@@ -222,22 +266,25 @@ const ReInstall = ({ initialValue}) => {
                   type="text"
                   label="Details"
                   rows="2"
-
+                  name="details"
+                  value={formValues.details}
+                  onChange={handleChange}
                   style={{
-                    // width: "100%",
-                    marginLeft: "13px" 
+                    marginLeft: "13px"
                   }}
                 />
               </div>
-              
+
               <div className="fields">
                 <Select
                   label="Status"
                   options={Status}
                   className="select-control source-select"
                   defaultValue={Status[0]}
-                  onChange={setPaid}
+                  isError
                 />
+                <p className="show-errors"> {formErrors.software}</p>
+
               </div>
               <div className="fields">
                 <Select
@@ -245,39 +292,44 @@ const ReInstall = ({ initialValue}) => {
                   options={Priority}
                   className="select-control source-select"
                   defaultValue={Priority[0]}
-                  onChange={setPaid}
                 />
               </div>
               <div className="fields">
                 <DatePicker
                   label="Date"
                   className="date-picker"
-                  style={{ marginLeft: "15px" }} 
-                  
+                  style={{ marginLeft: "15px" }}
+
                 // isError
                 />
               </div>
               <div className="fields">
                 <TextArea label="Remarks"
-                  style={{ marginLeft: "15px" }} 
-                  />
+                  style={{ marginLeft: "15px" }}
+                  name="remarks"
+                  value={formValues.remarks}
+                  onChange={handleChange}
+                />
               </div>
             </div>
           </div>
           <div className="btn__holder">
             <Button
-              type="isSubmit"
+              type="submit"
               className="btn btn-primary"
-              // onClick={handleSubmit}
-              id="animate.css"
-              value="isSubmit"
+              onClick={handleSubmit}
+            // id="animate.css"
+            // value="isSubmit"
             >
               Save
             </Button>
-            <Button className="btn btn-secondary">Clear</Button>
+            <Button className="btn btn-secondary"
+              onClick={refreshPage}
+            >Clear</Button>
           </div>
         </div>
       </div>
+      <ToastContainer transition={bounce} />
       <Footer />
       {/* Source Modal*/}
     </>

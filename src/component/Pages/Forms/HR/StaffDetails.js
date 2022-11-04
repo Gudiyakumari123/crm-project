@@ -162,7 +162,7 @@ class Staff extends Component {
                 </div>
                 <div className="field__row">
                   <div className="fields">
-                    <Input type="text" label="Staff Id" readOnly="true" />
+                    <Input type="text" label="Employee Id" readOnly="true" />
                   </div>
                   <div className="fields">
                     <Input type="date" label="Date Of Join" />
