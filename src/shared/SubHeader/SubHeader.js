@@ -372,7 +372,7 @@ class subHeader extends Component {
                     </Link>
                   </NavDropdown> */}
                   <Link to="/payment" className="dropdown-item">
-                    <i className="bx bx-cabinet"></i> Payment Gateway
+                    <i className="bx bx-cabinet"></i> Payment
                   </Link>
                 </li>
               </ul>
