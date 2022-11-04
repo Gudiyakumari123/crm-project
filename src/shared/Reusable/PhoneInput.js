@@ -4,7 +4,7 @@ import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
 
 function PhoneInputBox({
-  phoneLabel,
+  label,
   color,
   value,
   name,
@@ -18,7 +18,7 @@ function PhoneInputBox({
     <>
       <div className="input-fields">
         <label htmlFor="" className="label">
-          {phoneLabel}
+          {label}
         </label>
         <PhoneInput
           value={phone}
