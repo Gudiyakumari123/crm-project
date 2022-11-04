@@ -1,24 +1,20 @@
-import React, { useState, Fragment, useEffect } from "react";
+import React, { useState, useEffect, Fragment } from "react";
+
+// components
+import Header from "../../../../shared/Header/Header";
+import SubHeader from "../../../../shared/SubHeader/SubHeader";
+import Footer from "../../../../shared/Footer/Footer";
+import { Button } from "react-bootstrap";
+import DatePicker from "../../../../shared/Reusable/DatePicker";
+import { ToastContainer, toast, cssTransition } from "react-toastify";
 
 // Reusable Component
 import Input from "../../../../shared/Reusable/Input";
 import Select from "../../../../shared/Reusable/Select";
 import TextArea from "../../../../shared/Reusable/TextArea";
-import DatePicker from "../../../../shared/Reusable/DatePicker";
-
-// Toasitify
-import { ToastContainer, toast, cssTransition } from "react-toastify";
-
 // Phone Number
 import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
-
-import { Form, Button, Row, Col, Container } from "react-bootstrap";
-
-import Header from "../../../../shared/Header/Header";
-import SubHeader from "../../../../shared/SubHeader/SubHeader";
-import Footer from "../../../../shared/Footer/Footer";
-
 const bounce = cssTransition({
   enter: "animate__animated animate__bounceIn",
   exit: "animate__animated animate__bounceOut",
@@ -55,6 +51,8 @@ const ReInstall = ({ initialValue }) => {
 
   const [formErrors, setFormErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
+
+  const [paid, setPaid] = useState({});
 
   // Form Validations
   const [formValues, setFormValues] = useState({
@@ -109,6 +107,9 @@ const ReInstall = ({ initialValue }) => {
     if (!values.software) {
       errors.software = "Enter software";
     }
+    if (!values.category) {
+      errors.category = "Enter software";
+    }
     return errors;
   };
 
@@ -125,196 +126,213 @@ const ReInstall = ({ initialValue }) => {
   }
 
   return (
-    <Fragment>
+    <>
       <Header />
       <SubHeader />
+      <div className="form__container">
+        <div className="form__content">
+          <div className="title-display">
+            <div className="title"> Service Entry </div>
+          </div>
+          <div className="form__wrapper">
+            <div className="form__left">
+              <div className="fields">
+                <DatePicker
+                  label="Date"
+                  // className="date-picker"
+                  style={{ marginLeft: "-68px" }}
 
-      <div className="form-container">
-        <div className="form-content">
-          <Container>
-            {/* <div className="title"> Install Entry </div> */}
-            <Form onSubmit={handleSubmit}>
-              <div className="title"> Service Entry </div>
-              <Row style={{ gap: "5%" }}>
-                <Col>
-                  <Row>
-                    <Row>
-                      <DatePicker
-                        label="Date"
-                        style={{ marginLeft: "29px" }}
-                        className="date-picker"
-                      />
-                    </Row>
-                    <Row>
-                      <Col>
-                        <Input
-                          style={{ marginLeft: "19px" }}
-                          label="Cus&nbsp;Id"
-                          type="text"
-                          name="customerId"
-                          className="form-control"
-                          value={formValues.customerId}
-                          onChange={handleChange}
-                          isError
-                          errorMsg={formErrors.customerId}
-                        />
-                      </Col>
-                      <Col>
-                        <Input
-                          label="Company"
-                          type="text"
-                          name="companyName"
-                          className="form-control"
-                          value={formValues.companyName}
-                          onChange={handleChange}
-                          isError
-                          errorMsg={formErrors.companyName}
-                        />
-                      </Col>
-                    </Row>
-                    <Row>
-                      <Col>
-                        <div className="input-fields">
-                          <label htmlFor="" className="label">
-                            Phone
-                            <div className="require"> </div>
-                          </label>
-                          <PhoneInput
-                            style={{ marginLeft: "16px", width: "168px" }}
-                            value={phone}
-                            name="mobileNumber"
-                            className="form-control"
-                            international
-                            defaultCountry="IN"
-                            onChange={setPhone}
-                          />
-                        </div>
-                      </Col>
-                      <Col>
-                        <Input
-                          style={{ marginLeft: "35px" }}
-                          label="City"
-                          type="text"
-                          name="city"
-                          className="form-control"
-                          value={formValues.city}
-                          onChange={handleChange}
-                          isError
-                          errorMsg={formErrors.city}
-                        />
-                      </Col>
-                    </Row>
-                    <Row>
-                      <Select
-                        label="Install"
-                        options={Installation}
-                        className="react-select install-select"
-                        onChange={console.log}
-                        defaultValue={Installation[0]}
-                        isError
-                      />
-                    </Row>
-                    <Row>
-                      <Input
-                        label="Software"
-                        type="text"
-                        name="software"
-                        className="form-control"
-                        value={formValues.software}
-                        onChange={handleChange}
-                        isError
-                        errorMsg={formErrors.software}
-                      />
-                    </Row>
-                    <Row>
-                      <Select
-                        label="Category"
-                        options={Category}
-                        className="react-select"
-                        onChange={console.log}
-                        defaultValue={Category[0]}
-                        isError
-                      />
-                    </Row>
-                  </Row>
-                </Col>
-                {/* Left Side End */}
-                {/* Right Side Start */}
-                <Col>
-                  <Row>
-                    <Row>
-                      <TextArea
-                        style={{ marginLeft: "14px" }}
-                        label="Details"
-                        type="text"
-                        rows="2"
-                        name="details"
-                        className="form-control"
-                        value={formValues.details}
-                        onChange={handleChange}
-                      />
-                    </Row>
-                    <Row>
-                      <Select
-                        label="Status"
-                        options={Status}
-                        className="react-select status-select-13"
-                        onChange={console.log}
-                        defaultValue={Status[0]}
-                        isError
-                      />
-                    </Row>
-                    <Row>
-                      <Select
-                        label="Priority"
-                        options={Priority}
-                        className="react-select country-select"
-                        onChange={console.log}
-                        defaultValue={Priority[0]}
-                      />
-                    </Row>
-
-                    <Row>
-                      <DatePicker
-                        label="Date"
-                        style={{ marginLeft: "25px" }}
-                        className="date-picker"
-                        onChange={console.log}
-                      />
-                    </Row>
-                    <Row>
-                      <TextArea
-                        label="Remarks"
-                        row="3"
-                        name="remarks"
-                        value={formValues.remarks}
-                        onChange={handleChange}
-                      />
-                    </Row>
-                  </Row>
-                </Col>
-              </Row>
-              <div className="btn__holder">
-                <Button
-                  type="submit"
-                  className="btn btn-primary"
-                  onClick={handleSubmit}
-                  // id="animate.css"
-                >
-                  Save
-                </Button>
-                <Button className="btn btn-secondary" onClick={refreshPage}>
-                  Clear
-                </Button>
+                />
               </div>
-            </Form>
-          </Container>
+
+              <div className="field__row">
+                <div className="fields">
+                  <Input
+                    type="text"
+                    label="Cust Id"
+                    name="customerId"
+                    value={formValues.customerId}
+                    onChange={handleChange}
+                    isError
+                    errorMsg={formErrors.customerId}
+                  />
+
+                  <p className="show-errors-left"> {formErrors.customerId}</p>
+                </div>
+                <div className="fields">
+                  <Input type="text"
+                    label="Company"
+                    name="companyName"
+                    value={formValues.companyName}
+                    onChange={handleChange}
+                    isError
+                    errorMsg={formErrors.companyName}
+
+                  />
+                </div>
+                <p className="show-errors-left"> {formErrors.companyName}</p>
+
+              </div>
+
+
+              <div className="field__row">
+                <div className="fields">
+                  <div className="input-fields">
+                    <label htmlFor="" className="label">
+                      Phone
+                      <div className="require"> </div>
+
+                    </label>
+                    <PhoneInput
+                      style={{
+                        marginLeft: "8px",
+                        width: "208px"
+                      }}
+                      value={phone}
+                      name="mobileNumber"
+                      className="form-control"
+                      international
+                      defaultCountry="IN"
+                      onChange={setPhone}
+                    />
+                  </div>
+                  <p className="show-errors"> {formErrors.companyName}</p>
+
+                </div>
+                <div className="fields">
+                  <Input
+                    type="text"
+                    label="City"
+                    name="city"
+                    value={formValues.city}
+                    onChange={handleChange}
+                    isError
+                    errorMsg={formErrors.city}
+                  />
+                </div>
+                <p className="show-errors-left"> {formErrors.city}</p>
+
+              </div>
+
+              <div className="fields">
+                <Select
+                  label="Install"
+                  placeholder="Select Installation No."
+                  options={Installation}
+                  defaultValue={Installation[0]}
+                  className="select-control bill-select department-select"
+                  isError
+                />
+                <p className="show-errors-left"> {formErrors.city}</p>
+
+              </div>
+              <div className="fields">
+                <Input
+                  type="text"
+                  label="Software"
+                  style={{
+                    marginLeft: "-70px",
+                    width: "100%",
+                  }}
+                  name="software"
+                  value={formValues.software}
+                  onChange={handleChange}
+                  isError
+                  errorMsg={formErrors.software}
+                />
+                <p className="show-errors-left"> {formErrors.software}</p>
+
+              </div>
+
+              <div className="fields">
+                <Select
+                  label="Category"
+                  placeholder="Select Category No."
+                  options={Category}
+                  defaultValue={Category[0]}
+                  className="select-control bill-select department-select"
+                  isError
+
+                />
+              </div>
+              <p className="show-errors-left"> {formErrors.category}</p>
+
+            </div>
+            {/* Left Side End */}
+            {/* Right Side Start */}
+            <div className="form__right">
+              <div className="fields">
+                <TextArea
+                  type="text"
+                  label="Details"
+                  rows="2"
+                  name="details"
+                  value={formValues.details}
+                  onChange={handleChange}
+                  style={{
+                    marginLeft: "13px"
+                  }}
+                />
+              </div>
+
+              <div className="fields">
+                <Select
+                  label="Status"
+                  options={Status}
+                  className="select-control source-select"
+                  defaultValue={Status[0]}
+                  isError
+                />
+                <p className="show-errors"> {formErrors.software}</p>
+
+              </div>
+              <div className="fields">
+                <Select
+                  label="Priority"
+                  options={Priority}
+                  className="select-control source-select"
+                  defaultValue={Priority[0]}
+                />
+              </div>
+              <div className="fields">
+                <DatePicker
+                  label="Date"
+                  className="date-picker"
+                  style={{ marginLeft: "15px" }}
+
+                // isError
+                />
+              </div>
+              <div className="fields">
+                <TextArea label="Remarks"
+                  style={{ marginLeft: "15px" }}
+                  name="remarks"
+                  value={formValues.remarks}
+                  onChange={handleChange}
+                />
+              </div>
+            </div>
+          </div>
+          <div className="btn__holder">
+            <Button
+              type="submit"
+              className="btn btn-primary"
+              onClick={handleSubmit}
+            // id="animate.css"
+            // value="isSubmit"
+            >
+              Save
+            </Button>
+            <Button className="btn btn-secondary"
+              onClick={refreshPage}
+            >Clear</Button>
+          </div>
         </div>
       </div>
       <ToastContainer transition={bounce} />
       <Footer />
-    </Fragment>
+      {/* Source Modal*/}
+    </>
   );
 };
-
 export default ReInstall;

@@ -1,59 +1,56 @@
-import React, { useState, Fragment, useEffect } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 
-import moment from "moment";
+// components
+import Header from "../../../../shared/Header/Header";
+import SubHeader from "../../../../shared/SubHeader/SubHeader";
+import Footer from "../../../../shared/Footer/Footer";
+import { Button } from "react-bootstrap";
+import DatePicker from "../../../../shared/Reusable/DatePicker";
+import { ToastContainer, toast, cssTransition } from "react-toastify";
+import { useFormik } from "formik";
 
 // Reusable Component
 import Input from "../../../../shared/Reusable/Input";
 import Select from "../../../../shared/Reusable/Select";
 import TextArea from "../../../../shared/Reusable/TextArea";
-
-// Toasitify
-import { ToastContainer, toast, cssTransition } from "react-toastify";
-
-// Country State City
-import { useFormik } from "formik";
-import csc from "country-state-city";
+import PhoneAlt from "../../../../shared/Reusable/Phone&Alt";
 
 // Phone Number
 import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
 
-// import Flag from "react-flagpack";
-
-import { Form, Button, Row, Col, Container } from "react-bootstrap";
-
-import Header from "../../../../shared/Header/Header";
-import SubHeader from "../../../../shared/SubHeader/SubHeader";
-import Footer from "../../../../shared/Footer/Footer";
-
+import CountryState from "../../../../shared/Reusable/CountryState";
 const bounce = cssTransition({
   enter: "animate__animated animate__bounceIn",
   exit: "animate__animated animate__bounceOut",
 });
+
+const Category = [
+  { value: "Company", label: "Company" },
+  { value: "Freelancer", label: "Freelancer" },
+];
+
 
 const swirl = cssTransition({
   enter: "swirl-in-fwd",
   exit: "swirl-out-bck",
 });
 
+
 const Status = [
   { value: "Active", label: "Active" },
-  { value: "Inactive", label: "Inactive" },
+  { value: "Completed", label: "Completed" },
 ];
 
 const CustomerRegister = ({ initialValue }) => {
-  var CurrencyFormat = require("react-currency-format");
   const [phone, setPhone] = useState(initialValue);
-  const [alterPh, setAlterPh] = useState(initialValue);
-  const [startDate, setStartDate] = useState(new Date());
 
   const [formErrors, setFormErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
 
-  const [refOpt, setRefOpt] = useState(false);
+  const [paid, setPaid] = useState({});
 
   // Form Validations
-
   const [formValues, setFormValues] = useState({
     companyName: "",
     contactPerson: "",
@@ -77,6 +74,7 @@ const CustomerRegister = ({ initialValue }) => {
     onSubmit: (values) => console.log(JSON.stringify(values)),
   });
 
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormValues({
@@ -85,29 +83,12 @@ const CustomerRegister = ({ initialValue }) => {
     });
   };
 
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setFormErrors(validate(formValues));
     setIsSubmit(true);
   };
-
-  const countries = csc.getAllCountries();
-
-  const updatedCountries = countries.map((country) => ({
-    label: country.name,
-    value: country.id,
-    ...country,
-  }));
-  const updatedStates = (countryId) =>
-    csc
-      .getStatesOfCountry(countryId)
-      .map((state) => ({ label: state.name, value: state.id, ...state }));
-  const updatedCities = (stateId) =>
-    csc
-      .getCitiesOfState(stateId)
-      .map((city) => ({ label: city.name, value: city.id, ...city }));
-
-  const { values, setFieldValue, setValues } = addressFromik;
 
   useEffect(() => {
     // console.log("FormErros::", formErrors);
@@ -146,237 +127,187 @@ const CustomerRegister = ({ initialValue }) => {
   }
 
   return (
-    <Fragment>
+    <>
       <Header />
       <SubHeader />
-
-      <div className="form-container">
-        <div className="form-content">
-          <Container>
-            {/* <div className="title"> Install Entry </div> */}
-            <Form onSubmit={handleSubmit}>
-              <div className="title"> Customer Registration </div>
-              <Row style={{ gap: "5%" }}>
-                <Col>
-                  <Row>
-                    <Row>
-                      <Input
-                        label="Company"
-                        type="text"
-                        name="companyName"
-                        className="form-control"
-                        onChange={handleChange}
-                        value={formValues.companyName}
-                        isError
-                        errorMsg={formErrors.companyName}
-                      />
-                    </Row>
-                    <Row>
-                      <Input
-                        style={{ marginLeft: "12px" }}
-                        label="Contact"
-                        type="text"
-                        name="contactPerson"
-                        className="form-control"
-                        onChange={handleChange}
-                        value={formValues.contactPerson}
-                        isError
-                        errorMsg={formErrors.contactPerson}
-                      />
-                    </Row>
-                    <Row>
-                      <Col>
-                        <div className="input-fields">
-                          <label htmlFor="" className="label">
-                            Phone
-                            <div className="require"></div>
-                          </label>
-                          <PhoneInput
-                            style={{ marginLeft: "15px" }}
-                            label="Phone"
-                            name="mobileNumber"
-                            international
-                            defaultCountry="IN"
-                            value={phone}
-                            onChange={setPhone}
-                          />
-                        </div>
-                      </Col>
-                      <Col>
-                        <Input
-                          style={{ marginLeft: "10px" }}
-                          label="AltCont."
-                          type="number"
-                          name="AltCont"
-                          className="form-control"
-                          onChange={formValues.AltCont}
-                          required
-                        />
-                      </Col>
-                    </Row>
-                    <Row>
-                      <Input
-                        style={{ marginLeft: "4px" }}
-                        label="Category"
-                        type="text"
-                        name="category"
-                        className="form-control"
-                        onChange={handleChange}
-                        value={formValues.category}
-                        isError
-                        errorMsg={formErrors.category}
-                      />
-                    </Row>
-                    <Row>
-                      <TextArea
-                        style={{ marginLeft: "11px" }}
-                        label="Address"
-                        type="text"
-                        rows="3"
-                        className="form-control"
-                        name="address"
-                        onChange={handleChange}
-                        value={formValues.address}
-                      />
-                    </Row>
-                    <Row>
-                      <Col>
-                        <div className="input-fields">
-                          <label htmlFor="" className="label">
-                            Country
-                            <div className="require"></div>
-                          </label>
-                          <Select
-                            id="country"
-                            name="country"
-                            className="react-select "
-                            options={updatedCountries}
-                            value={values.country}
-                            onChange={(value) => {
-                              setFieldValue("country", value);
-                              setFieldValue("state", null);
-                              setFieldValue("city", null);
-                            }}
-                          />
-                        </div>
-                      </Col>
-                      <Col>
-                        <div className="input-fields">
-                          <label htmlFor="" className="label">
-                            State
-                            <div className="require"></div>
-                          </label>
-                          <Select
-                            id="state"
-                            name="state"
-                            className="react-select"
-                            options={updatedStates(
-                              values.country ? values.country.value : null
-                            )}
-                            value={values.state}
-                            onChange={(value) => {
-                              setValues({ state: value, city: null }, false);
-                            }}
-                          />
-                        </div>
-                      </Col>
-                    </Row>
-                    <Row>
-                      <Input
-                        style={{ marginLeft: "2px" }}
-                        label="Area/City"
-                        type="text"
-                        name="city"
-                        className="form-control"
-                        onChange={handleChange}
-                        value={formValues.city}
-                        isError
-                        errorMsg={formErrors.city}
-                      />
-                    </Row>
-                  </Row>
-                </Col>
-                {/* Left Side End */}
-                {/* Right Side Start */}
-                <Col>
-                  <Row>
-                    <Row>
-                      <Input
-                        style={{ marginLeft: "6px" }}
-                        label="GST&nbsp;No."
-                        type="text"
-                        name="gstNo"
-                        className="form-control"
-                        onChange={handleChange}
-                        value={formValues.gstNo.toUpperCase()}
-                      />
-                    </Row>
-
-                    <Row>
-                      <Input
-                        style={{ marginLeft: "20px" }}
-                        label="Email"
-                        type="email"
-                        name="email"
-                        className="form-control"
-                        onChange={handleChange}
-                        value={formValues.email.toLowerCase()}
-                      />
-                    </Row>
-                    <Row>
-                      <TextArea
-                        label="Remarks"
-                        row="3"
-                        placeholder="Remarks by Customer"
-                        name="remarksCustomer"
-                        onChange={handleChange}
-                        value={formValues.remarksCustomer}
-                      />
-                    </Row>
-                    <Row>
-                      <Select
-                        label="Status"
-                        options={Status}
-                        className="react-select status-select"
-                        onChange={console.log}
-                        defaultValue={Status[0]}
-                      />
-                    </Row>
-                    <Row>
-                      <TextArea
-                        label="Remarks"
-                        row="3"
-                        placeholder="Remarks by User"
-                        name="remarksUser"
-                        onChange={handleChange}
-                        value={formValues.remarksUser}
-                      />
-                    </Row>
-                  </Row>
-                </Col>
-              </Row>
-              <div className="btn__holder">
-                <Button
-                  type="submit"
-                  className="btn btn-primary"
-                  onClick={handleSubmit}
-                  id="animate.css"
-                >
-                  Save
-                </Button>
-                <Button className="btn btn-secondary" onClick={refreshPage}>
-                  Clear
-                </Button>
+      <div className="form__container">
+        <div className="form__content">
+          <div className="title-display">
+            <div className="title"> Customer Registration  </div>
+          </div>
+          <div className="form__wrapper">
+            <div className="form__left">
+              <div className="fields">
+                <Input
+                  type="text"
+                  label="Company"
+                  style={{
+                    marginLeft: "-70px",
+                    width: "100%",
+                  }}
+                  name="companyName"
+                  value={formValues.companyName}
+                  onChange={handleChange}
+                  isError
+                  errorMsg={formErrors.companyName}
+                />
               </div>
-            </Form>
-          </Container>
+
+              <div className="fields">
+                <Input
+                  type="text"
+                  label="ContPerson"
+                  style={{
+                    marginLeft: "-70px",
+                    width: "100%",
+                  }}
+                  name="contactPerson"
+                  value={formValues.contactPerson}
+                  onChange={handleChange}
+                  isError
+                  errorMsg={formErrors.contactPerson}
+                />
+              </div>
+              <PhoneAlt />
+
+              <div className="fields">
+                <Input
+                  type="text"
+                  label="Category"
+                  style={{
+                    marginLeft: "-70px",
+                    width: "100%",
+                  }}
+                  name="category"
+                  value={formValues.category}
+                  onChange={handleChange}
+                  isError
+                  errorMsg={formErrors.category}
+                />
+              </div>
+              <div className="fields">
+                <TextArea
+                  type="text"
+                  label="Address"
+                  style={{
+                    marginLeft: "-70px",
+                    width: "100%",
+                  }}
+                  name="address"
+                  value={formValues.address}
+                  onChange={handleChange}
+                  isError
+                  errorMsg={formErrors.address}
+                />
+              </div>
+              <CountryState className="designation-select" />
+              <div className="fields">
+                <Input
+                  type="text"
+                  label="Area/City"
+                  name="city"
+                  value={formValues.city}
+                  onChange={handleChange}
+                  isError
+                  errorMsg={formErrors.city}
+                  style={{
+                    marginLeft: "-70px",
+                    width: "100%",
+                  }}
+                />
+              </div>
+
+
+            </div>
+            {/* Left Side End */}
+            {/* Right Side Start */}
+            <div className="form__right">
+              <div className="fields">
+                <Input
+                  type="text"
+                  label="Gst No"
+                  name="gstNo"
+                  value={formValues.gstNo}
+                  onChange={handleChange}
+                  isError
+                  errorMsg={formErrors.gstNo}
+                />
+              </div>
+
+              <div className="fields">
+                <Input
+                  type="email"
+                  label="Email"
+                  // rows="2"
+                  name="email"
+                  value={formValues.email}
+                  onChange={handleChange}
+                  style={{
+                    // marginLeft: "13px"
+                  }}
+                />
+              </div>
+
+
+              <div className="fields">
+                <TextArea
+                  type="text"
+                  label="Remarks"
+                  rows="2"
+                  name="remarksCustomer"
+                  placeholder="Remarks by Customer"
+                  value={formValues.remarksCustomer}
+                  onChange={handleChange}
+                  style={{
+                    marginLeft: "13px"
+                  }}
+                />
+              </div>
+
+              <div className="fields">
+                <Select
+                  label="Status"
+                  options={Status}
+                  className="select-control source-select"
+                  defaultValue={Status[0]}
+                  onChange={setPaid}
+                />
+              </div>
+
+              <div className="fields">
+                <TextArea
+                  type="text"
+                  label="Remarks"
+                  rows="3"
+                  name="remarksUser"
+                  placeholder="Remarks by User"
+                  value={formValues.remarksUser}
+                  onChange={handleChange}
+                  style={{
+                    marginLeft: "13px"
+                  }}
+                />
+              </div>
+
+            </div>
+          </div>
+          <div className="btn__holder">
+            <Button
+              type="submit"
+              className="btn btn-primary"
+              onClick={handleSubmit}
+            >Save
+            </Button>
+            <Button className="btn btn-secondary"
+              onClick={refreshPage}
+            >Clear</Button>
+          </div>
         </div>
       </div>
-
       <ToastContainer transition={bounce} />
       <Footer />
-    </Fragment>
+      {/* Source Modal*/}
+    </>
   );
 };
-
 export default CustomerRegister;

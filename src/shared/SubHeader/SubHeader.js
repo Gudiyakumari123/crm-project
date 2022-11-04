@@ -31,9 +31,9 @@ class subHeader extends Component {
                     <Link to="/leadEntry" className="dropdown-item">
                       <i className="bx bxs-bar-chart-square"></i> Lead Entry
                     </Link>
-                    <Link to="/lead" className="dropdown-item">
+                    {/* <Link to="/lead" className="dropdown-item">
                       <i className="bx bxs-bar-chart-square"></i> Lead
-                    </Link>
+                    </Link> */}
                     {/* <Link to="/todayFollow" className="dropdown-item">
                       <i className="bx bx-help-circle"></i> Today Followup's
                     </Link>

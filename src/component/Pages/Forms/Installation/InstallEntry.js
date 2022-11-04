@@ -1,25 +1,20 @@
-import React, { useState, Fragment, useEffect } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 
-import { Category, payMode, Reference } from "../../../../data/crm-constants";
+// components
+import Header from "../../../../shared/Header/Header";
+import SubHeader from "../../../../shared/SubHeader/SubHeader";
+import Footer from "../../../../shared/Footer/Footer";
+import { Button } from "react-bootstrap";
+import DatePicker from "../../../../shared/Reusable/DatePicker";
+import { ToastContainer, toast, cssTransition } from "react-toastify";
+
 // Reusable Component
 import Input from "../../../../shared/Reusable/Input";
 import Select from "../../../../shared/Reusable/Select";
 import TextArea from "../../../../shared/Reusable/TextArea";
-import DatePicker from "../../../../shared/Reusable/DatePicker";
-
-// Toasitify
-import { ToastContainer, toast, cssTransition } from "react-toastify";
-
 // Phone Number
 import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
-
-import { Form, Button, Row, Col, Container } from "react-bootstrap";
-
-import Header from "../../../../shared/Header/Header";
-import SubHeader from "../../../../shared/SubHeader/SubHeader";
-import Footer from "../../../../shared/Footer/Footer";
-
 const bounce = cssTransition({
   enter: "animate__animated animate__bounceIn",
   exit: "animate__animated animate__bounceOut",
@@ -30,43 +25,60 @@ const swirl = cssTransition({
   exit: "swirl-out-bck",
 });
 
-const InstallEntry = () => {
-  const [formValues, setFormValues] = useState({
-    date: "",
-    category: "",
-    software: "",
-    version: "",
-    customerId: "",
-    companyName: "",
-    phone: "",
-    city: "",
-    amount: "",
-    discountPer: 0,
-    discountAmt: "",
-    grossAmt: "",
-    gst: 18,
-    totalTaxAmount: 0,
-    roundAmt: "",
-    netAmt: "",
-    paidAmt: "",
-    payMode: "",
-    transactionNo: "",
-    reference: "",
-    dealerId: "",
-    dealerName: "",
-    commission: "30",
-    commissionAmt: "",
-    commissionPaid: "",
-    commiBal: "",
-    balAmt: "",
-    remarks: "",
-  });
+const Category = [
+  { value: "Service", label: "Service" },
+  { value: "Updation", label: "Updation" },
+];
+const Priority = [
+  { value: "High", label: "High" },
+  { value: "Medium", label: "Medium" },
+  { value: "Low", label: "Low" },
+];
+
+const Installation = [
+  { value: "Installation 1", label: "Installation 1" },
+  { value: "Installation 2", label: "Installation 2" },
+  { value: "Installation 3", label: "Installation 3" },
+];
+
+const Status = [
+  { value: "Active", label: "Active" },
+  { value: "Completed", label: "Completed" },
+];
+
+const InstallEntry = ({ initialValue }) => {
+  const [phone, setPhone] = useState(initialValue);
 
   const [formErrors, setFormErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
 
-  const [refOpt, setRefOpt] = useState(false);
+  const [paid, setPaid] = useState({});
 
+  // Form Validations
+  const [formValues, setFormValues] = useState({
+    date: "",
+    customerId: "",
+    companyName: "",
+    phone: "",
+    city: "",
+    install: "",
+    software: "",
+    category: "",
+    details: "",
+    status: "",
+    priority: "",
+    remarks: "",
+  });
+
+
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormValues({
+      ...formValues,
+      [name]: value,
+    });
+  };
   const Category1 = ["WonderPOS", "Healthy Fly", "Edu Fly"];
   const Softwares = {
     WonderPOS: [
@@ -136,133 +148,11 @@ const InstallEntry = () => {
   const [selectedState, setSelectedState] = useState("");
   console.log("SelectState::", selectedState);
 
-  // Form Validations
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-
-    //If DiscountAmnt is present and  > 0
-    if (name === "discountAmt" && value && value > 0) {
-      console.log("value::", value);
-      setFormValues({
-        ...formValues,
-        [name]: value,
-        discountPer: 0,
-      });
-    }
-    //other wise do the usual set the values
-    else {
-      setFormValues({
-        ...formValues,
-        [name]: value,
-      });
-    }
-  };
-
-  const handleSelectCategory = (e) => {
-    setFormValues({
-      ...formValues,
-      category: e.value,
-    });
-  };
-
-  const handleSelectPay = (e) => {
-    setFormValues({
-      ...formValues,
-      payMode: e.value,
-    });
-  };
-
-  /***Utilities */
-  function handleDiscountPercentage() {
-    let getDiscountPercent;
-    if (formValues.discountPer > 0) {
-      getDiscountPercent = Math.ceil(
-        (formValues.amount * formValues.discountPer) / 100
-      );
-      setFormValues({
-        ...formValues,
-        discountAmt: getDiscountPercent,
-      });
-    }
-  }
-
-  /***Move ito seprate file */
-
-  const onBlurEvent = (event) => {
-    console.log("Event for Tab Press:", event.target.name);
-
-    switch (event.target.name) {
-      case "discountPer":
-        handleDiscountPercentage();
-        break;
-
-      case "discountAmt":
-        const grossAmount = formValues.amount - formValues.discountAmt;
-        setFormValues({
-          ...formValues,
-          grossAmt: grossAmount,
-        });
-        break;
-
-      case "gst":
-        const totalTaxAmount = Math.ceil(
-          (formValues.grossAmt * formValues.gst) / 100
-        );
-        setFormValues({
-          ...formValues,
-          totalTaxAmount: totalTaxAmount,
-        });
-        break;
-
-      case "totalTaxAmount":
-        const getNetAmount = formValues.grossAmt + formValues.totalTaxAmount;
-        setFormValues({
-          ...formValues,
-          netAmt: getNetAmount,
-        });
-        break;
-
-      case "roundAmt":
-        const getRoundAmount =
-          formValues.grossAmt + formValues.totalTaxAmount - formValues.roundAmt;
-        setFormValues({
-          ...formValues,
-          netAmt: getRoundAmount,
-        });
-        break;
-
-      case "paidAmt":
-        const balanceAmount = formValues.netAmt - formValues.paidAmt;
-        setFormValues({
-          ...formValues,
-          balAmt: balanceAmount,
-        });
-        break;
-
-      case "commission":
-        const commissionAmount =
-          (formValues.netAmt * formValues.commission) / 100;
-        setFormValues({
-          ...formValues,
-          commissionAmt: commissionAmount,
-        });
-        break;
-
-      case "commissionPaid":
-        const commissionBal =
-          formValues.commissionAmt - formValues.commissionPaid;
-        setFormValues({
-          ...formValues,
-          commiBal: commissionBal,
-        });
-        break;
-    }
-  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // setFormErrors(validate(formValues));
+    setFormErrors(validate(formValues));
     setIsSubmit(true);
   };
 
@@ -274,476 +164,358 @@ const InstallEntry = () => {
     }
   }, [formErrors]);
 
-  console.log("formErrors::", formErrors);
+  const validate = (values) => {
+    const errors = {};
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
+    if (!values.customerId) {
+      errors.customerId = "Enter customerId";
+    }
+    if (!values.companyName) {
+      errors.companyName = "Enter companyName";
+    }
+    if (!values.city) {
+      errors.city = "Enter city";
+    }
+    if (!values.software) {
+      errors.software = "Enter software";
+    }
+    return errors;
+  };
 
-  // const validate = (values) => {
-  //   const errors = {};
-  //   if (!values.category) {
-  //     errors.category = "Enter category";
-  //   }
-  //   if (!values.software) {
-  //     errors.software = "Enter software";
-  //   }
-  //   if (!values.version) {
-  //     errors.version = "Enter version";
-  //   }
-  //   if (!values.customerId) {
-  //     errors.customerId = "Enter customerId";
-  //   }
-  //   if (!values.companyName) {
-  //     errors.companyName = "Enter companyName";
-  //   }
-  //   if (!values.city) {
-  //     errors.city = "Enter city";
-  //   }
-  //   if (!values.amount) {
-  //     errors.amount = "Enter amount";
-  //   }
-  //   if (!values.paidAmt) {
-  //     errors.paidAmt = "Enter paidAmt";
-  //   }
-  //   if (!values.payMode) {
-  //     errors.payMode = "Enter payMode";
-  //   }
-  //   return errors;
-  // };
+  console.log("FormValues::", formValues);
+
+  function animateCss() {
+    toast.dark("Hey 👋, Data Has Been Saved!", {
+      transition: bounce,
+    });
+  }
 
   function refreshPage() {
     window.location.reload(false);
   }
 
   return (
-    <Fragment>
+    <>
       <Header />
       <SubHeader />
+      <div className="form__container">
+        <div className="form__content">
+          <div className="title-display">
+            <div className="title"> Installation Entry </div>
+          </div>
+          <div className="form__wrapper">
+            <div className="form__left">
+              <div className="fields">
+                <DatePicker
+                  label="Date"
+                  // className="date-picker"
+                  style={{ marginLeft: "-68px" }}
 
-      <div className="form-container">
-        <div className="form-content">
-          <Container>
-            <Form onSubmit={handleSubmit}>
-              <div className="title"> Installation Entry </div>
-              <Row style={{ gap: "5%" }}>
-                <Col>
-                  <Row>
-                    <Row>
-                      <DatePicker
-                        style={{ marginLeft: "28px" }}
-                        label="Date"
-                        className="date-picker"
-                        // errorMsg="Choose Date"
-                        isError
-                      />
-                    </Row>
-                    <Row>
-                      {/* <Select
-                        label="Category"
-                        placeholder="-- Select Category --"
-                        options={Category}
-                        className="react-select "
-                        onChange={(e) => handleSelectCategory(e)}
-                        defaultValue={Category[0]}
-                        isError
-                      /> */}
-                      <div className="select">
-                        <label htmlFor="" className="label">
-                          Category
-                        </label>
-                        <select
-                          onChange={(e) => setSelectedState(e.target.value)}
-                        >
-                          {Category1.map((values) => {
-                            return <option>{values}</option>;
-                          })}
-                        </select>
-                      </div>
-                    </Row>
-                    <Row>
-                      {/* <Input
-                        label="Software"
-                        type="text"
-                        name="software"
-                        className="form-control"
-                        value={formValues.software}
-                        onChange={handleChange}
-                        isError
-                        errorMsg={formErrors.software}
-                      /> */}
+                />
+              </div>
+              <div className="fields">
+                <div className="select">
+                  <label htmlFor="" className="label">
+                    Category
+                  </label>
+                  <select
+                    onChange={(e) => setSelectedState(e.target.value)}
+                  >
+                    {Category1.map((values) => {
+                      return <option>{values}</option>;
+                    })}
+                  </select>
+                </div>
+              </div>
 
-                      <div className="select">
-                        <label htmlFor="" className="label">
-                          Software
-                        </label>
-                        {selectedState && (
-                          <select>
-                            {Softwares[selectedState].map((values) => {
-                              return <option>{values}</option>;
-                            })}
-                          </select>
-                        )}
-                      </div>
-                    </Row>
+              <div className="fields">
+                <div className="select">
+                  <label htmlFor="" className="label">
+                    Software
+                  </label>
+                  {selectedState && (
+                    <select>
+                      {Softwares[selectedState].map((values) => {
+                        return <option>{values}</option>;
+                      })}
+                    </select>
+                  )}
+                </div>
+              </div>
 
-                    <Row>
-                      <Input
-                        label="Version&nbsp;&nbsp;&nbsp;"
-                        type="text"
-                        name="version"
-                        className="form-control"
-                        onChange={handleChange}
-                        value={formValues.version}
-                        isError
-                        errorMsg={formErrors.version}
-                      />
-                    </Row>
-                    <Row>
-                      <Col>
-                        <Input
-                          style={{ marginLeft: "16px" }}
-                          label="Cus&nbsp;Id"
-                          type="text"
-                          name="customerId"
-                          className="form-control"
-                          onChange={handleChange}
-                          value={formValues.customerId}
-                          isError
-                          errorMsg={formErrors.customerId}
-                        />
-                      </Col>
-                      <Col>
-                        <Input
-                          label="Company"
-                          type="text"
-                          name="companyName"
-                          className="form-control"
-                          onChange={handleChange}
-                          value={formValues.companyName}
-                          isError
-                          errorMsg={formErrors.companyName}
-                        />
-                      </Col>
-                    </Row>
+              <div className="fields">
+                <Input
+                  type="text"
+                  label="Version"
+                  name="version"
+                  style={{marginLeft:"-70px",
+                  width:"100%"
+                
+                }}
+                  value={formValues.version}
+                  onChange={handleChange}
+                  isError
+                  errorMsg={formErrors.version}
+                />
+              </div>
 
-                    <Row>
-                      <Col>
-                        <div className="input-fields">
-                          <label htmlFor="" className="label">
-                            Phone
-                            <div className="require"></div>
-                          </label>
-                          <PhoneInput
-                            style={{ marginLeft: "14px", width: "170px" }}
-                            name="phone"
-                            className="form-control"
-                            international
-                            defaultCountry="IN"
-                            // value={formValues.phone}
-                            onChange={console.log}
-                          />
-                        </div>
-                      </Col>
-                      <Col>
-                        <Input
-                          style={{ marginLeft: "35px" }}
-                          label="City"
-                          type="text"
-                          name="city"
-                          className="form-control"
-                          onChange={handleChange}
-                          value={formValues.city}
-                          isError
-                          errorMsg={formErrors.city}
-                        />
-                      </Col>
-                    </Row>
-                    <Row>
-                      <Col>
-                        <Input
-                          style={{ marginLeft: "18px" }}
-                          label="Amt&nbsp;."
-                          type="number"
-                          name="amount"
-                          value={formValues.amount}
-                          onChange={handleChange}
-                          className="form-control"
-                          isError
-                          errorMsg={formErrors.amount}
-                        />
-                      </Col>
-                      <Col>
-                        <Input
-                          label="Disco%"
-                          type="number"
-                          name="discountPer"
-                          className="form-control"
-                          placeholder="%"
-                          value={formValues.discountPer}
-                          onBlur={onBlurEvent}
-                          onChange={handleChange}
-                        />
-                      </Col>
-                      <Col>
-                        <Input
-                          label="Discou&#8377;"
-                          type="number"
-                          name="discountAmt"
-                          className="form-control"
-                          placeholder="Amt"
-                          value={formValues.discountAmt}
-                          onBlur={onBlurEvent}
-                          onChange={handleChange}
-                        />
-                      </Col>
-                    </Row>
-                    <Row>
-                      <Col>
-                        <Input
-                          label="GrsAmt."
-                          type="number"
-                          name="grossAmt"
-                          className="form-control"
-                          onBlur={onBlurEvent}
-                          value={formValues.grossAmt}
-                          onChange={handleChange}
-                          readOnly={true}
-                        />
-                      </Col>
-                      <Col>
-                        <Input
-                          style={{ marginLeft: "13px" }}
-                          label="GST% "
-                          type="number"
+              <div className="field__row">
+                <div className="fields">
+                  <Input
+                    type="text"
+                    label="Cust Id"
+                    name="customerId"
+                    value={formValues.customerId}
+                    onChange={handleChange}
+                    isError
+                    errorMsg={formErrors.customerId}
+                  />
+
+                  <p> {formErrors.software}</p>
+                </div>
+                <div className="fields">
+                  <Input type="text"
+                    label="Company"
+                    name="companyName"
+                    value={formValues.companyName}
+                    onChange={handleChange}
+                    isError
+                    errorMsg={formErrors.companyName}
+
+                  />
+                </div>
+
+              </div>
+
+              <div className="field__row">
+                <div className="fields">
+                  <div className="input-fields">
+                    <label htmlFor="" className="label">
+                      Phone
+                      <div className="require"> </div>
+
+                    </label>
+                    <PhoneInput
+                      style={{
+                        marginLeft: "8px",
+                        width: "208px"
+                      }}
+                      value={phone}
+                      name="mobileNumber"
+                      className="form-control"
+                      international
+                      defaultCountry="IN"
+                      onChange={setPhone}
+                    />
+                  </div>
+                </div>
+                <div className="fields">
+                  <Input
+                    type="text"
+                    label="City"
+                    name="city"
+                    value={formValues.city}
+                    onChange={handleChange}
+                    isError
+                    errorMsg={formErrors.city}
+                  />
+                </div>
+              </div>
+
+
+
+              <div className="field__row__three">
+                <div className="fields">
+                  <Input
+                    label="Total Amt"
+                    name="amount"
+                    value={formValues.amount}
+                    onChange={handleChange}
+
+                    isError
+                    errorMsg={formErrors.amount}
+
+                    className=" form-control three__row"
+                  />
+                </div>
+                <div className="fields">
+                  <Input label="Dis%"
+                    name="discountPer"
+                    placeholder="%"
+                    value={formValues.discountPer}
+                    // onBlur={onBlurEvent}
+                    onChange={handleChange}
+                  />
+                </div>
+                <div className="fields">
+                  <Input label="DisAmt"
+                    type="number"
+                    name="discountAmt"
+                    placeholder="Amt"
+                    value={formValues.discountAmt}
+                    // onBlur={onBlurEvent}
+                    onChange={handleChange}
+                  />
+                </div>
+              </div>
+
+              {/* 2nd */}
+
+              <div className="field__row__three">
+                <div className="fields">
+                  <Input
+                    label="grossAmt"
+                    type="number"
+                    name="grossAmt"
+                    value={formValues.grossAmt}
+                    onChange={handleChange}
+
+                    isError
+                    errorMsg={formErrors.grossAmt}
+
+                    className=" form-control three__row"
+                  />
+                </div>
+                <div className="fields">
+                  <Input
+                    label="GST% "
+                    type="number"
                           name="gst"
                           className="form-control"
-                          onBlur={onBlurEvent}
+                          // onBlur={onBlurEvent}
                           value={formValues.gst}
                           onChange={handleChange}
-                        />
-                      </Col>
-                      <Col>
-                        <Input
-                          style={{ marginLeft: "13px" }}
-                          label="GST&nbsp;&#8377;"
-                          type="number"
-                          name="totalTaxAmount"
-                          placeholder="&#8377;"
-                          className="form-control"
-                          value={formValues.totalTaxAmount}
-                          onChange={handleChange}
-                          onBlur={onBlurEvent}
-                          readOnly={true}
-                        />
-                      </Col>
-                    </Row>
-                    <Row>
-                      <Col>
-                        <Input
-                          style={{ marginLeft: "8px" }}
-                          label="Round"
-                          type="number"
-                          name="roundAmt"
-                          className="form-control"
-                          onChange={handleChange}
-                          value={formValues.roundAmt}
-                          onBlur={onBlurEvent}
-                        />
-                      </Col>
-                      <Col>
-                        <Input
-                          label="NetAmt"
-                          type="number"
-                          name="netAmt"
-                          className="form-control"
-                          value={formValues.netAmt}
-                          onChange={handleChange}
-                          onBlur={onBlurEvent}
-                          readOnly={true}
-                        />
-                      </Col>
+                  />
+                </div>
+                <div className="fields">
+                  <Input 
+                  label="GST"
+                    type="number"
+                    name="totalTaxAmount"
+                    placeholder="Amt"
+                    value={formValues.totalTaxAmount}
+                    // onBlur={onBlurEvent}
+                    onChange={handleChange}
+                    readOnly={true}
 
-                      <Col>
-                        <Input
-                          label="PaidAmt"
-                          type="number"
-                          name="paidAmt"
-                          className="form-control"
+                  />
+                </div>
+              </div>
+              {/* 3rh */}
+              <div className="field__row__three">
+                <div className="fields">
+                  <Input
+                    label="Round Amt"
+                    type="number"
+                    name="roundAmt"
+                    onChange={handleChange}
+                    value={formValues.roundAmt}
+                    // onBlur={onBlurEvent}
+
+                    isError
+                    errorMsg={formErrors.amount}
+
+                    className=" form-control three__row"
+                  />
+                </div>
+                <div className="fields">
+                  <Input l
+                  label="NetAmt"
+                  type="number"
+                  name="netAmt"
+                  value={formValues.netAmt}
+                  onChange={handleChange}
+                  // onBlur={onBlurEvent}
+                  readOnly={true}
+                  />
+                </div>
+                <div className="fields">
+                  <Input label="PaidAmt"
+                    type="number"
+                    name="paidAmt"
                           value={formValues.paidAmt}
                           onChange={handleChange}
-                          onBlur={onBlurEvent}
+                          // onBlur={onBlurEvent}
                           isError
                           errorMsg={formErrors.paidAmt}
-                        />
-                      </Col>
-                    </Row>
-                  </Row>
-                </Col>
-                {/* Left Side End */}
-                {/* Right Side Start */}
-                <Col>
-                  <Row>
-                    <Row>
-                      <Col>
-                        <Input
-                          style={{ marginLeft: "4px" }}
-                          label="Bal.Amt."
-                          type="number"
-                          name="balAmt"
-                          className="form-control"
-                          value={formValues.balAmt}
-                          // onBlur={onBlurEvent}
-                          readOnly={true}
-                        />
-                      </Col>
-                      <Col>
-                        <Select
-                          label="Pay&nbsp;Mode"
-                          options={payMode}
-                          className="react-select"
-                          placeholder="-- Select PayMode --"
-                          onChange={(e) => handleSelectPay(e)}
-                          defaultValue={payMode[0]}
-                          isError
-                        />
-                      </Col>
-                    </Row>
-                    <Row>
-                      <Input
-                        label="Trans.No"
-                        type="number"
-                        name="transactionNo"
-                        className="form-control"
-                        value={formValues.transactionNo}
-                        onChange={handleChange}
-                      />
-                    </Row>
-                    <Row>
-                      <DatePicker
-                        label="Date"
-                        style={{ marginLeft: "27px" }}
-                        className="date-picker"
-                        isError
-                      />
-                    </Row>
-                    <Row>
-                      <Select
-                        label="Referen."
-                        options={Reference}
-                        // onChange={(e) => handleSelectRefer(e)}
-                        onChange={setRefOpt}
-                        placeholder="-- Select Reference --"
-                        className="react-select ref-select"
-                        defaultValue={Reference[1]}
-                      />
-                    </Row>
-
-                    {refOpt.value === "Dealer" ? (
-                      <>
-                        <Row>
-                          <Col>
-                            <Input
-                              style={{ marginLeft: "18px" }}
-                              label="Deal.Id"
-                              type="text"
-                              name="dealerId"
-                              className="form-control"
-                              value={formValues.dealerId}
-                              onChange={handleChange}
-                            />
-                          </Col>
-                          <Col>
-                            <Input
-                              label="Deal.Name"
-                              type="text"
-                              name="dealerName"
-                              className="form-control"
-                              value={formValues.dealerName}
-                              onChange={handleChange}
-                            />
-                          </Col>
-                        </Row>
-                        <Row>
-                          <Col>
-                            <Input
-                              style={{ marginLeft: "8px" }}
-                              label="Comm%"
-                              type="number"
-                              name="commission"
-                              className="form-control"
-                              value={formValues.commission}
-                              onChange={handleChange}
-                              onBlur={onBlurEvent}
-                              readOnly={true}
-                            />
-                          </Col>
-                          <Col>
-                            <Input
-                              style={{ marginLeft: "7px" }}
-                              label="Com.&nbsp;Amt"
-                              type="number"
-                              name="commissionAmt"
-                              className="form-control"
-                              value={formValues.commissionAmt}
-                              onChange={handleChange}
-                              onBlur={onBlurEvent}
-                              readOnly={true}
-                            />
-                          </Col>
-                        </Row>
-                        <Row>
-                          <Col>
-                            <Input
-                              label="Com.paid"
-                              type="number"
-                              name="commissionPaid"
-                              className="form-control"
-                              value={formValues.commissionPaid}
-                              onChange={handleChange}
-                              onBlur={onBlurEvent}
-                            />
-                          </Col>
-                          <Col>
-                            <Input
-                              style={{ marginLeft: "18px" }}
-                              label="Bal.Amt"
-                              type="number"
-                              name="commiBal"
-                              value={formValues.commiBal}
-                              onChange={handleChange}
-                              onBlur={onBlurEvent}
-                              readOnly={true}
-                            />
-                          </Col>
-                        </Row>
-                      </>
-                    ) : null}
-                    <Row>
-                      <TextArea label="Remarks" row="3" />
-                    </Row>
-                  </Row>
-                </Col>
-              </Row>
-              <div className="btn__holder">
-                <Button
-                  type="isSubmit"
-                  className="btn btn-primary"
-                  onClick={handleSubmit}
-                  id="animate.css"
-                  value="isSubmit"
-                >
-                  Save
-                </Button>
-                <Button className="btn btn-secondary" onClick={refreshPage}>
-                  Clear
-                </Button>
+                  />
+                </div>
               </div>
-            </Form>
-          </Container>
+
+            </div>
+            {/* Left Side End */}
+            {/* Right Side Start */}
+            <div className="form__right">
+              <div className="fields">
+                <TextArea
+                  type="text"
+                  label="Details"
+                  rows="2"
+                  name="details"
+                  value={formValues.details}
+                  onChange={handleChange}
+                  style={{
+                    marginLeft: "13px"
+                  }}
+                />
+              </div>
+
+              <div className="fields">
+                <Select
+                  label="Status"
+                  options={Status}
+                  className="select-control source-select"
+                  defaultValue={Status[0]}
+                  isError
+                />
+              </div>
+              <div className="fields">
+                <Select
+                  label="Priority"
+                  options={Priority}
+                  className="select-control source-select"
+                  defaultValue={Priority[0]}
+                />
+              </div>
+              <div className="fields">
+                <DatePicker
+                  label="Date"
+                  className="date-picker"
+                  style={{ marginLeft: "15px" }}
+
+                // isError
+                />
+              </div>
+              <div className="fields">
+                <TextArea label="Remarks"
+                  style={{ marginLeft: "15px" }}
+                  name="remarks"
+                  value={formValues.remarks}
+                  onChange={handleChange}
+                />
+              </div>
+            </div>
+          </div>
+          <div className="btn__holder">
+            <Button
+              type="submit"
+              className="btn btn-primary"
+              onClick={handleSubmit}
+            // id="animate.css"
+            // value="isSubmit"
+            >
+              Save
+            </Button>
+            <Button className="btn btn-secondary"
+              onClick={refreshPage}
+            >Clear</Button>
+          </div>
         </div>
       </div>
-
       <ToastContainer transition={bounce} />
       <Footer />
-    </Fragment>
+      {/* Source Modal*/}
+    </>
   );
 };
-
 export default InstallEntry;

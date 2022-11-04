@@ -233,32 +233,19 @@ const ReInstall = ({ initialValue, props }) => {
                   label="Date"
                   className="date-picker"
                   style={{ marginLeft: "-68px" }}
-                  // isError
+                // isError
                 />
               </div>
 
               <div className="field__row">
                 <div className="fields">
-                  <Input label="Cust Id" className=" form-control three__row" />
+                  <Input type="text" label="Cust Id" />
                 </div>
                 <div className="fields">
-                  <Input label="Two" />
-                </div>
-                <div className="fields">
-                  <Input label="Two" />
+                  <Input type="text" label="Company" />
                 </div>
               </div>
-              <div className="field__row">
-                <div className="fields">
-                  <Input label="Cust Id" className=" form-control three__row" />
-                </div>
-                <div className="fields">
-                  <Input label="Two" />
-                </div>
-                <div className="fields">
-                  <Input label="Two" />
-                </div>
-              </div>
+
 
               <div className="field__row">
                 <div className="fields">
@@ -276,7 +263,7 @@ const ReInstall = ({ initialValue, props }) => {
                       className="form-control"
                       international
                       defaultCountry="IN"
-                      // onChange={setPhone}
+                    // onChange={setPhone}
                     />
                   </div>
                 </div>
@@ -321,28 +308,115 @@ const ReInstall = ({ initialValue, props }) => {
                     <div className="fields">
                       <Input
                         label="Total Amt"
+                        name="amount"
+                        value={formValues.amount}
+                        onChange={handleChange}
+
+                        isError
+                        errorMsg={formErrors.amount}
+
                         className=" form-control three__row"
                       />
                     </div>
                     <div className="fields">
-                      <Input label="Dis%" />
+                      <Input label="Dis%"
+                        name="discountPer"
+                        placeholder="%"
+                        value={formValues.discountPer}
+                        onBlur={onBlurEvent}
+                        onChange={handleChange}
+                      />
                     </div>
                     <div className="fields">
-                      <Input label="DisAmt" />
+                      <Input label="DisAmt"
+                        type="number"
+                        name="discountAmt"
+                        placeholder="Amt"
+                        value={formValues.discountAmt}
+                        onBlur={onBlurEvent}
+                        onChange={handleChange}
+                      />
                     </div>
                   </div>
                   <div className="field__row__three">
                     <div className="fields">
                       <Input
                         label="Grs Amt."
+                        type="number"
+                        name="grossAmt"
+                        value={formValues.grossAmt}
+                        onChange={handleChange}
+                        readOnly={true}
                         className=" form-control three__row"
                       />
                     </div>
                     <div className="fields">
-                      <Input label="Tax%" />
+                      <Input label="Tax%"
+                        name="tax"
+                        value={formValues.tax}
+                        onChange={handleChange}
+                        onBlur={onBlurEvent}
+                      />
                     </div>
                     <div className="fields">
-                      <Input label="Tax₹" />
+                      <Input label="Tax₹"
+                        type="number"
+                        name="totalTaxAmount"
+                        placeholder="&#8377;"
+                        value={formValues.totalTaxAmount}
+                        onChange={handleChange}
+                        onBlur={onBlurEvent}
+                      />
+                    </div>
+                  </div>
+                  <div className="field__row">
+                    <div className="fields">
+                      <Input
+
+                        label="Round"
+                        type="number"
+                        name="roundAmt"
+                        onChange={handleChange}
+                        value={formValues.roundAmt}
+                        onBlur={onBlurEvent}
+                        style={{ marginLeft: "45px" }}
+                      />
+                    </div>
+                    <div className="fields">
+                      <Input 
+                        label="NetAmt"
+                        type="number"
+                        name="number"
+                        value={formValues.netAmt}
+                        onChange={handleChange}
+                        onBlur={onBlurEvent}
+                        readOnly={true}
+                      />
+                    </div>
+                  </div>
+
+                  <div className="field__row">
+                    <div className="fields">
+                      <Input type="text"
+                        label="Paid.Amt"
+                        style={{ marginLeft: "42px" }}
+                      />
+                    </div>
+                    <div className="fields">
+                      <Input type="text" label="Bal.Amt" />
+                    </div>
+                  </div>
+                  <div className="field__row">
+                    <div className="fields">
+                      <Select
+                        options={payMode}
+                        className="select-control status-select"
+                        label="PayMode"
+                        defaultValue={payMode[0]}
+                      />
+                    </div>
+                    <div className="fields">
+                      <Input type="date" label="Date" />
                     </div>
                   </div>
                 </>
