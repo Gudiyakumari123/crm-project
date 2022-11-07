@@ -21,13 +21,13 @@ function PhoneInputBox({
           {label}
         </label>
         <PhoneInput
-          value={phone}
+          value={value}
           className="form-control"
           international
           name={name}
           defaultCountry="IN"
           placeholder={placeholder}
-          onChange={setPhone}
+          onChange={onChange}
           {...props}
         />
       </div>

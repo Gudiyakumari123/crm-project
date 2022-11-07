@@ -5,8 +5,8 @@ import Header from "../../../../shared/Header/Header";
 import SubHeader from "../../../../shared/SubHeader/SubHeader";
 import Footer from "../../../../shared/Footer/Footer";
 import { Button } from "react-bootstrap";
-import DatePicker from "../../../../shared/Reusable/DatePicker";
-import { ToastContainer, toast, cssTransition } from "react-toastify";
+import { ToastContainer, toast } from 'react-toastify';
+
 import { useFormik } from "formik";
 
 // Reusable Component
@@ -20,21 +20,11 @@ import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
 
 import CountryState from "../../../../shared/Reusable/CountryState";
-const bounce = cssTransition({
-  enter: "animate__animated animate__bounceIn",
-  exit: "animate__animated animate__bounceOut",
-});
 
 const Category = [
   { value: "Company", label: "Company" },
   { value: "Freelancer", label: "Freelancer" },
 ];
-
-
-const swirl = cssTransition({
-  enter: "swirl-in-fwd",
-  exit: "swirl-out-bck",
-});
 
 
 const Status = [
@@ -43,7 +33,6 @@ const Status = [
 ];
 
 const CustomerRegister = ({ initialValue }) => {
-  const [phone, setPhone] = useState(initialValue);
 
   const [formErrors, setFormErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
@@ -65,14 +54,6 @@ const CustomerRegister = ({ initialValue }) => {
     remarksUser: "",
   });
 
-  const addressFromik = useFormik({
-    initialValues: {
-      country: "India",
-      state: null,
-      city: null,
-    },
-    onSubmit: (values) => console.log(JSON.stringify(values)),
-  });
 
 
   const handleChange = (e) => {
@@ -93,7 +74,7 @@ const CustomerRegister = ({ initialValue }) => {
   useEffect(() => {
     // console.log("FormErros::", formErrors);
     if (Object.keys(formErrors).length === 0 && isSubmit) {
-      alert("Everything is Good. Form Submitted");
+      animateCss();
     } else {
       // alert("Please , Fill the all required Fields");
     }
@@ -117,10 +98,8 @@ const CustomerRegister = ({ initialValue }) => {
     return errors;
   };
 
-  function animateCss() {
-    toast.dark("Hey 👋, Data Has Been Saved!", {
-      transition: bounce,
-    });
+  const animateCss = () => {
+    toast("Form Submitted!");
   }
   function refreshPage() {
     window.location.reload(false);
@@ -307,7 +286,7 @@ const CustomerRegister = ({ initialValue }) => {
           </div>
         </div>
       </div>
-      <ToastContainer transition={bounce} />
+      <ToastContainer />
       <Footer />
       {/* Source Modal*/}
     </>

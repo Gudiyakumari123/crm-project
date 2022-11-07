@@ -11,7 +11,8 @@
 @import "antd/dist/antd.css";
 /* React Toastify */
 /* @import "animate.css/animate.min.css"; */
-/* @import "react-toastify/dist/ReactToastify.css"; */
+@import 'react-toastify/dist/ReactToastify.css';
+
 
 * {
   margin: 0px;

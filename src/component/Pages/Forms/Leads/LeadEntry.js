@@ -113,18 +113,15 @@ import Header from "../../../../shared/Header/Header";
 import SubHeader from "../../../../shared/SubHeader/SubHeader";
 import Footer from "../../../../shared/Footer/Footer";
 import { Button } from "react-bootstrap";
-import DatePicker from "../../../../shared/Reusable/DatePicker";
 import { ToastContainer, toast, cssTransition } from "react-toastify";
-import Country from "../../../../shared/Reusable/CountryState";
-import Try from "../../../../shared/Reusable/Phone&Alt";
 
 // Reusable Component
 import Input from "../../../../shared/Reusable/Input";
 import Select from "../../../../shared/Reusable/Select";
 import TextArea from "../../../../shared/Reusable/TextArea";
-// Phone Number
-import PhoneInput from "react-phone-number-input";
-import "react-phone-number-input/style.css";
+import PhoneInput from "../../../../shared/Reusable/PhoneInput";
+import Country from "../../../../shared/Reusable/CountryState";
+// import Try from "../../../../shared/Reusable/Phone&Alt";
 
 // Constants
 import {
@@ -164,10 +161,10 @@ const Installation = [
 // ];
 
 const LeadEntry = ({ initialValue }) => {
-  // const [phone, setPhone] = useState(initialValue);
-
   const [formErrors, setFormErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
+  const [phone, setPhone] = useState("");
+
 
   const [paid, setPaid] = useState({});
 
@@ -177,7 +174,7 @@ const LeadEntry = ({ initialValue }) => {
     date: "",
     customerId: "",
     companyName: "",
-    phone: "",
+    mobileNumber: "",
     city: "",
     install: "",
     software: "",
@@ -194,7 +191,9 @@ const LeadEntry = ({ initialValue }) => {
       ...formValues,
       [name]: value,
     });
+    setPhone();
   };
+
   const Category1 = ["WonderPOS", "Healthy Fly", "Edu Fly"];
   const Softwares = {
     WonderPOS: [
@@ -261,9 +260,9 @@ const LeadEntry = ({ initialValue }) => {
     "Edu Fly": ["School", "College / University", "Study Centre / Institute"],
   };
 
-  const [sourceOption, setSourceOption] = useState(false);
+  const [sourceOption, setSourceOption] = useState({});
+
   const [selectedState, setSelectedState] = useState("");
-  console.log("SelectState::", selectedState);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -281,7 +280,6 @@ const LeadEntry = ({ initialValue }) => {
 
   const validate = (values) => {
     const errors = {};
-    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
 
     if (!values.version) {
       errors.version = "Enter version";
@@ -289,8 +287,8 @@ const LeadEntry = ({ initialValue }) => {
     if (!values.companyName) {
       errors.companyName = "Enter companyName";
     }
-    if (!values.customerId) {
-      errors.customerId = "Enter customerId";
+    if (!values.contperson) {
+      errors.contperson = "Enter contperson";
     }
     if (!values.city) {
       errors.city = "Enter city";
@@ -298,8 +296,11 @@ const LeadEntry = ({ initialValue }) => {
     if (!values.amount) {
       errors.amount = "Enter amount";
     }
-    if (!values.grossAmt) {
-      errors.grossAmt = "Enter grossAmt";
+    if (!values.mobileNumber) {
+      errors.mobileNumber = "Enter Phone";
+    }
+    if (!values.email) {
+      errors.email = "Enter email";
     }
     return errors;
   };
@@ -315,7 +316,6 @@ const LeadEntry = ({ initialValue }) => {
   function refreshPage() {
     window.location.reload(false);
   }
-
 
   return (
     <>
@@ -356,13 +356,55 @@ const LeadEntry = ({ initialValue }) => {
               </div>
               <div className="field__row">
                 <div className="fields">
-                  <Input type="text" label="Company" name="company" isError />
+                  <Input
+                    type="text"
+                    label="Company"
+                    name="companyName"
+                    value={formValues.companyName}
+                    onChange={handleChange}
+                    isError
+                    errorMsg={formErrors.companyName}
+                  />
+                  <p className="show-errors-left"> {formErrors.companyName} </p>
                 </div>
                 <div className="fields">
-                  <Input type="text" label="ContPerson" />
+                  <Input
+                    type="text"
+                    label="ContPerson"
+                    name="contperson"
+                    value={formValues.contperson}
+                    onChange={handleChange}
+                    isError
+                    errorMsg={formErrors.contperson}
+                  />
+                  <p className="show-errors-left"> {formErrors.contperson} </p>
                 </div>
               </div>
-              <Try />
+              <div className="field__row">
+                <div className="fields">
+                  <PhoneInput
+                    type="text"
+                    label="Phone"
+                    name="mobileNumber"
+                    value={formValues.mobileNumber}
+                    // onChange={setForm}
+                    isError
+                    // errorMsg={formErrors.mobileNumber}
+                    style={{ marginLeft: "32px" }}
+                  />
+                  <p className="show-errors-left">{formErrors.mobileNumber}</p>
+                </div>
+                <div className="fields">
+                  <Input
+                    type="text"
+                    label="AltPhone"
+                    name="altPhone"
+                    value={formValues.altPhone}
+                    onChange={handleChange}
+                  />
+                </div>
+              </div>
+
               <Country />
               <div className="fields">
                 <Input
@@ -381,8 +423,19 @@ const LeadEntry = ({ initialValue }) => {
             </div>
             <div className="form__right">
               <div className="fields">
-                <Input type="text" label="Email" name="email" readOnly={true} />
+                <Input
+                  type="text"
+                  label="Email"
+                  name="email"
+                  value={formValues.email}
+                  onChange={handleChange}
+                  isError
+                  errorMsg={formErrors.email}
+                  //  readOnly={true}
+                />
               </div>
+              <p className="show-errors"> {formErrors.email} </p>
+
               <div className="fields">
                 <Select
                   label="Source"
@@ -392,7 +445,7 @@ const LeadEntry = ({ initialValue }) => {
                   onChange={setSourceOption}
                 />
               </div>
-              {sourceOption.values === "Dealer" ? (
+              {sourceOption.value === "Dealer" ? (
                 <>
                   <div className="field__row">
                     <div className="fields">
@@ -404,7 +457,7 @@ const LeadEntry = ({ initialValue }) => {
                       />
                     </div>
                     <div className="fields">
-                      <Input label="Name" type="email" name="dealerName" />
+                      <Input label="Name" type="email" />
                     </div>
                   </div>
                 </>

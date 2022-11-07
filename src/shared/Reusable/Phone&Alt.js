@@ -2,17 +2,19 @@ import React from "react";
 // Phone Number
 import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
-export default function Try() {
+export default function Try({ isError }) {
   return (
     <>
       <div className="field__row">
-        <div className="input-fields">
+       
+         <div className="input-fields">
           <label htmlFor="" className="label">
             Phone
           </label>
           <PhoneInput
             style={{
-              marginLeft: "38px",
+              marginLeft: "35px",
+              marginButtom: "5px",
             }}
             name="phone"
             className="form-control"

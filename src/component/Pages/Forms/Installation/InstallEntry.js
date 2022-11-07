@@ -35,11 +35,7 @@ const Priority = [
   { value: "Low", label: "Low" },
 ];
 
-const Installation = [
-  { value: "Installation 1", label: "Installation 1" },
-  { value: "Installation 2", label: "Installation 2" },
-  { value: "Installation 3", label: "Installation 3" },
-];
+
 
 const Status = [
   { value: "Active", label: "Active" },
@@ -56,7 +52,7 @@ const InstallEntry = ({ initialValue }) => {
 
   // Form Validations
   const [formValues, setFormValues] = useState({
-    amount:"",
+    amount: "",
     date: "",
     customerId: "",
     companyName: "",
@@ -164,7 +160,7 @@ const InstallEntry = ({ initialValue }) => {
   const validate = (values) => {
     const errors = {};
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
-    
+
     if (!values.version) {
       errors.version = "Enter version";
     }
@@ -174,14 +170,17 @@ const InstallEntry = ({ initialValue }) => {
     if (!values.customerId) {
       errors.customerId = "Enter customerId";
     }
+    if (!values.phone) {
+      errors.phone = "Enter phone";
+    }
     if (!values.city) {
       errors.city = "Enter city";
     }
     if (!values.amount) {
-      errors.amount = "Enter amount";
+      errors.amount = "amount";
     }
     if (!values.grossAmt) {
-      errors.grossAmt = "Enter grossAmt";
+      errors.grossAmt = "grossAmt";
     }
     return errors;
   };
@@ -189,9 +188,7 @@ const InstallEntry = ({ initialValue }) => {
   console.log("FormValues::", formValues);
 
   function animateCss() {
-    toast.dark("Hey 👋, Data Has Been Saved!", {
-      transition: bounce,
-    });
+    const notify = () => toast("Wow so easy!");
   }
 
   function refreshPage() {
@@ -285,8 +282,6 @@ const InstallEntry = ({ initialValue }) => {
                 </div>
               </div>
 
-
-
               <div className="field__row">
                 <div className="fields">
                   <div className="input-fields">
@@ -305,6 +300,7 @@ const InstallEntry = ({ initialValue }) => {
                       international
                       defaultCountry="IN"
                       onChange={setPhone}
+
                     />
                   </div>
                 </div>
@@ -321,7 +317,9 @@ const InstallEntry = ({ initialValue }) => {
                 </div>
               </div>
 
-              <div className="field__row__three">
+
+
+              {/* <div className="field__row__three">
                 <div className="fields">
                   <Input
                     label="Total Amt"
@@ -330,11 +328,9 @@ const InstallEntry = ({ initialValue }) => {
                     onChange={handleChange}
                     isError
                     errorMsg={formErrors.amount}
-
                     className=" form-control three__row"
                   />
                 </div>
-                {/* <p className="show-errors-left"> {formErrors.amount} </p> */}
 
                 <div className="fields">
                   <Input
@@ -357,6 +353,44 @@ const InstallEntry = ({ initialValue }) => {
                     onChange={handleChange}
                   />
                 </div>
+              </div> */}
+              <div className="field__row__three">
+                <div className="fields">
+                  <Input
+                    label="grossAmt"
+                    type="number"
+                    name="grossAmt"
+                    value={formValues.grossAmt}
+                    onChange={handleChange}
+                    isError
+                    errorMsg={formErrors.grossAmt}
+                    className=" form-control three__row"
+                  />
+                  <p className="show-errors-left"> {formErrors.grossAmt} </p>
+                </div>
+                <div className="fields">
+                  <Input
+                    label="GST% "
+                    type="number"
+                    name="gst"
+                    className="form-control"
+                    // onBlur={onBlurEvent}
+                    value={formValues.gst}
+                    onChange={handleChange}
+                  />
+                </div>
+                <div className="fields">
+                  <Input
+                    label="GST"
+                    type="number"
+                    name="totalTaxAmount"
+                    placeholder="Amt"
+                    value={formValues.totalTaxAmount}
+                    // onBlur={onBlurEvent}
+                    onChange={handleChange}
+                    readOnly={true}
+                  />
+                </div>
               </div>
 
               {/* 2nd */}
@@ -373,6 +407,7 @@ const InstallEntry = ({ initialValue }) => {
                     errorMsg={formErrors.grossAmt}
                     className=" form-control three__row"
                   />
+                  <p className="show-errors-left"> {formErrors.grossAmt} </p>
                 </div>
                 <div className="fields">
                   <Input
@@ -408,7 +443,6 @@ const InstallEntry = ({ initialValue }) => {
                     onChange={handleChange}
                     value={formValues.roundAmt}
                     // onBlur={onBlurEvent}
-
                     isError
                     errorMsg={formErrors.amount}
                     className=" form-control three__row"

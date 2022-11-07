@@ -12,9 +12,8 @@ import { ToastContainer, toast, cssTransition } from "react-toastify";
 import Input from "../../../../shared/Reusable/Input";
 import Select from "../../../../shared/Reusable/Select";
 import TextArea from "../../../../shared/Reusable/TextArea";
-// Phone Number
-import PhoneInput from "react-phone-number-input";
-import "react-phone-number-input/style.css";
+import PhoneInput from "../../../../shared/Reusable/PhoneInput";
+
 const bounce = cssTransition({
   enter: "animate__animated animate__bounceIn",
   exit: "animate__animated animate__bounceOut",
@@ -186,6 +185,9 @@ const ReInstall = ({ initialValue, props }) => {
     if (!values.city) {
       errors.city = "Enter city";
     }
+    if (!values.phone) {
+      errors.phone = "Enter phone";
+    }
     if (!values.software) {
       errors.software = "Enter software";
     }
@@ -233,7 +235,7 @@ const ReInstall = ({ initialValue, props }) => {
                   label="Date"
                   className="date-picker"
                   style={{ marginLeft: "-68px" }}
-                // isError
+                  // isError
                 />
               </div>
 
@@ -268,19 +270,17 @@ const ReInstall = ({ initialValue, props }) => {
                 <div className="fields">
                   <PhoneInput
                     label="Phone"
-
                     style={{
-                      marginLeft: "110px",
                       width: "208px",
                     }}
                     value={phone}
-                    name="mobileNumber"
+                    name="phone"
                     className="form-control"
                     international
                     defaultCountry="IN"
                     onChange={setPhone}
                   />
-                  <p className="show-errors-left"> {formErrors.city} </p>
+                  <p className="show-errors-left"> {formErrors.phone} </p>
                 </div>
                 <div className="fields">
                   <Input
@@ -293,31 +293,6 @@ const ReInstall = ({ initialValue, props }) => {
                     errorMsg={formErrors.city}
                   />
                   <p className="show-errors-left"> {formErrors.city} </p>
-                </div>
-              </div>
-
-              <div className="field__row">
-                <div className="fields">
-                  <div className="input-fields">
-                    <label htmlFor="" className="label">
-                      Phone
-                    </label>
-                    <PhoneInput
-                      style={{
-                        marginLeft: "8px",
-                        width: "208px",
-                      }}
-                      // value={phone}
-                      name="mobileNumber"
-                      className="form-control"
-                      international
-                      defaultCountry="IN"
-                    // onChange={setPhone}
-                    />
-                  </div>
-                </div>
-                <div className="fields">
-                  <Input type="text" label="Area/City" />
                 </div>
               </div>
 
@@ -361,15 +336,14 @@ const ReInstall = ({ initialValue, props }) => {
                         name="amount"
                         value={formValues.amount}
                         onChange={handleChange}
-
                         isError
                         errorMsg={formErrors.amount}
-
                         className=" form-control three__row"
                       />
                     </div>
                     <div className="fields">
-                      <Input label="Dis%"
+                      <Input
+                        label="Dis%"
                         name="discountPer"
                         placeholder="%"
                         value={formValues.discountPer}
@@ -378,7 +352,8 @@ const ReInstall = ({ initialValue, props }) => {
                       />
                     </div>
                     <div className="fields">
-                      <Input label="DisAmt"
+                      <Input
+                        label="DisAmt"
                         type="number"
                         name="discountAmt"
                         placeholder="Amt"
@@ -401,7 +376,8 @@ const ReInstall = ({ initialValue, props }) => {
                       />
                     </div>
                     <div className="fields">
-                      <Input label="Tax%"
+                      <Input
+                        label="Tax%"
                         name="tax"
                         value={formValues.tax}
                         onChange={handleChange}
@@ -409,7 +385,8 @@ const ReInstall = ({ initialValue, props }) => {
                       />
                     </div>
                     <div className="fields">
-                      <Input label="Tax₹"
+                      <Input
+                        label="Tax₹"
                         type="number"
                         name="totalTaxAmount"
                         placeholder="&#8377;"
@@ -422,7 +399,6 @@ const ReInstall = ({ initialValue, props }) => {
                   <div className="field__row">
                     <div className="fields">
                       <Input
-
                         label="Round"
                         type="number"
                         name="roundAmt"
@@ -447,13 +423,26 @@ const ReInstall = ({ initialValue, props }) => {
 
                   <div className="field__row">
                     <div className="fields">
-                      <Input type="text"
+                      <Input
                         label="Paid.Amt"
+                        type="number"
                         style={{ marginLeft: "42px" }}
+                        name="netAmt"
+                        value={formValues.paidAmt}
+                        onChange={handleChange}
+                        onBlur={onBlurEvent}
                       />
                     </div>
                     <div className="fields">
-                      <Input type="text" label="Bal.Amt" />
+                      <Input
+                      label="Bal.Amt"
+                      type="number"
+                      style={{ marginLeft: "42px" }}
+                      name="balAmt"
+                      value={formValues.balAmt}
+                      onChange={handleChange}
+                      onBlur={onBlurEvent}
+                      />
                     </div>
                   </div>
                   <div className="field__row">
@@ -473,7 +462,9 @@ const ReInstall = ({ initialValue, props }) => {
               ) : null}
 
               <div className="fields">
-                <Input type="text" label="Amt" />
+                <Input 
+                type="text" 
+                label="Amt" />
               </div>
               <div className="field__row">
                 <div className="fields">
