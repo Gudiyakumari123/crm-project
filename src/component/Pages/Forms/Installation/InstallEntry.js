@@ -15,6 +15,10 @@ import TextArea from "../../../../shared/Reusable/TextArea";
 // Phone Number
 import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
+
+import { render } from "@testing-library/react";
+
+
 const bounce = cssTransition({
   enter: "animate__animated animate__bounceIn",
   exit: "animate__animated animate__bounceOut",
@@ -35,37 +39,41 @@ const Priority = [
   { value: "Low", label: "Low" },
 ];
 
-
-
 const Status = [
   { value: "Active", label: "Active" },
   { value: "Completed", label: "Completed" },
 ];
 
-const InstallEntry = ({ initialValue }) => {
-  const [phone, setPhone] = useState(initialValue);
+const InstallEntry = () => {
+  const [phone, setPhone] = useState("");
 
   const [formErrors, setFormErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
 
+  const initialValues = {
+    version:"",
+    customerId:"",
+    companyName:"",
+    mobileNumber:"",
+    city:"",
+    amount:"",
+    discountPer:"",
+    discountAmt:"",
+    grossAmt:"",
+    gst:"",
+    totalTaxAmount:"",
+    roundAmt:"",
+    netAmt:"",
+    paidAmt:"",
+    details:"",
+    date:"",
+    remarks:"",
+    dates:""
+  };
   const [paid, setPaid] = useState({});
 
   // Form Validations
-  const [formValues, setFormValues] = useState({
-    amount: "",
-    date: "",
-    customerId: "",
-    companyName: "",
-    phone: "",
-    city: "",
-    install: "",
-    software: "",
-    category: "",
-    details: "",
-    status: "",
-    priority: "",
-    remarks: "",
-  });
+  const [formValues, setFormValues] = useState(initialValues);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -73,7 +81,9 @@ const InstallEntry = ({ initialValue }) => {
       ...formValues,
       [name]: value,
     });
+    setPhone();
   };
+ 
   const Category1 = ["WonderPOS", "Healthy Fly", "Edu Fly"];
   const Softwares = {
     WonderPOS: [
@@ -196,9 +206,9 @@ const InstallEntry = ({ initialValue }) => {
     toast("Form Submitted!");
   };  
 
-  function refreshPage() {
-    window.location.reload(false);
-  }
+  const clearForm = () => {
+    setFormValues(initialValues);
+  };
 
   return (
     <>
@@ -211,11 +221,24 @@ const InstallEntry = ({ initialValue }) => {
           </div>
           <div className="form__wrapper">
             <div className="form__left">
-              <div className="fields">
+              {/* <div className="fields">
                 <DatePicker
                   label="Date"
                   // className="date-picker"
                   style={{ marginLeft: "-68px" }}
+                />
+              </div> */}
+              <div className="fields">
+                <Input
+                  type="date"
+                  label="Date"
+                  name="dates"
+                  value={formValues.dates}
+                  onChange={handleChange}
+                  style={{ marginLeft: "-70px"
+                ,width:"100%"
+                }}
+
                 />
               </div>
               <div className="fields">
@@ -481,7 +504,10 @@ const InstallEntry = ({ initialValue }) => {
               <div className="fields">
                 <DatePicker
                   label="Date"
+                  name="date"
                   className="date-picker"
+                  value={formValues.date}
+                  onChange={handleChange}
                   style={{ marginLeft: "15px" }}
 
                 // isError
@@ -508,7 +534,8 @@ const InstallEntry = ({ initialValue }) => {
             >
               Save
             </Button>
-            <Button className="btn btn-secondary" onClick={refreshPage}>
+            <Button className="btn btn-secondary" 
+            onClick={clearForm}>
               Clear
             </Button>
           </div>

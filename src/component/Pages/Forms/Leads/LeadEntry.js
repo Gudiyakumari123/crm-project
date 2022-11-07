@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, Fragment, Component } from "react";
 
 // components
@@ -21,7 +20,6 @@ import {
   Status,
 } from "../../../../data/crm-constants";
 import { render } from "@testing-library/react";
-
 
 const bounce = cssTransition({
   enter: "animate__animated animate__bounceIn",
@@ -49,28 +47,23 @@ const Installation = [
   { value: "Installation 3", label: "Installation 3" },
 ];
 
-
 const LeadEntry = () => {
   const [formErrors, setFormErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
   const [phone, setPhone] = useState("");
 
   const initialValues = {
-    amount: "",
-    date: "",
-    customerId: "",
     companyName: "",
-    mobileNumber: "",
-    city: "",
-    install: "",
-    software: "",
-    category: "",
-    details: "",
-    status: "",
-    priority: "",
-    remarks: "",
-  }
-
+    contperson: "",
+    phone: "",
+    altPhone: "",
+    area: "",
+    address: "",
+    email: "",
+    other: "",
+    date: "",
+    remark: "",
+  };
 
   const [paid, setPaid] = useState({});
 
@@ -165,8 +158,6 @@ const LeadEntry = () => {
     if (Object.keys(formErrors).length === 0 && isSubmit) {
       alert("Everything is Good. Form Submitted");
       // animateCss();
-
-
     } else {
       // alert("Please , Fill the all required Fields");
     }
@@ -184,42 +175,25 @@ const LeadEntry = () => {
     if (!values.contperson) {
       errors.contperson = "Enter contperson";
     }
-  //   if (!values.phone) {
-  //     errors.phone = "Enter phone";
-  //   }
-  //  else if (!values.phone<10) {
-  //     errors.phone = "Enter 10 digit  phone";
-  //   }
-  //   if (!values.contperson) {
-  //     errors.contperson = "Enter contperson";
-  //   }
-  //   if (!values.city) {
-  //     errors.city = "Enter city";
-  //   }
+    //   if (!values.phone) {
+    //     errors.phone = "Enter phone";
+    //   }
+    //  else if (!values.phone<10) {
+    //     errors.phone = "Enter 10 digit  phone";
+    //   }
+    //   if (!values.contperson) {
+    //     errors.contperson = "Enter contperson";
+    //   }
+    //   if (!values.city) {
+    //     errors.city = "Enter city";
+    //   }
     // if (!values.amount) {
     //   errors.amount = "Enter amount";
     // }
     // if (!values.mobileNumber) {
     //   errors.mobileNumber = "Enter Phone";
     // }
-    if (!values.phone) {
-      errors.phone = "Enter phone";
-    }
-    else if (!values.phone < 10) {
-      errors.phone = "Enter 10 digit  phone";
-    }
-    if (!values.contperson) {
-      errors.contperson = "Enter contperson";
-    }
-    if (!values.city) {
-      errors.city = "Enter city";
-    }
-    if (!values.amount) {
-      errors.amount = "Enter amount";
-    }
-    if (!values.mobileNumber) {
-      errors.mobileNumber = "Enter Phone";
-    }
+    //
     if (!values.email) {
       errors.email = "Enter email";
     }
@@ -228,14 +202,12 @@ const LeadEntry = () => {
 
   console.log("FormValues::", formValues);
 
- 
-
   const animateCss = () => {
     toast("Form Submitted!");
   };
   const clearForm = () => {
     setFormValues(initialValues);
-  }
+  };
 
   return (
     <>
@@ -312,8 +284,6 @@ const LeadEntry = () => {
                     isError
                     errorMsg={formErrors.phone}
                     maxLength={10}
-
-
                   />
                   <p className="show-errors-left"> {formErrors.phone} </p>
                 </div>
@@ -359,7 +329,10 @@ const LeadEntry = () => {
               <div className="fields">
                 <Input
                   type="text"
+                  name="area"
                   label="Area/City"
+                  value={formValues.area}
+                  onChange={handleChange}
                   style={{ width: "140%", marginLeft: "-21px" }}
                 />
               </div>
@@ -367,7 +340,10 @@ const LeadEntry = () => {
                 <TextArea
                   type="text"
                   label="Address"
+                  name="address"
                   style={{ width: "140%", marginLeft: "-21px" }}
+                  value={formValues.address}
+                  onChange={handleChange}
                 />
               </div>
             </div>
@@ -381,7 +357,7 @@ const LeadEntry = () => {
                   onChange={handleChange}
                   isError
                   errorMsg={formErrors.email}
-                //  readOnly={true}
+                  //  readOnly={true}
                 />
               </div>
               <p className="show-errors"> {formErrors.email} </p>
@@ -413,7 +389,13 @@ const LeadEntry = () => {
                 </>
               ) : null}
               <div className="fields">
-                <Input type="text" label="Others" />
+                <Input
+                  type="text"
+                  name="other"
+                  label="Others"
+                  value={formValues.other}
+                  onChange={handleChange}
+                />
               </div>
               <div className="field__row">
                 <div className="fields">
@@ -434,10 +416,21 @@ const LeadEntry = () => {
                 </div>
               </div>
               <div className="fields">
-                <Input type="date" label="Date" />
+                <Input type="date" 
+                name="date" 
+                label="Date" 
+                value={formValues.date}
+                onChange={handleChange}
+                />
               </div>
               <div className="fields">
-                <TextArea label="Remarks" style={{ marginLeft: "15px" }} />
+                <TextArea
+                  label="Remarks"
+                  name="remark"
+                  value={formValues.remark}
+                  onChange={handleChange}
+                  style={{ marginLeft: "15px" }}
+                />
               </div>
             </div>
           </div>
@@ -451,9 +444,9 @@ const LeadEntry = () => {
             >
               Save
             </Button>
-            <Button className="btn btn-secondary"
-              onClick={clearForm}
-            >Clear</Button>
+            <Button className="btn btn-secondary" onClick={clearForm}>
+              Clear
+            </Button>
           </div>
         </div>
       </div>
