@@ -35,11 +35,7 @@ const Priority = [
   { value: "Low", label: "Low" },
 ];
 
-const Installation = [
-  { value: "Installation 1", label: "Installation 1" },
-  { value: "Installation 2", label: "Installation 2" },
-  { value: "Installation 3", label: "Installation 3" },
-];
+
 
 const Status = [
   { value: "Active", label: "Active" },
@@ -174,6 +170,9 @@ const InstallEntry = ({ initialValue }) => {
     if (!values.customerId) {
       errors.customerId = "Enter customerId";
     }
+    if (!values.phone) {
+      errors.phone = "Enter phone";
+    }
     if (!values.city) {
       errors.city = "Enter city";
     }
@@ -189,9 +188,7 @@ const InstallEntry = ({ initialValue }) => {
   console.log("FormValues::", formValues);
 
   function animateCss() {
-    toast.dark("Hey 👋, Data Has Been Saved!", {
-      transition: bounce,
-    });
+    const notify = () => toast("Wow so easy!");
   }
 
   function refreshPage() {
@@ -303,6 +300,7 @@ const InstallEntry = ({ initialValue }) => {
                       international
                       defaultCountry="IN"
                       onChange={setPhone}
+
                     />
                   </div>
                 </div>
@@ -318,6 +316,8 @@ const InstallEntry = ({ initialValue }) => {
                   />
                 </div>
               </div>
+
+
 
               {/* <div className="field__row__three">
                 <div className="fields">
@@ -391,7 +391,7 @@ const InstallEntry = ({ initialValue }) => {
                     readOnly={true}
                   />
                 </div>
-              </div>  
+              </div>
 
               {/* 2nd */}
 
@@ -514,7 +514,7 @@ const InstallEntry = ({ initialValue }) => {
                   className="date-picker"
                   style={{ marginLeft: "15px" }}
 
-                  // isError
+                // isError
                 />
               </div>
               <div className="fields">
@@ -533,8 +533,8 @@ const InstallEntry = ({ initialValue }) => {
               type="submit"
               className="btn btn-primary"
               onClick={handleSubmit}
-              // id="animate.css"
-              // value="isSubmit"
+            // id="animate.css"
+            // value="isSubmit"
             >
               Save
             </Button>

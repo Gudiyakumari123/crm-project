@@ -153,7 +153,8 @@ const LeadEntry = ({ initialValue }) => {
     "Edu Fly": ["School", "College / University", "Study Centre / Institute"],
   };
 
-  const [sourceOption, setSourceOption] = useState(false);
+  const [sourceOption, setSourceOption] = useState({});
+
   const [selectedState, setSelectedState] = useState("");
 
   const handleSubmit = (e) => {
@@ -374,7 +375,7 @@ const LeadEntry = ({ initialValue }) => {
                   onChange={setSourceOption}
                 />
               </div>
-              {sourceOption.values === "Dealer" ? (
+              {sourceOption.value === "Dealer" ? (
                 <>
                   <div className="field__row">
                     <div className="fields">
