@@ -5,21 +5,17 @@ import Header from "../../../../shared/Header/Header";
 import SubHeader from "../../../../shared/SubHeader/SubHeader";
 import Footer from "../../../../shared/Footer/Footer";
 import { Button } from "react-bootstrap";
-import DatePicker from "../../../../shared/Reusable/DatePicker";
 import { ToastContainer, toast, cssTransition } from "react-toastify";
-import { useFormik } from "formik";
 
 // Reusable Component
 import Input from "../../../../shared/Reusable/Input";
 import Select from "../../../../shared/Reusable/Select";
 import TextArea from "../../../../shared/Reusable/TextArea";
-import PhoneAlt from "../../../../shared/Reusable/Phone&Alt";
 
 // Phone Number
 import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
 
-import CountryState from "../../../../shared/Reusable/CountryState";
 const bounce = cssTransition({
   enter: "animate__animated animate__bounceIn",
   exit: "animate__animated animate__bounceOut",
@@ -53,9 +49,9 @@ const CustomerReceipt = ({ initialValue }) => {
 
   // Form Validations
   const [formValues, setFormValues] = useState({
-    customerId:"",
+    customerId: "",
     companyName: "",
-    paidAmt:"",
+    paidAmt: "",
     category: "",
     address: "",
     city: "",
@@ -65,15 +61,6 @@ const CustomerReceipt = ({ initialValue }) => {
     email: "",
     remarksCustomer: "",
     remarksUser: "",
-  });
-
-  const addressFromik = useFormik({
-    initialValues: {
-      country: "India",
-      state: null,
-      city: null,
-    },
-    onSubmit: (values) => console.log(JSON.stringify(values)),
   });
 
 
@@ -95,14 +82,10 @@ const CustomerReceipt = ({ initialValue }) => {
   };
 
   useEffect(() => {
-    // console.log("FormErros::", formErrors);
-    if (Object.keys(formErrors).length === 0 && isSubmit)
-     {
-      // alert("Everything is Good. Form Submitted");
-      animateCss();
-
+    if (Object.keys(formErrors).length === 0 && isSubmit) {
+      alert("Everything is Good. Form Submitted");
     } else {
-      // alert("Please , Fill the all required Fields");
+      alert("Please , Fill the all required Fields");
     }
   }, [formErrors]);
 
@@ -263,7 +246,7 @@ const CustomerReceipt = ({ initialValue }) => {
           </div>
         </div>
       </div>
-      <ToastContainer transition={bounce} />
+      <ToastContainer />
       <Footer />
       {/* Source Modal*/}
     </>
