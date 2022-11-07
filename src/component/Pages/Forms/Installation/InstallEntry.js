@@ -151,7 +151,9 @@ const InstallEntry = ({ initialValue }) => {
 
   useEffect(() => {
     if (Object.keys(formErrors).length === 0 && isSubmit) {
-      alert("Everything is Good. Form Submitted");
+      // alert("Everything is Good. Form Submitted");
+      animateCss();
+
     } else {
       // alert("Please , Fill the all required Fields");
     }
@@ -170,9 +172,9 @@ const InstallEntry = ({ initialValue }) => {
     if (!values.customerId) {
       errors.customerId = "Enter customerId";
     }
-    if (!values.phone) {
-      errors.phone = "Enter phone";
-    }
+    // if (!values.phone) {
+    //   errors.phone = "Enter phone";
+    // }
     if (!values.city) {
       errors.city = "Enter city";
     }
@@ -182,14 +184,17 @@ const InstallEntry = ({ initialValue }) => {
     if (!values.grossAmt) {
       errors.grossAmt = "grossAmt";
     }
+    if (!values.roundAmt) {
+      errors.roundAmt = "roundAmt";
+    }
     return errors;
   };
 
   console.log("FormValues::", formValues);
 
-  function animateCss() {
-    const notify = () => toast("Wow so easy!");
-  }
+  const animateCss = () => {
+    toast("Form Submitted!");
+  };  
 
   function refreshPage() {
     window.location.reload(false);
@@ -300,6 +305,8 @@ const InstallEntry = ({ initialValue }) => {
                       international
                       defaultCountry="IN"
                       onChange={setPhone}
+                    maxLength={15}
+
 
                     />
                   </div>
@@ -319,7 +326,7 @@ const InstallEntry = ({ initialValue }) => {
 
 
 
-              {/* <div className="field__row__three">
+              <div className="field__row__three">
                 <div className="fields">
                   <Input
                     label="Total Amt"
@@ -353,45 +360,8 @@ const InstallEntry = ({ initialValue }) => {
                     onChange={handleChange}
                   />
                 </div>
-              </div> */}
-              <div className="field__row__three">
-                <div className="fields">
-                  <Input
-                    label="grossAmt"
-                    type="number"
-                    name="grossAmt"
-                    value={formValues.grossAmt}
-                    onChange={handleChange}
-                    isError
-                    errorMsg={formErrors.grossAmt}
-                    className=" form-control three__row"
-                  />
-                  <p className="show-errors-left"> {formErrors.grossAmt} </p>
-                </div>
-                <div className="fields">
-                  <Input
-                    label="GST% "
-                    type="number"
-                    name="gst"
-                    className="form-control"
-                    // onBlur={onBlurEvent}
-                    value={formValues.gst}
-                    onChange={handleChange}
-                  />
-                </div>
-                <div className="fields">
-                  <Input
-                    label="GST"
-                    type="number"
-                    name="totalTaxAmount"
-                    placeholder="Amt"
-                    value={formValues.totalTaxAmount}
-                    // onBlur={onBlurEvent}
-                    onChange={handleChange}
-                    readOnly={true}
-                  />
-                </div>
               </div>
+              
 
               {/* 2nd */}
 
@@ -444,7 +414,7 @@ const InstallEntry = ({ initialValue }) => {
                     value={formValues.roundAmt}
                     // onBlur={onBlurEvent}
                     isError
-                    errorMsg={formErrors.amount}
+                    errorMsg={formErrors.roundAmt}
                     className=" form-control three__row"
                   />
                 </div>

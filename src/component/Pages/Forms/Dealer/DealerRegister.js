@@ -89,7 +89,9 @@ const DealerRegister = ({ initialValue }) => {
 
   useEffect(() => {
     if (Object.keys(formErrors).length === 0 && isSubmit) {
-      alert("Everything is Good. Form Submitted");
+      // alert("Everything is Good. Form Submitted");
+      animateCss();
+
     } else {
       // alert("Please , Fill the all required Fields");
     }
@@ -98,13 +100,13 @@ const DealerRegister = ({ initialValue }) => {
   const validate = (values) => {
     const errors = {};
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
-    if (!values.phone) {
-      errors.phone = "Enter phone";
-    }
-    else if (!values.phone < 9) {
-      errors.phone = "Enter 10 digit ";
+    // if (!values.phone) {
+    //   errors.phone = "Enter phone";
+    // }
+    // else if (!values.phone < 9) {
+    //   errors.phone = "Enter 10 digit ";
 
-    }
+    // }
     if (!values.companyName) {
       errors.companyName = "Enter companyName";
     }
@@ -125,10 +127,14 @@ const DealerRegister = ({ initialValue }) => {
 
   console.log("FormValues::", formValues);
 
-  function animateCss() {
-    toast.dark("Hey 👋, Data Has Been Saved!", {
-      transition: bounce,
-    });
+  // function animateCss() {
+  //   toast.dark("Hey 👋, Data Has Been Saved!", {
+  //     transition: bounce,
+  //   });
+  // }
+
+  const animateCss = () => {
+    toast("Form Submitted!");
   }
 
   function refreshPage() {
@@ -245,7 +251,7 @@ const DealerRegister = ({ initialValue }) => {
                       // onChange={handleChange}
                     />
                   </div>
-                  <p className="show-errors-left"> {formErrors.phone}</p>
+                  {/* <p className="show-errors-left"> {formErrors.phone}</p> */}
 
                 </div>
                 <div className="fields">

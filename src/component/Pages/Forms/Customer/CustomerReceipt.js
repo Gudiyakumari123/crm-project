@@ -90,12 +90,17 @@ const CustomerReceipt = ({ initialValue }) => {
     e.preventDefault();
     setFormErrors(validate(formValues));
     setIsSubmit(true);
+    // animateCss();  
+
   };
 
   useEffect(() => {
     // console.log("FormErros::", formErrors);
-    if (Object.keys(formErrors).length === 0 && isSubmit) {
-      alert("Everything is Good. Form Submitted");
+    if (Object.keys(formErrors).length === 0 && isSubmit)
+     {
+      // alert("Everything is Good. Form Submitted");
+      animateCss();
+
     } else {
       // alert("Please , Fill the all required Fields");
     }
@@ -113,17 +118,14 @@ const CustomerReceipt = ({ initialValue }) => {
     if (!values.paidAmt) {
       errors.paidAmt = "Enter paid Amt";
     }
-    if (!values.city) {
-      errors.city = "Enter city";
-    }
+    
     return errors;
   };
-
-  function animateCss() {
-    toast.dark("Hey 👋, Data Has Been Saved!", {
-      transition: bounce,
-    });
+  const animateCss = () => {
+    toast("Form Submitted!");
   }
+
+  
   function refreshPage() {
     window.location.reload(false);
   }
@@ -251,6 +253,7 @@ const CustomerReceipt = ({ initialValue }) => {
             <Button
               type="submit"
               className="btn btn-primary"
+                  // onClick={animateCss}
               onClick={handleSubmit}
             >Save
             </Button>

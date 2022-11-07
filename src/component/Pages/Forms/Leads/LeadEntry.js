@@ -162,10 +162,12 @@ const LeadEntry = ({ initialValue }) => {
     setFormErrors(validate(formValues));
     setIsSubmit(true);
   };
-
   useEffect(() => {
     if (Object.keys(formErrors).length === 0 && isSubmit) {
       alert("Everything is Good. Form Submitted");
+      // animateCss();
+
+
     } else {
       // alert("Please , Fill the all required Fields");
     }
@@ -174,33 +176,33 @@ const LeadEntry = ({ initialValue }) => {
   const validate = (values) => {
     const errors = {};
 
-    if (!values.version) {
-      errors.version = "Enter version";
-    }
+    // if (!values.version) {
+    //   errors.version = "Enter version";
+    // }
     if (!values.companyName) {
       errors.companyName = "Enter companyName";
     }
     if (!values.contperson) {
       errors.contperson = "Enter contperson";
     }
-    if (!values.phone) {
-      errors.phone = "Enter phone";
-    }
-   else if (!values.phone<10) {
-      errors.phone = "Enter 10 digit  phone";
-    }
-    if (!values.contperson) {
-      errors.contperson = "Enter contperson";
-    }
-    if (!values.city) {
-      errors.city = "Enter city";
-    }
-    if (!values.amount) {
-      errors.amount = "Enter amount";
-    }
-    if (!values.mobileNumber) {
-      errors.mobileNumber = "Enter Phone";
-    }
+  //   if (!values.phone) {
+  //     errors.phone = "Enter phone";
+  //   }
+  //  else if (!values.phone<10) {
+  //     errors.phone = "Enter 10 digit  phone";
+  //   }
+  //   if (!values.contperson) {
+  //     errors.contperson = "Enter contperson";
+  //   }
+  //   if (!values.city) {
+  //     errors.city = "Enter city";
+  //   }
+    // if (!values.amount) {
+    //   errors.amount = "Enter amount";
+    // }
+    // if (!values.mobileNumber) {
+    //   errors.mobileNumber = "Enter Phone";
+    // }
     if (!values.email) {
       errors.email = "Enter email";
     }
@@ -209,15 +211,11 @@ const LeadEntry = ({ initialValue }) => {
 
   console.log("FormValues::", formValues);
 
-  function animateCss() {
-    toast.dark("Hey 👋, Data Has Been Saved!", {
-      transition: bounce,
-    });
-  }
+ 
 
-  function refreshPage() {
-    window.location.reload(false);
-  }
+  const animateCss = () => {
+    toast("Form Submitted!");
+  };
 
   return (
     <>
@@ -283,7 +281,7 @@ const LeadEntry = ({ initialValue }) => {
                 </div>
               </div>
 
-              {/* <div className="field__row">
+              <div className="field__row">
                 <div className="fields">
                   <Input
                     type="text"
@@ -293,6 +291,9 @@ const LeadEntry = ({ initialValue }) => {
                     onChange={handleChange}
                     isError
                     errorMsg={formErrors.phone}
+                    maxLength={10}
+
+
                   />
                   <p className="show-errors-left"> {formErrors.phone} </p>
                 </div>
@@ -300,15 +301,14 @@ const LeadEntry = ({ initialValue }) => {
                   <Input
                     type="text"
                     label="Altphone"
-                    name="contperson"
-                    value={formValues.contperson}
+                    name="altPhone"
+                    value={formValues.altPhone}
                     onChange={handleChange}
-                    isError
-                    errorMsg={formErrors.contperson}
+                    // isError
+                    errorMsg={formErrors.altPhone}
                   />
-                  <p className="show-errors-left"> {formErrors.contperson} </p>
                 </div>
-              </div> */}
+              </div>
 
               {/* <div className="field__row">
                 <div className="fields">
