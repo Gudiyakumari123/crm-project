@@ -1,111 +1,4 @@
-// import React, { useState, useEffect } from "react";
 
-// // components
-// import Header from "../../../../shared/Header/Header";
-// import SubHeader from "../../../../shared/SubHeader/SubHeader";
-// import Footer from "../../../../shared/Footer/Footer";
-// import { Button } from "react-bootstrap";
-
-// // Reusable Component
-// import Input from "../../../../shared/Reusable/Input";
-// import Select from "../../../../shared/Reusable/Select";
-// import TextArea from "../../../../shared/Reusable/TextArea";
-// import Country from "../../../../shared/Reusable/CountryState";
-// import Try from "../../../../shared/Reusable/Phone&Alt";
-
-// // Constants
-// import {
-//   Source,
-//   ConversionRatio,
-//   Status,
-// } from "../../../../data/crm-constants";
-
-// const LeadEntry = (initialValue) => {
-//   const [formValues, setFormValues] = useState({
-//     category: "",
-//   });
-
-//   const Category1 = ["WonderPOS", "Healthy Fly", "Edu Fly"];
-//   const Softwares = {
-//     WonderPOS: [
-//       "General Retail & Wholesale",
-//       "Pharmacy Retail & Wholesale",
-//       "Restaurant",
-//       "Hypermarket",
-//       "Supermarket",
-//       "Department Stores",
-//       "Kirana /Grocery Retail & Wholesale",
-//       "FMCC Distribution",
-//       "Jewellery Retail & Wholesale",
-//       "Hallmarking Centre Software",
-//       "Gas Agency",
-//       "Readymade Retail & Wholesale",
-//       "Textiles Retail & Wholesale",
-//       "Fruits & Vegetables",
-//       "Rice Traders / Mundy",
-//       "Fancy Store",
-//       "Footwear Shop",
-//       "Mobile Sales & Service",
-//       "Computer Sales & Service",
-//       "Electrical Shop",
-//       "Spa & Saloon",
-//       "Laundry / Dry Clean",
-//       "Books Shop",
-//       "Florists",
-//       "Home Decor & Furniture",
-//       "Optical Shop",
-//       "Stationery Shop",
-//       "Toys & Gift Shop",
-//       "Watches",
-//       "Home Appliances",
-//       "Surgical",
-//       "Chemists & Druggists",
-//       "Auto Parts",
-//       "Fertilizer & Agro Products",
-//       "Hardware Shop",
-//       "Sports & Fitness",
-//       "Tyre",
-//       "Vessel Shop",
-//       "Oil Shop",
-//       "Paints Shop",
-//       "Water Companies",
-//       "Pizza Shop",
-//       "Coffee Shop",
-//       "Bakery",
-//       "Sweet Shop",
-//       "Bar /Pubs",
-//       "Ice Cream Shop",
-//       "Juice Shop",
-//       "Tea Shop",
-//       "Food Court",
-//       "Auto Finance",
-//       "Jewellery Loan",
-//       "Crackers Shop",
-//     ],
-//     "Healthy Fly": [
-//       "Hospital",
-//       "Multi-Specialty Hospital",
-//       "Clinic / Homecare",
-//       "Ayurvedic Hospital",
-//     ],
-//     "Edu Fly": ["School", "College / University", "Study Centre / Institute"],
-//   };
-
-//   const [sourceOption, setSourceOption] = useState(false);
-//   const [selectedState, setSelectedState] = useState("");
-//   console.log("SelectState::", selectedState);
-
-//   const handleChange = (e) => {
-//     const { name, value } = e.target;
-//     setFormValues({
-//       ...formValues,
-//       [name]: value,
-//     });
-//   };
-
-//   const handleSubmit = (e) => {
-//     e.preventDefault();
-//   };
 import React, { useState, useEffect, Fragment } from "react";
 
 // components
@@ -289,6 +182,15 @@ const LeadEntry = ({ initialValue }) => {
     if (!values.contperson) {
       errors.contperson = "Enter contperson";
     }
+    if (!values.phone) {
+      errors.phone = "Enter phone";
+    }
+   else if (!values.phone<10) {
+      errors.phone = "Enter 10 digit  phone";
+    }
+    if (!values.contperson) {
+      errors.contperson = "Enter contperson";
+    }
     if (!values.city) {
       errors.city = "Enter city";
     }
@@ -379,7 +281,35 @@ const LeadEntry = ({ initialValue }) => {
                   <p className="show-errors-left"> {formErrors.contperson} </p>
                 </div>
               </div>
-              <div className="field__row">
+
+              {/* <div className="field__row">
+                <div className="fields">
+                  <Input
+                    type="text"
+                    label="Phone"
+                    name="phone"
+                    value={formValues.phone}
+                    onChange={handleChange}
+                    isError
+                    errorMsg={formErrors.phone}
+                  />
+                  <p className="show-errors-left"> {formErrors.phone} </p>
+                </div>
+                <div className="fields">
+                  <Input
+                    type="text"
+                    label="Altphone"
+                    name="contperson"
+                    value={formValues.contperson}
+                    onChange={handleChange}
+                    isError
+                    errorMsg={formErrors.contperson}
+                  />
+                  <p className="show-errors-left"> {formErrors.contperson} </p>
+                </div>
+              </div> */}
+
+              {/* <div className="field__row">
                 <div className="fields">
                   <PhoneInput
                     type="text"
@@ -388,7 +318,7 @@ const LeadEntry = ({ initialValue }) => {
                     value={formValues.mobileNumber}
                     // onChange={setForm}
                     isError
-                    // errorMsg={formErrors.mobileNumber}
+                    errorMsg={formErrors.mobileNumber}
                     style={{ marginLeft: "32px" }}
                   />
                   <p className="show-errors-left">{formErrors.mobileNumber}</p>
@@ -402,7 +332,7 @@ const LeadEntry = ({ initialValue }) => {
                     onChange={handleChange}
                   />
                 </div>
-              </div>
+              </div> */}
 
               <Country />
               <div className="fields">
