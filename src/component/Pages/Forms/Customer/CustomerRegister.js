@@ -7,17 +7,12 @@ import Footer from "../../../../shared/Footer/Footer";
 import { Button } from "react-bootstrap";
 import { ToastContainer, toast } from 'react-toastify';
 
-import { useFormik } from "formik";
 
 // Reusable Component
 import Input from "../../../../shared/Reusable/Input";
 import Select from "../../../../shared/Reusable/Select";
 import TextArea from "../../../../shared/Reusable/TextArea";
 import PhoneAlt from "../../../../shared/Reusable/Phone&Alt";
-
-// Phone Number
-import PhoneInput from "react-phone-number-input";
-import "react-phone-number-input/style.css";
 
 import CountryState from "../../../../shared/Reusable/CountryState";
 
@@ -74,9 +69,9 @@ const CustomerRegister = ({ initialValue }) => {
   useEffect(() => {
     // console.log("FormErros::", formErrors);
     if (Object.keys(formErrors).length === 0 && isSubmit) {
-      animateCss();
+      success();
     } else {
-      // alert("Please , Fill the all required Fields");
+      Error();
     }
   }, [formErrors]);
 
@@ -98,9 +93,13 @@ const CustomerRegister = ({ initialValue }) => {
     return errors;
   };
 
-  const animateCss = () => {
-    toast("Form Submitted!");
+  const success = () => {
+    toast.success("Form Submitted!");
   }
+  const Error = () => {
+    toast.error("Please, Filled all mandatory fields !");
+  }
+
   function refreshPage() {
     window.location.reload(false);
   }

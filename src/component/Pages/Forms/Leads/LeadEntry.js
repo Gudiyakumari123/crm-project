@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect, Fragment } from "react";
+import React, { useState, useEffect, Fragment, Component } from "react";
 
 // components
 import Header from "../../../../shared/Header/Header";
@@ -12,9 +12,7 @@ import { ToastContainer, toast, cssTransition } from "react-toastify";
 import Input from "../../../../shared/Reusable/Input";
 import Select from "../../../../shared/Reusable/Select";
 import TextArea from "../../../../shared/Reusable/TextArea";
-import PhoneInput from "../../../../shared/Reusable/PhoneInput";
 import Country from "../../../../shared/Reusable/CountryState";
-// import Try from "../../../../shared/Reusable/Phone&Alt";
 
 // Constants
 import {
@@ -22,6 +20,9 @@ import {
   ConversionRatio,
   Status,
 } from "../../../../data/crm-constants";
+import { render } from "@testing-library/react";
+
+
 const bounce = cssTransition({
   enter: "animate__animated animate__bounceIn",
   exit: "animate__animated animate__bounceOut",
@@ -48,21 +49,13 @@ const Installation = [
   { value: "Installation 3", label: "Installation 3" },
 ];
 
-// const Status = [
-//   { value: "Active", label: "Active" },
-//   { value: "Completed", label: "Completed" },
-// ];
 
-const LeadEntry = ({ initialValue }) => {
+const LeadEntry = () => {
   const [formErrors, setFormErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
   const [phone, setPhone] = useState("");
 
-
-  const [paid, setPaid] = useState({});
-
-  // Form Validations
-  const [formValues, setFormValues] = useState({
+  const initialValues = {
     amount: "",
     date: "",
     customerId: "",
@@ -76,7 +69,13 @@ const LeadEntry = ({ initialValue }) => {
     status: "",
     priority: "",
     remarks: "",
-  });
+  }
+
+
+  const [paid, setPaid] = useState({});
+
+  // Form Validations
+  const [formValues, setFormValues] = useState(initialValues);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -186,7 +185,7 @@ const LeadEntry = ({ initialValue }) => {
     if (!values.phone) {
       errors.phone = "Enter phone";
     }
-   else if (!values.phone<10) {
+    else if (!values.phone < 10) {
       errors.phone = "Enter 10 digit  phone";
     }
     if (!values.contperson) {
@@ -215,8 +214,8 @@ const LeadEntry = ({ initialValue }) => {
     });
   }
 
-  function refreshPage() {
-    window.location.reload(false);
+  const clearForm = () => {
+    setFormValues(initialValues);
   }
 
   return (
@@ -361,7 +360,7 @@ const LeadEntry = ({ initialValue }) => {
                   onChange={handleChange}
                   isError
                   errorMsg={formErrors.email}
-                  //  readOnly={true}
+                //  readOnly={true}
                 />
               </div>
               <p className="show-errors"> {formErrors.email} </p>
@@ -431,7 +430,9 @@ const LeadEntry = ({ initialValue }) => {
             >
               Save
             </Button>
-            <Button className="btn btn-secondary">Clear</Button>
+            <Button className="btn btn-secondary"
+              onClick={clearForm}
+            >Clear</Button>
           </div>
         </div>
       </div>
