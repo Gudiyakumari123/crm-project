@@ -87,27 +87,22 @@ const DealerRegister = () => {
     e.preventDefault();
     setFormErrors(validate(formValues));
     setIsSubmit(true);
+    setFormValues(initialValues);
+
   };
 
   useEffect(() => {
     if (Object.keys(formErrors).length === 0 && isSubmit) {
-      // alert("Everything is Good. Form Submitted");
-      animateCss();
+      success();
+      
     } else {
-      // alert("Please , Fill the all required Fields");
+      Error();
     }
   }, [formErrors]);
 
   const validate = (values) => {
     const errors = {};
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
-    // if (!values.phone) {
-    //   errors.phone = "Enter phone";
-    // }
-    // else if (!values.phone < 9) {
-    //   errors.phone = "Enter 10 digit ";
-
-    // }
     if (!values.companyName) {
       errors.companyName = "Enter companyName";
     }
@@ -128,15 +123,12 @@ const DealerRegister = () => {
 
   console.log("FormValues::", formValues);
 
-  // function animateCss() {
-  //   toast.dark("Hey 👋, Data Has Been Saved!", {
-  //     transition: bounce,
-  //   });
-  // }
-
-  const animateCss = () => {
-    toast("Form Submitted!");
-  };
+  const success = () => {
+    toast.success("Form Submitted!");
+  }
+  const Error = () => {
+    toast.error("Please, Filled all mandatory fields !");
+  }
 
   const clearForm = () => {
     setFormValues(initialValues);
@@ -153,14 +145,6 @@ const DealerRegister = () => {
           </div>
           <div className="form__wrapper">
             <div className="form__left">
-              {/* <div className="fields">
-                <DatePicker
-                  label="Date"
-                  style={{ marginLeft: "-68px" }}
-
-                />
-              </div> */}
-
               <div className="fields">
                 <Input
                   type="date"
@@ -180,10 +164,8 @@ const DealerRegister = () => {
                   defaultValue={Category[0]}
                   className="select-control bill-select department-select"
                   isError
-                  // errorMsg={formErrors.companyName}
                 />
               </div>
-              {/* <p className="show-errors-left"> {formErrors.customerId}</p> */}
 
               <div className="fields">
                 <Input

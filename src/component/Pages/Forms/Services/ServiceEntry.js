@@ -84,14 +84,17 @@ const ReInstall = () => {
     e.preventDefault();
     setFormErrors(validate(formValues));
     setIsSubmit(true);
+    setFormValues(initialValues);
+
   };
 
   useEffect(() => {
     if (Object.keys(formErrors).length === 0 && isSubmit) {
-      // alert("Everything is Good. Form Submitted");
-      animateCss();
+      success();
+      
     } else {
-      // alert("Please , Fill the all required Fields");
+      Error();
+
     }
   }, [formErrors]);
 
@@ -125,9 +128,12 @@ const ReInstall = () => {
   console.log("FormValues::", formValues);
 
 
-  const animateCss = () => {
-    toast("Form Submitted!");
-  };
+  const success = () => {
+    toast.success("Form Submitted!");
+  }
+  const Error = () => {
+    toast.error("Please, Filled all mandatory fields !");
+  }
 
   const clearForm = () => {
     setFormValues(initialValues);

@@ -85,15 +85,21 @@ const CustomerReceipt = () => {
     e.preventDefault();
     setFormErrors(validate(formValues));
     setIsSubmit(true);
+    setFormValues(initialValues);
+
     // animateCss();  
 
   };
 
   useEffect(() => {
     if (Object.keys(formErrors).length === 0 && isSubmit) {
-      alert("Everything is Good. Form Submitted");
+      // alert("Everything is Good. Form Submitted");
+      success();
+
     } else {
-      alert("Please , Fill the all required Fields");
+      // alert("Please , Fill the all required Fields");
+      Error();
+    
     }
   }, [formErrors]);
 
@@ -112,8 +118,12 @@ const CustomerReceipt = () => {
     
     return errors;
   };
-  const animateCss = () => {
-    toast("Form Submitted!");
+
+  const success = () => {
+    toast.success("Form Submitted!");
+  }
+  const Error = () => {
+    toast.error("Please, Filled all mandatory fields !");
   }
 
   

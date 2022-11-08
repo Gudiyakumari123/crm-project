@@ -6,7 +6,7 @@ import SubHeader from "../../../../shared/SubHeader/SubHeader";
 import Footer from "../../../../shared/Footer/Footer";
 import { Button } from "react-bootstrap";
 import DatePicker from "../../../../shared/Reusable/DatePicker";
-import { ToastContainer, toast, cssTransition } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 
 // Reusable Component
 import Input from "../../../../shared/Reusable/Input";
@@ -15,10 +15,10 @@ import TextArea from "../../../../shared/Reusable/TextArea";
 import PhoneInput from "../../../../shared/Reusable/PhoneInput";
 import { render } from "@testing-library/react";
 
-const bounce = cssTransition({
-  enter: "animate__animated animate__bounceIn",
-  exit: "animate__animated animate__bounceOut",
-});
+// const bounce = cssTransition({
+//   enter: "animate__animated animate__bounceIn",
+//   exit: "animate__animated animate__bounceOut",
+// });
 const Paid = [
   { value: "Free", label: "Free" },
   { value: "Paid", label: "Paid" },
@@ -89,6 +89,8 @@ const ReInstall = () => {
     e.preventDefault();
     setFormErrors(validate(formValues));
     setIsSubmit(true);
+    setFormValues(initialValues);
+
   };
 
   /***UTIlit */
@@ -164,8 +166,12 @@ const ReInstall = () => {
   useEffect(() => {
     if (Object.keys(formErrors).length === 0 && isSubmit) {
       // alert("Everything is Good. Form Submitted");
-      animateCss();
+      // animateCss();
+      success();
+
     } else {
+      Error();
+
       // alert("Please , Fill the all required Fields");
     }
   }, [formErrors]);
@@ -205,9 +211,12 @@ const ReInstall = () => {
 
   // const options = useMemo(() => countryList().getData(), []);
 
-  const animateCss = () => {
-    toast("Form Submitted!");
-  };
+  const success = () => {
+    toast.success("Form Submitted!");
+  }
+  const Error = () => {
+    toast.error("Please, Filled all mandatory fields !");
+  }
 
   const clearForm = () => {
     setFormValues(initialValues);
@@ -531,6 +540,7 @@ const ReInstall = () => {
           </div>
         </div>
       </div>
+      <ToastContainer/>
       <Footer />
       {/* Source Modal*/}
     </>

@@ -4,8 +4,9 @@ import React, { useState, useEffect, Fragment, Component } from "react";
 import Header from "../../../../shared/Header/Header";
 import SubHeader from "../../../../shared/SubHeader/SubHeader";
 import Footer from "../../../../shared/Footer/Footer";
-import { Button } from "react-bootstrap";
-import { ToastContainer, toast, cssTransition } from "react-toastify";
+import { Button} from "react-bootstrap";
+import { ToastContainer, toast } from 'react-toastify';
+
 
 // Reusable Component
 import Input from "../../../../shared/Reusable/Input";
@@ -20,15 +21,7 @@ import {
   Status,
 } from "../../../../data/crm-constants";
 
-const bounce = cssTransition({
-  enter: "animate__animated animate__bounceIn",
-  exit: "animate__animated animate__bounceOut",
-});
 
-const swirl = cssTransition({
-  enter: "swirl-in-fwd",
-  exit: "swirl-out-bck",
-});
 
 const Category = [
   { value: "Service", label: "Service" },
@@ -152,22 +145,19 @@ const LeadEntry = () => {
     e.preventDefault();
     setFormErrors(validate(formValues));
     setIsSubmit(true);
+    setFormValues(initialValues);
+
   };
   useEffect(() => {
     if (Object.keys(formErrors).length === 0 && isSubmit) {
-      alert("Everything is Good. Form Submitted");
-      // animateCss();
+      success();
     } else {
-      // alert("Please , Fill the all required Fields");
+      Error();
     }
   }, [formErrors]);
 
   const validate = (values) => {
     const errors = {};
-
-    // if (!values.version) {
-    //   errors.version = "Enter version";
-    // }
     if (!values.companyName) {
       errors.companyName = "Enter companyName";
     }
@@ -201,9 +191,13 @@ const LeadEntry = () => {
 
   console.log("FormValues::", formValues);
 
-  const animateCss = () => {
-    toast("Form Submitted!");
-  };
+  const success = () => {
+    toast.success("Form Submitted!");
+  }
+  const Error = () => {
+    toast.error("Please, Filled all mandatory fields !");
+  }
+
   const clearForm = () => {
     setFormValues(initialValues);
   };
@@ -449,6 +443,7 @@ const LeadEntry = () => {
           </div>
         </div>
       </div>
+      <ToastContainer />
       <Footer />
       {/* Source Modal*/}
     </>
