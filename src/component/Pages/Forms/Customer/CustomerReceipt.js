@@ -17,7 +17,6 @@
 // import "react-phone-number-input/style.css";
 // import { render } from "@testing-library/react";
 
-
 // const bounce = cssTransition({
 //   enter: "animate__animated animate__bounceIn",
 //   exit: "animate__animated animate__bounceOut",
@@ -27,7 +26,6 @@
 //   enter: "swirl-in-fwd",
 //   exit: "swirl-out-bck",
 // });
-
 
 // const BillNo = [
 //   { value: "Bill No 1", label: "Bill No 1" },
@@ -80,13 +78,12 @@
 //     setPhone();
 //   };
 
-
 //   const handleSubmit = (e) => {
 //     e.preventDefault();
 //     setFormErrors(validate(formValues));
 //     setIsSubmit(true);
 //     setFormValues(initialValues);
-//     // animateCss();  
+//     // animateCss();
 //   };
 
 //   useEffect(() => {
@@ -124,7 +121,6 @@
 //     toast.error("Please, Filled all mandatory fields !");
 //   }
 
-
 //   const clearForm = () => {
 //     setFormValues(initialValues);
 //   };
@@ -149,14 +145,13 @@
 //                     width: "100%",
 //                   }}
 //                   name="customerId"
-//                   value={formValues.customerId}
+//                   value={this.state.customerId}
 //                   onChange={this.handleChange}
 //                   isError
-//                   errorMsg={formErrors.customerId}
+// errorMsg={formErrors.customerId}
 //                 />
 //               </div>
-//               <p className="show-errors-left"> {formErrors.customerId}</p>
-
+// <p className="show-errors-left"> {formErrors.customerId}</p>
 
 //               <div className="fields">
 //                 <Input
@@ -167,14 +162,13 @@
 //                     width: "100%",
 //                   }}
 //                   name="companyName"
-//                   value={formValues.companyName}
+//                   value={this.state.companyName}
 //                   onChange={this.handleChange}
 //                   isError
-//                   errorMsg={formErrors.companyName}
+// errorMsg={formErrors.companyName}
 //                 />
 //               </div>
-//               <p className="show-errors-left"> {formErrors.companyName}</p>
-
+// <p className="show-errors-left"> {formErrors.companyName}</p>
 
 //               <div className="fields">
 //                 <div className="input-fields">
@@ -224,13 +218,13 @@
 //                   type="text"
 //                   label="PaidAmt"
 //                   name="paidAmt"
-//                   value={formValues.paidAmt}
+//                   value={this.state.paidAmt}
 //                   onChange={this.handleChange}
 //                   isError
-//                   errorMsg={formErrors.paidAmt}
+// errorMsg={formErrors.paidAmt}
 //                 />
 //               </div>
-//               <p className="show-errors"> {formErrors.paidAmt}</p>
+// <p className="show-errors"> {formErrors.paidAmt}</p>
 
 //               <div className="fields">
 //                 <TextArea
@@ -238,7 +232,7 @@
 //                   label="Remarks"
 //                   rows="2"
 //                   name="remarks"
-//                   value={formValues.remarks}
+//                   value={this.state.remarks}
 //                   onChange={this.handleChange}
 //                   style={{
 //                     marginLeft: "13px"
@@ -270,15 +264,17 @@
 // };
 // export default CustomerReceipt;
 
-
-import React, { useState, useEffect, Fragment } from "react";
+import React, { useState, useEffect, Fragment, Component } from "react";
 
 // components
 import Header from "../../../../shared/Header/Header";
 import SubHeader from "../../../../shared/SubHeader/SubHeader";
 import Footer from "../../../../shared/Footer/Footer";
 import { Button } from "react-bootstrap";
-import { ToastContainer, toast, cssTransition } from "react-toastify";
+
+// import { Toast } from "primereact/toast";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 // Reusable Component
 import Input from "../../../../shared/Reusable/Input";
@@ -288,18 +284,6 @@ import TextArea from "../../../../shared/Reusable/TextArea";
 // Phone Number
 import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
-import { render } from "@testing-library/react";
-
-const bounce = cssTransition({
-  enter: "animate__animated animate__bounceIn",
-  exit: "animate__animated animate__bounceOut",
-});
-
-const swirl = cssTransition({
-  enter: "swirl-in-fwd",
-  exit: "swirl-out-bck",
-});
-
 
 const BillNo = [
   { value: "Bill No 1", label: "Bill No 1" },
@@ -313,10 +297,7 @@ const payMode = [
   { value: "UPI", label: "UPI" },
 ];
 
-
-
 class CustomerReceipt extends Component {
-
   initialState = {
     version: "",
     customerId: "",
@@ -335,33 +316,35 @@ class CustomerReceipt extends Component {
     details: "",
     date: "",
     remarks: "",
-    dates: ""
+    dates: "",
   };
   state = this.initialState;
-
   handleChange = (e) => {
     const { name, value } = e.target;
-    setFormValues({
-      ...formValues,
+    this.setState({
       [name]: value,
     });
-    setPhone();
   };
 
   handleSubmit = (e) => {
     e.preventDefault();
-    setFormErrors(validate(formValues));
-    setIsSubmit(true);
-    setFormValues(initialValues);
-    // animateCss();  
+    this.validate();
+
+    if (this.state.customerId <= 1) {
+      toast.error("Please, Filled all mandatory fields !");
+    } else {
+      toast.success("Form Submitted!");
+    }
+
+    this.handleReset();
   };
 
   validate = () => {
-    let name = this.state.name;
+    let name = this.state.customerId;
     let errors = {};
     let isValid = true;
 
-    if (!name) {
+    if (!this.state.customerId) {
       isValid = false;
       errors["name"] = "Enter Valid Value";
     }
@@ -371,16 +354,18 @@ class CustomerReceipt extends Component {
     this.setState(() => this.initialState);
   };
 
-
-
-
   render() {
     return (
       <>
         <Header />
         <SubHeader />
+        {/* <Toast ref={(el) => (this.toast = el)} /> */}
         <div className="form__container">
-          <div className="form__content">
+          <form
+            onReset={this.handleReset}
+            // onSubmit={this.handleSubmit}
+            className="form__content"
+          >
             <div className="title-display">
               <div className="title"> Customer Receipt </div>
             </div>
@@ -395,14 +380,16 @@ class CustomerReceipt extends Component {
                       width: "100%",
                     }}
                     name="customerId"
-                    value={formValues.customerId}
+                    value={this.state.customerId}
                     onChange={this.handleChange}
                     isError
-                    errorMsg={formErrors.customerId}
-                  />
-                </div>
-                <p className="show-errors-left"> {formErrors.customerId}</p>
 
+                    // errorMsg={error.customerId}
+                  />
+                  {/* <p>{this.state.customerId}</p> */}
+                </div>
+                {/* <p {error.customerId}></p> */}
+                {/* <p className="show-errors-left"> {formErrors.customerId}</p> */}
 
                 <div className="fields">
                   <Input
@@ -413,31 +400,29 @@ class CustomerReceipt extends Component {
                       width: "100%",
                     }}
                     name="companyName"
-                    value={formValues.companyName}
+                    value={this.state.companyName}
                     onChange={this.handleChange}
                     isError
-                    errorMsg={formErrors.companyName}
+                    errorMsg={this.validate}
                   />
                 </div>
-                <p className="show-errors-left"> {formErrors.companyName}</p>
-
+                {/* <p className="show-errors-left"> {formErrors.companyName}</p> */}
 
                 <div className="fields">
                   <div className="input-fields">
                     <label htmlFor="" className="label">
                       Phone
-
                     </label>
                     <PhoneInput
                       style={{
                         marginLeft: "-70px",
                       }}
-                      value={phone}
+                      // value={phone}
                       name="mobileNumber"
                       className="form-control"
                       international
                       defaultCountry="IN"
-                      onChange={setPhone}
+                      // onChange={setPhone}
                     />
                   </div>
                 </div>
@@ -450,7 +435,6 @@ class CustomerReceipt extends Component {
                     className="select-control bill-select department-select"
                   />
                 </div>
-
               </div>
               {/* Left Side End */}
               {/* Right Side Start */}
@@ -470,13 +454,13 @@ class CustomerReceipt extends Component {
                     type="text"
                     label="PaidAmt"
                     name="paidAmt"
-                    value={formValues.paidAmt}
+                    value={this.state.paidAmt}
                     onChange={this.handleChange}
                     isError
-                    errorMsg={formErrors.paidAmt}
+                    // errorMsg={formErrors.paidAmt}
                   />
                 </div>
-                <p className="show-errors"> {formErrors.paidAmt}</p>
+                {/* <p className="show-errors"> {formErrors.paidAmt}</p> */}
 
                 <div className="fields">
                   <TextArea
@@ -484,14 +468,13 @@ class CustomerReceipt extends Component {
                     label="Remarks"
                     rows="2"
                     name="remarks"
-                    value={formValues.remarks}
+                    value={this.state.remarks}
                     onChange={this.handleChange}
                     style={{
-                      marginLeft: "13px"
+                      marginLeft: "13px",
                     }}
                   />
                 </div>
-
               </div>
             </div>
             <div className="btn__holder">
@@ -500,19 +483,20 @@ class CustomerReceipt extends Component {
                 className="btn btn-primary"
                 // onClick={animateCss}
                 onClick={this.handleSubmit}
-              >Save
+              >
+                Save
               </Button>
-              <Button className="btn btn-secondary"
-                onClick={this.clearForm}
-              >Clear</Button>
+              <Button className="btn btn-secondary" onClick={this.handleReset}>
+                Clear
+              </Button>
             </div>
-          </div>
+          </form>
         </div>
-        <ToastContainer />
         <Footer />
         {/* Source Modal*/}
+        <ToastContainer />
       </>
     );
-  };
-};
+  }
+}
 export default CustomerReceipt;

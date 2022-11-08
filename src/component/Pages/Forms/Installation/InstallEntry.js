@@ -145,33 +145,25 @@ const InstallEntry = () => {
   const [selectedState, setSelectedState] = useState("");
   console.log("SelectState::", selectedState);
 
+ 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setFormErrors(validate(formValues, phone));
-    setFormValues(initialValues);
+    setFormErrors(validate(formValues));
+    // setPhone();
     setIsSubmit(true);
-    setPhone();
-    setFormValues(initialValues);
-
+    // setFormValues(initialValues);
 
   };
-
   useEffect(() => {
     if (Object.keys(formErrors).length === 0 && isSubmit) {
-      // alert("Everything is Good. Form Submitted");
       success();
-
     } else {
-      // alert("Please , Fill the all required Fields");
       Error();
-
     }
   }, [formErrors]);
 
   const validate = (values) => {
     const errors = {};
-    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
-
     if (!values.version) {
       errors.version = "Enter version";
     }
@@ -181,12 +173,12 @@ const InstallEntry = () => {
     if (!values.customerId) {
       errors.customerId = "Enter customerId";
     }
-    if (!values.phone) {
-      errors.phone = "Enter phone";
-    }
-    if (!values.city) {
-      errors.city = "Enter city";
-    }
+    // if (!values.phone) {
+    //   errors.phone = "Enter phone";
+    // }
+    // if (!values.city) {
+    //   errors.city = "Enter city";
+    // }
     if (!values.amount) {
       errors.amount = "amount";
     }
@@ -198,18 +190,18 @@ const InstallEntry = () => {
     }
     return errors;
   };
-
   console.log("FormValues::", formValues);
 
   const success = () => {
     toast.success("Form Submitted!");
   }
   const Error = () => {
-    toast.error("Please, Filled all mandatory fields !");
+    // toast.error("Please, Filled all mandatory fields !");
   }
+
   const clearForm = () => {
     setFormValues(initialValues);
-  }
+  };
 
   return (
     <>
@@ -308,7 +300,7 @@ const InstallEntry = () => {
                 </div>
               </div>
 
-              <div className="field__row">
+              {/* <div className="field__row">
                 <div className="fields">
                   <div className="input-fields">
                     <label htmlFor="" className="label">
@@ -341,7 +333,7 @@ const InstallEntry = () => {
                     errorMsg={formErrors.city}
                   />
                 </div>
-              </div>
+              </div> */}
 
               <div className="field__row__three">
                 <div className="fields">
