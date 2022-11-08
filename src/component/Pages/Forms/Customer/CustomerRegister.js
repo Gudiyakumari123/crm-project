@@ -5,8 +5,7 @@ import Header from "../../../../shared/Header/Header";
 import SubHeader from "../../../../shared/SubHeader/SubHeader";
 import Footer from "../../../../shared/Footer/Footer";
 import { Button } from "react-bootstrap";
-import { ToastContainer, toast } from 'react-toastify';
-
+import { ToastContainer, toast } from "react-toastify";
 
 // Reusable Component
 import Input from "../../../../shared/Reusable/Input";
@@ -21,47 +20,45 @@ const Category = [
   { value: "Freelancer", label: "Freelancer" },
 ];
 
-
 const Status = [
   { value: "Active", label: "Active" },
   { value: "Completed", label: "Completed" },
 ];
 
 const CustomerRegister = () => {
-
   const [formErrors, setFormErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
   const [phone, setPhone] = useState("");
 
   const initialValues = {
-    companyName:"",
-    contactPerson:"",
-    address:"",
-    city:"",
-    gstNo:"",
-    email:"",
-    remarksCustomer:"",
-    remarksUser:""
-
-  }
+    companyName: "",
+    contactPerson: "",
+    address: "",
+    city: "",
+    gstNo: "",
+    email: "",
+    remarksCustomer: "",
+    remarksUser: "",
+  };
   const [paid, setPaid] = useState({});
 
-   // Form Validations
-   const [formValues, setFormValues] = useState(initialValues);
+  // Form Validations
+  const [formValues, setFormValues] = useState(initialValues);
 
-   const handleChange = (e) => {
-     const { name, value } = e.target;
-     setFormValues({
-       ...formValues,
-       [name]: value,
-     });
-     setPhone();
-   };
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormValues({
+      ...formValues,
+      [name]: value,
+    });
+    setPhone();
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setFormErrors(validate(formValues));
     setIsSubmit(true);
+    setFormValues(initialValues); 
   };
 
   useEffect(() => {
@@ -93,14 +90,14 @@ const CustomerRegister = () => {
 
   const success = () => {
     toast.success("Form Submitted!");
-  }
+  };
   const Error = () => {
     toast.error("Please, Filled all mandatory fields !");
-  }
+  };
 
   const clearForm = () => {
     setFormValues(initialValues);
-  }
+  };
 
   return (
     <>
@@ -109,7 +106,7 @@ const CustomerRegister = () => {
       <div className="form__container">
         <div className="form__content">
           <div className="title-display">
-            <div className="title"> Customer Registration  </div>
+            <div className="title"> Customer Registration </div>
           </div>
           <div className="form__wrapper">
             <div className="form__left">
@@ -129,7 +126,6 @@ const CustomerRegister = () => {
                 />
               </div>
               <p className="show-errors-left"> {formErrors.companyName}</p>
-
 
               <div className="fields">
                 <Input
@@ -158,7 +154,6 @@ const CustomerRegister = () => {
                   className="select-control bill-select department-select"
                   isError
                   errorMsg={formErrors.companyName}
-
                 />
               </div>
               <div className="fields">
@@ -193,7 +188,6 @@ const CustomerRegister = () => {
                 />
               </div>
               <p className="show-errors-left"> {formErrors.city}</p>
-
             </div>
             {/* Left Side End */}
             {/* Right Side Start */}
@@ -207,11 +201,9 @@ const CustomerRegister = () => {
                   onChange={handleChange}
                   isError
                   errorMsg={formErrors.gstNo}
-
                 />
               </div>
               <p className="show-errors"> {formErrors.gstNo}</p>
-
 
               <div className="fields">
                 <Input
@@ -221,12 +213,13 @@ const CustomerRegister = () => {
                   name="email"
                   value={formValues.email}
                   onChange={handleChange}
-                  style={{
-                    // marginLeft: "13px"
-                  }}
+                  style={
+                    {
+                      // marginLeft: "13px"
+                    }
+                  }
                 />
               </div>
-
 
               <div className="fields">
                 <TextArea
@@ -238,7 +231,7 @@ const CustomerRegister = () => {
                   value={formValues.remarksCustomer}
                   onChange={handleChange}
                   style={{
-                    marginLeft: "13px"
+                    marginLeft: "13px",
                   }}
                 />
               </div>
@@ -263,11 +256,10 @@ const CustomerRegister = () => {
                   value={formValues.remarksUser}
                   onChange={handleChange}
                   style={{
-                    marginLeft: "13px"
+                    marginLeft: "13px",
                   }}
                 />
               </div>
-
             </div>
           </div>
           <div className="btn__holder">
@@ -275,11 +267,12 @@ const CustomerRegister = () => {
               type="submit"
               className="btn btn-primary"
               onClick={handleSubmit}
-            >Save
+            >
+              Save
             </Button>
-            <Button className="btn btn-secondary"
-              onClick={clearForm}
-            >Clear</Button>
+            <Button className="btn btn-secondary" onClick={clearForm}>
+              Clear
+            </Button>
           </div>
         </div>
       </div>

@@ -58,16 +58,16 @@ const DealerRegister = () => {
   const [phone, setPhone] = useState({});
 
   const initialValues = {
-    dates:"",
-    companyName:"",
-    contactPerson:"",
-    nature:"",
-    altContact:"",
-    city:"",
-    email:"",
-    remarksDealer:"",
-    address:"",
-    remarksUser:"",
+    dates: "",
+    companyName: "",
+    contactPerson: "",
+    nature: "",
+    altContact: "",
+    city: "",
+    email: "",
+    remarksDealer: "",
+    address: "",
+    remarksUser: "",
   };
   const [paid, setPaid] = useState({});
 
@@ -87,6 +87,7 @@ const DealerRegister = () => {
     e.preventDefault();
     setFormErrors(validate(formValues));
     setIsSubmit(true);
+    setFormValues(initialValues);
   };
 
   useEffect(() => {
@@ -153,14 +154,6 @@ const DealerRegister = () => {
           </div>
           <div className="form__wrapper">
             <div className="form__left">
-              {/* <div className="fields">
-                <DatePicker
-                  label="Date"
-                  style={{ marginLeft: "-68px" }}
-
-                />
-              </div> */}
-
               <div className="fields">
                 <Input
                   type="date"
@@ -271,6 +264,7 @@ const DealerRegister = () => {
               </div>
             </div>
             {/* Left Side End */}
+
             {/* Right Side Start */}
             <div className="form__right">
               <div className="fields">
