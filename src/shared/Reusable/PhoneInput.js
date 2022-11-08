@@ -5,6 +5,8 @@ import Fade from "react-reveal/Fade";
 import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
 
+
+
 function PhoneInputBox({
   label,
   color,
@@ -23,7 +25,7 @@ function PhoneInputBox({
         </label>
         <PhoneInput
           value={value}
-          className="form-control"
+          // className="form-control"
           international
           name={name}
           defaultCountry="IN"

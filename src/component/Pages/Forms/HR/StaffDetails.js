@@ -283,6 +283,9 @@ class Staff extends Component {
                 <div className="fields">
                   <Input type="text" label="International Id" />
                 </div>
+                <div className="fields">
+                  <Input type="text" label="Passport Id" />
+                </div>
 
                 <div className="fields">
                   <Select
