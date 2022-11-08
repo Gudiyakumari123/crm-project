@@ -147,7 +147,7 @@ const InstallEntry = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setFormErrors(validate(formValues,phone));
+    setFormErrors(validate(formValues, phone));
     setFormValues(initialValues);
     setIsSubmit(true);
     setPhone();
@@ -209,7 +209,7 @@ const InstallEntry = () => {
   }
   const clearForm = () => {
     setFormValues(initialValues);
-  } 
+  }
 
   return (
     <>
@@ -503,7 +503,7 @@ const InstallEntry = () => {
                   onChange={handleChange}
                   style={{ marginLeft: "15px" }}
 
-                  // isError
+                // isError
                 />
               </div>
               <div className="fields">
@@ -522,8 +522,8 @@ const InstallEntry = () => {
               type="submit"
               className="btn btn-primary"
               onClick={handleSubmit}
-              // id="animate.css"
-              // value="isSubmit"
+            // id="animate.css"
+            // value="isSubmit"
             >
               Save
             </Button>

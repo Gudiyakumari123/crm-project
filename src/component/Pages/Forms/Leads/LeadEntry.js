@@ -4,7 +4,7 @@ import React, { useState, useEffect, Fragment, Component } from "react";
 import Header from "../../../../shared/Header/Header";
 import SubHeader from "../../../../shared/SubHeader/SubHeader";
 import Footer from "../../../../shared/Footer/Footer";
-import { Button} from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import { ToastContainer, toast } from 'react-toastify';
 
 
@@ -31,7 +31,8 @@ const LeadEntry = () => {
   const initialValues = {
     companyName: "",
     contperson: "",
-    altphone: "",
+    altPhone: "",
+    phone: "",
     area: "",
     address: "",
     email: "",
@@ -40,7 +41,6 @@ const LeadEntry = () => {
     remark: "",
   };
 
-  const [paid, setPaid] = useState({});
 
   // Form Validations
   const [formValues, setFormValues] = useState(initialValues);
@@ -51,7 +51,6 @@ const LeadEntry = () => {
       ...formValues,
       [name]: value,
     });
-    setPhone();
   };
 
   const Category1 = ["WonderPOS", "Healthy Fly", "Edu Fly"];
@@ -126,16 +125,15 @@ const LeadEntry = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setFormErrors(validate({ formValues, phone }));
+    setFormErrors(validate(formValues));
+    // setPhone();
     setIsSubmit(true);
-    setPhone();
-    setFormValues(initialValues);
+    // setFormValues(initialValues);
 
   };
   useEffect(() => {
     if (Object.keys(formErrors).length === 0 && isSubmit) {
       success();
-
     } else {
       Error();
     }
@@ -237,9 +235,18 @@ const LeadEntry = () => {
 
               <div className="field__row">
                 <div className="fields">
+                  {/* <PhoneInput
+                    label="Phone"
+                    name="phone"
+                    value={formValues.phone}
+                    onChange={handleChange}
+                    isError
+                    errorMsg={formErrors.phone}
+                    style={{ marginLeft: "32px" }}
+                  /> */}
                   <Input
                     type="number"
-                    label="Phone"
+                    label="phone"
                     name="phone"
                     value={formValues.phone}
                     onChange={handleChange}
@@ -292,11 +299,11 @@ const LeadEntry = () => {
                   value={formValues.email}
                   onChange={handleChange}
                   isError
-                  errorMsg={formErrors.email}
-                  //  readOnly={true}
+                // errorMsg={formErrors.email}
+                //  readOnly={true}
                 />
               </div>
-              <p className="show-errors"> {formErrors.email} </p>
+              {/* <p className="show-errors"> {formErrors.email} </p> */}
 
               <div className="fields">
                 <Select
@@ -358,6 +365,7 @@ const LeadEntry = () => {
                   label="Date"
                   value={formValues.date}
                   onChange={handleChange}
+                  
                 />
               </div>
               <div className="fields">
