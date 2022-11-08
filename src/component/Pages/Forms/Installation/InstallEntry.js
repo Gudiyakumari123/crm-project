@@ -13,8 +13,8 @@ import Input from "../../../../shared/Reusable/Input";
 import Select from "../../../../shared/Reusable/Select";
 import TextArea from "../../../../shared/Reusable/TextArea";
 // Phone Number
-import PhoneInput from "react-phone-number-input";
-import "react-phone-number-input/style.css";
+import PhoneInput from "../../../../shared/Reusable/PhoneInput";
+
 const bounce = cssTransition({
   enter: "animate__animated animate__bounceIn",
   exit: "animate__animated animate__bounceOut",
@@ -284,25 +284,20 @@ const InstallEntry = ({ initialValue }) => {
 
               <div className="field__row">
                 <div className="fields">
-                  <div className="input-fields">
-                    <label htmlFor="" className="label">
-                      Phone
-                      <div className="require"> </div>
-                    </label>
-                    <PhoneInput
-                      style={{
-                        marginLeft: "8px",
-                        width: "208px",
-                      }}
-                      value={phone}
-                      name="mobileNumber"
-                      className="form-control"
-                      international
-                      defaultCountry="IN"
-                      onChange={setPhone}
-
-                    />
-                  </div>
+                  <PhoneInput
+                    label="Phone"
+                    style={{
+                      marginLeft: "8px",
+                      width: "208px",
+                    }}
+                    value={phone}
+                    name="mobileNumber"
+                    className="form-control"
+                    international
+                    defaultCountry="IN"
+                    onChange={setPhone}
+                    isError
+                  />
                 </div>
                 <div className="fields">
                   <Input

@@ -20,7 +20,6 @@ import {
   ConversionRatio,
   Status,
 } from "../../../../data/crm-constants";
-import { render } from "@testing-library/react";
 
 
 const bounce = cssTransition({

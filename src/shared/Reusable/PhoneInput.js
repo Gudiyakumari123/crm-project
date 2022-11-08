@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 
+import Fade from "react-reveal/Fade";
+
 import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
 
@@ -11,6 +13,7 @@ function PhoneInputBox({
   placeholder,
   isError,
   onChange,
+  errorMsg,
   ...props
 }) {
   const [phone, setPhone] = useState();
@@ -31,6 +34,18 @@ function PhoneInputBox({
           {...props}
         />
       </div>
+      {errorMsg ? (
+        <>
+          <Fade top>
+            <div className="error-messages">
+              <p className="validate">
+                <i className="bx bx-info-circle"></i>
+                {/* {errorMsg} */}
+              </p>
+            </div>
+          </Fade>
+        </>
+      ) : null}
     </>
   );
 }

@@ -27,38 +27,36 @@ const Status = [
   { value: "Completed", label: "Completed" },
 ];
 
-const CustomerRegister = ({ initialValue }) => {
+const CustomerRegister = () => {
 
   const [formErrors, setFormErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
+  const [phone, setPhone] = useState("");
 
+  const initialValues = {
+    companyName:"",
+    contactPerson:"",
+    address:"",
+    city:"",
+    gstNo:"",
+    email:"",
+    remarksCustomer:"",
+    remarksUser:""
+
+  }
   const [paid, setPaid] = useState({});
 
-  // Form Validations
-  const [formValues, setFormValues] = useState({
-    companyName: "",
-    contactPerson: "",
-    category: "",
-    address: "",
-    city: "",
-    gstNo: "",
-    phone: "",
-    altPhone: "",
-    email: "",
-    remarksCustomer: "",
-    remarksUser: "",
-  });
+   // Form Validations
+   const [formValues, setFormValues] = useState(initialValues);
 
-
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormValues({
-      ...formValues,
-      [name]: value,
-    });
-  };
-
+   const handleChange = (e) => {
+     const { name, value } = e.target;
+     setFormValues({
+       ...formValues,
+       [name]: value,
+     });
+     setPhone();
+   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -100,8 +98,8 @@ const CustomerRegister = ({ initialValue }) => {
     toast.error("Please, Filled all mandatory fields !");
   }
 
-  function refreshPage() {
-    window.location.reload(false);
+  const clearForm = () => {
+    setFormValues(initialValues);
   }
 
   return (
@@ -280,7 +278,7 @@ const CustomerRegister = ({ initialValue }) => {
             >Save
             </Button>
             <Button className="btn btn-secondary"
-              onClick={refreshPage}
+              onClick={clearForm}
             >Clear</Button>
           </div>
         </div>
