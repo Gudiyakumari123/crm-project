@@ -12,6 +12,7 @@ import Input from "../../../../shared/Reusable/Input";
 import Select from "../../../../shared/Reusable/Select";
 import TextArea from "../../../../shared/Reusable/TextArea";
 import Country from "../../../../shared/Reusable/CountryState";
+import PhoneInput from "../../../../shared/Reusable/PhoneInput";
 
 // Constants
 import {
@@ -49,12 +50,11 @@ const Installation = [
 const LeadEntry = () => {
   const [formErrors, setFormErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
-  const [phone, setPhone] = useState("");
+  const [phone, setPhone] = useState(false);
 
   const initialValues = {
     companyName: "",
     contperson: "",
-    phone: "",
     altPhone: "",
     area: "",
     address: "",
@@ -150,51 +150,30 @@ const LeadEntry = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setFormErrors(validate(formValues));
+    setFormErrors(validate({ formValues, phone }));
     setIsSubmit(true);
+    setPhone();
   };
   useEffect(() => {
     if (Object.keys(formErrors).length === 0 && isSubmit) {
       alert("Everything is Good. Form Submitted");
-      // animateCss();
     } else {
-      // alert("Please , Fill the all required Fields");
     }
   }, [formErrors]);
 
   const validate = (values) => {
     const errors = {};
-
-    // if (!values.version) {
-    //   errors.version = "Enter version";
-    // }
     if (!values.companyName) {
       errors.companyName = "Enter companyName";
     }
     if (!values.contperson) {
       errors.contperson = "Enter contperson";
     }
-    //   if (!values.phone) {
-    //     errors.phone = "Enter phone";
-    //   }
-    //  else if (!values.phone<10) {
-    //     errors.phone = "Enter 10 digit  phone";
-    //   }
-    //   if (!values.contperson) {
-    //     errors.contperson = "Enter contperson";
-    //   }
-    //   if (!values.city) {
-    //     errors.city = "Enter city";
-    //   }
-    // if (!values.amount) {
-    //   errors.amount = "Enter amount";
-    // }
-    // if (!values.mobileNumber) {
-    //   errors.mobileNumber = "Enter Phone";
-    // }
-    //
     if (!values.email) {
       errors.email = "Enter email";
+    }
+    if (!values.phone) {
+      errors.phone = "Enter phone";
     }
     return errors;
   };
@@ -274,44 +253,16 @@ const LeadEntry = () => {
 
               <div className="field__row">
                 <div className="fields">
-                  <Input
-                    type="text"
+                  <PhoneInput
                     label="Phone"
                     name="phone"
-                    value={formValues.phone}
-                    onChange={handleChange}
+                    value={phone}
+                    onChange={setPhone}
                     isError
                     errorMsg={formErrors.phone}
-                    maxLength={10}
-                  />
-                  <p className="show-errors-left"> {formErrors.phone} </p>
-                </div>
-                <div className="fields">
-                  <Input
-                    type="text"
-                    label="Altphone"
-                    name="altPhone"
-                    value={formValues.altPhone}
-                    onChange={handleChange}
-                    // isError
-                    errorMsg={formErrors.altPhone}
-                  />
-                </div>
-              </div>
-
-              {/* <div className="field__row">
-                <div className="fields">
-                  <PhoneInput
-                    type="text"
-                    label="Phone"
-                    name="mobileNumber"
-                    value={formValues.mobileNumber}
-                    // onChange={setForm}
-                    isError
-                    errorMsg={formErrors.mobileNumber}
                     style={{ marginLeft: "32px" }}
                   />
-                  <p className="show-errors-left">{formErrors.mobileNumber}</p>
+                  <p className="show-errors-left">{formErrors.phone}</p>
                 </div>
                 <div className="fields">
                   <Input
@@ -322,8 +273,7 @@ const LeadEntry = () => {
                     onChange={handleChange}
                   />
                 </div>
-              </div> */}
-
+              </div>
               <Country />
               <div className="fields">
                 <Input
@@ -415,11 +365,12 @@ const LeadEntry = () => {
                 </div>
               </div>
               <div className="fields">
-                <Input type="date" 
-                name="date" 
-                label="Date" 
-                value={formValues.date}
-                onChange={handleChange}
+                <Input
+                  type="date"
+                  name="date"
+                  label="Date"
+                  value={formValues.date}
+                  onChange={handleChange}
                 />
               </div>
               <div className="fields">
