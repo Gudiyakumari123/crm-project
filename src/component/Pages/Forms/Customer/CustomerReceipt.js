@@ -15,6 +15,8 @@ import TextArea from "../../../../shared/Reusable/TextArea";
 // Phone Number
 import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
+import { render } from "@testing-library/react";
+
 
 const bounce = cssTransition({
   enter: "animate__animated animate__bounceIn",
@@ -39,30 +41,35 @@ const payMode = [
   { value: "UPI", label: "UPI" },
 ];
 
-const CustomerReceipt = ({ initialValue }) => {
-  const [phone, setPhone] = useState(initialValue);
+const CustomerReceipt = () => {
+  const [phone, setPhone] = useState("");
 
   const [formErrors, setFormErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
 
+  const initialValues = {
+    version:"",
+    customerId:"",
+    companyName:"",
+    mobileNumber:"",
+    city:"",
+    amount:"",
+    discountPer:"",
+    discountAmt:"",
+    grossAmt:"",
+    gst:"",
+    totalTaxAmount:"",
+    roundAmt:"",
+    netAmt:"",
+    paidAmt:"",
+    details:"",
+    date:"",
+    remarks:"",
+    dates:""
+  };
   const [paid, setPaid] = useState({});
 
-  // Form Validations
-  const [formValues, setFormValues] = useState({
-    customerId: "",
-    companyName: "",
-    paidAmt: "",
-    category: "",
-    address: "",
-    city: "",
-    gstNo: "",
-    phone: "",
-    altPhone: "",
-    email: "",
-    remarksCustomer: "",
-    remarksUser: "",
-  });
-
+  const [formValues, setFormValues] = useState(initialValues);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -70,6 +77,7 @@ const CustomerReceipt = ({ initialValue }) => {
       ...formValues,
       [name]: value,
     });
+    setPhone();
   };
 
 
@@ -109,9 +117,9 @@ const CustomerReceipt = ({ initialValue }) => {
   }
 
   
-  function refreshPage() {
-    window.location.reload(false);
-  }
+  const clearForm = () => {
+    setFormValues(initialValues);
+  };
 
   return (
     <>
@@ -241,7 +249,7 @@ const CustomerReceipt = ({ initialValue }) => {
             >Save
             </Button>
             <Button className="btn btn-secondary"
-              onClick={refreshPage}
+              onClick={clearForm}
             >Clear</Button>
           </div>
         </div>
