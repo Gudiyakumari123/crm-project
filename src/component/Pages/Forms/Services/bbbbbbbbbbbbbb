@@ -13,7 +13,6 @@ import Input from "../../../../shared/Reusable/Input";
 import Select from "../../../../shared/Reusable/Select";
 import TextArea from "../../../../shared/Reusable/TextArea";
 import PhoneInput from "../../../../shared/Reusable/PhoneInput";
-import { render } from "@testing-library/react";
 
 const bounce = cssTransition({
   enter: "animate__animated animate__bounceIn",
@@ -35,55 +34,60 @@ const payMode = [
   { value: "UPI", label: "UPI" },
 ];
 
-const ReInstall = () => {
-  const [phone, setPhone] = useState("");
+const ReInstall = ({ initialValue, props }) => {
+  const [phone, setPhone] = useState(initialValue);
 
   const [formErrors, setFormErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
-  const initialValues = {
-    date: "",
-    customerId: "",
-    companyName: "",
-    city: "",
-    reinstall: "",
-    amt: "",
-    remark: "",
-    dates: "",
-  };
+
   const [paid, setPaid] = useState({});
 
   // Form Validations
-  const [formValues, setFormValues] = useState(initialValues);
+
+  const [formValues, setFormValues] = useState({
+    date: "",
+    customerId: "",
+    companyName: "",
+    phone: "",
+    city: "",
+    software: "",
+    install: "",
+    reInstall: "",
+    paidFree: "",
+    amount: "",
+    discountPer: "",
+    discountAmt: "",
+    grossAmt: "",
+    tax: 18,
+    totalTaxAmount: "",
+    roundAmt: "",
+    netAmt: "",
+    paidAmt: "",
+    balAmt: "",
+    payMode: "",
+    remarks: "",
+  });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormValues({
-      ...formValues,
-      [name]: value,
-    });
-    setPhone();
+
+    //If DiscountAmnt is present and  >0
+    if (name === "discountAmt" && value && value > 0) {
+      console.log("value::", value);
+      setFormValues({
+        ...formValues,
+        [name]: value,
+        discountPer: 0,
+      });
+    }
+    //other wise do the usual set the values
+    else {
+      setFormValues({
+        ...formValues,
+        [name]: value,
+      });
+    }
   };
-
-  // const handleChange = (e) => {
-  //   const { name, value } = e.target;
-
-  //   //If DiscountAmnt is present and  >0
-  //   if (name === "discountAmt" && value && value > 0) {
-  //     console.log("value::", value);
-  //     setFormValues({
-  //       ...formValues,
-  //       [name]: value,
-  //       discountPer: 0,
-  //     });
-  //   }
-  //   //other wise do the usual set the values
-  //   else {
-  //     setFormValues({
-  //       ...formValues,
-  //       [name]: value,
-  //     });
-  //   }
-  // };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -165,6 +169,8 @@ const ReInstall = () => {
     if (Object.keys(formErrors).length === 0 && isSubmit) {
       // alert("Everything is Good. Form Submitted");
       animateCss();
+      
+
     } else {
       // alert("Please , Fill the all required Fields");
     }
@@ -182,7 +188,7 @@ const ReInstall = () => {
     if (!values.city) {
       errors.city = "Enter city";
     }
-
+   
     // if (!values.software) {
     //   errors.software = "Enter software";
     // }
@@ -201,7 +207,7 @@ const ReInstall = () => {
     return errors;
   };
 
-  console.log("FormValues::", formValues);
+  // console.log("FormValues::", formValues);
 
   // const options = useMemo(() => countryList().getData(), []);
 
@@ -209,9 +215,9 @@ const ReInstall = () => {
     toast("Form Submitted!");
   };
 
-  const clearForm = () => {
-    setFormValues(initialValues);
-  };
+  function handleReset() {
+    window.location.reload(false);
+  }
   return (
     <>
       <Header />
@@ -223,28 +229,12 @@ const ReInstall = () => {
           </div>
           <div className="form__wrapper">
             <div className="form__left">
-              {/* <div className="fields">
+              <div className="fields">
                 <DatePicker
-                   type="date"
-                   label="Date"
-                   name="dates"
-                   value={formValues.dates}
-                   onChange={handleChange}
+                  label="Date"
+                  className="date-picker"
                   style={{ marginLeft: "-68px" }}
                   // isError
-                />
-              </div> */}
-              <div className="fields">
-                <Input
-                  type="date"
-                  label="Date"
-                  name="date"
-                  value={formValues.date}
-                  onChange={handleChange}
-                  style={{ marginLeft: "-70px"
-                ,width:"100%"
-                }}
-
                 />
               </div>
 
@@ -318,9 +308,6 @@ const ReInstall = () => {
                 <TextArea
                   type="text"
                   label="ReInstall"
-                  name="reinstall"
-                  value={formValues.reinstall}
-                  onChange={handleChange}
                   style={{ width: "140%", marginLeft: "-21px" }}
                 />
               </div>
@@ -447,13 +434,13 @@ const ReInstall = () => {
                     </div>
                     <div className="fields">
                       <Input
-                        label="Bal.Amt"
-                        type="number"
-                        style={{ marginLeft: "42px" }}
-                        name="balAmt"
-                        value={formValues.balAmt}
-                        onChange={handleChange}
-                        onBlur={onBlurEvent}
+                      label="Bal.Amt"
+                      type="number"
+                      style={{ marginLeft: "42px" }}
+                      name="balAmt"
+                      value={formValues.balAmt}
+                      onChange={handleChange}
+                      onBlur={onBlurEvent}
                       />
                     </div>
                   </div>
@@ -474,13 +461,9 @@ const ReInstall = () => {
               ) : null}
 
               <div className="fields">
-                <Input
-                  type="text"
-                  label="Amt"
-                  name="amt"
-                  value={formValues.amt}
-                  onChange={handleChange}
-                />
+                <Input 
+                type="text" 
+                label="Amt" />
               </div>
               <div className="field__row">
                 <div className="fields">
@@ -493,25 +476,12 @@ const ReInstall = () => {
                   />
                 </div>
                 <div className="fields">
-                  <Input
-                    type="date"
-                    label="Date"
-                    name="dates"
-                    value={formValues.dates}
-                    onChange={handleChange}
-                  />
+                  <Input type="date" label="Date" />
                 </div>
               </div>
 
               <div className="fields">
-                <TextArea
-                  label="Remarks"
-                  type="text"
-                  name="remark"
-                  value={formValues.remark}
-                  onChange={handleChange}
-                  style={{ marginLeft: "15px" }}
-                />
+                <TextArea label="Remarks" style={{ marginLeft: "15px" }} />
               </div>
             </div>
           </div>
@@ -525,9 +495,7 @@ const ReInstall = () => {
             >
               Save
             </Button>
-            <Button onClick={clearForm} className="btn btn-secondary">
-              Clear
-            </Button>
+            <Button className="btn btn-secondary">Clear</Button>
           </div>
         </div>
       </div>

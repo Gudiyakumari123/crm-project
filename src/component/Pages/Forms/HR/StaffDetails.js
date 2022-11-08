@@ -99,7 +99,7 @@ class Staff extends Component {
       this.state.newUser.firstName.toLowerCase() +
       "." +
       this.state.newUser.lastName.toLowerCase() +
-      "@selromsoft.com"
+      "@selromsoft.in"
     );
   }
 

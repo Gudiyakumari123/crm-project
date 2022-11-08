@@ -12,22 +12,27 @@ import { ToastContainer, toast, cssTransition } from "react-toastify";
 import Input from "../../../../shared/Reusable/Input";
 import Select from "../../../../shared/Reusable/Select";
 import TextArea from "../../../../shared/Reusable/TextArea";
-import PhoneInput from "../../../../shared/Reusable/PhoneInput";
+// Phone Number
+import PhoneInput from "react-phone-number-input";
+import "react-phone-number-input/style.css";
+import CountryState from "../../../../shared/Reusable/CountryState";
+import { render } from "@testing-library/react";
 
 const bounce = cssTransition({
   enter: "animate__animated animate__bounceIn",
   exit: "animate__animated animate__bounceOut",
 });
 
+const Category = [
+  { value: "Company", label: "Company" },
+  { value: "Freelancer", label: "Freelancer" },
+];
+
 const swirl = cssTransition({
   enter: "swirl-in-fwd",
   exit: "swirl-out-bck",
 });
 
-const Category = [
-  { value: "Service", label: "Service" },
-  { value: "Updation", label: "Updation" },
-];
 const Priority = [
   { value: "High", label: "High" },
   { value: "Medium", label: "Medium" },
@@ -45,29 +50,26 @@ const Status = [
   { value: "Completed", label: "Completed" },
 ];
 
-const ReInstall = ({ initialValue }) => {
-  const [phone, setPhone] = useState(initialValue);
+const ReInstall = () => {
+  // const [phone, setPhone] = useState(initialValue);
 
   const [formErrors, setFormErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
+  const [phone, setPhone] = useState({});
 
-  const [paid, setPaid] = useState({});
-
-  // Form Validations
-  const [formValues, setFormValues] = useState({
-    date: "",
-    customerId: "",
+  const initialValues = {
+    customerId:"",
     companyName: "",
-    phone: "",
-    city: "",
-    install: "",
-    software: "",
-    category: "",
-    details: "",
-    status: "",
-    priority: "",
-    remarks: "",
-  });
+    city:"",
+    software:"",
+    details:"",
+    date:"",
+    remarks:"",
+    dates:""
+  };
+  const [paid, setPaid] = useState({});
+// Form Validations
+  const [formValues, setFormValues] = useState(initialValues);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -75,6 +77,7 @@ const ReInstall = ({ initialValue }) => {
       ...formValues,
       [name]: value,
     });
+    setPhone();
   };
 
   const handleSubmit = (e) => {
@@ -85,7 +88,8 @@ const ReInstall = ({ initialValue }) => {
 
   useEffect(() => {
     if (Object.keys(formErrors).length === 0 && isSubmit) {
-      alert("Everything is Good. Form Submitted");
+      // alert("Everything is Good. Form Submitted");
+      animateCss();
     } else {
       // alert("Please , Fill the all required Fields");
     }
@@ -94,35 +98,40 @@ const ReInstall = ({ initialValue }) => {
   const validate = (values) => {
     const errors = {};
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
+    // if (!values.phone) {
+    //   errors.phone = "Enter phone";
+    // }
+    // else if (!values.phone < 9) {
+    //   errors.phone = "Enter 10 digit ";
+
+    // }
     if (!values.customerId) {
       errors.customerId = "Enter customerId";
     }
     if (!values.companyName) {
       errors.companyName = "Enter companyName";
     }
-    if (!values.city) {
-      errors.city = "Enter city";
-    }
+   
     if (!values.software) {
       errors.software = "Enter software";
     }
-    if (!values.category) {
-      errors.category = "Enter software";
+    if (!values.city) {
+      errors.city = "Enter city";
     }
+   
     return errors;
   };
 
   console.log("FormValues::", formValues);
 
-  function animateCss() {
-    toast.dark("Hey 👋, Data Has Been Saved!", {
-      transition: bounce,
-    });
-  }
 
-  function refreshPage() {
-    window.location.reload(false);
-  }
+  const animateCss = () => {
+    toast("Form Submitted!");
+  };
+
+  const clearForm = () => {
+    setFormValues(initialValues);
+  };
 
   return (
     <>
@@ -135,14 +144,26 @@ const ReInstall = ({ initialValue }) => {
           </div>
           <div className="form__wrapper">
             <div className="form__left">
-              <div className="fields">
+              {/* <div className="fields">
                 <DatePicker
                   label="Date"
                   // className="date-picker"
                   style={{ marginLeft: "-68px" }}
                 />
-              </div>
+              </div> */}
+               <div className="fields">
+                <Input
+                  type="date"
+                  label="Date"
+                  name="date"
+                  value={formValues.date}
+                  onChange={handleChange}
+                  style={{ marginLeft: "-70px"
+                ,width:"100%"
+                }}
 
+                />
+              </div>
               <div className="field__row">
                 <div className="fields">
                   <Input
@@ -172,20 +193,23 @@ const ReInstall = ({ initialValue }) => {
 
               <div className="field__row">
                 <div className="fields">
-                  <PhoneInput
-                    label="Phone"
-                    style={{
-                      marginLeft: "8px",
-                      width: "208px",
-                    }}
-                    value={phone}
-                    name="mobileNumber"
-                    className="form-control"
-                    international
-                    defaultCountry="IN"
-                    onChange={setPhone}
-                  />
-                  <p className="show-errors-left"> {formErrors.city} </p>
+                  <div className="input-fields">
+                    <label htmlFor="" className="label">
+                      Phone
+                    </label>
+                    <PhoneInput
+                      style={{
+                        marginLeft: "35px",
+                      }}
+                      value={formValues.phone}
+                      name="phone"
+                      className="form-control"
+                      international
+                      defaultCountry="IN"
+                      // onChange={handleChange}
+                    />
+                  </div>
+                  {/* <p className="show-errors-left"> {formErrors.phone}</p> */}
                 </div>
                 <div className="fields">
                   <Input
@@ -242,7 +266,7 @@ const ReInstall = ({ initialValue }) => {
             {/* Left Side End */}
             {/* Right Side Start */}
             <div className="form__right">
-              <div className="fields">
+            <div className="fields">
                 <TextArea
                   type="text"
                   label="Details"
@@ -256,7 +280,7 @@ const ReInstall = ({ initialValue }) => {
                 />
               </div>
 
-              <div className="fields">
+             <div className="fields">
                 <Select
                   label="Status"
                   options={Status}
@@ -274,12 +298,16 @@ const ReInstall = ({ initialValue }) => {
                 />
               </div>
               <div className="fields">
-                <DatePicker
+                <Input
+                  type="date"
                   label="Date"
-                  className="date-picker"
-                  style={{ marginLeft: "15px" }}
+                  name="dates"
+                  value={formValues.dates}
+                  onChange={handleChange}
+                  style={{ marginLeft: "12px"
+                ,width:"100%"
+                }}
 
-                  // isError
                 />
               </div>
               <div className="fields">
@@ -290,7 +318,7 @@ const ReInstall = ({ initialValue }) => {
                   value={formValues.remarks}
                   onChange={handleChange}
                 />
-              </div>
+              </div>              
             </div>
           </div>
           <div className="btn__holder">
@@ -298,12 +326,12 @@ const ReInstall = ({ initialValue }) => {
               type="submit"
               className="btn btn-primary"
               onClick={handleSubmit}
-              // id="animate.css"
-              // value="isSubmit"
             >
               Save
             </Button>
-            <Button className="btn btn-secondary" onClick={refreshPage}>
+            <Button 
+            className="btn btn-secondary" 
+            onClick={clearForm}>
               Clear
             </Button>
           </div>

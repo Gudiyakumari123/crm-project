@@ -16,6 +16,8 @@ import TextArea from "../../../../shared/Reusable/TextArea";
 import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
 import CountryState from "../../../../shared/Reusable/CountryState";
+import { render } from "@testing-library/react";
+
 const bounce = cssTransition({
   enter: "animate__animated animate__bounceIn",
   exit: "animate__animated animate__bounceOut",
@@ -25,7 +27,6 @@ const Category = [
   { value: "Company", label: "Company" },
   { value: "Freelancer", label: "Freelancer" },
 ];
-
 
 const swirl = cssTransition({
   enter: "swirl-in-fwd",
@@ -49,29 +50,29 @@ const Status = [
   { value: "Completed", label: "Completed" },
 ];
 
-const DealerRegister = ({ initialValue }) => {
+const DealerRegister = () => {
   // const [phone, setPhone] = useState(initialValue);
 
   const [formErrors, setFormErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
+  const [phone, setPhone] = useState({});
 
+  const initialValues = {
+    dates:"",
+    companyName:"",
+    contactPerson:"",
+    nature:"",
+    altContact:"",
+    city:"",
+    email:"",
+    remarksDealer:"",
+    address:"",
+    remarksUser:"",
+  };
   const [paid, setPaid] = useState({});
 
   // Form Validations
-  const [formValues, setFormValues] = useState({
-    date: "",
-    customerId: "",
-    companyName: "",
-    phone: "",
-    city: "",
-    install: "",
-    software: "",
-    category: "",
-    details: "",
-    status: "",
-    priority: "",
-    remarks: "",
-  });
+  const [formValues, setFormValues] = useState(initialValues);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -79,6 +80,7 @@ const DealerRegister = ({ initialValue }) => {
       ...formValues,
       [name]: value,
     });
+    setPhone();
   };
 
   const handleSubmit = (e) => {
@@ -89,7 +91,8 @@ const DealerRegister = ({ initialValue }) => {
 
   useEffect(() => {
     if (Object.keys(formErrors).length === 0 && isSubmit) {
-      alert("Everything is Good. Form Submitted");
+      // alert("Everything is Good. Form Submitted");
+      animateCss();
     } else {
       // alert("Please , Fill the all required Fields");
     }
@@ -98,13 +101,13 @@ const DealerRegister = ({ initialValue }) => {
   const validate = (values) => {
     const errors = {};
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
-    if (!values.phone) {
-      errors.phone = "Enter phone";
-    }
-    else if (!values.phone < 9) {
-      errors.phone = "Enter 10 digit ";
+    // if (!values.phone) {
+    //   errors.phone = "Enter phone";
+    // }
+    // else if (!values.phone < 9) {
+    //   errors.phone = "Enter 10 digit ";
 
-    }
+    // }
     if (!values.companyName) {
       errors.companyName = "Enter companyName";
     }
@@ -125,15 +128,19 @@ const DealerRegister = ({ initialValue }) => {
 
   console.log("FormValues::", formValues);
 
-  function animateCss() {
-    toast.dark("Hey 👋, Data Has Been Saved!", {
-      transition: bounce,
-    });
-  }
+  // function animateCss() {
+  //   toast.dark("Hey 👋, Data Has Been Saved!", {
+  //     transition: bounce,
+  //   });
+  // }
 
-  function refreshPage() {
-    window.location.reload(false);
-  }
+  const animateCss = () => {
+    toast("Form Submitted!");
+  };
+
+  const clearForm = () => {
+    setFormValues(initialValues);
+  };
 
   return (
     <>
@@ -142,17 +149,29 @@ const DealerRegister = ({ initialValue }) => {
       <div className="form__container">
         <div className="form__content">
           <div className="title-display">
-            <div className="title"> Dealer Registration  </div>
+            <div className="title"> Dealer Registration </div>
           </div>
           <div className="form__wrapper">
             <div className="form__left">
-              <div className="fields">
+              {/* <div className="fields">
                 <DatePicker
                   label="Date"
                   style={{ marginLeft: "-68px" }}
 
                 />
+              </div> */}
+
+              <div className="fields">
+                <Input
+                  type="date"
+                  label="Date"
+                  name="dates"
+                  value={formValues.dates}
+                  onChange={handleChange}
+                  style={{ marginLeft: "-70px", width: "100%" }}
+                />
               </div>
+
               <div className="fields">
                 <Select
                   label="Category"
@@ -162,11 +181,9 @@ const DealerRegister = ({ initialValue }) => {
                   className="select-control bill-select department-select"
                   isError
                   // errorMsg={formErrors.companyName}
-
                 />
               </div>
               {/* <p className="show-errors-left"> {formErrors.customerId}</p> */}
-
 
               <div className="fields">
                 <Input
@@ -198,12 +215,9 @@ const DealerRegister = ({ initialValue }) => {
                   onChange={handleChange}
                   isError
                   errorMsg={formErrors.contactPerson}
-
                 />
-
               </div>
               <p className="show-errors-left"> {formErrors.contactPerson}</p>
-
 
               <div className="fields">
                 <Input
@@ -222,16 +236,12 @@ const DealerRegister = ({ initialValue }) => {
               </div>
               <p className="show-errors-left"> {formErrors.nature}</p>
 
-
-              <CountryState
-              />
+              <CountryState />
               <div className="field__row">
-
                 <div className="fields">
                   <div className="input-fields">
                     <label htmlFor="" className="label">
                       Phone
-
                     </label>
                     <PhoneInput
                       style={{
@@ -245,8 +255,7 @@ const DealerRegister = ({ initialValue }) => {
                       // onChange={handleChange}
                     />
                   </div>
-                  <p className="show-errors-left"> {formErrors.phone}</p>
-
+                  {/* <p className="show-errors-left"> {formErrors.phone}</p> */}
                 </div>
                 <div className="fields">
                   <Input
@@ -260,12 +269,10 @@ const DealerRegister = ({ initialValue }) => {
                   />
                 </div>
               </div>
-
             </div>
             {/* Left Side End */}
             {/* Right Side Start */}
             <div className="form__right">
-
               <div className="fields">
                 <Input
                   type="text"
@@ -279,8 +286,6 @@ const DealerRegister = ({ initialValue }) => {
               </div>
               <p className="show-errors"> {formErrors.city}</p>
 
-
-
               <div className="fields">
                 <Input
                   type="email"
@@ -292,7 +297,6 @@ const DealerRegister = ({ initialValue }) => {
                   errorMsg={formErrors.email}
                 />
                 <p className="show-errors"> {formErrors.email}</p>
-
               </div>
 
               <div className="fields">
@@ -305,7 +309,7 @@ const DealerRegister = ({ initialValue }) => {
                   value={formValues.remarksDealer}
                   onChange={handleChange}
                   style={{
-                    marginLeft: "13px"
+                    marginLeft: "13px",
                   }}
                 />
               </div>
@@ -335,7 +339,7 @@ const DealerRegister = ({ initialValue }) => {
                   value={formValues.remarksDealer}
                   onChange={handleChange}
                   style={{
-                    marginLeft: "13px"
+                    marginLeft: "13px",
                   }}
                 />
               </div>
@@ -346,11 +350,12 @@ const DealerRegister = ({ initialValue }) => {
               type="submit"
               className="btn btn-primary"
               onClick={handleSubmit}
-            >Save
+            >
+              Save
             </Button>
-            <Button className="btn btn-secondary"
-              onClick={refreshPage}
-            >Clear</Button>
+            <Button className="btn btn-secondary" onClick={clearForm}>
+              Clear
+            </Button>
           </div>
         </div>
       </div>

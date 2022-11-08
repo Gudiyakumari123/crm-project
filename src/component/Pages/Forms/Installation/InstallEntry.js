@@ -13,7 +13,11 @@ import Input from "../../../../shared/Reusable/Input";
 import Select from "../../../../shared/Reusable/Select";
 import TextArea from "../../../../shared/Reusable/TextArea";
 // Phone Number
-import PhoneInput from "../../../../shared/Reusable/PhoneInput";
+import PhoneInput from "react-phone-number-input";
+import "react-phone-number-input/style.css";
+
+import { render } from "@testing-library/react";
+
 
 const bounce = cssTransition({
   enter: "animate__animated animate__bounceIn",
@@ -35,37 +39,41 @@ const Priority = [
   { value: "Low", label: "Low" },
 ];
 
-
-
 const Status = [
   { value: "Active", label: "Active" },
   { value: "Completed", label: "Completed" },
 ];
 
-const InstallEntry = ({ initialValue }) => {
-  const [phone, setPhone] = useState(initialValue);
+const InstallEntry = () => {
+  const [phone, setPhone] = useState("");
 
   const [formErrors, setFormErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
 
+  const initialValues = {
+    version:"",
+    customerId:"",
+    companyName:"",
+    mobileNumber:"",
+    city:"",
+    amount:"",
+    discountPer:"",
+    discountAmt:"",
+    grossAmt:"",
+    gst:"",
+    totalTaxAmount:"",
+    roundAmt:"",
+    netAmt:"",
+    paidAmt:"",
+    details:"",
+    date:"",
+    remarks:"",
+    dates:""
+  };
   const [paid, setPaid] = useState({});
 
   // Form Validations
-  const [formValues, setFormValues] = useState({
-    amount: "",
-    date: "",
-    customerId: "",
-    companyName: "",
-    phone: "",
-    city: "",
-    install: "",
-    software: "",
-    category: "",
-    details: "",
-    status: "",
-    priority: "",
-    remarks: "",
-  });
+  const [formValues, setFormValues] = useState(initialValues);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -73,7 +81,9 @@ const InstallEntry = ({ initialValue }) => {
       ...formValues,
       [name]: value,
     });
+    setPhone();
   };
+ 
   const Category1 = ["WonderPOS", "Healthy Fly", "Edu Fly"];
   const Softwares = {
     WonderPOS: [
@@ -151,7 +161,9 @@ const InstallEntry = ({ initialValue }) => {
 
   useEffect(() => {
     if (Object.keys(formErrors).length === 0 && isSubmit) {
-      alert("Everything is Good. Form Submitted");
+      // alert("Everything is Good. Form Submitted");
+      animateCss();
+
     } else {
       // alert("Please , Fill the all required Fields");
     }
@@ -170,9 +182,9 @@ const InstallEntry = ({ initialValue }) => {
     if (!values.customerId) {
       errors.customerId = "Enter customerId";
     }
-    if (!values.phone) {
-      errors.phone = "Enter phone";
-    }
+    // if (!values.phone) {
+    //   errors.phone = "Enter phone";
+    // }
     if (!values.city) {
       errors.city = "Enter city";
     }
@@ -182,18 +194,21 @@ const InstallEntry = ({ initialValue }) => {
     if (!values.grossAmt) {
       errors.grossAmt = "grossAmt";
     }
+    if (!values.roundAmt) {
+      errors.roundAmt = "roundAmt";
+    }
     return errors;
   };
 
   console.log("FormValues::", formValues);
 
-  function animateCss() {
-    const notify = () => toast("Wow so easy!");
-  }
+  const animateCss = () => {
+    toast("Form Submitted!");
+  };  
 
-  function refreshPage() {
-    window.location.reload(false);
-  }
+  const clearForm = () => {
+    setFormValues(initialValues);
+  };
 
   return (
     <>
@@ -206,11 +221,24 @@ const InstallEntry = ({ initialValue }) => {
           </div>
           <div className="form__wrapper">
             <div className="form__left">
-              <div className="fields">
+              {/* <div className="fields">
                 <DatePicker
                   label="Date"
                   // className="date-picker"
                   style={{ marginLeft: "-68px" }}
+                />
+              </div> */}
+              <div className="fields">
+                <Input
+                  type="date"
+                  label="Date"
+                  name="dates"
+                  value={formValues.dates}
+                  onChange={handleChange}
+                  style={{ marginLeft: "-70px"
+                ,width:"100%"
+                }}
+
                 />
               </div>
               <div className="fields">
@@ -284,20 +312,27 @@ const InstallEntry = ({ initialValue }) => {
 
               <div className="field__row">
                 <div className="fields">
-                  <PhoneInput
-                    label="Phone"
-                    style={{
-                      marginLeft: "8px",
-                      width: "208px",
-                    }}
-                    value={phone}
-                    name="mobileNumber"
-                    className="form-control"
-                    international
-                    defaultCountry="IN"
-                    onChange={setPhone}
-                    isError
-                  />
+                  <div className="input-fields">
+                    <label htmlFor="" className="label">
+                      Phone
+                      <div className="require"> </div>
+                    </label>
+                    <PhoneInput
+                      style={{
+                        marginLeft: "8px",
+                        width: "208px",
+                      }}
+                      value={phone}
+                      name="mobileNumber"
+                      className="form-control"
+                      international
+                      defaultCountry="IN"
+                      onChange={setPhone}
+                    maxLength={15}
+
+
+                    />
+                  </div>
                 </div>
                 <div className="fields">
                   <Input
@@ -314,7 +349,7 @@ const InstallEntry = ({ initialValue }) => {
 
 
 
-              {/* <div className="field__row__three">
+              <div className="field__row__three">
                 <div className="fields">
                   <Input
                     label="Total Amt"
@@ -348,45 +383,8 @@ const InstallEntry = ({ initialValue }) => {
                     onChange={handleChange}
                   />
                 </div>
-              </div> */}
-              <div className="field__row__three">
-                <div className="fields">
-                  <Input
-                    label="grossAmt"
-                    type="number"
-                    name="grossAmt"
-                    value={formValues.grossAmt}
-                    onChange={handleChange}
-                    isError
-                    errorMsg={formErrors.grossAmt}
-                    className=" form-control three__row"
-                  />
-                  <p className="show-errors-left"> {formErrors.grossAmt} </p>
-                </div>
-                <div className="fields">
-                  <Input
-                    label="GST% "
-                    type="number"
-                    name="gst"
-                    className="form-control"
-                    // onBlur={onBlurEvent}
-                    value={formValues.gst}
-                    onChange={handleChange}
-                  />
-                </div>
-                <div className="fields">
-                  <Input
-                    label="GST"
-                    type="number"
-                    name="totalTaxAmount"
-                    placeholder="Amt"
-                    value={formValues.totalTaxAmount}
-                    // onBlur={onBlurEvent}
-                    onChange={handleChange}
-                    readOnly={true}
-                  />
-                </div>
               </div>
+              
 
               {/* 2nd */}
 
@@ -439,7 +437,7 @@ const InstallEntry = ({ initialValue }) => {
                     value={formValues.roundAmt}
                     // onBlur={onBlurEvent}
                     isError
-                    errorMsg={formErrors.amount}
+                    errorMsg={formErrors.roundAmt}
                     className=" form-control three__row"
                   />
                 </div>
@@ -506,7 +504,10 @@ const InstallEntry = ({ initialValue }) => {
               <div className="fields">
                 <DatePicker
                   label="Date"
+                  name="date"
                   className="date-picker"
+                  value={formValues.date}
+                  onChange={handleChange}
                   style={{ marginLeft: "15px" }}
 
                 // isError
@@ -533,7 +534,8 @@ const InstallEntry = ({ initialValue }) => {
             >
               Save
             </Button>
-            <Button className="btn btn-secondary" onClick={refreshPage}>
+            <Button className="btn btn-secondary" 
+            onClick={clearForm}>
               Clear
             </Button>
           </div>

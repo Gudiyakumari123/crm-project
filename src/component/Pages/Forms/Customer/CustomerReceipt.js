@@ -77,6 +77,8 @@ const CustomerReceipt = ({ initialValue }) => {
     e.preventDefault();
     setFormErrors(validate(formValues));
     setIsSubmit(true);
+    // animateCss();  
+
   };
 
   useEffect(() => {
@@ -99,17 +101,14 @@ const CustomerReceipt = ({ initialValue }) => {
     if (!values.paidAmt) {
       errors.paidAmt = "Enter paid Amt";
     }
-    if (!values.city) {
-      errors.city = "Enter city";
-    }
+    
     return errors;
   };
-
-  function animateCss() {
-    toast.dark("Hey 👋, Data Has Been Saved!", {
-      transition: bounce,
-    });
+  const animateCss = () => {
+    toast("Form Submitted!");
   }
+
+  
   function refreshPage() {
     window.location.reload(false);
   }
@@ -237,6 +236,7 @@ const CustomerReceipt = ({ initialValue }) => {
             <Button
               type="submit"
               className="btn btn-primary"
+                  // onClick={animateCss}
               onClick={handleSubmit}
             >Save
             </Button>
