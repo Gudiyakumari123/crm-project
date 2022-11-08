@@ -129,11 +129,15 @@ const LeadEntry = () => {
     setFormErrors(validate({ formValues, phone }));
     setIsSubmit(true);
     setPhone();
+    setFormValues(initialValues);
+
   };
   useEffect(() => {
     if (Object.keys(formErrors).length === 0 && isSubmit) {
-      alert("Everything is Good. Form Submitted");
+      success();
+
     } else {
+      Error();
     }
   }, [formErrors]);
 

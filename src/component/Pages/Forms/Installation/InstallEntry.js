@@ -13,8 +13,10 @@ import Input from "../../../../shared/Reusable/Input";
 import Select from "../../../../shared/Reusable/Select";
 import TextArea from "../../../../shared/Reusable/TextArea";
 // Phone Number
-import PhoneInput from "react-phone-number-input";
-import "react-phone-number-input/style.css";
+import PhoneInput from "../../../../shared/Reusable/PhoneInput";
+
+// import PhoneInput from "react-phone-number-input";
+// import "react-phone-number-input/style.css";
 
 import { render } from "@testing-library/react";
 
@@ -35,7 +37,7 @@ const Status = [
 ];
 
 const InstallEntry = () => {
-  const [phone, setPhone] = useState("");
+  const [phone, setPhone] = useState(false);
 
   const [formErrors, setFormErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
@@ -145,8 +147,13 @@ const InstallEntry = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setFormErrors(validate(formValues));
+    setFormErrors(validate(formValues,phone));
+    setFormValues(initialValues);
     setIsSubmit(true);
+    setPhone();
+    setFormValues(initialValues);
+
+
   };
 
   useEffect(() => {
@@ -174,9 +181,9 @@ const InstallEntry = () => {
     if (!values.customerId) {
       errors.customerId = "Enter customerId";
     }
-    // if (!values.phone) {
-    //   errors.phone = "Enter phone";
-    // }
+    if (!values.phone) {
+      errors.phone = "Enter phone";
+    }
     if (!values.city) {
       errors.city = "Enter city";
     }
