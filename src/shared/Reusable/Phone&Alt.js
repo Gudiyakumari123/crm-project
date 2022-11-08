@@ -2,12 +2,12 @@ import React from "react";
 // Phone Number
 import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
-export default function Try({ isError }) {
+
+const Try = ({ isError }) => {
   return (
     <>
       <div className="field__row">
-       
-         <div className="input-fields">
+        <div className="input-fields">
           <label htmlFor="" className="label">
             Phone
           </label>
@@ -43,4 +43,5 @@ export default function Try({ isError }) {
       </div>
     </>
   );
-}
+};
+export default Try;

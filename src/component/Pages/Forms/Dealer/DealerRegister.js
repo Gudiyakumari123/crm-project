@@ -58,16 +58,16 @@ const DealerRegister = () => {
   const [phone, setPhone] = useState({});
 
   const initialValues = {
-    dates:"",
-    companyName:"",
-    contactPerson:"",
-    nature:"",
-    altContact:"",
-    city:"",
-    email:"",
-    remarksDealer:"",
-    address:"",
-    remarksUser:"",
+    dates: "",
+    companyName: "",
+    contactPerson: "",
+    nature: "",
+    altContact: "",
+    city: "",
+    email: "",
+    remarksDealer: "",
+    address: "",
+    remarksUser: "",
   };
   const [paid, setPaid] = useState({});
 
@@ -253,6 +253,7 @@ const DealerRegister = () => {
               </div>
             </div>
             {/* Left Side End */}
+
             {/* Right Side Start */}
             <div className="form__right">
               <div className="fields">

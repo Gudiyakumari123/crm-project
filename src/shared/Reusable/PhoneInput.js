@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 import Fade from "react-reveal/Fade";
 
@@ -12,11 +12,9 @@ function PhoneInputBox({
   name,
   placeholder,
   isError,
-  onChange,
   errorMsg,
   ...props
 }) {
-  const [phone, setPhone] = useState();
   return (
     <>
       <div className="input-fields">
@@ -30,7 +28,7 @@ function PhoneInputBox({
           name={name}
           defaultCountry="IN"
           placeholder={placeholder}
-          onChange={onChange}
+          // onChange={onChange}
           {...props}
         />
       </div>

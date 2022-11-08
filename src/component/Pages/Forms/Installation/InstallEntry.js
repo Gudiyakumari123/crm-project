@@ -18,21 +18,11 @@ import "react-phone-number-input/style.css";
 
 import { render } from "@testing-library/react";
 
-
 const bounce = cssTransition({
   enter: "animate__animated animate__bounceIn",
   exit: "animate__animated animate__bounceOut",
 });
 
-const swirl = cssTransition({
-  enter: "swirl-in-fwd",
-  exit: "swirl-out-bck",
-});
-
-const Category = [
-  { value: "Service", label: "Service" },
-  { value: "Updation", label: "Updation" },
-];
 const Priority = [
   { value: "High", label: "High" },
   { value: "Medium", label: "Medium" },
@@ -51,24 +41,24 @@ const InstallEntry = () => {
   const [isSubmit, setIsSubmit] = useState(false);
 
   const initialValues = {
-    version:"",
-    customerId:"",
-    companyName:"",
-    mobileNumber:"",
-    city:"",
-    amount:"",
-    discountPer:"",
-    discountAmt:"",
-    grossAmt:"",
-    gst:"",
-    totalTaxAmount:"",
-    roundAmt:"",
-    netAmt:"",
-    paidAmt:"",
-    details:"",
-    date:"",
-    remarks:"",
-    dates:""
+    version: "",
+    customerId: "",
+    companyName: "",
+    mobileNumber: "",
+    city: "",
+    amount: "",
+    discountPer: "",
+    discountAmt: "",
+    grossAmt: "",
+    gst: "",
+    totalTaxAmount: "",
+    roundAmt: "",
+    netAmt: "",
+    paidAmt: "",
+    details: "",
+    date: "",
+    remarks: "",
+    dates: "",
   };
   const [paid, setPaid] = useState({});
 
@@ -83,7 +73,7 @@ const InstallEntry = () => {
     });
     setPhone();
   };
- 
+
   const Category1 = ["WonderPOS", "Healthy Fly", "Edu Fly"];
   const Softwares = {
     WonderPOS: [
@@ -164,7 +154,6 @@ const InstallEntry = () => {
       // alert("Everything is Good. Form Submitted");
       success();
 
-
     } else {
       // alert("Please , Fill the all required Fields");
       Error();
@@ -205,8 +194,6 @@ const InstallEntry = () => {
 
   console.log("FormValues::", formValues);
 
-  
-
   const success = () => {
     toast.success("Form Submitted!");
   }
@@ -242,10 +229,7 @@ const InstallEntry = () => {
                   name="dates"
                   value={formValues.dates}
                   onChange={handleChange}
-                  style={{ marginLeft: "-70px"
-                ,width:"100%"
-                }}
-
+                  style={{ marginLeft: "-70px", width: "100%" }}
                 />
               </div>
               <div className="fields">
@@ -335,9 +319,7 @@ const InstallEntry = () => {
                       international
                       defaultCountry="IN"
                       onChange={setPhone}
-                    maxLength={15}
-
-
+                      maxLength={15}
                     />
                   </div>
                 </div>
@@ -353,8 +335,6 @@ const InstallEntry = () => {
                   />
                 </div>
               </div>
-
-
 
               <div className="field__row__three">
                 <div className="fields">
@@ -391,7 +371,6 @@ const InstallEntry = () => {
                   />
                 </div>
               </div>
-              
 
               {/* 2nd */}
 
@@ -517,7 +496,7 @@ const InstallEntry = () => {
                   onChange={handleChange}
                   style={{ marginLeft: "15px" }}
 
-                // isError
+                  // isError
                 />
               </div>
               <div className="fields">
@@ -536,13 +515,12 @@ const InstallEntry = () => {
               type="submit"
               className="btn btn-primary"
               onClick={handleSubmit}
-            // id="animate.css"
-            // value="isSubmit"
+              // id="animate.css"
+              // value="isSubmit"
             >
               Save
             </Button>
-            <Button className="btn btn-secondary" 
-            onClick={clearForm}>
+            <Button className="btn btn-secondary" onClick={clearForm}>
               Clear
             </Button>
           </div>
