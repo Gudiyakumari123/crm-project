@@ -145,14 +145,12 @@ const InstallEntry = () => {
   const [selectedState, setSelectedState] = useState("");
   console.log("SelectState::", selectedState);
 
- 
   const handleSubmit = (e) => {
     e.preventDefault();
     setFormErrors(validate(formValues));
     // setPhone();
     setIsSubmit(true);
     // setFormValues(initialValues);
-
   };
   useEffect(() => {
     if (Object.keys(formErrors).length === 0 && isSubmit) {
@@ -194,10 +192,10 @@ const InstallEntry = () => {
 
   const success = () => {
     toast.success("Form Submitted!");
-  }
+  };
   const Error = () => {
     // toast.error("Please, Filled all mandatory fields !");
-  }
+  };
 
   const clearForm = () => {
     setFormValues(initialValues);
@@ -495,7 +493,7 @@ const InstallEntry = () => {
                   onChange={handleChange}
                   style={{ marginLeft: "15px" }}
 
-                // isError
+                  // isError
                 />
               </div>
               <div className="fields">
@@ -514,8 +512,8 @@ const InstallEntry = () => {
               type="submit"
               className="btn btn-primary"
               onClick={handleSubmit}
-            // id="animate.css"
-            // value="isSubmit"
+              // id="animate.css"
+              // value="isSubmit"
             >
               Save
             </Button>
