@@ -1,4 +1,4 @@
-import React, {  Component } from "react";
+import React, { Fragment, Component } from "react";
 
 // components
 import Header from "../../../../shared/Header/Header";
@@ -10,7 +10,9 @@ import { Button } from "react-bootstrap";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-// Reusable Component
+
+
+// // Reusable Component
 import Input from "../../../../shared/Reusable/Input";
 import Select from "../../../../shared/Reusable/Select";
 import TextArea from "../../../../shared/Reusable/TextArea";
@@ -33,26 +35,19 @@ const payMode = [
 
 class CustomerReceipt extends Component {
   initialState = {
-    version: "",
+
     customerId: "",
     companyName: "",
     mobileNumber: "",
-    city: "",
-    amount: "",
-    discountPer: "",
-    discountAmt: "",
-    grossAmt: "",
-    gst: "",
-    totalTaxAmount: "",
-    roundAmt: "",
-    netAmt: "",
+    install: "",
+    payMode: "",
     paidAmt: "",
-    details: "",
-    date: "",
     remarks: "",
-    dates: "",
   };
   state = this.initialState;
+  handleReset = () => {
+    this.setState(() => this.initialState);
+  };
   handleChange = (e) => {
     const { name, value } = e.target;
     this.setState({
@@ -64,7 +59,7 @@ class CustomerReceipt extends Component {
     e.preventDefault();
     this.validate();
 
-    if (this.state.customerId <= 1) {
+    if (this.state.customerId === "" || this.state.companyName === "" || this.state.paidAmt === "") {
       toast.error("Please, Filled all mandatory fields !");
     } else {
       toast.success("Form Submitted!");
@@ -84,9 +79,7 @@ class CustomerReceipt extends Component {
     }
     return isValid;
   };
-  handleReset = () => {
-    this.setState(() => this.initialState);
-  };
+
 
   render() {
     return (
@@ -118,13 +111,8 @@ class CustomerReceipt extends Component {
                     onChange={this.handleChange}
                     isError
 
-                    // errorMsg={error.customerId}
                   />
-                  {/* <p>{this.state.customerId}</p> */}
                 </div>
-                {/* <p {error.customerId}></p> */}
-                {/* <p className="show-errors-left"> {formErrors.customerId}</p> */}
-
                 <div className="fields">
                   <Input
                     type="text"
@@ -137,11 +125,9 @@ class CustomerReceipt extends Component {
                     value={this.state.companyName}
                     onChange={this.handleChange}
                     isError
-                    errorMsg={this.validate}
+                  // errorMsg={this.validate}
                   />
                 </div>
-                {/* <p className="show-errors-left"> {formErrors.companyName}</p> */}
-
                 <div className="fields">
                   <div className="input-fields">
                     <label htmlFor="" className="label">
@@ -156,7 +142,7 @@ class CustomerReceipt extends Component {
                       className="form-control"
                       international
                       defaultCountry="IN"
-                      // onChange={setPhone}
+                    // onChange={setPhone}
                     />
                   </div>
                 </div>
@@ -179,7 +165,6 @@ class CustomerReceipt extends Component {
                     options={payMode}
                     className="select-control source-select"
                     defaultValue={payMode[0]}
-                    isError
                   />
                 </div>
 
@@ -191,11 +176,8 @@ class CustomerReceipt extends Component {
                     value={this.state.paidAmt}
                     onChange={this.handleChange}
                     isError
-                    // errorMsg={formErrors.paidAmt}
                   />
                 </div>
-                {/* <p className="show-errors"> {formErrors.paidAmt}</p> */}
-
                 <div className="fields">
                   <TextArea
                     type="text"
@@ -215,14 +197,12 @@ class CustomerReceipt extends Component {
               <Button
                 type="submit"
                 className="btn btn-primary"
-                // onClick={animateCss}
                 onClick={this.handleSubmit}
               >
                 Save
               </Button>
-              <Button className="btn btn-secondary" onClick={this.handleReset}>
-                Clear
-              </Button>
+              <input type="reset" value="Clear" className="btn btn-secondary" />
+
             </div>
           </form>
         </div>
@@ -231,6 +211,6 @@ class CustomerReceipt extends Component {
         <ToastContainer />
       </>
     );
-  }
-}
+  };
+};
 export default CustomerReceipt;

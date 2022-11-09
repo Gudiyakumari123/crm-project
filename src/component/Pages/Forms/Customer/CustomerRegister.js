@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Fragment } from "react";
+import React, { Component, Fragment } from "react";
 
 // components
 import Header from "../../../../shared/Header/Header";
@@ -24,13 +24,8 @@ const Status = [
   { value: "Active", label: "Active" },
   { value: "Completed", label: "Completed" },
 ];
-
-const CustomerRegister = () => {
-  const [formErrors, setFormErrors] = useState({});
-  const [isSubmit, setIsSubmit] = useState(false);
-  const [phone, setPhone] = useState("");
-
-  const initialValues = {
+class CustomerRegister extends Component {
+  initialState = {
     companyName: "",
     contactPerson: "",
     address: "",
@@ -40,245 +35,208 @@ const CustomerRegister = () => {
     remarksCustomer: "",
     remarksUser: "",
   };
-  const [paid, setPaid] = useState({});
-
-  // Form Validations
-  const [formValues, setFormValues] = useState(initialValues);
-
-  const handleChange = (e) => {
+  state = this.initialState;
+  handleChange = (e) => {
     const { name, value } = e.target;
-    setFormValues({
-      ...formValues,
+    this.setState({
       [name]: value,
     });
-    setPhone();
   };
 
-  const handleSubmit = (e) => {
+  handleSubmit = (e) => {
     e.preventDefault();
-    setIsSubmit(true);
-    setFormErrors(validate(formValues));
-    setFormValues(initialValues);
-  };
+    this.validate();
 
-  useEffect(() => {
-    if (Object.keys(formErrors).length === 0 && isSubmit) {
-      success();
+    if (this.state.companyName === "" || this.state.contactPerson === "" || this.state.city === "" || this.state.gstNo === "") {
+      toast.error("Please, Filled all mandatory fields !");
     } else {
-      Error();
+      toast.success("Form Submitted!");
     }
-  }, [formErrors]);
 
-  const validate = (values) => {
-    const errors = {};
-    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
-    if (!values.companyName) {
-      errors.companyName = "Enter Company Name";
-    }
-    if (!values.contactPerson) {
-      errors.contactPerson = "Enter contactPerson";
-    }
-    if (!values.city) {
-      errors.city = "Enter city";
-    }
-    if (!values.gstNo) {
-      errors.gstNo = "Enter Gst No";
-    }
-    return errors;
+    this.handleReset();
   };
 
-  const success = () => {
-    toast.success("Form Submitted!");
+  validate = () => {
+    let name = this.state.companyName;
+    let errors = {};
+    let isValid = true;
+
+    if (!this.state.companyName) {
+      isValid = false;
+      errors["name"] = "Enter Valid Value";
+    }
+    return isValid;
   };
-  const Error = () => {
-    toast.error("Please, Filled all mandatory fields !");
+  handleReset = () => {
+    this.setState(() => this.initialState);
   };
 
-  const clearForm = () => {
-    setFormValues(initialValues);
-  };
+  render() {
 
-  return (
-    <>
-      <Header />
-      <SubHeader />
-      <div className="form__container">
-        <div className="form__content">
-          <div className="title-display">
-            <div className="title"> Customer Registration </div>
-          </div>
-          <div className="form__wrapper">
-            <div className="form__left">
-              <div className="fields">
-                <Input
-                  type="text"
-                  label="Company"
-                  style={{
-                    marginLeft: "-70px",
-                    width: "100%",
-                  }}
-                  name="companyName"
-                  value={formValues.companyName}
-                  onChange={handleChange}
-                  isError
-                  errorMsg={formErrors.companyName}
-                />
-              </div>
-              <p className="show-errors-left"> {formErrors.companyName}</p>
-
-              <div className="fields">
-                <Input
-                  type="text"
-                  label="ContPerson"
-                  style={{
-                    marginLeft: "-70px",
-                    width: "100%",
-                  }}
-                  name="contactPerson"
-                  value={formValues.contactPerson}
-                  onChange={handleChange}
-                  isError
-                  errorMsg={formErrors.contactPerson}
-                />
-              </div>
-              <p className="show-errors-left"> {formErrors.contactPerson}</p>
-
-              <PhoneAlt />
-              <div className="fields">
-                <Select
-                  label="Category"
-                  placeholder="Select Category No."
-                  options={Category}
-                  defaultValue={Category[0]}
-                  className="select-control bill-select department-select"
-                  isError
-                  errorMsg={formErrors.companyName}
-                />
-              </div>
-              <div className="fields">
-                <TextArea
-                  type="text"
-                  label="Address"
-                  style={{
-                    marginLeft: "-70px",
-                    width: "100%",
-                  }}
-                  name="address"
-                  value={formValues.address}
-                  onChange={handleChange}
-                  isError
-                  errorMsg={formErrors.address}
-                />
-              </div>
-              <CountryState className="designation-select" />
-              <div className="fields">
-                <Input
-                  type="text"
-                  label="Area/City"
-                  name="city"
-                  value={formValues.city}
-                  onChange={handleChange}
-                  isError
-                  errorMsg={formErrors.city}
-                  style={{
-                    marginLeft: "-70px",
-                    width: "100%",
-                  }}
-                />
-              </div>
-              <p className="show-errors-left"> {formErrors.city}</p>
+    return (
+      <>
+        <Header />
+        <SubHeader />
+        <div className="form__container">
+          <form
+            onReset={this.handleReset}
+            className="form__content">
+            <div className="title-display">
+              <div className="title"> Customer Registration </div>
             </div>
-            {/* Left Side End */}
-            {/* Right Side Start */}
-            <div className="form__right">
-              <div className="fields">
-                <Input
-                  type="text"
-                  label="Gst No"
-                  name="gstNo"
-                  value={formValues.gstNo}
-                  onChange={handleChange}
-                  isError
-                  errorMsg={formErrors.gstNo}
-                />
+            <div className="form__wrapper">
+              <div className="form__left">
+                <div className="fields">
+                  <Input
+                    type="text"
+                    label="Company"
+                    style={{
+                      marginLeft: "-70px",
+                      width: "100%",
+                    }}
+                    name="companyName"
+                    value={this.state.companyName}
+                    onChange={this.handleChange}
+                    isError
+                  />
+                </div>
+                <div className="fields">
+                  <Input
+                    type="text"
+                    label="ContPerson"
+                    style={{
+                      marginLeft: "-70px",
+                      width: "100%",
+                    }}
+                    name="contactPerson"
+                    value={this.state.contactPerson}
+                    onChange={this.handleChange}
+                    isError
+                  />
+                </div>
+                <PhoneAlt />
+                <div className="fields">
+                  <Select
+                    label="Category"
+                    placeholder="Select Category No."
+                    options={Category}
+                    defaultValue={Category[0]}
+                    className="select-control bill-select department-select"
+                  />
+                </div>
+                <div className="fields">
+                  <TextArea
+                    type="text"
+                    label="Address"
+                    style={{
+                      marginLeft: "-70px",
+                      width: "100%",
+                    }}
+                    name="address"
+                    value={this.state.address}
+                    onChange={this.handleChange}
+                    isError
+                  />
+                </div>
+                <CountryState className="designation-select" />
+                <div className="fields">
+                  <Input
+                    type="text"
+                    label="Area/City"
+                    name="city"
+                    value={this.state.city}
+                    onChange={this.handleChange}
+                    isError
+                    style={{
+                      marginLeft: "-70px",
+                      width: "100%",
+                    }}
+                  />
+                </div>
               </div>
-              <p className="show-errors"> {formErrors.gstNo}</p>
+              {/* Left Side End */}
+              {/* Right Side Start */}
+              <div className="form__right">
+                <div className="fields">
+                  <Input
+                    type="text"
+                    label="Gst No"
+                    name="gstNo"
+                    value={this.state.gstNo}
+                    onChange={this.handleChange}
+                    isError
+                  />
+                </div>
 
-              <div className="fields">
-                <Input
-                  type="email"
-                  label="Email"
-                  // rows="2"
-                  name="email"
-                  value={formValues.email}
-                  onChange={handleChange}
-                  style={
-                    {
-                      // marginLeft: "13px"
-                    }
-                  }
-                />
-              </div>
+                <div className="fields">
+                  <Input
+                    type="email"
+                    label="Email"
+                    name="email"
+                    value={this.state.email}
+                    onChange={this.handleChange}
+                  />
+                </div>
 
-              <div className="fields">
-                <TextArea
-                  type="text"
-                  label="Remarks"
-                  rows="2"
-                  name="remarksCustomer"
-                  placeholder="Remarks by Customer"
-                  value={formValues.remarksCustomer}
-                  onChange={handleChange}
-                  style={{
-                    marginLeft: "13px",
-                  }}
-                />
-              </div>
+                <div className="fields">
+                  <TextArea
+                    type="text"
+                    label="Remarks"
+                    rows="2"
+                    name="remarksCustomer"
+                    placeholder="Remarks by Customer"
+                    value={this.state.remarksCustomer}
+                    onChange={this.handleChange}
+                    style={{
+                      marginLeft: "13px",
+                    }}
+                  />
+                </div>
 
-              <div className="fields">
-                <Select
-                  label="Status"
-                  options={Status}
-                  className="select-control source-select"
-                  defaultValue={Status[0]}
-                  onChange={setPaid}
-                />
-              </div>
+                <div className="fields">
+                  <Select
+                    label="Status"
+                    options={Status}
+                    className="select-control source-select"
+                    defaultValue={Status[0]}
+                    onChange={this.setPaid}
+                  />
+                </div>
 
-              <div className="fields">
-                <TextArea
-                  type="text"
-                  label="Remarks"
-                  rows="3"
-                  name="remarksUser"
-                  placeholder="Remarks by User"
-                  value={formValues.remarksUser}
-                  onChange={handleChange}
-                  style={{
-                    marginLeft: "13px",
-                  }}
-                />
+                <div className="fields">
+                  <TextArea
+                    type="text"
+                    label="Remarks"
+                    rows="3"
+                    name="remarksUser"
+                    placeholder="Remarks by User"
+                    value={this.state.remarksUser}
+                    onChange={this.handleChange}
+                    style={{
+                      marginLeft: "13px",
+                    }}
+                  />
+                </div>
               </div>
             </div>
-          </div>
-          <div className="btn__holder">
-            <Button
-              type="submit"
-              className="btn btn-primary"
-              onClick={handleSubmit}
-            >
-              Save
-            </Button>
-            <Button className="btn btn-secondary" onClick={clearForm}>
-              Clear
-            </Button>
-          </div>
+            <div className="btn__holder">
+              <Button
+                type="submit"
+                className="btn btn-primary"
+                onClick={this.handleSubmit}
+              >
+                Save
+              </Button>
+
+              <input type="reset" value="Clear" className="btn btn-secondary" />
+
+            </div>
+          </form>
         </div>
-      </div>
-      <ToastContainer />
-      <Footer />
-      {/* Source Modal*/}
-    </>
-  );
+        <ToastContainer />
+        <Footer />
+      </>
+    );
+  };
 };
 export default CustomerRegister;
