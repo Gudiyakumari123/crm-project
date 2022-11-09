@@ -23,151 +23,208 @@ import {
 } from "../../../../data/crm-constants";
 
 
-const LeadEntry = () => {
-  const [formErrors, setFormErrors] = useState({});
-  const [isSubmit, setIsSubmit] = useState(false);
+// const LeadEntry = () => {
+//   const [formErrors, setFormErrors] = useState({});
+//   const [isSubmit, setIsSubmit] = useState(false);
 
-  const initialValues = {
+//   const initialValues = {
+//     companyName: "",
+//     contperson: "",
+//     altPhone: "",
+//     phone: "",
+//     area: "",
+//     address: "",
+//     email: "",
+//     other: "",
+//     date: "",
+//     remark: "",
+//   };
+
+
+//   // Form Validations
+//   const [formValues, setFormValues] = useState(initialValues);
+
+//   const handleChange = (e) => {
+//     const { name, value } = e.target;
+//     setFormValues({
+//       ...formValues,
+//       [name]: value,
+//     });
+//   };
+
+//   const Category1 = ["WonderPOS", "Healthy Fly", "Edu Fly"];
+//   const Softwares = {
+//     WonderPOS: [
+//       "General Retail & Wholesale",
+//       "Pharmacy Retail & Wholesale",
+//       "Restaurant",
+//       "Hypermarket",
+//       "Supermarket",
+//       "Department Stores",
+//       "Kirana /Grocery Retail & Wholesale",
+//       "FMCC Distribution",
+//       "Jewellery Retail & Wholesale",
+//       "Hallmarking Centre Software",
+//       "Gas Agency",
+//       "Readymade Retail & Wholesale",
+//       "Textiles Retail & Wholesale",
+//       "Fruits & Vegetables",
+//       "Rice Traders / Mundy",
+//       "Fancy Store",
+//       "Footwear Shop",
+//       "Mobile Sales & Service",
+//       "Computer Sales & Service",
+//       "Electrical Shop",
+//       "Spa & Saloon",
+//       "Laundry / Dry Clean",
+//       "Books Shop",
+//       "Florists",
+//       "Home Decor & Furniture",
+//       "Optical Shop",
+//       "Stationery Shop",
+//       "Toys & Gift Shop",
+//       "Watches",
+//       "Home Appliances",
+//       "Surgical",
+//       "Chemists & Druggists",
+//       "Auto Parts",
+//       "Fertilizer & Agro Products",
+//       "Hardware Shop",
+//       "Sports & Fitness",
+//       "Tyre",
+//       "Vessel Shop",
+//       "Oil Shop",
+//       "Paints Shop",
+//       "Water Companies",
+//       "Pizza Shop",
+//       "Coffee Shop",
+//       "Bakery",
+//       "Sweet Shop",
+//       "Bar /Pubs",
+//       "Ice Cream Shop",
+//       "Juice Shop",
+//       "Tea Shop",
+//       "Food Court",
+//       "Auto Finance",
+//       "Jewellery Loan",
+//       "Crackers Shop",
+//     ],
+//     "Healthy Fly": [
+//       "Hospital",
+//       "Multi-Specialty Hospital",
+//       "Clinic / Homecare",
+//       "Ayurvedic Hospital",
+//     ],
+//     "Edu Fly": ["School", "College / University", "Study Centre / Institute"],
+//   };
+
+//   const [sourceOption, setSourceOption] = useState({});
+
+//   const [selectedState, setSelectedState] = useState("");
+
+//   const handleSubmit = (e) => {
+//     e.preventDefault();
+//     setFormErrors(validate(formValues));
+//     // setPhone();
+//     setIsSubmit(true);
+//     // setFormValues(initialValues);
+
+//   };
+//   useEffect(() => {
+//     if (Object.keys(formErrors).length === 0 && isSubmit) {
+//       success();
+//     } else {
+//       Error();
+//     }
+//   }, [formErrors]);
+
+//   const validate = (values) => {
+//     const errors = {};
+//     if (!values.companyName) {
+//       errors.companyName = "Enter companyName";
+//     }
+//     if (!values.contperson) {
+//       errors.contperson = "Enter contperson";
+//     }
+//     if (!values.email) {
+//       errors.email = "Enter email";
+//     }
+//     if (!values.phone) {
+//       errors.phone = "Enter phone";
+//     }
+//     return errors;
+//   };
+
+//   console.log("FormValues::", formValues);
+
+//   const success = () => {
+//     toast.success("Form Submitted!");
+//   }
+//   const Error = () => {
+//     toast.error("Please, Filled all mandatory fields !");
+//   }
+
+//   const clearForm = () => {
+//     setFormValues(initialValues);
+//   };
+
+class LeadEntry extends Component {
+
+  initialState = {
+    version: "",
+    customerId: "",
     companyName: "",
-    contperson: "",
-    altPhone: "",
-    phone: "",
-    area: "",
-    address: "",
-    email: "",
-    other: "",
+    mobileNumber: "",
+    city: "",
+    amount: "",
+    discountPer: "",
+    discountAmt: "",
+    grossAmt: "",
+    gst: "",
+    totalTaxAmount: "",
+    roundAmt: "",
+    netAmt: "",
+    paidAmt: "",
+    details: "",
     date: "",
-    remark: "",
+    remarks: "",
+    dates: ""
   };
+  state = this.initialState;
 
-
-  // Form Validations
-  const [formValues, setFormValues] = useState(initialValues);
-
-  const handleChange = (e) => {
+  handleChange = (e) => {
     const { name, value } = e.target;
     setFormValues({
       ...formValues,
       [name]: value,
     });
+    setPhone();
   };
 
-  const Category1 = ["WonderPOS", "Healthy Fly", "Edu Fly"];
-  const Softwares = {
-    WonderPOS: [
-      "General Retail & Wholesale",
-      "Pharmacy Retail & Wholesale",
-      "Restaurant",
-      "Hypermarket",
-      "Supermarket",
-      "Department Stores",
-      "Kirana /Grocery Retail & Wholesale",
-      "FMCC Distribution",
-      "Jewellery Retail & Wholesale",
-      "Hallmarking Centre Software",
-      "Gas Agency",
-      "Readymade Retail & Wholesale",
-      "Textiles Retail & Wholesale",
-      "Fruits & Vegetables",
-      "Rice Traders / Mundy",
-      "Fancy Store",
-      "Footwear Shop",
-      "Mobile Sales & Service",
-      "Computer Sales & Service",
-      "Electrical Shop",
-      "Spa & Saloon",
-      "Laundry / Dry Clean",
-      "Books Shop",
-      "Florists",
-      "Home Decor & Furniture",
-      "Optical Shop",
-      "Stationery Shop",
-      "Toys & Gift Shop",
-      "Watches",
-      "Home Appliances",
-      "Surgical",
-      "Chemists & Druggists",
-      "Auto Parts",
-      "Fertilizer & Agro Products",
-      "Hardware Shop",
-      "Sports & Fitness",
-      "Tyre",
-      "Vessel Shop",
-      "Oil Shop",
-      "Paints Shop",
-      "Water Companies",
-      "Pizza Shop",
-      "Coffee Shop",
-      "Bakery",
-      "Sweet Shop",
-      "Bar /Pubs",
-      "Ice Cream Shop",
-      "Juice Shop",
-      "Tea Shop",
-      "Food Court",
-      "Auto Finance",
-      "Jewellery Loan",
-      "Crackers Shop",
-    ],
-    "Healthy Fly": [
-      "Hospital",
-      "Multi-Specialty Hospital",
-      "Clinic / Homecare",
-      "Ayurvedic Hospital",
-    ],
-    "Edu Fly": ["School", "College / University", "Study Centre / Institute"],
-  };
-
-  const [sourceOption, setSourceOption] = useState({});
-
-  const [selectedState, setSelectedState] = useState("");
-
-  const handleSubmit = (e) => {
+  handleSubmit = (e) => {
     e.preventDefault();
     setFormErrors(validate(formValues));
-    // setPhone();
     setIsSubmit(true);
-    // setFormValues(initialValues);
-
-  };
-  useEffect(() => {
-    if (Object.keys(formErrors).length === 0 && isSubmit) {
-      success();
-    } else {
-      Error();
-    }
-  }, [formErrors]);
-
-  const validate = (values) => {
-    const errors = {};
-    if (!values.companyName) {
-      errors.companyName = "Enter companyName";
-    }
-    if (!values.contperson) {
-      errors.contperson = "Enter contperson";
-    }
-    if (!values.email) {
-      errors.email = "Enter email";
-    }
-    if (!values.phone) {
-      errors.phone = "Enter phone";
-    }
-    return errors;
-  };
-
-  console.log("FormValues::", formValues);
-
-  const success = () => {
-    toast.success("Form Submitted!");
-  }
-  const Error = () => {
-    toast.error("Please, Filled all mandatory fields !");
-  }
-
-  const clearForm = () => {
     setFormValues(initialValues);
+    // animateCss();  
   };
 
+  validate = () => {
+    let name = this.state.name;
+    let errors = {};
+    let isValid = true;
+
+    if (!name) {
+      isValid = false;
+      errors["name"] = "Enter Valid Value";
+    }
+    return isValid;
+  };
+  handleReset = () => {
+    this.setState(() => this.initialState);
+  };
+
+  render() {
   return (
     <>
       <Header />
@@ -395,5 +452,6 @@ const LeadEntry = () => {
       {/* Source Modal*/}
     </>
   );
+  };
 };
 export default LeadEntry;
