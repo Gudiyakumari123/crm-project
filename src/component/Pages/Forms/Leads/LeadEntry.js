@@ -23,9 +23,9 @@
 // } from "../../../../data/crm-constants";
 
 
-// // const LeadEntry = () => {
-// //   const [formErrors, setFormErrors] = useState({});
-// //   const [isSubmit, setIsSubmit] = useState(false);
+const LeadEntry = () => {
+  const [formErrors, setFormErrors] = useState({});
+  const [isSubmit, setIsSubmit] = useState(false);
 
 // //   const initialValues = {
 // //     companyName: "",
@@ -289,169 +289,170 @@
 //                 </div>
 //               </div>
 
-//               <div className="field__row">
-//                 <div className="fields">
-//                   {/* <PhoneInput
-//                     label="Phone"
-//                     name="phone"
-//                     value={phone}
-//                     onChange={setPhone}
-//                     isError
-//                     errorMsg={formErrors.phone}
-//                     style={{ marginLeft: "32px" }}
-//                   /> */}
-//                   <Input
-//                     type="number"
-//                     label="phone"
-//                     name="phone"
-//                     value={formValues.phone}
-//                     onChange={handleChange}
-//                     isError
-//                     errorMsg={formErrors.phone}
-//                   />
-//                   <p className="show-errors-left">{formErrors.phone}</p>
-//                 </div>
-//                 <div className="fields">
-//                   <Input
-//                     type="text"
-//                     label="AltPhone"
-//                     name="altPhone"
-//                     value={formValues.altPhone}
-//                     onChange={handleChange}
-//                   />
-//                 </div>
-//               </div>
-//               <Country />
-//               <div className="fields">
-//                 <Input
-//                   type="text"
-//                   name="area"
-//                   label="Area/City"
-//                   value={formValues.area}
-//                   onChange={handleChange}
-//                   style={{ width: "140%", marginLeft: "-21px" }}
-//                 />
-//               </div>
-//               <div className="fields">
-//                 <TextArea
-//                   type="text"
-//                   label="Address"
-//                   name="address"
-//                   style={{ width: "140%", marginLeft: "-21px" }}
-//                   value={formValues.address}
-//                   onChange={handleChange}
-//                 />
-//               </div>
-//             </div>
-//             <div className="form__right">
-//               <div className="fields">
-//                 <Input
-//                   type="text"
-//                   label="Email"
-//                   name="email"
-//                   value={formValues.email}
-//                   onChange={handleChange}
-//                   isError
-//                 // errorMsg={formErrors.email}
-//                 //  readOnly={true}
-//                 />
-//               </div>
-//               {/* <p className="show-errors"> {formErrors.email} </p> */}
+              <div className="field__row">
+                <div className="fields">
+                  {/* <PhoneInput
+                    label="Phone"
+                    name="phone"
+                    value={phone}
+                    onChange={setPhone}
+                    isError
+                    errorMsg={formErrors.phone}
+                    style={{ marginLeft: "32px" }}
+                  /> */}
+                  <Input
+                    type="number"
+                    label="phone"
+                    name="phone"
+                    value={formValues.phone}
+                    onChange={handleChange}
+                    isError
+                    errorMsg={formErrors.phone}
+                  />
+                  <p className="show-errors-left">{formErrors.phone}</p>
+                </div>
+                <div className="fields">
+                  <Input
+                    type="text"
+                    label="AltPhone"
+                    name="altPhone"
+                    value={formValues.altPhone}
+                    onChange={handleChange}
+                  />
+                </div>
+              </div>
+              <Country />
+              <div className="fields">
+                <Input
+                  type="text"
+                  name="area"
+                  label="Area/City"
+                  value={formValues.area}
+                  onChange={handleChange}
+                  style={{ width: "140%", marginLeft: "-21px" }}
+                />
+              </div>
+              <div className="fields">
+                <TextArea
+                  type="text"
+                  label="Address"
+                  name="address"
+                  style={{ width: "140%", marginLeft: "-21px" }}
+                  value={formValues.address}
+                  onChange={handleChange}
+                />
+              </div>
+            </div>
+            <div className="form__right">
+              <div className="fields">
+                <Input
+                  type="text"
+                  label="Email"
+                  name="email"
+                  value={formValues.email}
+                  onChange={handleChange}
+                  isError
+                // errorMsg={formErrors.email}
+                //  readOnly={true}
+                />
+              </div>
+              {/* <p className="show-errors"> {formErrors.email} </p> */}
 
-//               <div className="fields">
-//                 <Select
-//                   label="Source"
-//                   options={Source}
-//                   className="select-control source-select"
-//                   defaultValue={Source[1]}
-//                   onChange={setSourceOption}
-//                 />
-//               </div>
-//               {sourceOption.value === "Dealer" ? (
-//                 <>
-//                   <div className="field__row">
-//                     <div className="fields">
-//                       <Input
-//                         label="DealerId"
-//                         type="number"
-//                         name="dealerId"
-//                         style={{ marginLeft: "42px" }}
-//                       />
-//                     </div>
-//                     <div className="fields">
-//                       <Input label="Name" type="email" />
-//                     </div>
-//                   </div>
-//                 </>
-//               ) : null}
-//               <div className="fields">
-//                 <Input
-//                   type="text"
-//                   name="other"
-//                   label="Others"
-//                   value={formValues.other}
-//                   onChange={handleChange}
-//                 />
-//               </div>
-//               <div className="field__row">
-//                 <div className="fields">
-//                   <Select
-//                     options={Status}
-//                     className="select-control status-select"
-//                     label="Status"
-//                     defaultValue={Status[0]}
-//                   />
-//                 </div>
-//                 <div className="fields">
-//                   <Select
-//                     options={ConversionRatio}
-//                     className="select-control"
-//                     label="Ratio"
-//                     defaultValue={ConversionRatio[0]}
-//                   />
-//                 </div>
-//               </div>
-//               <div className="fields">
-//                 <Input
-//                   type="date"
-//                   name="date"
-//                   label="Date"
-//                   value={formValues.date}
-//                   onChange={handleChange}
-//                 />
-//               </div>
-//               <div className="fields">
-//                 <TextArea
-//                   label="Remarks"
-//                   name="remark"
-//                   value={formValues.remark}
-//                   onChange={handleChange}
-//                   style={{ marginLeft: "15px" }}
-//                 />
-//               </div>
-//             </div>
-//           </div>
-//           <div className="btn__holder">
-//             <Button
-//               type="isSubmit"
-//               className="btn btn-primary"
-//               onClick={handleSubmit}
-//               id="animate.css"
-//               value="isSubmit"
-//             >
-//               Save
-//             </Button>
-//             <Button className="btn btn-secondary" onClick={clearForm}>
-//               Clear
-//             </Button>
-//           </div>
-//         </div>
-//       </div>
-//       <ToastContainer />
-//       <Footer />
-//       {/* Source Modal*/}
-//     </>
-//   );
-//   };
-// };
-// export default LeadEntry;
+              <div className="fields">
+                <Select
+                  label="Source"
+                  options={Source}
+                  className="select-control source-select"
+                  defaultValue={Source[1]}
+                  onChange={setSourceOption}
+                />
+              </div>
+              {sourceOption.value === "Dealer" ? (
+                <>
+                  <div className="field__row">
+                    <div className="fields">
+                      <Input
+                        label="DealerId"
+                        type="number"
+                        name="dealerId"
+                        style={{ marginLeft: "42px" }}
+                      />
+                    </div>
+                    <div className="fields">
+                      <Input label="Name" type="email" />
+                    </div>
+                  </div>
+                </>
+              ) : null}
+              <div className="fields">
+                <Input
+                  type="text"
+                  name="other"
+                  label="Others"
+                  value={formValues.other}
+                  onChange={handleChange}
+                />
+              </div>
+              <div className="field__row">
+                <div className="fields">
+                  <Select
+                    options={Status}
+                    className="select-control status-select"
+                    label="Status"
+                    defaultValue={Status[0]}
+                  />
+                </div>
+                <div className="fields">
+                  <Select
+                    options={ConversionRatio}
+                    className="select-control"
+                    label="Ratio"
+                    defaultValue={ConversionRatio[0]}
+                  />
+                </div>
+              </div>
+              <div className="fields">
+                <Input
+                  type="date"
+                  name="date"
+                  label="Date"
+                  value={formValues.date}
+                  onChange={handleChange}
+                />
+              </div>
+              <div className="fields">
+                <TextArea
+                  label="Remarks"
+                  name="remark"
+                  value={formValues.remark}
+                  onChange={handleChange}
+                  style={{ marginLeft: "15px" }}
+                />
+              </div>
+            </div>
+          </div>
+          <div className="btn__holder">
+            <Button
+              type="isSubmit"
+              className="btn btn-primary"
+              onClick={handleSubmit}
+              id="animate.css"
+              value="isSubmit"
+            >
+              Save
+            </Button>
+            <Button className="btn btn-secondary" onClick={clearForm}>
+              Clear
+            </Button>
+          </div>
+        </div>
+      </div>
+      <ToastContainer />
+      <Footer />
+      {/* Source Modal*/}
+    </>
+  );
+};
+export default LeadEntry;
+
+

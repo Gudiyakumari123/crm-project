@@ -56,13 +56,12 @@ const CustomerRegister = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setFormErrors(validate(formValues));
     setIsSubmit(true);
-    setFormValues(initialValues); 
+    setFormErrors(validate(formValues));
+    setFormValues(initialValues);
   };
 
   useEffect(() => {
-    // console.log("FormErros::", formErrors);
     if (Object.keys(formErrors).length === 0 && isSubmit) {
       success();
     } else {
