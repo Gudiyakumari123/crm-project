@@ -10,8 +10,6 @@ import { Button } from "react-bootstrap";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-
-
 // // Reusable Component
 import Input from "../../../../shared/Reusable/Input";
 import Select from "../../../../shared/Reusable/Select";
@@ -35,7 +33,6 @@ const payMode = [
 
 class CustomerReceipt extends Component {
   initialState = {
-
     customerId: "",
     companyName: "",
     mobileNumber: "",
@@ -59,7 +56,11 @@ class CustomerReceipt extends Component {
     e.preventDefault();
     this.validate();
 
-    if (this.state.customerId === "" || this.state.companyName === "" || this.state.paidAmt === "") {
+    if (
+      this.state.customerId === "" ||
+      this.state.companyName === "" ||
+      this.state.paidAmt === ""
+    ) {
       toast.error("Please, Filled all mandatory fields !");
     } else {
       toast.success("Form Submitted!");
@@ -79,7 +80,6 @@ class CustomerReceipt extends Component {
     }
     return isValid;
   };
-
 
   render() {
     return (
@@ -110,7 +110,6 @@ class CustomerReceipt extends Component {
                     value={this.state.customerId}
                     onChange={this.handleChange}
                     isError
-
                   />
                 </div>
                 <div className="fields">
@@ -125,7 +124,7 @@ class CustomerReceipt extends Component {
                     value={this.state.companyName}
                     onChange={this.handleChange}
                     isError
-                  // errorMsg={this.validate}
+                    // errorMsg={this.validate}
                   />
                 </div>
                 <div className="fields">
@@ -142,7 +141,7 @@ class CustomerReceipt extends Component {
                       className="form-control"
                       international
                       defaultCountry="IN"
-                    // onChange={setPhone}
+                      // onChange={setPhone}
                     />
                   </div>
                 </div>
@@ -202,7 +201,6 @@ class CustomerReceipt extends Component {
                 Save
               </Button>
               <input type="reset" value="Clear" className="btn btn-secondary" />
-
             </div>
           </form>
         </div>
@@ -211,6 +209,6 @@ class CustomerReceipt extends Component {
         <ToastContainer />
       </>
     );
-  };
-};
+  }
+}
 export default CustomerReceipt;
