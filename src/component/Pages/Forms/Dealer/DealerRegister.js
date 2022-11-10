@@ -1,38 +1,43 @@
-import React, { Component, Fragment } from "react";
+import React, { Fragment, Component } from "react";
 
 // components
 import Header from "../../../../shared/Header/Header";
 import SubHeader from "../../../../shared/SubHeader/SubHeader";
 import Footer from "../../../../shared/Footer/Footer";
 import { Button } from "react-bootstrap";
-import DatePicker from "../../../../shared/Reusable/DatePicker";
-import { ToastContainer, toast, cssTransition } from "react-toastify";
+import { ToastContainer, toast } from 'react-toastify';
+import CountryState from "../../../../shared/Reusable/CountryState";
+
 
 // Reusable Component
 import Input from "../../../../shared/Reusable/Input";
 import Select from "../../../../shared/Reusable/Select";
 import TextArea from "../../../../shared/Reusable/TextArea";
-// Phone Number
-import PhoneInput from "react-phone-number-input";
-import "react-phone-number-input/style.css";
-import CountryState from "../../../../shared/Reusable/CountryState";
-import { render } from "@testing-library/react";
+import Country from "../../../../shared/Reusable/CountryState";
+import PhoneInput from "../../../../shared/Reusable/PhoneInput";
 
-const bounce = cssTransition({
-  enter: "animate__animated animate__bounceIn",
-  exit: "animate__animated animate__bounceOut",
-});
 
 const Category = [
   { value: "Company", label: "Company" },
   { value: "Freelancer", label: "Freelancer" },
 ];
 
-const swirl = cssTransition({
-  enter: "swirl-in-fwd",
-  exit: "swirl-out-bck",
-});
+const Installation = [
+  { value: "Installation 1", label: "Installation 1" },
+  { value: "Installation 2", label: "Installation 2" },
+  { value: "Installation 3", label: "Installation 3" },
+];
 
+const Status = [
+  { value: "Active", label: "Active" },
+  { value: "Completed", label: "Completed" },
+];
+
+const Priority = [
+  { value: "High", label: "High" },
+  { value: "Medium", label: "Medium" },
+  { value: "Low", label: "Low" },
+];
 class DealerRegister extends Component {
   initialState = {
     dates: "",
@@ -47,6 +52,7 @@ class DealerRegister extends Component {
     remarksUser: "",
   };
   state = this.initialState;
+
   handleChange = (e) => {
     const { name, value } = e.target;
     this.setState({
@@ -68,11 +74,11 @@ class DealerRegister extends Component {
   };
 
   validate = () => {
-    let name = this.state.companyName;
+    let name = this.state.customerId;
     let errors = {};
     let isValid = true;
 
-    if (!this.state.companyName) {
+    if (!this.state.customerId) {
       isValid = false;
       errors["name"] = "Enter Valid Value";
     }
@@ -82,7 +88,22 @@ class DealerRegister extends Component {
     this.setState(() => this.initialState);
   };
 
+  handleSourceChange = (newValue) => {
+    this.setState({
+      sourceOption: newValue
+    })
+  }
+
+  handleSoftwareChange = (e) => {
+    this.setState({
+      ...this.state,
+      softwareOption: e.target.value
+    })
+    console.log("Value::", this.state.softwareOption)
+  }
+
   render() {
+
     return (
       <>
         <Header />
@@ -169,7 +190,7 @@ class DealerRegister extends Component {
                       </label>
                       <PhoneInput
                         style={{
-                          marginLeft: "35px",
+                          marginLeft: "-50px",
                         }}
                         value={this.state.phone}
                         name="phone"
@@ -274,9 +295,8 @@ class DealerRegister extends Component {
             </div>
           </form>
         </div>
-        <ToastContainer transition={bounce} />
+        <ToastContainer />
         <Footer />
-        {/* Source Modal*/}
       </>
     );
   };

@@ -125,3 +125,7 @@ export const Reference = [
   { value: "Dealer", label: "Dealer" },
   { value: "Others", label: "Others" },
 ];
+const Paid = [
+  { value: "Free", label: "Free" },
+  { value: "Paid", label: "Paid" },
+];

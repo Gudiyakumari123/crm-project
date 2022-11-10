@@ -47,9 +47,15 @@ class CustomerRegister extends Component {
     e.preventDefault();
     this.validate();
 
-    if (this.state.companyName === "" || this.state.contactPerson === "" || this.state.city === "" || this.state.gstNo === "") {
-      toast.error("Please, Filled all mandatory fields !");
-    } else {
+    if (this.state.companyName === "" || this.state.city === "" || this.state.gstNo === "") {
+      toast.error("Please, Fill all mandatory fields !");
+    }
+    else if(this.state.contactPerson === "" )
+    {
+      toast.error("Please, Fill contact person name !");
+
+    }
+    else {
       toast.success("Form Submitted!");
     }
 

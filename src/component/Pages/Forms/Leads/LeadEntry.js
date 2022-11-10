@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Fragment, Component } from "react";
+import React, { Fragment, Component } from "react";
 
 // components
 import Header from "../../../../shared/Header/Header";
@@ -116,7 +116,7 @@ class LeadEntry extends Component {
     e.preventDefault();
     this.validate();
 
-    if (this.state.companyName==="" || this.state.contperson ==="" || this.state.phone==="" || this.state.email==="") {
+    if (this.state.companyName === "" || this.state.contperson === "" || this.state.phone === "" || this.state.email === "") {
       toast.error("Please, Filled all mandatory fields !");
     } else {
       toast.success("Form Submitted!");
@@ -125,14 +125,18 @@ class LeadEntry extends Component {
     this.handleReset();
   };
 
-  validate = () => {
-    let name = this.state.customerId;
+  validate = (e) => {
+
     let errors = {};
     let isValid = true;
 
-    if (!this.state.customerId) {
+    if (!errors.companyName) {
+      errors.name = "Enter Valid Value";
       isValid = false;
-      errors["name"] = "Enter Valid Value";
+      alert("Its not working..")
+    }
+    else {
+      alert("Its working")
     }
     return isValid;
   };
@@ -155,6 +159,8 @@ class LeadEntry extends Component {
   }
 
   render() {
+
+    const { errors } = this.state;
 
     return (
       <>
@@ -205,9 +211,9 @@ class LeadEntry extends Component {
                       name="companyName"
                       value={this.state.companyName}
                       onChange={this.handleChange}
-
                       isError
                     />
+                    <p> {this.state.errors} </p>
                   </div>
                   <div className="fields">
                     <Input
@@ -216,7 +222,6 @@ class LeadEntry extends Component {
                       name="contperson"
                       value={this.state.contperson}
                       onChange={this.handleChange}
-
                       isError
                     />
                   </div>
@@ -232,9 +237,7 @@ class LeadEntry extends Component {
                       onChange={this.handleChange}
 
                       isError
-                    // errorMsg={formErrors.phone}
                     />
-                    {/* <p className="show-errors-left"> {formErrors.phone} </p> */}
                   </div>
                   <div className="fields">
                     <Input
@@ -243,11 +246,7 @@ class LeadEntry extends Component {
                       name="altPhone"
                       value={this.state.altPhone}
                       onChange={this.handleChange}
-
-                    // isError
-                    // errorMsg={formErrors.altphone}
                     />
-                    {/* <p className="show-errors-left"> {formErrors.altphone} </p> */}
                   </div>
                 </div>
                 <Country />
@@ -258,7 +257,6 @@ class LeadEntry extends Component {
                     label="Area/City"
                     value={this.state.area}
                     onChange={this.handleChange}
-
                     style={{ width: "140%", marginLeft: "-21px" }}
                   />
                 </div>
@@ -270,7 +268,6 @@ class LeadEntry extends Component {
                     style={{ width: "140%", marginLeft: "-21px" }}
                     value={this.state.address}
                     onChange={this.handleChange}
-
                   />
                 </div>
               </div>
@@ -282,14 +279,9 @@ class LeadEntry extends Component {
                     name="email"
                     value={this.state.email}
                     onChange={this.handleChange}
-
                     isError
-                  // errorMsg={formErrors.email}
-                  //  readOnly={true}
                   />
                 </div>
-                {/* <p className="show-errors"> {formErrors.email} </p> */}
-
                 <div className="fields">
                   <Select
                     label="Source"
@@ -323,7 +315,6 @@ class LeadEntry extends Component {
                     label="Others"
                     value={this.state.other}
                     onChange={this.handleChange}
-
                   />
                 </div>
                 <div className="field__row">
@@ -376,17 +367,12 @@ class LeadEntry extends Component {
               >
                 Save
               </Button>
-              {/* <Button className="btn btn-secondary" onClick={clearForm}>
-              Clear
-            </Button> */}
               <input type="reset" value="Clear" className="btn btn-secondary" />
-
             </div>
           </form>
         </div>
         <ToastContainer />
         <Footer />
-        {/* Source Modal*/}
       </>
     );
   };
