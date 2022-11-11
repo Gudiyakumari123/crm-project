@@ -14,7 +14,13 @@ import Select from "../../../../shared/Reusable/Select";
 import TextArea from "../../../../shared/Reusable/TextArea";
 import PhoneInput from "../../../../shared/Reusable/PhoneInput";
 import { render } from "@testing-library/react";
-
+// Constants
+// import {
+//   Source,
+//   ConversionRatio,
+//   Status,
+//   Paid
+// } from "../../../../data/crm-constants";
 // const bounce = cssTransition({
 //   enter: "animate__animated animate__bounceIn",
 //   exit: "animate__animated animate__bounceOut",
@@ -234,10 +240,19 @@ class ReInstall extends Component {
     remark: "",
     dates: "",
     selectedState: "",
-    sourceOption: {}
+    sourceOption: {},
+    paid: {},
   };
   state = this.initialState;
+  handleReset = () => {
+    this.setState(() => this.initialState);
+  };
 
+  handleSourceChange = (newValue) => {
+    this.setState({
+      paid: newValue
+    })
+  }
   handleChange = (e) => {
     const { name, value } = e.target;
     this.setState({
@@ -269,9 +284,7 @@ class ReInstall extends Component {
     }
     return isValid;
   };
-  handleReset = () => {
-    this.setState(() => this.initialState);
-  };
+
   // console.log("SourceOption::", sourceOption);
 
   render() {
@@ -286,24 +299,13 @@ class ReInstall extends Component {
             </div>
             <div className="form__wrapper">
               <div className="form__left">
-                {/* <div className="fields">
-                <DatePicker
-                   type="date"
-                   label="Date"
-                   name="dates"
-                  value={this.state.dates}
-                  onChange={this.handleChange}
-                  style={{ marginLeft: "-68px" }}
-                  // isError
-                />
-              </div> */}
                 <div className="fields">
                   <Input
                     type="date"
                     label="Date"
                     name="date"
-                   value={this.state.date}
-                   onChange={this.handleChange}
+                    value={this.state.date}
+                    onChange={this.handleChange}
                     style={{
                       marginLeft: "-70px"
                       , width: "100%"
@@ -318,10 +320,10 @@ class ReInstall extends Component {
                       type="text"
                       label="Cust Id"
                       name="customerId"
-                     value={this.state.customerId}
-                     onChange={this.handleChange}
+                      value={this.state.customerId}
+                      onChange={this.handleChange}
                       isError
-                      // errorMsg={formErrors.customerId}
+                    // errorMsg={formErrors.customerId}
                     />
                     {/* <p className="show-errors-left"> {formErrors.customerId} </p> */}
                   </div>
@@ -330,10 +332,10 @@ class ReInstall extends Component {
                       type="text"
                       label="Company"
                       name="companyName"
-                     value={this.state.companyName}
-                     onChange={this.handleChange}
+                      value={this.state.companyName}
+                      onChange={this.handleChange}
                       isError
-                      // errorMsg={formErrors.companyName}
+                    // errorMsg={formErrors.companyName}
                     />
                     {/* <p className="show-errors-left"> {formErrors.companyName} </p> */}
                   </div>
@@ -351,21 +353,18 @@ class ReInstall extends Component {
                       className="form-control"
                       international
                       defaultCountry="IN"
-                      // onChange={setPhone}
+                    // onChange={setPhone}
                     />
-                    {/* <p className="show-errors-left"> {formErrors.phone} </p> */}
                   </div>
                   <div className="fields">
                     <Input
                       type="text"
                       label="City"
                       name="city"
-                     value={this.state.city}
-                     onChange={this.handleChange}
+                      value={this.state.city}
+                      onChange={this.handleChange}
                       isError
-                      // errorMsg={formErrors.city}
                     />
-                    {/* <p className="show-errors-left"> {formErrors.city} </p> */}
                   </div>
                 </div>
 
@@ -383,8 +382,8 @@ class ReInstall extends Component {
                     type="text"
                     label="ReInstall"
                     name="reinstall"
-                   value={this.state.reinstall}
-                   onChange={this.handleChange}
+                    value={this.state.reinstall}
+                    onChange={this.handleChange}
                     style={{ width: "140%", marginLeft: "-21px" }}
                   />
                 </div>
@@ -395,23 +394,23 @@ class ReInstall extends Component {
                 <div className="fields">
                   <Select
                     label="Paid/Free"
-                    // options={Paid}
+                    options={Paid}
                     className="select-control source-select"
-                    // defaultValue={Paid[0]}
-                    // onChange={setPaid}
+                    defaultValue={Paid[0]}
+                    onChange={this.handleSourceChange}
                     isError
                   />
                 </div>
 
-                {/* {paid.value === "Paid" ? ( */}
+                {this.state.paid.value === "Paid" ? (
                   <>
                     <div className="field__row__three">
                       <div className="fields">
                         <Input
                           label="Total Amt"
                           name="amount"
-                         value={this.state.amount}
-                         onChange={this.handleChange}
+                          value={this.state.amount}
+                          onChange={this.handleChange}
                           isError
                           // errorMsg={formErrors.amount}
                           className=" form-control three__row"
@@ -422,9 +421,9 @@ class ReInstall extends Component {
                           label="Dis%"
                           name="discountPer"
                           placeholder="%"
-                         value={this.state.discountPer}
+                          value={this.state.discountPer}
                           // onBlur={onBlurEvent}
-                         onChange={this.handleChange}
+                          onChange={this.handleChange}
                         />
                       </div>
                       <div className="fields">
@@ -433,9 +432,9 @@ class ReInstall extends Component {
                           type="number"
                           name="discountAmt"
                           placeholder="Amt"
-                         value={this.state.discountAmt}
+                          value={this.state.discountAmt}
                           // onBlur={onBlurEvent}
-                         onChange={this.handleChange}
+                          onChange={this.handleChange}
                         />
                       </div>
                     </div>
@@ -445,8 +444,8 @@ class ReInstall extends Component {
                           label="Grs Amt."
                           type="number"
                           name="grossAmt"
-                         value={this.state.grossAmt}
-                         onChange={this.handleChange}
+                          value={this.state.grossAmt}
+                          onChange={this.handleChange}
                           readOnly={true}
                           className=" form-control three__row"
                         />
@@ -455,9 +454,9 @@ class ReInstall extends Component {
                         <Input
                           label="Tax%"
                           name="tax"
-                         value={this.state.tax}
-                         onChange={this.handleChange}
-                          // onBlur={onBlurEvent}
+                          value={this.state.tax}
+                          onChange={this.handleChange}
+                        // onBlur={onBlurEvent}
                         />
                       </div>
                       <div className="fields">
@@ -466,9 +465,9 @@ class ReInstall extends Component {
                           type="number"
                           name="totalTaxAmount"
                           placeholder="&#8377;"
-                         value={this.state.totalTaxAmount}
-                         onChange={this.handleChange}
-                          // onBlur={onBlurEvent}
+                          value={this.state.totalTaxAmount}
+                          onChange={this.handleChange}
+                        // onBlur={onBlurEvent}
                         />
                       </div>
                     </div>
@@ -478,8 +477,8 @@ class ReInstall extends Component {
                           label="Round"
                           type="number"
                           name="roundAmt"
-                         onChange={this.handleChange}
-                         value={this.state.roundAmt}
+                          onChange={this.handleChange}
+                          value={this.state.roundAmt}
                           // onBlur={onBlurEvent}
                           style={{ marginLeft: "45px" }}
                         />
@@ -489,8 +488,8 @@ class ReInstall extends Component {
                           label="NetAmt"
                           type="number"
                           name="number"
-                         value={this.state.netAmt}
-                         onChange={this.handleChange}
+                          value={this.state.netAmt}
+                          onChange={this.handleChange}
                           // onBlur={onBlurEvent}
                           readOnly={true}
                         />
@@ -504,9 +503,9 @@ class ReInstall extends Component {
                           type="number"
                           style={{ marginLeft: "42px" }}
                           name="netAmt"
-                         value={this.state.paidAmt}
-                         onChange={this.handleChange}
-                          // onBlur={onBlurEvent}
+                          value={this.state.paidAmt}
+                          onChange={this.handleChange}
+                        // onBlur={onBlurEvent}
                         />
                       </div>
                       <div className="fields">
@@ -515,9 +514,9 @@ class ReInstall extends Component {
                           type="number"
                           style={{ marginLeft: "42px" }}
                           name="balAmt"
-                         value={this.state.balAmt}
-                         onChange={this.handleChange}
-                          // onBlur={onBlurEvent}
+                          value={this.state.balAmt}
+                          onChange={this.handleChange}
+                        // onBlur={onBlurEvent}
                         />
                       </div>
                     </div>
@@ -535,15 +534,15 @@ class ReInstall extends Component {
                       </div>
                     </div>
                   </>
-                {/* ) : null} */}
+                ) : null}
 
                 <div className="fields">
                   <Input
                     type="text"
                     label="Amt"
                     name="amt"
-                   value={this.state.amt}
-                   onChange={this.handleChange}
+                    value={this.state.amt}
+                    onChange={this.handleChange}
                   />
                 </div>
                 <div className="field__row">
@@ -561,8 +560,8 @@ class ReInstall extends Component {
                       type="date"
                       label="Date"
                       name="dates"
-                     value={this.state.dates}
-                     onChange={this.handleChange}
+                      value={this.state.dates}
+                      onChange={this.handleChange}
                     />
                   </div>
                 </div>
@@ -572,8 +571,8 @@ class ReInstall extends Component {
                     label="Remarks"
                     type="text"
                     name="remark"
-                   value={this.state.remark}
-                   onChange={this.handleChange}
+                    value={this.state.remark}
+                    onChange={this.handleChange}
                     style={{ marginLeft: "15px" }}
                   />
                 </div>
@@ -593,7 +592,7 @@ class ReInstall extends Component {
                 Clear
               </Button> */}
               <input type="reset" value="Clear" className="btn btn-secondary" />
-              
+
 
             </div>
           </div>
