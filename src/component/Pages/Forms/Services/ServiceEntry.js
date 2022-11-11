@@ -6,6 +6,7 @@ import SubHeader from "../../../../shared/SubHeader/SubHeader";
 import Footer from "../../../../shared/Footer/Footer";
 import { Button } from "react-bootstrap";
 import { ToastContainer, toast, cssTransition } from "react-toastify";
+import { Joi, FormHandler, Error } from "react-form-error";
 
 // Reusable Component
 import Input from "../../../../shared/Reusable/Input";
@@ -46,7 +47,7 @@ const Status = [
   { value: "Active", label: "Active" },
   { value: "Completed", label: "Completed" },
 ];
-class ReInstall extends Component {
+class ServiceEntry extends Component {
   initialState = {
     customerId: "",
     companyName: "",
@@ -55,11 +56,18 @@ class ReInstall extends Component {
     details: "",
     date: "",
     remarks: "",
-    dates: ""
+    dates: "",
+    error: "",
   };
   state = this.initialState;
+
+  schema = {
+    error: Joi.string().required(),
+  };
+
   handleChange = (e) => {
     const { name, value } = e.target;
+
     this.setState({
       [name]: value,
     });
@@ -67,14 +75,26 @@ class ReInstall extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    this.validate();
-
-    if (this.state.customerId === "" || this.state.companyName === "" || this.state.city === "" || this.state.software === "") {
-      toast.error("Please, Filled all mandatory fields !");
-    } else {
+    // this.validate();
+    const isError = FormHandler.checkError();
+    if (!isError) {
       toast.success("Form Submitted!");
+    } else {
+      toast.error("Please, Filled all mandatory fields !");
     }
-    this.handleReset();
+
+    // if (
+    //   this.state.customerId === "" ||
+    //   this.state.companyName === "" ||
+    //   this.state.city === "" ||
+    //   this.state.software === ""
+    // ) {
+    //   toast.error("Please, Filled all mandatory fields !");
+    // } else {
+    //   toast.success("Form Submitted!");
+    // }
+
+    // this.handleReset();
   };
 
   validate = () => {
@@ -98,9 +118,7 @@ class ReInstall extends Component {
         <Header />
         <SubHeader />
         <div className="form__container">
-          <form
-            onReset={this.handleReset}
-            className="form__content">
+          <form onReset={this.handleReset} className="form__content">
             <div className="title-display">
               <div className="title"> Service Entry </div>
             </div>
@@ -114,10 +132,9 @@ class ReInstall extends Component {
                     value={this.state.date}
                     onChange={this.handleChange}
                     style={{
-                      marginLeft: "-70px"
-                      , width: "100%"
+                      marginLeft: "-70px",
+                      width: "100%",
                     }}
-
                   />
                 </div>
                 <div className="field__row">
@@ -130,6 +147,7 @@ class ReInstall extends Component {
                       onChange={this.handleChange}
                       isError
                     />
+                    <Error className="error-msg" name="name" />
                   </div>
                   <div className="fields">
                     <Input
@@ -138,7 +156,6 @@ class ReInstall extends Component {
                       name="companyName"
                       value={this.state.companyName}
                       onChange={this.handleChange}
-
                       isError
                     />
                   </div>
@@ -160,7 +177,6 @@ class ReInstall extends Component {
                         international
                         defaultCountry="IN"
                         onChange={this.handleChange}
-
                       />
                     </div>
                   </div>
@@ -197,9 +213,8 @@ class ReInstall extends Component {
                     name="software"
                     value={this.state.software}
                     onChange={this.handleChange}
-
                     isError
-                  // errorMsg={formErrors.software}
+                    // errorMsg={formErrors.software}
                   />
                   {/* <p className="show-errors-left"> {formErrors.software} </p> */}
                 </div>
@@ -226,7 +241,6 @@ class ReInstall extends Component {
                     name="details"
                     value={this.state.details}
                     onChange={this.handleChange}
-
                     style={{
                       marginLeft: "13px",
                     }}
@@ -256,12 +270,10 @@ class ReInstall extends Component {
                     name="dates"
                     value={this.state.dates}
                     onChange={this.handleChange}
-
                     style={{
-                      marginLeft: "12px"
-                      , width: "100%"
+                      marginLeft: "12px",
+                      width: "100%",
                     }}
-
                   />
                 </div>
                 <div className="fields">
@@ -283,17 +295,15 @@ class ReInstall extends Component {
               >
                 Save
               </Button>
-              <input type="reset" value="Clear"
-                className="btn btn-secondary"
-              />
-
+              <input type="reset" value="Clear" className="btn btn-secondary" />
             </div>
           </form>
         </div>
         <ToastContainer transition={bounce} />
+        <FormHandler schema={this.schema} data={{ name: this.state.name }} />
         <Footer />
       </>
     );
-  };
-};
-export default ReInstall;
+  }
+}
+export default ServiceEntry;
