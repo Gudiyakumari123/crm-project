@@ -270,7 +270,7 @@ class CustomerReceipt extends React.Component {
 
                     <input type="reset" value="Clear" className="btn btn-secondary" />
 
-                    <input type="submit" onClick={isSubmitting} value="Submit" />
+                    {/* <input type="submit" onClick={isSubmitting} value="Submit" /> */}
                   </div>
                 </form>
               )}
