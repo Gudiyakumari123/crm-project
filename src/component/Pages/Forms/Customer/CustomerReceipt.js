@@ -1,4 +1,3 @@
-
 import React, { Fragment, Component } from "react";
 
 // components
@@ -71,20 +70,22 @@ class CustomerReceipt extends React.Component {
         return errors;
 
     };
-    handleSubmit = (values, setSubmitting) => {
-        // setTimeout(() => {
-        //   alert(JSON.stringify(values, null, 2));
-        //   setSubmitting(false);
-        // }, 400);
+    handleSubmit = (e, setSubmitting, values) => {
+        setTimeout(() => {
+            //   alert(JSON.stringify(values, null, 2));
+            // if (!values > 0) {
+            //     toast.error("Form submitted");
+            // }
+            // else {
+            toast.success("Form submitted");
+            // }
+            setSubmitting(false);
+        }, 400);
+        this.handleReset();
     };
 
-    handleToast = (values) => {
-        if (!values) {
-            toast.error("Please, Filled all mandatory fields !");
-        }
-        else {
-            toast.success("Please, Filled all mandatory fields !");
-        }
+    handleReset = () => {
+        this.setState(() => this.initialState);
     }
 
     render() {
@@ -206,12 +207,12 @@ class CustomerReceipt extends React.Component {
                                                     name="paidAmt"
                                                     id="paidAmt"
                                                     onBlur={handleBlur}
+                                                    onChange={handleChange}
                                                     value={values.paidAmt}
-                                                    onChange={this.handleChange}
                                                     isError
-                                                // errorMsg={!values.paidAmt < 0}
                                                 />
-                                                <p className="error-msg">{errors.paidAmt && touched.paidAmt && errors.paidAmt}</p>
+                                                <span className="error-msg">{errors.paidAmt && touched.paidAmt && errors.paidAmt}</span>
+
                                             </div>
                                             <div className="fields">
                                                 <TextArea
@@ -236,12 +237,15 @@ class CustomerReceipt extends React.Component {
                                         >
                                             Save
                                         </Button>
-                                        <input type="reset" value="Clear" className="btn btn-secondary" />
+                                        <input type="reset" value="Clear" className="btn btn-secondary"
+                                            onClick={this.handleReset} />
                                     </div>
                                 </form>
                             )}
                         </Formik>
                         {/* </div> */}
+                        <ToastContainer />
+
                         {/* <Footer /> */}
                     </div>
                 </div>

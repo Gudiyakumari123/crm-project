@@ -62,10 +62,16 @@ class CustomerReceipt extends React.Component {
   validate = (values) => {
     const errors = {};
     if (!values.companyName) {
-      errors.companyName = "customer ID is Required";
+      errors.companyName = "company name is Required";
     }
     if (!values.contactPerson) {
-      errors.contactPerson = "Enter contactPerson";
+      errors.contactPerson = "contactPerson  is Required";
+    }
+    if (!values.city) {
+      errors.city = "city  is Required";
+    }
+    if (!values.gstNo) {
+      errors.gstNo = "gstNo  is Required";
     }
     return errors;
 
@@ -73,6 +79,9 @@ class CustomerReceipt extends React.Component {
   handleSubmit = (values, setSubmitting) => {
     setTimeout(() => {
       alert(JSON.stringify(values, null, 2));
+      toast.success("Form submitted");
+      
+      // toast.error("Please, Filled all mandatory fields !");
       setSubmitting(false);
     }, 400);
   };
@@ -147,9 +156,10 @@ class CustomerReceipt extends React.Component {
                             width: "100%",
                           }}
                           name="contactPerson"
-                          value={values.contactPerson}
-                          onChange={handleChange}
                           id="contactPerson"
+                          onBlur={handleBlur}
+                          onChange={handleChange}
+                          value={values.contactPerson}
                           isError
                         />
                         <span className="error-msg">{errors.contactPerson && touched.contactPerson && errors.contactPerson}</span>
@@ -184,14 +194,18 @@ class CustomerReceipt extends React.Component {
                           type="text"
                           label="Area/City"
                           name="city"
-                          // value={this.state.city}
-                          // onChange={this.handleChange}
+                          id="city"
+                          onBlur={handleBlur}
+                          onChange={handleChange}
+                          value={values.city}
                           isError
                           style={{
                             marginLeft: "-70px",
                             width: "100%",
                           }}
                         />
+                        <span className="error-msg">{errors.city && touched.city && errors.city}</span>
+
                       </div>
                     </div>
                     {/* Left Side End */}
@@ -202,10 +216,14 @@ class CustomerReceipt extends React.Component {
                           type="text"
                           label="Gst No"
                           name="gstNo"
-                          // value={this.state.gstNo}
-                          // onChange={this.handleChange}
+                          id="gstNo"
+                          onBlur={handleBlur}
+                          onChange={handleChange}
+                          value={values.gstNo}
                           isError
                         />
+                        <span className="error-msg">{errors.gstNo && touched.gstNo && errors.gstNo}</span>
+
                       </div>
 
                       <div className="fields">
@@ -276,6 +294,7 @@ class CustomerReceipt extends React.Component {
               )}
             </Formik>
             {/* </div> */}
+        <ToastContainer />
             <Footer />
           </div>
         </div>
