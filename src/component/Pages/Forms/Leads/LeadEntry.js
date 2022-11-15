@@ -322,30 +322,7 @@ class LeadEntry extends Component {
                       </div>
                     </div>
 
-                    {/* <div className="field__row">
-                      <div className="fields">
-                        <Input
-                        className="form-control company_style"
-                          type="number"
-                          label="phone"
-                          name="phone"
-                          // value={this.state.phone}
-                          // onChange={this.handleChange}
-
-                          isError
-                        />
-                      </div>
-                      <div className="fields">
-                        <Input
-                        className="form-control company_style"
-                          type="text"
-                          label="AltPhone"
-                          name="altPhone"
-                        // value={this.state.altPhone}
-                        // onChange={this.handleChange}
-                        />
-                      </div>
-                    </div> */}
+                    
                       <PhoneAlt />
 
                     <Country />

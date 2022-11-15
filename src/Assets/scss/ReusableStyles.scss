@@ -236,7 +236,7 @@ select {
     }
 
     .country-select1 {
-      margin-left: 30px;
+      margin-left: -5px;
       @include for-phone-only{
         margin: 0;
       }
