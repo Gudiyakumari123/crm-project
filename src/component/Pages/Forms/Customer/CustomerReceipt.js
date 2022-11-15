@@ -125,10 +125,11 @@ class CustomerReceipt extends React.Component {
                                         <div className="form__left">
                                             <div className="fields">
                                                 <Input
-                                                    style={{
-                                                        marginLeft: "-70px",
-                                                        width: "100%",
-                                                    }}
+                                                    className="form-control marginleft_70"
+                                                    // style={{
+                                                    //     marginLeft: "-70px",
+                                                    //     width: "100%",
+                                                    // }}
                                                     label="Company ID"
                                                     type="text"
                                                     id="customerId"
@@ -136,7 +137,8 @@ class CustomerReceipt extends React.Component {
                                                     onBlur={handleBlur}
                                                     onChange={handleChange}
                                                     value={values.customerId}
-                                                // isError
+                                                    isError
+                                                    errorMsg={errors.customerId}
                                                 />
                                                 <span className="error-msg">{errors.customerId && touched.customerId && errors.customerId}</span>
 
@@ -146,16 +148,18 @@ class CustomerReceipt extends React.Component {
                                                 <Input
                                                     type="text"
                                                     label="Company Name"
-                                                    style={{
-                                                        marginLeft: "-70px",
-                                                        width: "100%",
-                                                    }}
+                                                    // style={{
+                                                    //     marginLeft: "-70px",
+                                                    //     width: "100%",
+                                                    // }}
+                                                    className="form-control marginleft_70"
                                                     name="companyName"
                                                     id="companyName"
                                                     onBlur={handleBlur}
                                                     onChange={handleChange}
                                                     value={values.companyName}
                                                     isError
+                                                    errorMsg={errors.companyName}
                                                 />
                                                 <span className="error-msg">{errors.companyName && touched.companyName && errors.companyName}</span>
 
@@ -166,12 +170,9 @@ class CustomerReceipt extends React.Component {
                                                         Phone
                                                     </label>
                                                     <PhoneInput
-                                                        style={{
-                                                            marginLeft: "-70px",
-                                                        }}
+                                                        className="form-control marginleft_70"
                                                         // value={phone}
                                                         name="mobileNumber"
-                                                        className="form-control"
                                                         international
                                                         defaultCountry="IN"
                                                     // onChange={setPhone}
@@ -184,7 +185,7 @@ class CustomerReceipt extends React.Component {
                                                     placeholder="Select Installation No."
                                                     options={BillNo}
                                                     defaultValue={BillNo[0]}
-                                                    className="select-control bill-select department-select"
+                                                    className="select-control Install-select"
                                                 />
                                             </div>
                                         </div>
@@ -210,6 +211,7 @@ class CustomerReceipt extends React.Component {
                                                     onChange={handleChange}
                                                     value={values.paidAmt}
                                                     isError
+                                                    errorMsg={errors.paidAmt}
                                                 />
                                                 <span className="error-msg">{errors.paidAmt && touched.paidAmt && errors.paidAmt}</span>
 
@@ -218,13 +220,12 @@ class CustomerReceipt extends React.Component {
                                                 <TextArea
                                                     type="text"
                                                     label="Remarks"
-                                                    rows="2"
+                                                    // rows="2"
                                                     name="remarks"
                                                     // value={this.state.remarks}
                                                     onChange={this.handleChange}
-                                                    style={{
-                                                        marginLeft: "13px",
-                                                    }}
+                                                    className="form-control right_13"
+                                                    
                                                 />
                                             </div>
                                         </div>

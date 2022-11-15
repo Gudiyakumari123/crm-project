@@ -212,6 +212,9 @@ class ReInstall extends Component {
     if (!values.city) {
       errors.city = "Enter city";
     }
+    if (!values.Phone) {
+      errors.Phone = "Enter Phone";
+    }
     return errors;
 
   };
@@ -269,10 +272,7 @@ class ReInstall extends Component {
                         name="date"
                         // value={this.state.date}
                         // onChange={this.handleChange}
-                        style={{
-                          marginLeft: "-70px"
-                          , width: "100%"
-                        }}
+                        className="form-control marginleft_70"
 
                       />
                     </div>
@@ -280,6 +280,7 @@ class ReInstall extends Component {
                     <div className="field__row">
                       <div className="fields">
                         <Input
+                        className="form-control cust_id_style"
                           type="text"
                           label="Cust Id"
                           name="customerId"
@@ -288,6 +289,7 @@ class ReInstall extends Component {
                           onChange={handleChange}
                           value={values.customerId}
                           isError
+                          errorMsg={errors.customerId}
                         />
                         <span className="error-msg">{errors.customerId && touched.customerId && errors.customerId}</span>
 
@@ -302,6 +304,7 @@ class ReInstall extends Component {
                           onChange={handleChange}
                           value={values.companyName}
                           isError
+                          errorMsg={errors.companyName}
                         />
                         <span className="error-msg">{errors.companyName && touched.companyName && errors.companyName}</span>
 
@@ -309,19 +312,20 @@ class ReInstall extends Component {
                     </div>
 
                     <div className="field__row">
-                      <div className="fields">
-                        <PhoneInput
+                    <div className="fields">
+                        <Input
+                        className="form-control cust_id_style"
+                          type="text"
                           label="Phone"
-                          style={{
-                            width: "208px",
-                          }}
-                          // value={phone}
-                          name="phone"
-                          className="form-control"
-                          international
-                          defaultCountry="IN"
-                        // onChange={setPhone}
+                          name="Phone"
+                          id="Phone"
+                          onBlur={handleBlur}
+                          onChange={handleChange}
+                          value={values.Phone}
+                          isError
+                          errorMsg={errors.Phone}
                         />
+                        <span className="error-msg">{errors.Phone && touched.Phone && errors.Phone}</span>
                       </div>
                       <div className="fields">
                         <Input
@@ -333,6 +337,7 @@ class ReInstall extends Component {
                           onChange={handleChange}
                           value={values.city}
                           isError
+                          errorMsg={errors.city}
                         />
                         <span className="error-msg">{errors.city && touched.city && errors.city}</span>
 
@@ -355,7 +360,8 @@ class ReInstall extends Component {
                         name="reinstall"
                         // value={this.state.reinstall}
                         // onChange={this.handleChange}
-                        style={{ width: "140%", marginLeft: "-21px" }}
+                        className="form-control marginleft_70"
+                        // style={{ width: "140%", marginLeft: "-21px" }}
                       />
                     </div>
                   </div>
@@ -544,7 +550,9 @@ class ReInstall extends Component {
                         name="remark"
                         // value={this.state.remark}
                         // onChange={this.handleChange}
-                        style={{ marginLeft: "15px" }}
+                        // style={{ marginLeft: "15px" }}
+                        className="form-control right_13"
+
                       />
                     </div>
                   </div>

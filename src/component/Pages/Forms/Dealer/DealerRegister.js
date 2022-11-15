@@ -8,6 +8,8 @@ import { Button } from "react-bootstrap";
 import { ToastContainer, toast } from 'react-toastify';
 import CountryState from "../../../../shared/Reusable/CountryState";
 import { Formik } from "formik";
+import PhoneAlt from "../../../../shared/Reusable/Phone&Alt";
+
 
 // Reusable Component
 import Input from "../../../../shared/Reusable/Input";
@@ -92,15 +94,6 @@ class DealerRegister extends Component {
       setSubmitting(false);
     }, 400);
   };
-
-  handleToast = (values) => {
-    if (!values) {
-      toast.error("Please, Filled all mandatory fields !");
-    }
-    else {
-      toast.success("Please, Filled all mandatory fields !");
-    }
-  }
   handleReset = () => {
     this.setState(() => this.initialState);
   };
@@ -143,9 +136,9 @@ class DealerRegister extends Component {
                         type="date"
                         label="Date"
                         name="dates"
-                        // value={this.state.dates}
-                        // onChange={this.handleChange}
-                        style={{ marginLeft: "-70px", width: "100%" }}
+                        className="form-control marginleft_70"
+                      // value={this.state.dates}
+                      // onChange={this.handleChange}
                       />
                     </div>
 
@@ -163,16 +156,14 @@ class DealerRegister extends Component {
                       <Input
                         type="text"
                         label="Company"
-                        style={{
-                          marginLeft: "-70px",
-                          width: "100%",
-                        }}
+                        className="form-control marginleft_70"
                         name="companyName"
                         id="companyName"
                         onBlur={handleBlur}
                         onChange={handleChange}
                         value={values.companyName}
                         isError
+                        errorMsg={errors.companyName}
                       />
                       <span className="error-msg">{errors.companyName && touched.companyName && errors.companyName}</span>
 
@@ -182,16 +173,14 @@ class DealerRegister extends Component {
                       <Input
                         type="text"
                         label="ContPerson"
-                        style={{
-                          marginLeft: "-70px",
-                          width: "100%",
-                        }}
+                        className="form-control marginleft_70"
                         name="contactPerson"
                         id="contactPerson"
                         onBlur={handleBlur}
                         onChange={handleChange}
                         value={values.contactPerson}
                         isError
+                        errorMsg={errors.contactPerson}
                       />
                       <span className="error-msg">{errors.contactPerson && touched.contactPerson && errors.contactPerson}</span>
 
@@ -200,51 +189,22 @@ class DealerRegister extends Component {
                       <Input
                         type="text"
                         label="Nature"
-                        style={{
-                          marginLeft: "-70px",
-                          width: "100%",
-                        }}
+                        className="form-control marginleft_70"
+
                         name="nature"
                         id="nature"
                         onBlur={handleBlur}
                         onChange={handleChange}
                         value={values.nature}
                         isError
+                        errorMsg={errors.nature}
                       />
                       <span className="error-msg">{errors.nature && touched.nature && errors.nature}</span>
 
 
                     </div>
                     <CountryState />
-                    <div className="field__row">
-                      <div className="fields">
-                        <div className="input-fields">
-                          <label htmlFor="" className="label">
-                            Phone
-                          </label>
-                          <PhoneInput
-                            style={{
-                              marginLeft: "-50px",
-                            }}
-                            // value={this.state.phone}
-                            name="phone"
-                            className="form-control"
-                            international
-                            defaultCountry="IN"
-                          />
-                        </div>
-                      </div>
-                      <div className="fields">
-                        <Input
-                          type="text"
-                          label="AltCont"
-                          name="altContact"
-                          // value={this.state.altContact}
-                          // onChange={this.handleChange}
-                          isError
-                        />
-                      </div>
-                    </div>
+                    <PhoneAlt />
                   </div>
                   {/* Left Side End */}
 
@@ -260,6 +220,7 @@ class DealerRegister extends Component {
                         onChange={handleChange}
                         value={values.city}
                         isError
+                        errorMsg={errors.city}
                       />
                       <span className="error-msg">{errors.city && touched.city && errors.city}</span>
 
@@ -275,6 +236,7 @@ class DealerRegister extends Component {
                         onChange={handleChange}
                         value={values.email}
                         isError
+                        errorMsg={errors.email}
                       />
                       <span className="error-msg">{errors.email && touched.email && errors.email}</span>
 
@@ -289,20 +251,17 @@ class DealerRegister extends Component {
                         placeholder="Remarks by Dealer"
                         // value={this.state.remarksDealer}
                         // onChange={this.handleChange}
-                        style={{
-                          marginLeft: "13px",
-                        }}
+                        className="form-control right_13"
+
                       />
                     </div>
                     <div className="fields">
                       <TextArea
                         type="text"
                         label="Address"
-                        style={{
-                          marginLeft: "10px",
-                          width: "100%",
-                        }}
                         name="address"
+                        className="form-control right_13"
+
                         // value={this.state.address}
                         // onChange={this.handleChange}
                         isError
@@ -318,9 +277,8 @@ class DealerRegister extends Component {
                         placeholder="Remarks by remarksUser"
                         // value={this.state.remarksUser}
                         // onChange={this.handleChange}
-                        style={{
-                          marginLeft: "13px",
-                        }}
+
+                        className="form-control right_13"
                       />
                     </div>
                   </div>

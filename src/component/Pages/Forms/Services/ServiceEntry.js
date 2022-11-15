@@ -5,6 +5,7 @@ import SubHeader from "../../../../shared/SubHeader/SubHeader";
 import Footer from "../../../../shared/Footer/Footer";
 import { Button } from "react-bootstrap";
 import { ToastContainer, toast } from 'react-toastify';
+import PhoneAlt from "../../../../shared/Reusable/Phone&Alt";
 
 // Reusable Component
 import Input from "../../../../shared/Reusable/Input";
@@ -134,16 +135,14 @@ class ServiceEntry extends Component {
                         name="date"
                         // value={values.date}
                         // onChange={this.handleChange}
-                        style={{
-                          marginLeft: "-70px"
-                          , width: "100%"
-                        }}
+                        className="form-control marginleft_70"
 
                       />
                     </div>
                     <div className="field__row">
                       <div className="fields">
                         <Input
+                        className="form-control cust_id_style"
                           type="text"
                           label="Cust Id"
                           name="customerId"
@@ -166,47 +165,15 @@ class ServiceEntry extends Component {
                           onChange={handleChange}
                           value={values.companyName}
                           isError
+                          errorMsg={errors.companyName}
                         />
                         <span className="error-msg">{errors.companyName && touched.companyName && errors.companyName}</span>
 
                       </div>
                     </div>
 
-                    <div className="field__row">
-                      <div className="fields">
-                        <div className="input-fields">
-                          <label htmlFor="" className="label">
-                            Phone
-                          </label>
-                          <PhoneInput
-                            style={{
-                              marginLeft: "-45px",
-                            }}
-                            // value={this.state.phone}
-                            name="phone"
-                            className="form-control"
-                            international
-                            defaultCountry="IN"
-                          // onChange={this.handleChange}
-
-                          />
-                        </div>
-                      </div>
-                      <div className="fields">
-                        <Input
-                          type="text"
-                          label="City"
-                          name="city"
-                          id="city"
-                          onBlur={handleBlur}
-                          onChange={handleChange}
-                          value={values.city}
-                          isError
-                        />
-                        <span className="error-msg">{errors.city && touched.city && errors.city}</span>
-
-                      </div>
-                    </div>
+                    <PhoneAlt />
+                    
 
                     <div className="fields">
                       <Select
@@ -214,7 +181,7 @@ class ServiceEntry extends Component {
                         placeholder="Select Installation No."
                         options={Installation}
                         defaultValue={Installation[0]}
-                        className="select-control bill-select department-select"
+                        className="select-control department-select"
                         isError
                       />
                     </div>
@@ -222,16 +189,14 @@ class ServiceEntry extends Component {
                       <Input
                         type="text"
                         label="Software"
-                        style={{
-                          marginLeft: "-70px",
-                          width: "100%",
-                        }}
+                        className="form-control marginleft_70"
                         name="software"
                         id="software"
                         onBlur={handleBlur}
                         onChange={handleChange}
                         value={values.software}
                         isError
+                        errorMsg={errors.software}
                       />
                       <span className="error-msg">{errors.software && touched.software && errors.software}</span>
 
@@ -243,7 +208,7 @@ class ServiceEntry extends Component {
                         placeholder="Select Category No."
                         options={Category}
                         defaultValue={Category[0]}
-                        className="select-control bill-select department-select"
+                        className="select-control department-select"
                         isError
                       />
                     </div>
@@ -260,9 +225,8 @@ class ServiceEntry extends Component {
                         // value={this.state.details}
                         // onChange={this.handleChange}
 
-                        style={{
-                          marginLeft: "13px",
-                        }}
+                        className="form-control right_13"
+
                       />
                     </div>
 
@@ -290,17 +254,16 @@ class ServiceEntry extends Component {
                         // value={this.state.dates}
                         // onChange={this.handleChange}
 
-                        style={{
-                          marginLeft: "12px"
-                          , width: "100%"
-                        }}
+                        className="form-control date-style"
+
+                       
 
                       />
                     </div>
                     <div className="fields">
                       <TextArea
                         label="Remarks"
-                        style={{ marginLeft: "15px" }}
+                        className="form-control right_13"
                         name="remarks"
                       // value={this.state.remarks}
                       // onChange={this.handleChange}

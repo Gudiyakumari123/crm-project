@@ -12,12 +12,8 @@ const Try = ({ isError }) => {
             Phone
           </label>
           <PhoneInput
-            style={{
-              marginLeft: "35px",
-              marginButtom: "5px",
-            }}
             name="phone"
-            className="form-control"
+            className="form-control phone-style"
             international
             defaultCountry="IN"
             onChange={console.log}
@@ -29,12 +25,9 @@ const Try = ({ isError }) => {
             AltPhone
           </label>
           <PhoneInput
-            style={{
-              marginLeft: "35px",
-              marginButtom: "5px",
-            }}
+            className="form-control altphone-style"
+           
             name="phone"
-            className="form-control"
             international
             defaultCountry="IN"
             onChange={console.log}

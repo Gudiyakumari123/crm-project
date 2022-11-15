@@ -188,19 +188,19 @@ class LeadEntry extends Component {
     const errors = {};
 
     if (!values.companyName) {
-      errors.companyName = "Enter companyName";
+      errors.companyName = " Enter companyName"
     }
 
     if (!values.contperson) {
       errors.contperson = "Enter contperson";
     }
 
-    // if (!values.city) {
-    //   errors.city = "Enter city";
-    // // }
-    // if (!values.email) {
-    //   errors.email = "Enter email";
-    // }
+    if (!values.city) {
+      errors.city = "Enter city";
+    }
+    if (!values.email) {
+      errors.email = "Enter email";
+    }
     return errors;
 
   };
@@ -288,6 +288,7 @@ class LeadEntry extends Component {
                     <div className="field__row">
                       <div className="fields">
                         <Input
+                        className="form-control cust_id_style"
                           type="text"
                           label="Company"
                           name="companyName"
@@ -296,6 +297,8 @@ class LeadEntry extends Component {
                           onChange={handleChange}
                           value={values.companyName}
                           isError
+                          errorMsg={errors.companyName}
+
                         />
                         <span className="error-msg">{errors.companyName && touched.companyName && errors.companyName}</span>
 
@@ -310,6 +313,7 @@ class LeadEntry extends Component {
                           onChange={handleChange}
                           value={values.contperson}
                           isError
+                          errorMsg={errors.contperson}
                         />
                         <span className="error-msg">{errors.contperson && touched.contperson && errors.contperson}</span>
 
@@ -319,6 +323,7 @@ class LeadEntry extends Component {
                     <div className="field__row">
                       <div className="fields">
                         <Input
+                        className="form-control cust_id_style"
                           type="number"
                           label="phone"
                           name="phone"
@@ -341,17 +346,20 @@ class LeadEntry extends Component {
                     <Country />
                     <div className="fields">
                       <Input
-                        style={{ width: "140%", marginLeft: "-21px" }}
+                        // className="form-control left__21"
+                        // style={{ width: "140%", marginLeft: "-21px" }}
+                        className="form-control city_left_style"
                         type="text"
                         name="area"
                         label="Area/City"
                         id="city"
-                        // onBlur={handleBlur}
-                        // onChange={handleChange}
-                        // value={values.city}
+                        onBlur={handleBlur}
+                        onChange={handleChange}
+                        value={values.city}
                         isError
+                        errorMsg={errors.city}
                       />
-                      {/* <span className="error-msg">{errors.city && touched.city && errors.city}</span> */}
+                      <span className="error-msg">{errors.city && touched.city && errors.city}</span>
 
                     </div>
                     <div className="fields">
@@ -359,7 +367,8 @@ class LeadEntry extends Component {
                         type="text"
                         label="Address"
                         name="address"
-                        style={{ width: "140%", marginLeft: "-21px" }}
+                        className="form-control city_left_style"
+                        // style={{ width: "140%", marginLeft: "-21px" }}
                       // value={this.state.address}
                       // onChange={this.handleChange}
                       />
@@ -376,6 +385,7 @@ class LeadEntry extends Component {
                         onChange={handleChange}
                         value={values.email}
                         isError
+                        errorMsg={errors.email}
                       />
                       <span className="error-msg">{errors.email && touched.email && errors.email}</span>
 
@@ -397,7 +407,7 @@ class LeadEntry extends Component {
                               label="DealerId"
                               type="number"
                               name="dealerId"
-                              style={{ marginLeft: "42px" }}
+                             
                             />
                           </div>
                           <div className="fields">
@@ -419,7 +429,7 @@ class LeadEntry extends Component {
                       <div className="fields">
                         <Select
                           options={Status}
-                          className="select-control status-select"
+                          className="select-control status-select-right"
                           label="Status"
                           defaultValue={Status[0]}
                         />
@@ -449,8 +459,8 @@ class LeadEntry extends Component {
                         name="remark"
                         // value={this.state.remark}
                         // onChange={this.handleChange}
+                        className="form-control right_13"
 
-                        style={{ marginLeft: "15px" }}
                       />
                     </div>
                   </div>

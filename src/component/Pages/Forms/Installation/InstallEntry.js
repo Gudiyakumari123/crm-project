@@ -273,11 +273,11 @@ class InstallEntry extends Component {
                         name="dates"
                         // value={this.state.dates}
                         // onChange={this.handleChange}
-                        style={{ marginLeft: "-70px", width: "100%" }}
+                        className="form-control marginleft_70"
                       />
                     </div>
                     <div className="fields">
-                      <div className="select">
+                      <div className="select ">
                         <label htmlFor="" className="label">
                           Category
                         </label>
@@ -286,6 +286,7 @@ class InstallEntry extends Component {
                             return <option>{values}</option>;
                           })}
                         </select>
+                        
                       </div>
                     </div>
 
@@ -309,12 +310,13 @@ class InstallEntry extends Component {
                         type="text"
                         label="Version"
                         name="version"
-                        style={{ marginLeft: "-70px", width: "100%" }}
+                        className="form-control marginleft_70"
                         id="version"
                         onBlur={handleBlur}
                         onChange={handleChange}
                         value={values.version}
                         isError
+                        errorMsg={errors.version}
                       />
                       <span className="error-msg">{errors.version && touched.version && errors.version}</span>
 
@@ -323,6 +325,7 @@ class InstallEntry extends Component {
                     <div className="field__row">
                       <div className="fields">
                         <Input
+                        className="form-control cust_id_style"
                           type="text"
                           label="Cust Id"
                           name="customerId"
@@ -331,6 +334,8 @@ class InstallEntry extends Component {
                           onChange={handleChange}
                           value={values.customerId}
                           isError
+                          errorMsg={errors.customerId}
+
                         />
                         <span className="error-msg">{errors.customerId && touched.customerId && errors.customerId}</span>
 
@@ -345,6 +350,7 @@ class InstallEntry extends Component {
                           onChange={handleChange}
                           value={values.companyName}
                           isError
+                          errorMsg={errors.companyName}
                         />
                         <span className="error-msg">{errors.companyName && touched.companyName && errors.companyName}</span>
 
@@ -353,6 +359,7 @@ class InstallEntry extends Component {
                     <div className="field__row">
                       <div className="fields">
                         <Input
+                        className="form-control cust_id_style"
                           type="number"
                           label="phone"
                           name="phone"
@@ -371,6 +378,7 @@ class InstallEntry extends Component {
                           onChange={handleChange}
                           value={values.city}
                           isError
+                          errorMsg={errors.city}
                         />
                         <span className="error-msg">{errors.city && touched.city && errors.city}</span>
 
@@ -387,6 +395,8 @@ class InstallEntry extends Component {
                           onChange={handleChange}
                           value={values.amount}
                           isError
+                          errorMsg={errors.amount}
+
                           className=" form-control three__row"
 
                         />
@@ -400,6 +410,8 @@ class InstallEntry extends Component {
                           name="discountPer"
                           placeholder="%"
                           id="discountPer"
+                          className=" form-control three__row"
+
                         />
 
                       </div>
@@ -409,6 +421,7 @@ class InstallEntry extends Component {
                           type="number"
                           name="discountAmt"
                           placeholder="Amt"
+                          className=" form-control three__row"
                         />
 
                       </div>
@@ -431,10 +444,10 @@ class InstallEntry extends Component {
                           label="GST% "
                           type="number"
                           name="gst"
-                          className="form-control"
                           // onBlur={onBlurEvent}
                           // value={this.state.gst}
                           // onChange={this.handleChange}
+                          className=" form-control three__row"
                         />
                       </div>
                       <div className="fields">
@@ -447,6 +460,7 @@ class InstallEntry extends Component {
                           // onBlur={onBlurEvent}
                           // onChange={this.handleChange}
                           readOnly={true}
+                          className=" form-control three__row"
                         />
                       </div>
                     </div>
@@ -473,6 +487,7 @@ class InstallEntry extends Component {
                           // onChange={this.handleChange}
                           // onBlur={onBlurEvent}
                           readOnly={true}
+                          className=" form-control three__row"
                         />
                       </div>
                       <div className="fields">
@@ -483,6 +498,8 @@ class InstallEntry extends Component {
                           // value={this.state.paidAmt}
                           // onChange={this.handleChange}
                           // onBlur={onBlurEvent}
+                          className=" form-control three__row"
+
                         />
                       </div>
                     </div>
@@ -498,9 +515,8 @@ class InstallEntry extends Component {
                         name="details"
                         // value={this.state.details}
                         // onChange={this.handleChange}
-                        style={{
-                          marginLeft: "13px",
-                        }}
+                        className="form-control right_13"
+
                       />
                     </div>
 
@@ -528,14 +544,14 @@ class InstallEntry extends Component {
                         name="date"
                         // value={this.state.date}
                         // onChange={this.handleChange}
-                        style={{ marginLeft: "12px", width: "100%" }}
+                        className="form-control date-style"
                       />
                     </div>
                     <div className="fields">
                       <TextArea
                         label="Remarks"
-                        style={{ marginLeft: "10px" }}
                         name="remarks"
+                        className="form-control right_13"
                         // value={this.state.remarks}
                         // onChange={this.handleChange}
                       />

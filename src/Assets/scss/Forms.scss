@@ -42,7 +42,7 @@
     }
     .phone-only {
       @include for-phone-only {
-        // background-color: red;
+        background-color: red;
         flex-direction: column;
         gap: 10px !important;
       }
