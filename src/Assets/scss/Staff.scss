@@ -179,32 +179,52 @@
       .report-select {
         width: 100%;
         margin-left: 10px;
+
+        @include for-phone-only{
+          margin: 0;
+        }
       }
 
       .employee-select {
         width: 100%;
+        @include for-phone-only{
+          margin: 0;
+        }
       }
 
       .lead-select {
         margin-left: 90%;
+        @include for-phone-only{
+          margin: 0;
+        }
       }
 
       .customer-country {
         margin-left: -50px;
+        @include for-phone-only{
+          margin: 0;
+        }
       }
 
       .dealer-select {
         margin-left: 50px;
+        @include for-phone-only{
+          margin: 0;
+        }
       }
 
       .education-select {
         width: 100%;
         margin-left: 12px;
+        @include for-phone-only{
+          margin: 0;
+        }
       }
 
       .department-select {
         margin-left: -71px;
         width: 100%;
+        
 
         @include for-phone-only {
           margin: 0;
@@ -214,6 +234,10 @@
       .designation-select {
         width: 100%;
         margin-left: -71px;
+
+        @include for-phone-only{
+          margin: 0;
+        }
       }
 
       // .status-select {
@@ -224,45 +248,82 @@
       .report-select {
         width: 100%;
         margin-left: -71px;
+
+        @include for-phone-only{
+          margin: 0;
+        }
       }
 
       .employee-select {
         width: 100%;
         margin-left: -71px;
+
+        @include for-phone-only{
+          margin: 0;
+        }
       }
 
       .gender-select {
         width: 55%;
         margin-left: -5px;
+
+        @include for-phone-only{
+          width:100%;
+          margin: 0;
+        }
       }
 
       .marital-select {
         width: 100%;
         // margin-left: -4px;
+
+        @include for-phone-only{
+          margin: 0;
+        }
       }
 
       .blood-select {
         width: 55%;
         margin-left: -5px;
+
+        @include for-phone-only{
+          margin: 0;
+          width: 100%;
+        }
       }
 
       .religion-select {
         width: 55%;
         margin-left: -5px;
+
+        @include for-phone-only{
+          margin: 0;
+        }
       }
 
       .nation-select {
         width: 65%;
         margin-left: -5px;
+
+        @include for-phone-only{
+          margin: 0;
+        }
       }
 
       .textarea-select {
         margin-left: 20px;
+        @include for-phone-only{
+          margin: 0;
+        }
       }
 
       .education-select {
         width: 100%;
         margin-left: 10px;
+
+        @include for-phone-only{
+          margin: 0;
+        }
       }
 
       .status-select {
@@ -380,7 +441,6 @@
           margin: 0;
         }
       }
-
 
       //staff payroll scss code
       .last-section {
