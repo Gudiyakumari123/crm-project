@@ -122,7 +122,11 @@ class Staff extends Component {
               <div className="form__left">
                 <div className="field__row">
                   <div className="fields">
-                    <Input type="text" label="Entry No" readOnly="true" />
+                    <Input 
+                        className="form-control staff_details_style"
+                    type="text"
+                     label="Entry No"
+                      readOnly="true" />
                   </div>
                   <div className="fields">
                     <Input
@@ -164,7 +168,11 @@ class Staff extends Component {
                 </div>
                 <div className="field__row">
                   <div className="fields">
-                    <Input type="text" label="Employee Id" readOnly="true" />
+                    <Input
+                      className="form-control staff_details_style"
+                    type="text" 
+                    label="Employee Id"
+                     readOnly="true" />
                   </div>
                   <div className="fields">
                     <Input type="date" label="Date Of Join" />
@@ -174,15 +182,18 @@ class Staff extends Component {
                   <Input
                     type="text"
                     label="Staff Name"
-                    style={{
-                      marginLeft: "-70px",
-                      width: "100%",
-                    }}
+                    // style={{
+                    //   marginLeft: "-70px",
+                    //   width: "100%",
+                    // }}
+                    className="form-control marginleft_70"
+
                   />
                 </div>
                 <div className="field__row">
                   <div className="fields">
                     <Input
+                        className="form-control staff_details_style"
                       type="text"
                       label="First Name"
                       onChange={this.handleFirstName.bind(this)}
@@ -200,10 +211,8 @@ class Staff extends Component {
                   <Input
                     type="text"
                     label="Father Name"
-                    style={{
-                      marginLeft: "-71px",
-                      width: "100%",
-                    }}
+                    className="form-control marginleft_70"
+
                   />
                 </div>
                 <div className="field__row">
@@ -252,15 +261,17 @@ class Staff extends Component {
                   <TextArea
                     type="text"
                     label="Address"
-                    style={{ marginLeft: "-70px", marginButtom: "5px" }}
+                    className="form-control marginleft_70"
+
                   />
                 </div>
                 <div className="field__row">
                   <div className="fields">
                     <Input
+                        className="form-control staff_details_style"
                       type="text"
                       label="Area/City"
-                      style={{ marginButtom: "5px" }}
+                   
                     />
                   </div>
                   <div className="fields">

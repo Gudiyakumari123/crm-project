@@ -62,10 +62,16 @@ class CustomerReceipt extends React.Component {
   validate = (values) => {
     const errors = {};
     if (!values.companyName) {
-      errors.companyName = "customer ID is Required";
+      errors.companyName = "company name is Required";
     }
     if (!values.contactPerson) {
-      errors.contactPerson = "Enter contactPerson";
+      errors.contactPerson = "contactPerson  is Required";
+    }
+    if (!values.city) {
+      errors.city = "city  is Required";
+    }
+    if (!values.gstNo) {
+      errors.gstNo = "gstNo  is Required";
     }
     return errors;
 
@@ -73,19 +79,12 @@ class CustomerReceipt extends React.Component {
   handleSubmit = (values, setSubmitting) => {
     setTimeout(() => {
       alert(JSON.stringify(values, null, 2));
+      toast.success("Form submitted");
+      
+      // toast.error("Please, Filled all mandatory fields !");
       setSubmitting(false);
     }, 400);
   };
-
-  handleToast = (values) => {
-    if (!values) {
-      toast.error("Please, Filled all mandatory fields !");
-    }
-    else {
-      toast.success("Please, Filled all mandatory fields !");
-    }
-  }
-
   render() {
     return (
       <>
@@ -124,16 +123,18 @@ class CustomerReceipt extends React.Component {
                         <Input
                           type="text"
                           label="Company"
-                          style={{
-                            marginLeft: "-70px",
-                            width: "100%",
-                          }}
+                          // style={{
+                          //   marginLeft: "-70px",
+                          //   width: "100%",
+                          // }}
+                          className="form-control marginleft_70"
                           id="companyName"
                           name="companyName"
                           onChange={handleChange}
                           onBlur={handleBlur}
-                          // isError
                           value={values.companyName}
+                          isError
+                          errorMsg={errors.companyName}
                         />
                         <span className="error-msg">{errors.companyName && touched.companyName && errors.companyName}</span>
 
@@ -142,15 +143,19 @@ class CustomerReceipt extends React.Component {
                         <Input
                           type="text"
                           label="ContPerson"
-                          style={{
-                            marginLeft: "-70px",
-                            width: "100%",
-                          }}
+                          // style={{
+                          //   marginLeft: "-70px",
+                          //   width: "100%",
+                          // }}
+                          className="form-control marginleft_70"
                           name="contactPerson"
-                          value={values.contactPerson}
-                          onChange={handleChange}
                           id="contactPerson"
+                          onBlur={handleBlur}
+                          onChange={handleChange}
+                          value={values.contactPerson}
                           isError
+                          errorMsg={errors.contactPerson}
+
                         />
                         <span className="error-msg">{errors.contactPerson && touched.contactPerson && errors.contactPerson}</span>
                       </div>
@@ -161,17 +166,18 @@ class CustomerReceipt extends React.Component {
                           placeholder="Select Category No."
                           options={Category}
                           defaultValue={Category[0]}
-                          className="select-control bill-select department-select"
+                          className="select-control department-select"
                         />
                       </div>
                       <div className="fields">
                         <TextArea
                           type="text"
                           label="Address"
-                          style={{
-                            marginLeft: "-70px",
-                            width: "100%",
-                          }}
+                          // style={{
+                          //   marginLeft: "-70px",
+                          //   width: "100%",
+                          // }}
+                          className="form-control marginleft_70"
                           name="address"
                           // value={this.state.address}
                           // onChange={this.handleChange}
@@ -184,14 +190,20 @@ class CustomerReceipt extends React.Component {
                           type="text"
                           label="Area/City"
                           name="city"
-                          // value={this.state.city}
-                          // onChange={this.handleChange}
+                          id="city"
+                          onBlur={handleBlur}
+                          onChange={handleChange}
+                          value={values.city}
                           isError
-                          style={{
-                            marginLeft: "-70px",
-                            width: "100%",
-                          }}
+                          // style={{
+                          //   marginLeft: "-70px",
+                          //   width: "100%",
+                          // }}
+                          className="form-control marginleft_70"
+                          errorMsg={errors.city}
                         />
+                        <span className="error-msg">{errors.city && touched.city && errors.city}</span>
+
                       </div>
                     </div>
                     {/* Left Side End */}
@@ -202,10 +214,15 @@ class CustomerReceipt extends React.Component {
                           type="text"
                           label="Gst No"
                           name="gstNo"
-                          // value={this.state.gstNo}
-                          // onChange={this.handleChange}
+                          id="gstNo"
+                          onBlur={handleBlur}
+                          onChange={handleChange}
+                          value={values.gstNo}
                           isError
+                          errorMsg={errors.gstNo}
                         />
+                        <span className="error-msg">{errors.gstNo && touched.gstNo && errors.gstNo}</span>
+
                       </div>
 
                       <div className="fields">
@@ -227,9 +244,10 @@ class CustomerReceipt extends React.Component {
                           placeholder="Remarks by Customer"
                           // value={this.state.remarksCustomer}
                           // onChange={this.handleChange}
-                          style={{
-                            marginLeft: "13px",
-                          }}
+                          // style={{
+                          //   marginLeft: "13px",
+                          // }}
+                          className="form-control right_13"
                         />
                       </div>
 
@@ -252,9 +270,11 @@ class CustomerReceipt extends React.Component {
                           placeholder="Remarks by User"
                           // value={this.state.remarksUser}
                           // onChange={this.handleChange}
-                          style={{
-                            marginLeft: "13px",
-                          }}
+                          // style={{
+                          //   marginLeft: "13px",
+                          // }}
+                          className="form-control right_13"
+
                         />
                       </div>
                     </div>
@@ -276,6 +296,7 @@ class CustomerReceipt extends React.Component {
               )}
             </Formik>
             {/* </div> */}
+        <ToastContainer />
             <Footer />
           </div>
         </div>

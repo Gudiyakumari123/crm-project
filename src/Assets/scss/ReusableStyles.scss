@@ -10,6 +10,12 @@
   gap: 10px;
   padding: 0;
   position: relative;
+
+  @include for-phone-only {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
   .form-label,
   label,
   .label {
@@ -20,10 +26,12 @@
     display: flex;
     align-items: center;
   }
+
   .form-control,
   select {
     width: 100%;
     outline: none;
+
     &:focus {
       color: #212529;
       background-color: #fff;
@@ -32,6 +40,22 @@
       box-shadow: 0 0 0 0.25rem #0d6efd40;
     }
   }
+  .phone-style{
+    margin-left: 38px;
+    margin-bottom: 5px;
+
+    @include for-phone-only{
+      margin: 0;
+    }
+  }
+  .altphone-style{
+    margin-left: 10px;
+    margin-bottom: 5px;
+    @include for-phone-only{
+      margin: 0;
+    }
+  }
+
   .select-control {
     width: 100%;
   }
@@ -77,10 +101,12 @@
     }
   }
 }
+
 .require {
   display: flex;
   align-items: center;
   justify-content: center;
+
   &:after {
     content: "*";
     // position: absolute;
@@ -95,6 +121,7 @@
 input.PhoneInputInput {
   outline: none;
 }
+
 select {
   min-width: 82%;
   border: 1px solid #ddd;
@@ -108,6 +135,7 @@ select {
   width: 180px;
   height: 18px;
   margin-top: 2px;
+
   .toggle-switch {
     width: 100%;
     height: 100%;
@@ -158,16 +186,16 @@ select {
     transition: 0.4s;
   }
 
-  input:checked + .slider {
+  input:checked+.slider {
     // background-color: #2196F3;
     background-color: red;
   }
 
-  input:focus + .slider {
+  input:focus+.slider {
     box-shadow: 0 0 1px #2196f3;
   }
 
-  input:checked + .slider:before {
+  input:checked+.slider:before {
     -webkit-transform: translateX(26px);
     -ms-transform: translateX(26px);
     transform: translateX(26px);
@@ -194,13 +222,24 @@ select {
 
     .country-select {
       margin-left: -49px;
+      @include for-phone-only{
+        margin: 0;
+      }
     }
 
     .state-select {
-      margin-left: -49px;
+      margin-left: -80px;
+
+      @include for-phone-only{
+        margin: 0;
+      }
     }
-    .country-select1{
-      margin-left: 30px;
+
+    .country-select1 {
+      margin-left: -5px;
+      @include for-phone-only{
+        margin: 0;
+      }
     }
   }
 }
@@ -209,6 +248,7 @@ select {
 .PhoneInputInput {
   border: transparent;
 }
+
 .PhoneInputCountry {
   width: 29px;
 }

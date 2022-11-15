@@ -67,201 +67,194 @@ class CustomerReceipt extends React.Component {
       errors.paidAmt = "Enter paidAmt";
     }
 
-    return errors;
-  };
-  handleSubmit = (values, setSubmitting) => {
-    // setTimeout(() => {
-    //   alert(JSON.stringify(values, null, 2));
-    //   setSubmitting(false);
-    // }, 400);
-    // if (!values) {
-    //   toast.error("Please, Filled all mandatory fields !");
-    //   //   setSubmitting(false);
-    // } else {
-    //   toast.success("Form Submit");
-    //   //   setSubmitting(false);
-    // }
-    toast.error("Please, Filled all mandatory fields !");
+        return errors;
 
-    return;
-  };
+    };
+    handleSubmit = (e, setSubmitting, values) => {
+        setTimeout(() => {
+            //   alert(JSON.stringify(values, null, 2));
+            // if (!values > 0) {
+            //     toast.error("Form submitted");
+            // }
+            // else {
+            toast.success("Form submitted");
+            // }
+            setSubmitting(false);
+        }, 400);
+        this.handleReset();
+    };
 
-  handleToast = (values) => {
-    if (!values) {
-      toast.error("Please, Filled all mandatory fields !");
-    } else {
-      toast.success("Please, Filled all mandatory fields !");
+    handleToast = (values) => {
+        if (!values) {
+            toast.error("Please, Filled all mandatory fields !");
+        }
+        else {
+            toast.success("Please, Filled all mandatory fields !");
+        }
     }
   };
 
-  render() {
-    return (
-      <>
-        <Header />
-        <SubHeader />
-        <div>
-          <div className="form__container">
-            <Formik
-              initialValues={this.initialValues}
-              validate={(values) => this.validate(values)}
-              onSubmit={(values, { setSubmitting }) =>
-                this.handleSubmit(values, setSubmitting)
-              }
-            >
-              {({
-                values,
-                errors,
-                touched,
-                handleChange,
-                handleBlur,
-                handleSubmit,
-                isSubmitting,
-                /* and other goodies */
-              }) => (
-                <form
-                  // onReset={this.handleReset}
-                  onSubmit={handleSubmit}
-                  className="form__content"
-                >
-                  <div className="title-display">
-                    <div className="title"> Customer Receipt </div>
-                  </div>
-                  <div className="form__wrapper">
-                    <div className="form__left">
-                      <div className="fields">
-                        <Input
-                          style={{
-                            marginLeft: "-70px",
-                            width: "100%",
-                          }}
-                          label="Company ID"
-                          type="text"
-                          id="customerId"
-                          name="customerId"
-                          onBlur={handleBlur}
-                          onChange={handleChange}
-                          value={values.customerId}
-                          // isError
-                        />
-                        <span className="error-msg">
-                          {errors.customerId &&
-                            touched.customerId &&
-                            errors.customerId}
-                        </span>
-                      </div>
+    render() {
+        return (
+            <>
+                <Header />
+                <SubHeader />
+                <div>
+                    <div className="form__container">
 
-                      <div className="fields">
-                        <Input
-                          type="text"
-                          label="Company Name"
-                          style={{
-                            marginLeft: "-70px",
-                            width: "100%",
-                          }}
-                          name="companyName"
-                          onBlur={handleBlur}
-                          onChange={handleChange}
-                          value={values.companyName}
-                          isError
-                        />
-                        <span className="error-msg">
-                          {errors.companyName &&
-                            touched.companyName &&
-                            errors.companyName}
-                        </span>
-                      </div>
-                      <div className="fields">
-                        <div className="input-fields">
-                          <label htmlFor="" className="label">
-                            Phone
-                          </label>
-                          <PhoneInput
-                            style={{
-                              marginLeft: "-70px",
-                            }}
-                            // value={phone}
-                            name="mobileNumber"
-                            className="form-control"
-                            international
-                            defaultCountry="IN"
-                            // onChange={setPhone}
-                          />
-                        </div>
-                      </div>
-                      <div className="fields">
-                        <Select
-                          label="Install"
-                          placeholder="Select Installation No."
-                          options={BillNo}
-                          defaultValue={BillNo[0]}
-                          className="select-control bill-select department-select"
-                        />
-                      </div>
-                    </div>
-                    {/* Left Side End */}
-                    {/* Right Side Start */}
-                    <div className="form__right">
-                      <div className="fields">
-                        <Select
-                          label="PayMode"
-                          options={payMode}
-                          className="select-control source-select"
-                          defaultValue={payMode[0]}
-                        />
-                      </div>
+                        <Formik
+                            initialValues={this.initialValues}
+                            validate={(values) => this.validate(values)}
+                            onSubmit={(values, { setSubmitting }) =>
+                                this.handleSubmit(values, setSubmitting)
+                            }
+                        >
+                            {({
+                                values,
+                                errors,
+                                touched,
+                                handleChange,
+                                handleBlur,
+                                handleSubmit,
+                                isSubmitting
+                                /* and other goodies */
+                            }) => (
+                                <form
+                                    // onReset={this.handleReset}
+                                    onSubmit={handleSubmit}
+                                    className="form__content"
+                                >
+                                    <div className="title-display">
+                                        <div className="title"> Customer Receipt </div>
+                                    </div>
+                                    <div className="form__wrapper">
+                                        <div className="form__left">
+                                            <div className="fields">
+                                                <Input
+                                                    style={{
+                                                        marginLeft: "-70px",
+                                                        width: "100%",
+                                                    }}
+                                                    label="Company ID"
+                                                    type="text"
+                                                    id="customerId"
+                                                    name="customerId"
+                                                    onBlur={handleBlur}
+                                                    onChange={handleChange}
+                                                    value={values.customerId}
+                                                // isError
+                                                />
+                                                <span className="error-msg">{errors.customerId && touched.customerId && errors.customerId}</span>
 
-                      <div className="fields">
-                        <Input
-                          type="number"
-                          label="PaidAmt"
-                          name="paidAmt"
-                          value={values.paidAmt}
-                          onChange={handleChange}
-                          isError
-                          // errorMsg={!values.paidAmt < 0}
-                        />
-                        <p className="error-msg">
-                          {errors.paidAmt && touched.paidAmt && errors.paidAmt}
-                        </p>
-                      </div>
-                      <div className="fields">
-                        <TextArea
-                          type="text"
-                          label="Remarks"
-                          rows="2"
-                          name="remarks"
-                          // value={this.state.remarks}
-                          onChange={this.handleChange}
-                          style={{
-                            marginLeft: "13px",
-                          }}
-                        />
-                      </div>
+                                            </div>
+
+                                            <div className="fields">
+                                                <Input
+                                                    type="text"
+                                                    label="Company Name"
+                                                    style={{
+                                                        marginLeft: "-70px",
+                                                        width: "100%",
+                                                    }}
+                                                    name="companyName"
+                                                    id="companyName"
+                                                    onBlur={handleBlur}
+                                                    onChange={handleChange}
+                                                    value={values.companyName}
+                                                    isError
+                                                />
+                                                <span className="error-msg">{errors.companyName && touched.companyName && errors.companyName}</span>
+
+                                            </div>
+                                            <div className="fields">
+                                                <div className="input-fields">
+                                                    <label htmlFor="" className="label">
+                                                        Phone
+                                                    </label>
+                                                    <PhoneInput
+                                                        style={{
+                                                            marginLeft: "-70px",
+                                                        }}
+                                                        // value={phone}
+                                                        name="mobileNumber"
+                                                        className="form-control"
+                                                        international
+                                                        defaultCountry="IN"
+                                                    // onChange={setPhone}
+                                                    />
+                                                </div>
+                                            </div>
+                                            <div className="fields">
+                                                <Select
+                                                    label="Install"
+                                                    placeholder="Select Installation No."
+                                                    options={BillNo}
+                                                    defaultValue={BillNo[0]}
+                                                    className="select-control bill-select department-select"
+                                                />
+                                            </div>
+                                        </div>
+                                        {/* Left Side End */}
+                                        {/* Right Side Start */}
+                                        <div className="form__right">
+                                            <div className="fields">
+                                                <Select
+                                                    label="PayMode"
+                                                    options={payMode}
+                                                    className="select-control source-select"
+                                                    defaultValue={payMode[0]}
+                                                />
+                                            </div>
+
+                                            <div className="fields">
+                                                <Input
+                                                    type="text"
+                                                    label="PaidAmt"
+                                                    name="paidAmt"
+                                                    id="paidAmt"
+                                                    onBlur={handleBlur}
+                                                    value={values.paidAmt}
+                                                    onChange={this.handleChange}
+                                                    isError
+                                                // errorMsg={!values.paidAmt < 0}
+                                                />
+                                                <p className="error-msg">{errors.paidAmt && touched.paidAmt && errors.paidAmt}</p>
+                                            </div>
+                                            <div className="fields">
+                                                <TextArea
+                                                    type="text"
+                                                    label="Remarks"
+                                                    rows="2"
+                                                    name="remarks"
+                                                    // value={this.state.remarks}
+                                                    onChange={this.handleChange}
+                                                    style={{
+                                                        marginLeft: "13px",
+                                                    }}
+                                                />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="btn__holder">
+                                        <Button
+                                            type="submit"
+                                            className="btn btn-primary"
+                                            onClick={isSubmitting}
+                                        >
+                                            Save
+                                        </Button>
+                                        <input type="reset" value="Clear" className="btn btn-secondary" />
+                                    </div>
+                                </form>
+                            )}
+                        </Formik>
+                        {/* </div> */}
+                        {/* <Footer /> */}
                     </div>
-                  </div>
-                  <div className="btn__holder">
-                    <Button
-                      type="submit"
-                      className="btn btn-primary"
-                      onClick={this.handleSubmit}
-                    >
-                      Save
-                    </Button>
-                    <input
-                      type="reset"
-                      value="Clear"
-                      className="btn btn-secondary"
-                    />
-                  </div>
-                </form>
-              )}
-            </Formik>
-            {/* </div> */}
-            {/* <Footer /> */}
-          </div>
-        </div>
-      </>
-    );
-  }
+                </div>
+            </>
+
+        );
+    }
 }
 export default CustomerReceipt;
