@@ -149,7 +149,8 @@
 
         .three__row {
           margin-left: 50px;
-          @include for-phone-only{
+
+          @include for-phone-only {
             margin: 0;
             width: 100%;
             margin-left: -10px;
@@ -172,7 +173,7 @@
       //   margin-left: 47px;
       //   width: 100%;
 
-        
+
       // }
 
       .report-select {
@@ -267,14 +268,15 @@
       .status-select {
         margin-left: 47px;
 
-        @include for-phone-only{
+        @include for-phone-only {
           margin-left: 2px;
         }
       }
-      .status-select-right{
-        margin-left: 60px;
 
-        @include for-phone-only{
+      .status-select-right {
+        margin-left: 50px;
+
+        @include for-phone-only {
           margin: 0;
         }
       }
@@ -329,6 +331,22 @@
         }
       }
 
+      .cust_id_left {
+        margin-left: 35px;
+
+        @include for-phone-only {
+          margin: 0;
+        }
+      }
+
+      .company_style {
+        margin-left: 30px;
+
+        @include for-phone-only {
+          margin: 0;
+        }
+      }
+
       .date-style {
         margin-left: -3px;
 
@@ -346,9 +364,11 @@
           margin: 0;
         }
       }
-      .city_left_style{
+
+      .city_left_style {
         margin-left: -75px;
-        @include for-phone-only{
+
+        @include for-phone-only {
           margin: 0;
         }
       }

@@ -7,6 +7,7 @@ import Footer from "../../../../shared/Footer/Footer";
 import { Button } from "react-bootstrap";
 import { ToastContainer, toast } from 'react-toastify';
 import { Formik } from "formik";
+import PhoneAlt from "../../../../shared/Reusable/Phone&Alt";
 
 // Reusable Component
 import Input from "../../../../shared/Reusable/Input";
@@ -288,7 +289,8 @@ class LeadEntry extends Component {
                     <div className="field__row">
                       <div className="fields">
                         <Input
-                        className="form-control cust_id_style"
+                        // style={{marginLeft:"25px"}}
+                        className="form-control company_style"
                           type="text"
                           label="Company"
                           name="companyName"
@@ -320,10 +322,10 @@ class LeadEntry extends Component {
                       </div>
                     </div>
 
-                    <div className="field__row">
+                    {/* <div className="field__row">
                       <div className="fields">
                         <Input
-                        className="form-control cust_id_style"
+                        className="form-control company_style"
                           type="number"
                           label="phone"
                           name="phone"
@@ -335,6 +337,7 @@ class LeadEntry extends Component {
                       </div>
                       <div className="fields">
                         <Input
+                        className="form-control company_style"
                           type="text"
                           label="AltPhone"
                           name="altPhone"
@@ -342,7 +345,9 @@ class LeadEntry extends Component {
                         // onChange={this.handleChange}
                         />
                       </div>
-                    </div>
+                    </div> */}
+                      <PhoneAlt />
+
                     <Country />
                     <div className="fields">
                       <Input

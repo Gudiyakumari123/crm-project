@@ -280,7 +280,8 @@ class ReInstall extends Component {
                     <div className="field__row">
                       <div className="fields">
                         <Input
-                        className="form-control cust_id_style"
+                          className="form-control cust_id_left"
+                          // className="form-control cust_id_style"
                           type="text"
                           label="Cust Id"
                           name="customerId"
@@ -312,9 +313,11 @@ class ReInstall extends Component {
                     </div>
 
                     <div className="field__row">
-                    <div className="fields">
+                      <div className="fields">
                         <Input
-                        className="form-control cust_id_style"
+                          // className="form-control cust_id_style"
+                          className="form-control cust_id_left"
+
                           type="text"
                           label="Phone"
                           name="Phone"
@@ -361,7 +364,7 @@ class ReInstall extends Component {
                         // value={this.state.reinstall}
                         // onChange={this.handleChange}
                         className="form-control marginleft_70"
-                        // style={{ width: "140%", marginLeft: "-21px" }}
+                      // style={{ width: "140%", marginLeft: "-21px" }}
                       />
                     </div>
                   </div>

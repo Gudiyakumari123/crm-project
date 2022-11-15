@@ -41,7 +41,7 @@
     }
   }
   .phone-style{
-    margin-left: 50px;
+    margin-left: 38px;
     margin-bottom: 5px;
 
     @include for-phone-only{
@@ -49,7 +49,7 @@
     }
   }
   .altphone-style{
-    margin-left: 0px;
+    margin-left: 10px;
     margin-bottom: 5px;
     @include for-phone-only{
       margin: 0;
@@ -228,7 +228,7 @@ select {
     }
 
     .state-select {
-      margin-left: -95px;
+      margin-left: -80px;
 
       @include for-phone-only{
         margin: 0;

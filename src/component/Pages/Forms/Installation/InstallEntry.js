@@ -286,7 +286,7 @@ class InstallEntry extends Component {
                             return <option>{values}</option>;
                           })}
                         </select>
-                        
+
                       </div>
                     </div>
 
@@ -321,11 +321,10 @@ class InstallEntry extends Component {
                       <span className="error-msg">{errors.version && touched.version && errors.version}</span>
 
                     </div>
-
                     <div className="field__row">
                       <div className="fields">
                         <Input
-                        className="form-control cust_id_style"
+                          className="form-control cust_id_left"
                           type="text"
                           label="Cust Id"
                           name="customerId"
@@ -351,27 +350,35 @@ class InstallEntry extends Component {
                           value={values.companyName}
                           isError
                           errorMsg={errors.companyName}
+
                         />
                         <span className="error-msg">{errors.companyName && touched.companyName && errors.companyName}</span>
 
                       </div>
+
                     </div>
                     <div className="field__row">
                       <div className="fields">
                         <Input
-                        className="form-control cust_id_style"
-                          type="number"
-                          label="phone"
+                          className="form-control cust_id_left"
+                          type="text"
+                          label="Phone"
                           name="phone"
-                          // value={this.state.phone}
-                          onChange={this.handleChange}
+                          id="phone"
+                          onBlur={handleBlur}
+                          onChange={handleChange}
+                          value={values.phone}
                           isError
+                          errorMsg={errors.phone}
+
                         />
+                        <span className="error-msg">{errors.phone && touched.phone && errors.phone}</span>
+
                       </div>
                       <div className="fields">
                         <Input
                           type="text"
-                          label="City"
+                          label="city"
                           name="city"
                           id="city"
                           onBlur={handleBlur}
@@ -384,6 +391,7 @@ class InstallEntry extends Component {
 
                       </div>
                     </div>
+
 
                     <div className="field__row__three">
                       <div className="fields">
@@ -552,8 +560,8 @@ class InstallEntry extends Component {
                         label="Remarks"
                         name="remarks"
                         className="form-control right_13"
-                        // value={this.state.remarks}
-                        // onChange={this.handleChange}
+                      // value={this.state.remarks}
+                      // onChange={this.handleChange}
                       />
                     </div>
                   </div>

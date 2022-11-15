@@ -142,7 +142,7 @@ class ServiceEntry extends Component {
                     <div className="field__row">
                       <div className="fields">
                         <Input
-                        className="form-control cust_id_style"
+                        className="form-control cust_id_left"
                           type="text"
                           label="Cust Id"
                           name="customerId"
