@@ -51,7 +51,7 @@ const CountryTry = () => {
             }}
           />
         </div>
-        <div className="input-fields c">
+        <div className="input-fields ">
           <label htmlFor="" className="label">
             State
           </label>

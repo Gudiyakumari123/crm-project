@@ -61,6 +61,12 @@
     }
     .country-select {
       margin-left: 8px;
+      @include for-phone-only{
+        margin: 0;
+      }
+      @include for-tablet-landscape-up{
+        margin: 0;
+      }
     }
     .status-select-13 {
       margin-left: 18px;
@@ -177,6 +183,13 @@ li.list-group-item {
 .form-control.PhoneInput {
   width: 100%;
   display: flex;
+
+  @include for-phone-only{
+    margin: 0;
+  }
+  @include for-tablet-landscape-up{
+    margin: 0;
+  }
 }
 textarea.form-control {
   @include for-phone-only {
