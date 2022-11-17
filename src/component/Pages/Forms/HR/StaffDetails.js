@@ -66,9 +66,10 @@ const Religion = [
 const educationAttainment = [
   { value: "Primary", label: "Primary" },
   { value: "Secondary", label: "Secondary" },
-  { value: "College", label: "College" },
-  { value: "MBA", label: "MBA" },
-  { value: "Dectrate", label: "Doctrate" },
+  { value: "Diploma", label: "Diploma" },
+  { value: "UG", label: "UG" },
+  { value: "PG", label: "PG" },
+  { value: "Doctrate", label: "Doctrate" },
 ];
 
 class Staff extends Component {
@@ -169,7 +170,7 @@ class Staff extends Component {
                 <div className="field__row">
                   <div className="fields">
                     <Input
-                      className="form-control staff_details_style"
+                      className="form-control staff_id_style"
                     type="text" 
                     label="Employee Id"
                      readOnly="true" />
@@ -182,11 +183,7 @@ class Staff extends Component {
                   <Input
                     type="text"
                     label="Staff Name"
-                    // style={{
-                    //   marginLeft: "-70px",
-                    //   width: "100%",
-                    // }}
-                    className="form-control marginleft_70"
+                    className="form-control staff_name_style"
 
                   />
                 </div>
@@ -211,7 +208,7 @@ class Staff extends Component {
                   <Input
                     type="text"
                     label="Father Name"
-                    className="form-control marginleft_70"
+                    className="form-control father_name_style"
 
                   />
                 </div>
@@ -261,14 +258,14 @@ class Staff extends Component {
                   <TextArea
                     type="text"
                     label="Address"
-                    className="form-control marginleft_70"
+                    className="form-control address_style"
 
                   />
                 </div>
                 <div className="field__row">
                   <div className="fields">
                     <Input
-                        className="form-control staff_details_style"
+                        className="form-control city_style"
                       type="text"
                       label="Area/City"
                    
@@ -325,7 +322,7 @@ class Staff extends Component {
                   <Input type="text" label="IFSC Code" />
                 </div>
                 <div className="fields">
-                  <Input type="text" label="Salary/Day" />
+                  <Input type="text" label="Salary/Month" />
                 </div>
                 <div className="fields">
                   <Input type="text" label="Remarks" />

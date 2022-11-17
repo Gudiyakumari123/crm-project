@@ -37,91 +37,62 @@ const Priority = [
   { value: "Low", label: "Low" },
 ];
 class ServiceEntry extends Component {
-  constructor(props) {
-    super(props);
-    this.initialValues = {
-      customerId: "",
-      companyName: "",
-      city: "",
-      software: "",
-      details: "",
-      date: "",
-      remarks: "",
-      dates: ""
-    };
-  }
-  state = this.initialValues;
+  initialState = {
+    customerId: "",
+        companyName: "",
+        city: "",
+        software: "",
+        details: "",
+        date: "",
+        remarks: "",
+        dates: ""
+};
+state = this.initialState;
 
-  handleReset = () => {
-    this.setState(() => this.initialValues);
-  };
-
-  handleChange = (e) => {
+handleChange = (e) => {
     const { name, value } = e.target;
     this.setState({
       [name]: value,
     });
   };
 
-  validate = (values) => {
-    const errors = {};
-    if (!values.customerId) {
-      errors.customerId = " customer ID is Required";
-    }
-    if (!values.companyName) {
-      errors.companyName = "Enter companyName";
-    }
-    if (!values.city) {
-      errors.city = "Enter city";
-    }
-    if (!values.software) {
-      errors.software = "Enter software";
+  handleSubmit = (e) => {
+    e.preventDefault();
+    this.validate();
+
+    if (this.state.customerId ==="" || this.state.companyName==="" || this.state.software==="") {
+      toast.error("Please, Filled all mandatory fields !");
+    } else {
+      toast.success("Form Submitted!");
     }
 
-
-    return errors;
-
-  };
-  handleSubmit = (values, setSubmitting) => {
-    setTimeout(() => {
-      // alert(JSON.stringify(values, null, 2));
-      // alert("form submiited");
-      if (!values) {
-        toast.error("Form submitted");
-      }
-      else {
-        toast.success("Form submitted");
-      }
-      setSubmitting(false);
-    }, 400);
+    this.handleReset();
   };
 
+  validate = () => {
+    let name = this.state.customerId;
+    let errors = {};
+    let isValid = true;
+
+    if (!this.state.customerId) {
+      isValid = false;
+      errors["name"] = "Enter Valid Value";
+    }
+    return isValid;
+  };
+  handleReset = () => {
+    this.setState(() => this.initialState);
+  };
   render() {
     return (
       <>
         <Header />
         <SubHeader />
         <div className="form__container">
-          <Formik
-            initialValues={this.initialValues}
-            validate={(values) => this.validate(values)}
-            onSubmit={(values, { setSubmitting }) =>
-              this.handleSubmit(values, setSubmitting)
-            }
-          >
-            {({
-              values,
-              errors,
-              touched,
-              handleChange,
-              handleBlur,
-              handleSubmit,
-              isSubmitting
-              /* and other goodies */
-            }) => (
+         
               <form
                 onReset={this.handleReset}
-                onSubmit={handleSubmit}
+                // onSubmit={handleSubmit}
                 className="form__content">
                 <div className="title-display">
                   <div className="title"> Service Entry </div>
@@ -133,7 +104,7 @@ class ServiceEntry extends Component {
                         type="date"
                         label="Date"
                         name="date"
-                        // value={values.date}
+                        // value={this.state.date}
                         // onChange={this.handleChange}
                         className="form-control marginleft_70"
 
@@ -147,12 +118,12 @@ class ServiceEntry extends Component {
                           label="Cust Id"
                           name="customerId"
                           id="customerId"
-                          onBlur={handleBlur}
-                          onChange={handleChange}
-                          value={values.customerId}
+                          onChange={this.handleChange}
+                          value={this.state.customerId}
                           isError
+                          errorMsg={this.state.customerId ===""}
+
                         />
-                        <span className="error-msg">{errors.customerId && touched.customerId && errors.customerId}</span>
 
                       </div>
                       <div className="fields">
@@ -161,13 +132,12 @@ class ServiceEntry extends Component {
                           label="Company"
                           name="companyName"
                           id="companyName"
-                          onBlur={handleBlur}
-                          onChange={handleChange}
-                          value={values.companyName}
+                          
+                          onChange={this.handleChange}
+                          value={this.state.companyName}
                           isError
-                          errorMsg={errors.companyName}
+                          errorMsg={this.state.companyName===""}
                         />
-                        <span className="error-msg">{errors.companyName && touched.companyName && errors.companyName}</span>
 
                       </div>
                     </div>
@@ -192,13 +162,12 @@ class ServiceEntry extends Component {
                         className="form-control marginleft_70"
                         name="software"
                         id="software"
-                        onBlur={handleBlur}
-                        onChange={handleChange}
-                        value={values.software}
+                        
+                        onChange={this.handleChange}
+                        value={this.state.software}
                         isError
-                        errorMsg={errors.software}
+                        errorMsg={this.state.software===""}
                       />
-                      <span className="error-msg">{errors.software && touched.software && errors.software}</span>
 
                     </div>
 
@@ -275,7 +244,7 @@ class ServiceEntry extends Component {
                   <Button
                     type="submit"
                     className="btn btn-primary"
-                    onClick={isSubmitting}
+                    onClick={this.handleSubmit}
                   >
                     Save
                   </Button>
@@ -286,8 +255,6 @@ class ServiceEntry extends Component {
 
                 </div>
               </form>
-            )}
-          </Formik>
         </div>
         <ToastContainer />
         <Footer />

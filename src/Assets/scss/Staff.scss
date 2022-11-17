@@ -47,6 +47,16 @@
         gap: 0;
       }
 
+      @include for-tablet-landscape-up {
+        flex-direction: column;
+        gap: 0;
+      }
+
+      @include for-desktop-up {
+        // gap:0;
+      }
+
+
       .form__left {
         width: 100%;
         margin-bottom: 5px;
@@ -57,7 +67,17 @@
 
         label {
           width: 35%;
+
           // white-space: nowrap;
+          @include for-desktop-up {
+            width: 35%;
+            // white-space: nowrap;
+
+          }
+
+          @include for-big-desktop-up {
+            // width: 50%;
+          }
         }
 
         .fields {
@@ -84,6 +104,21 @@
             flex-direction: column;
             gap: 0;
           }
+
+          @include for-tablet-landscape-up {
+            flex-direction: column;
+            margin: 0;
+
+          }
+
+          @include for-desktop-up {
+            margin: 0
+          }
+
+          @include for-big-desktop-up {
+            // width: 50%;
+            min-width: 35%;
+          }
         }
       }
 
@@ -99,6 +134,23 @@
             width: 100%;
             // gap: 0;
           }
+
+          @include for-tablet-landscape-up {
+            // margin: 0;
+            width: 100%;
+
+          }
+
+          @include for-desktop-up {
+            // min-width: 50%;
+            // margin-left: 20px;
+            // gap: 90px;
+          }
+
+          // @include for-big-desktop-up {
+          //   // width: 50%;
+          //   min-width: 35%;
+          // }
         }
 
         label {
@@ -122,6 +174,21 @@
             flex-direction: column;
             gap: 0;
           }
+
+          @include for-tablet-landscape-up {
+            flex-direction: column;
+            gap: 0;
+
+          }
+
+          @include for-desktop-up {
+            // gap:0;
+          }
+
+          @include for-big-desktop-up {
+            // width: 50%;
+            //  gap:0;
+          }
         }
       }
 
@@ -137,9 +204,28 @@
           flex-direction: column;
         }
 
+        @include for-tablet-landscape-up {
+          flex-direction: column;
+
+
+        }
+
+        @include for-desktop-up {
+          margin-left: -13px;
+          width: 100%;
+        }
+
+        @include for-big-desktop-up {
+          margin-left: -17px;
+        }
+
+
+
         label {
           width: 25%;
           white-space: nowrap;
+
+
         }
 
         Input {
@@ -157,6 +243,21 @@
             // margin-bottom: -5px;
           }
 
+          @include for-tablet-landscape-up {
+            width: 100%;
+            margin: 0;
+
+          }
+
+          @include for-desktop-up {
+            // margin-left: 0px;
+          }
+
+          // @include for-big-desktop-up {
+          //   // width: 50%;
+          //   min-width: 35%;
+          // }
+
         }
       }
 
@@ -167,90 +268,174 @@
         @include for-phone-only {
           margin: 0;
         }
+
+        @include for-tablet-landscape-up {
+          margin: 0;
+
+        }
+
+        @include for-desktop-up {
+          margin-left: 30px;
+        }
+
+        @include for-big-desktop-up {
+          margin-left: 290px;
+          background-color: red;
+        }
+
       }
 
-      // .status-select {
-      //   margin-left: 47px;
-      //   width: 100%;
 
-
-      // }
 
       .report-select {
         width: 100%;
         margin-left: 10px;
 
-        @include for-phone-only{
+        @include for-phone-only {
           margin: 0;
+        }
+
+        @include for-tablet-landscape-up {
+          margin: 0;
+
         }
       }
 
       .employee-select {
         width: 100%;
-        @include for-phone-only{
+
+        @include for-phone-only {
           margin: 0;
+        }
+
+        @include for-tablet-landscape-up {
+          margin: 0;
+
         }
       }
 
       .lead-select {
         margin-left: 90%;
-        @include for-phone-only{
+
+        @include for-phone-only {
           margin: 0;
+        }
+
+        @include for-tablet-landscape-up {
+          margin: 0;
+
         }
       }
 
       .customer-country {
         margin-left: -50px;
-        @include for-phone-only{
+
+        @include for-phone-only {
           margin: 0;
+        }
+
+        @include for-tablet-landscape-up {
+          margin: 0;
+
         }
       }
 
       .dealer-select {
         margin-left: 50px;
-        @include for-phone-only{
+
+        @include for-phone-only {
           margin: 0;
+        }
+
+        @include for-tablet-landscape-up {
+          margin: 0;
+
         }
       }
 
       .education-select {
         width: 100%;
         margin-left: 12px;
-        @include for-phone-only{
+
+        @include for-phone-only {
           margin: 0;
+        }
+
+        @include for-tablet-landscape-up {
+          margin: 0;
+
         }
       }
 
       .department-select {
         margin-left: -71px;
         width: 100%;
-        
+
 
         @include for-phone-only {
           margin: 0;
         }
+
+        @include for-tablet-landscape-up {
+          margin: 0;
+
+        }
+
+        @include for-desktop-up {
+
+          margin-left: -50px;
+
+
+        }
+
+        @include for-big-desktop-up {
+          margin-left: -72px;
+          // background-color: red;
+        }
+
       }
 
       .designation-select {
         width: 100%;
         margin-left: -71px;
 
-        @include for-phone-only{
+        @include for-phone-only {
           margin: 0;
+        }
+
+        @include for-tablet-landscape-up {
+          margin: 0;
+
+        }
+
+        @include for-desktop-up {
+
+          margin-left: -50px;
+
+
         }
       }
 
-      // .status-select {
-      //   width: 100%;
-      //   margin-left: 15px;
-      // }
+
 
       .report-select {
         width: 100%;
         margin-left: -71px;
 
-        @include for-phone-only{
+        @include for-phone-only {
           margin: 0;
+        }
+
+        @include for-tablet-landscape-up {
+          margin: 0;
+
+        }
+
+        @include for-desktop-up {
+          white-space: nowrap;
+          margin-left: -50px;
+
+
         }
       }
 
@@ -258,8 +443,20 @@
         width: 100%;
         margin-left: -71px;
 
-        @include for-phone-only{
+        @include for-phone-only {
           margin: 0;
+        }
+
+        @include for-tablet-landscape-up {
+          margin: 0;
+
+        }
+
+        @include for-desktop-up {
+          white-space: nowrap;
+          margin-left: -50px;
+
+
         }
       }
 
@@ -267,9 +464,18 @@
         width: 55%;
         margin-left: -5px;
 
-        @include for-phone-only{
-          width:100%;
+        @include for-phone-only {
+          width: 100%;
           margin: 0;
+        }
+
+        @include for-tablet-landscape-up {
+          margin: 0;
+
+        }
+
+        @include for-desktop-up {
+          margin-left: 2px;
         }
       }
 
@@ -277,8 +483,13 @@
         width: 100%;
         // margin-left: -4px;
 
-        @include for-phone-only{
+        @include for-phone-only {
           margin: 0;
+        }
+
+        @include for-tablet-landscape-up {
+          margin: 0;
+
         }
       }
 
@@ -286,18 +497,52 @@
         width: 55%;
         margin-left: -5px;
 
-        @include for-phone-only{
+        @include for-phone-only {
           margin: 0;
           width: 100%;
         }
+
+        @include for-tablet-landscape-up {
+          width: 100%;
+          margin: 0;
+
+        }
+
+        @include for-desktop-up {
+          margin-left: 2px;
+        }
+      }
+
+      .address_style {
+        margin-left: -70px;
+        width: 100%;
+
+        @include for-phone-only {
+          margin: 0;
+        }
+
+        @include for-tablet-landscape-up {
+          margin: 0;
+
+        }
+
+        @include for-desktop-up {
+          margin-left: -55px;
+        }
+
       }
 
       .religion-select {
         width: 55%;
         margin-left: -5px;
 
-        @include for-phone-only{
+        @include for-phone-only {
           margin: 0;
+        }
+
+        @include for-tablet-landscape-up {
+          margin: 0;
+
         }
       }
 
@@ -305,15 +550,26 @@
         width: 65%;
         margin-left: -5px;
 
-        @include for-phone-only{
+        @include for-phone-only {
           margin: 0;
+        }
+
+        @include for-tablet-landscape-up {
+          margin: 0;
+
         }
       }
 
       .textarea-select {
         margin-left: 20px;
-        @include for-phone-only{
+
+        @include for-phone-only {
           margin: 0;
+        }
+
+        @include for-tablet-landscape-up {
+          margin: 0;
+
         }
       }
 
@@ -321,8 +577,17 @@
         width: 100%;
         margin-left: 10px;
 
-        @include for-phone-only{
+        @include for-phone-only {
           margin: 0;
+        }
+
+        @include for-tablet-landscape-up {
+          margin: 0;
+
+        }
+
+        @include for-desktop-up {
+          margin-left: 2px;
         }
       }
 
@@ -332,6 +597,15 @@
         @include for-phone-only {
           margin-left: 2px;
         }
+
+        @include for-tablet-landscape-up {
+          margin: 0;
+
+        }
+
+        @include for-desktop-up {
+          margin-left: 38px;
+        }
       }
 
       .status-select-right {
@@ -340,6 +614,17 @@
         @include for-phone-only {
           margin: 0;
         }
+
+        @include for-tablet-landscape-up {
+          margin: 0;
+
+        }
+
+        @include for-desktop-up {
+          margin: 0;
+        }
+
+
       }
 
       .Install-select {
@@ -348,6 +633,11 @@
         @include for-phone-only {
           margin: 0;
         }
+
+        @include for-tablet-landscape-up {
+          margin: 0;
+
+        }
       }
 
       .source-select {
@@ -355,6 +645,11 @@
 
         @include for-phone-only {
           margin: 0;
+        }
+
+        @include for-tablet-landscape-up {
+          margin: 0;
+
         }
       }
 
@@ -382,6 +677,15 @@
         @include for-phone-only {
           margin: 0;
         }
+
+        @include for-tablet-landscape-up {
+          margin: 0;
+
+        }
+
+        @include for-desktop-up {
+          margin-left: 12px;
+        }
       }
 
       .cust_id_style {
@@ -389,6 +693,11 @@
 
         @include for-phone-only {
           margin: 0;
+        }
+
+        @include for-tablet-landscape-up {
+          margin: 0;
+
         }
       }
 
@@ -398,6 +707,19 @@
         @include for-phone-only {
           margin: 0;
         }
+
+        @include for-tablet-landscape-up {
+          margin: 0;
+
+        }
+
+        @include for-desktop-up {
+          margin-left: 25px;
+        }
+
+        @include for-big-desktop-up {
+          margin-left: 15px;
+        }
       }
 
       .company_style {
@@ -406,13 +728,109 @@
         @include for-phone-only {
           margin: 0;
         }
+
+        @include for-tablet-landscape-up {
+          margin: 0;
+
+        }
+
+        @include for-desktop-up {
+          margin-left: 13px;
+        }
+
+        @include for-big-desktop-up {
+          margin-left: 5px;
+        }
       }
 
-      .staff_details_style{
+      .staff_details_style {
         margin-left: 35px;
 
-        @include for-phone-only{
+        @include for-phone-only {
           margin: 0;
+        }
+
+        @include for-tablet-landscape-up {
+          margin: 0;
+
+        }
+
+        @include for-desktop-up {
+          // width: 60%;
+          margin-left: 45px;
+        }
+      }
+
+      .city_style {
+        margin-left: 35px;
+
+        @include for-phone-only {
+          margin: 0;
+        }
+
+        @include for-tablet-landscape-up {
+          margin: 0;
+
+        }
+
+        @include for-desktop-up {
+          // width: 60%;
+          margin-left: 33px;
+        }
+      }
+
+      .staff_id_style {
+        margin-left: 35px;
+
+        @include for-phone-only {
+          margin: 0;
+        }
+
+        @include for-tablet-landscape-up {
+          margin: 0;
+
+        }
+
+        @include for-desktop-up {
+          // width: 60%;
+          margin-left: 35px;
+        }
+      }
+
+      .staff_name_style {
+        margin-left: -70px;
+        width: 100%;
+
+        @include for-phone-only {
+          margin: 0;
+        }
+
+        @include for-tablet-landscape-up {
+          margin: 0;
+
+        }
+
+        @include for-desktop-up {
+          margin-left: -50px;
+        }
+
+      }
+
+      .father_name_style {
+        margin-left: -70px;
+        width: 100%;
+
+        @include for-phone-only {
+          margin: 0;
+        }
+
+        @include for-tablet-landscape-up {
+          margin: 0;
+
+        }
+
+        @include for-desktop-up {
+          margin-left: -50px;
         }
       }
 
@@ -421,6 +839,15 @@
 
         @include for-phone-only {
           margin: 0;
+        }
+
+        @include for-tablet-landscape-up {
+          margin: 0;
+
+        }
+
+        @include for-desktop-up {
+          margin-left: -1px;
         }
       }
 
@@ -432,6 +859,19 @@
         @include for-phone-only {
           margin: 0;
         }
+
+        @include for-tablet-landscape-up {
+          margin: 0;
+
+        }
+
+        @include for-desktop-up {
+          margin-left: -70px;
+        }
+
+        @include for-big-desktop-up {
+          margin-left: -70px;
+        }
       }
 
       .city_left_style {
@@ -440,7 +880,29 @@
         @include for-phone-only {
           margin: 0;
         }
+
+        @include for-tablet-landscape-up {
+          margin: 0;
+
+        }
+
+        @include for-big-desktop-up {
+          margin-left: -65px;
+        }
       }
+
+      .paid_style_round {
+        margin-left: 45px;
+      }
+
+      .amount_paid_style {
+        margin-left: 38px;
+      }
+
+      .countperson-style {
+        margin-left: -10px;
+      }
+
 
       //staff payroll scss code
       .last-section {
@@ -450,30 +912,33 @@
         justify-content: space-between;
         border-radius: 15px;
         color: black;
-        .t1{
-            color:rgb(200, 200, 200);
-            font-weight: 500;
+
+        .t1 {
+          color: rgb(200, 200, 200);
+          font-weight: 500;
         }
-        tbody{
-          .content{
+
+        tbody {
+          .content {
             color: #4b0082;
             font-weight: bold;
             font-size: 15px;
-          }  
+          }
         }
-       .present{
-        .btn-color{
-          color: white;
-          background-color: #39a3f4;
-          border-color: #39a3f4;
-          margin-left: 380px;
-          margin-top: 40px;
+
+        .present {
+          .btn-color {
+            color: white;
+            background-color: #39a3f4;
+            border-color: #39a3f4;
+            margin-left: 380px;
+            margin-top: 40px;
+          }
+
         }
-       
-       }
-      
-    }
-          
+
+      }
+
     }
 
     .btn__holder {

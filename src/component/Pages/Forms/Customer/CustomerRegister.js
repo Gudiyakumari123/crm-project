@@ -36,11 +36,58 @@ const Status = [
 ];
 
 class CustomerReceipt extends React.Component {
-  constructor(props) {
-    super(props);
+  // constructor(props) {
+  //   super(props);
 
-    this.initialValues = {
-      companyName: "",
+  //   this.initialValues = {
+  //     companyName: "",
+  //     contactPerson: "",
+  //     address: "",
+  //     city: "",
+  //     gstNo: "",
+  //     email: "",
+  //     remarksCustomer: "",
+  //     remarksUser: "",
+  //   };
+  // }
+  // state = this.initialValues;
+
+  // handleChange = (e) => {
+  //   const { name, value } = e.target;
+  //   this.setState({
+  //     [name]: value,
+  //   });
+  // };
+
+  // validate = (values) => {
+  //   const this.state = {};
+  //   if (!values.companyName) {
+  //     this.state.companyName = "company name is Required";
+  //   }
+  //   if (!values.contactPerson) {
+  //     this.state.contactPerson = "contactPerson  is Required";
+  //   }
+  //   if (!values.city) {
+  //     this.state.city = "city  is Required";
+  //   }
+  //   if (!values.gstNo) {
+  //     this.state.gstNo = "gstNo  is Required";
+  //   }
+  //   return this.state;
+
+  // };
+  // handleSubmit = (values, setSubmitting) => {
+  //   setTimeout(() => {
+  //     alert(JSON.stringify(values, null, 2));
+  //     toast.success("Form submitted");
+      
+  //     // toast.error("Please, Filled all mandatory fields !");
+  //     setSubmitting(false);
+  //   }, 400);
+  // };
+
+  initialState = {
+    companyName: "",
       contactPerson: "",
       address: "",
       city: "",
@@ -48,43 +95,44 @@ class CustomerReceipt extends React.Component {
       email: "",
       remarksCustomer: "",
       remarksUser: "",
-    };
-  }
-  state = this.initialValues;
+};
+state = this.initialState;
 
-  handleChange = (e) => {
+handleChange = (e) => {
     const { name, value } = e.target;
     this.setState({
       [name]: value,
     });
   };
 
-  validate = (values) => {
-    const errors = {};
-    if (!values.companyName) {
-      errors.companyName = "company name is Required";
-    }
-    if (!values.contactPerson) {
-      errors.contactPerson = "contactPerson  is Required";
-    }
-    if (!values.city) {
-      errors.city = "city  is Required";
-    }
-    if (!values.gstNo) {
-      errors.gstNo = "gstNo  is Required";
-    }
-    return errors;
+  handleSubmit = (e) => {
+    e.preventDefault();
+    this.validate();
 
+    if (this.state.customerId ==="" || this.state.contactPerson==="" || this.state.city==="" || this.state.gstNo==="") {
+      toast.error("Please, Filled all mandatory fields !");
+    } else {
+      toast.success("Form Submitted!");
+    }
+
+    this.handleReset();
   };
-  handleSubmit = (values, setSubmitting) => {
-    setTimeout(() => {
-      alert(JSON.stringify(values, null, 2));
-      toast.success("Form submitted");
-      
-      // toast.error("Please, Filled all mandatory fields !");
-      setSubmitting(false);
-    }, 400);
+
+  validate = () => {
+    let name = this.state.customerId;
+    let errors = {};
+    let isValid = true;
+
+    if (!this.state.customerId) {
+      isValid = false;
+      this.state["name"] = "Enter Valid Value";
+    }
+    return isValid;
   };
+  handleReset = () => {
+    this.setState(() => this.initialState);
+  };
+
   render() {
     return (
       <>
@@ -92,26 +140,10 @@ class CustomerReceipt extends React.Component {
         <SubHeader />
         <div>
           <div className="form__container">
-            <Formik
-              initialValues={this.initialValues}
-              validate={(values) => this.validate(values)}
-              onSubmit={(values, { setSubmitting }) =>
-                this.handleSubmit(values, setSubmitting)
-              }
-            >
-              {({
-                values,
-                errors,
-                touched,
-                handleChange,
-                handleBlur,
-                handleSubmit,
-                isSubmitting
-                /* and other goodies */
-              }) => (
+            
                 <form
-                  // onReset={this.handleReset}
-                  onSubmit={handleSubmit}
+                  onReset={this.handleReset}
+                  onSubmit={this.handleSubmit}
                   className="form__content"
                 >
                   <div className="title-display">
@@ -123,41 +155,30 @@ class CustomerReceipt extends React.Component {
                         <Input
                           type="text"
                           label="Company"
-                          // style={{
-                          //   marginLeft: "-70px",
-                          //   width: "100%",
-                          // }}
                           className="form-control marginleft_70"
                           id="companyName"
                           name="companyName"
-                          onChange={handleChange}
-                          onBlur={handleBlur}
-                          value={values.companyName}
+                          onChange={this.handleChange}
+                          value={this.state.companyName}
                           isError
-                          errorMsg={errors.companyName}
+                          errorMsg={this.state.companyName===""}
                         />
-                        <span className="error-msg">{errors.companyName && touched.companyName && errors.companyName}</span>
 
                       </div>
                       <div className="fields">
                         <Input
                           type="text"
                           label="ContPerson"
-                          // style={{
-                          //   marginLeft: "-70px",
-                          //   width: "100%",
-                          // }}
+                         
                           className="form-control marginleft_70"
                           name="contactPerson"
                           id="contactPerson"
-                          onBlur={handleBlur}
-                          onChange={handleChange}
-                          value={values.contactPerson}
+                          onChange={this.handleChange}
+                          value={this.state.contactPerson}
                           isError
-                          errorMsg={errors.contactPerson}
+                          errorMsg={this.state.contactPerson===""}
 
                         />
-                        <span className="error-msg">{errors.contactPerson && touched.contactPerson && errors.contactPerson}</span>
                       </div>
                       <PhoneAlt />
                       <div className="fields">
@@ -173,10 +194,7 @@ class CustomerReceipt extends React.Component {
                         <TextArea
                           type="text"
                           label="Address"
-                          // style={{
-                          //   marginLeft: "-70px",
-                          //   width: "100%",
-                          // }}
+                         
                           className="form-control marginleft_70"
                           name="address"
                           // value={this.state.address}
@@ -191,18 +209,12 @@ class CustomerReceipt extends React.Component {
                           label="Area/City"
                           name="city"
                           id="city"
-                          onBlur={handleBlur}
-                          onChange={handleChange}
-                          value={values.city}
+                          onChange={this.handleChange}
+                          value={this.state.city}
                           isError
-                          // style={{
-                          //   marginLeft: "-70px",
-                          //   width: "100%",
-                          // }}
                           className="form-control marginleft_70"
-                          errorMsg={errors.city}
+                          errorMsg={this.state.city===""}
                         />
-                        <span className="error-msg">{errors.city && touched.city && errors.city}</span>
 
                       </div>
                     </div>
@@ -215,13 +227,11 @@ class CustomerReceipt extends React.Component {
                           label="Gst No"
                           name="gstNo"
                           id="gstNo"
-                          onBlur={handleBlur}
-                          onChange={handleChange}
-                          value={values.gstNo}
+                          onChange={this.handleChange}
+                          value={this.state.gstNo}
                           isError
-                          errorMsg={errors.gstNo}
+                          errorMsg={this.state.gstNo===""}
                         />
-                        <span className="error-msg">{errors.gstNo && touched.gstNo && errors.gstNo}</span>
 
                       </div>
 
@@ -283,7 +293,7 @@ class CustomerReceipt extends React.Component {
                     <Button
                       type="submit"
                       className="btn btn-primary"
-                      onClick={isSubmitting}
+                      onClick={this.handleSubmit}
                     >
                       Save
                     </Button>
@@ -293,8 +303,7 @@ class CustomerReceipt extends React.Component {
                     {/* <input type="submit" onClick={isSubmitting} value="Submit" /> */}
                   </div>
                 </form>
-              )}
-            </Formik>
+            
             {/* </div> */}
         <ToastContainer />
             <Footer />

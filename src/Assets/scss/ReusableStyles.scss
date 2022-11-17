@@ -16,6 +16,22 @@
     align-items: flex-start;
   }
 
+  @include for-tablet-landscape-up {
+    flex-direction: column;
+    align-items: flex-start;
+
+  }
+
+  @include for-desktop-up {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  @include for-big-desktop-up {
+    flex-direction: row;
+
+  }
+
   .form-label,
   label,
   .label {
@@ -40,19 +56,44 @@
       box-shadow: 0 0 0 0.25rem #0d6efd40;
     }
   }
-  .phone-style{
+
+  .phone-style {
     margin-left: 38px;
     margin-bottom: 5px;
 
-    @include for-phone-only{
+    @include for-phone-only {
       margin: 0;
     }
+
+    @include for-tablet-landscape-up {
+      margin: 0;
+
+    }
+
+    @include for-desktop-up {
+      margin-left: 25px;
+    }
+
+    @include for-big-desktop-up {
+      margin-left: 18px;
+    }
   }
-  .altphone-style{
+
+  .altphone-style {
     margin-left: 10px;
     margin-bottom: 5px;
-    @include for-phone-only{
+
+    @include for-phone-only {
       margin: 0;
+    }
+
+    @include for-tablet-landscape-up {
+      margin: 0;
+
+    }
+
+    @include for-desktop-up {
+      margin-left: 11px;
     }
   }
 
@@ -127,6 +168,10 @@ select {
   border: 1px solid #ddd;
   padding: 0.375rem 0.75rem;
   border-radius: 0.25rem;
+
+  @include for-desktop-up {
+    margin-left: -70px;
+  }
 }
 
 // Toggle Switch
@@ -222,23 +267,56 @@ select {
 
     .country-select {
       margin-left: -49px;
-      @include for-phone-only{
+
+      @include for-phone-only {
         margin: 0;
+      }
+
+      @include for-tablet-landscape-up {
+        margin: 0;
+
+      }
+
+      @include for-desktop-up {
+        margin-left: -50px;
+      }
+
+      @include for-big-desktop-up {
+        margin-left: -55px;
       }
     }
 
     .state-select {
       margin-left: -80px;
 
-      @include for-phone-only{
+      @include for-phone-only {
         margin: 0;
+      }
+
+      @include for-tablet-landscape-up {
+        margin: 0;
+
+      }
+
+      @include for-desktop-up {
+        margin-left: -70px;
+      }
+
+      @include for-big-desktop-up {
+        margin-left: -55px;
       }
     }
 
     .country-select1 {
       margin-left: -5px;
-      @include for-phone-only{
+
+      @include for-phone-only {
         margin: 0;
+      }
+
+      @include for-tablet-landscape-up {
+        margin: 0;
+
       }
     }
   }

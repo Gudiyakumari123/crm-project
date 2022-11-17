@@ -34,60 +34,52 @@ const payMode = [
 ];
 
 class CustomerReceipt extends React.Component {
-    constructor(props) {
-        super(props);
-
-        this.initialValues = {
-            customerId: "",
-            companyName: "",
-            mobileNumber: "",
-            install: "",
-            payMode: "",
-            paidAmt: "",
-            remarks: "",
-        };
-    }
+    initialState = {
+        customerId: "",
+        companyName: "",
+        mobileNumber: "",
+        install: "",
+        payMode: "",
+        paidAmt: "",
+        remarks: "",
+    };
+    state = this.initialState;
 
     handleChange = (e) => {
         const { name, value } = e.target;
         this.setState({
-            [name]: value,
+          [name]: value,
         });
-    };
-
-    validate = (values) => {
-        const errors = {};
-        if (!values.customerId) {
-            errors.customerId = " customer ID is Required";
+      };
+    
+      handleSubmit = (e) => {
+        e.preventDefault();
+        this.validate();
+    
+        if (this.state.customerId ==="" || this.state.companyName==="" || this.state.paidAmt==="") {
+          toast.error("Please, Filled all mandatory fields !");
+        } else {
+          toast.success("Form Submitted!");
         }
-        if (!values.companyName) {
-            errors.companyName = "Enter companyName";
-        }
-        if (!values.paidAmt) {
-            errors.paidAmt = "Enter paidAmt";
-        }
-
-        return errors;
-
-    };
-    handleSubmit = (e, setSubmitting, values) => {
-        setTimeout(() => {
-            //   alert(JSON.stringify(values, null, 2));
-            // if (!values > 0) {
-            //     toast.error("Form submitted");
-            // }
-            // else {
-            toast.success("Form submitted");
-            // }
-            setSubmitting(false);
-        }, 400);
+    
         this.handleReset();
-    };
-
-    handleReset = () => {
+      };
+    
+      validate = () => {
+        let name = this.state.customerId;
+        let errors = {};
+        let isValid = true;
+    
+        if (!this.state.customerId) {
+          isValid = false;
+          errors["name"] = "Enter Valid Value";
+        }
+        return isValid;
+      };
+      handleReset = () => {
         this.setState(() => this.initialState);
-    }
-
+      };
+    
     render() {
         return (
             <>
@@ -96,160 +88,131 @@ class CustomerReceipt extends React.Component {
                 <div>
                     <div className="form__container">
 
-                        <Formik
-                            initialValues={this.initialValues}
-                            validate={(values) => this.validate(values)}
-                            onSubmit={(values, { setSubmitting }) =>
-                                this.handleSubmit(values, setSubmitting)
-                            }
+
+                        <form
+                            onReset={this.handleReset}
+                            // onSubmit={this.handleSubmit}
+                            className="form__content"
                         >
-                            {({
-                                values,
-                                errors,
-                                touched,
-                                handleChange,
-                                handleBlur,
-                                handleSubmit,
-                                isSubmitting
-                                /* and other goodies */
-                            }) => (
-                                <form
-                                    // onReset={this.handleReset}
-                                    onSubmit={handleSubmit}
-                                    className="form__content"
+                            <div className="title-display">
+                                <div className="title"> Customer Receipt </div>
+                            </div>
+                            <div className="form__wrapper">
+                                <div className="form__left">
+                                    <div className="fields">
+                                        <Input
+                                            className="form-control marginleft_70"
+                                            label="Company ID"
+                                            type="text"
+                                            name="customerId"
+                                            onChange={this.handleChange}
+                                            value={this.state.customerId}
+                                            isError
+                                            errorMsg={this.state.customerId ===""}
+                                        />
+
+                                    </div>
+
+                                    <div className="fields">
+                                        <Input
+                                            type="text"
+                                            label="Company"
+
+                                            className="form-control marginleft_70"
+                                            name="companyName"
+                                            id="companyName"
+
+                                            onChange={this.handleChange}
+                                            value={this.state.companyName}
+                                            isError
+                                            errorMsg={this.state.companyName ===""}
+
+                                        />
+
+                                    </div>
+                                    <div className="fields">
+                                        <div className="input-fields">
+                                            <label htmlFor="" className="label">
+                                                Phone
+                                            </label>
+                                            <PhoneInput
+                                                className="form-control marginleft_70"
+                                                // value={phone}
+                                                name="mobileNumber"
+                                                international
+                                                defaultCountry="IN"
+                                            // onChange={setPhone}
+                                            />
+                                        </div>
+                                    </div>
+                                    <div className="fields">
+                                        <Select
+                                            label="Install"
+                                            placeholder="Select Installation No."
+                                            options={BillNo}
+                                            defaultValue={BillNo[0]}
+                                            className="select-control Install-select"
+                                        />
+                                    </div>
+                                </div>
+                                {/* Left Side End */}
+                                {/* Right Side Start */}
+                                <div className="form__right">
+                                    <div className="fields">
+                                        <Select
+                                            label="PayMode"
+                                            options={payMode}
+                                            className="select-control source-select"
+                                            defaultValue={payMode[0]}
+                                        />
+                                    </div>
+
+                                    <div className="fields">
+                                        <Input
+                                            type="text"
+                                            label="PaidAmt"
+                                            name="paidAmt"
+                                            id="paidAmt"
+                                            onChange={this.handleChange}
+                                            value={this.state.paidAmt}
+                                            isError
+                                            errorMsg={this.state.paidAmt ===""}
+                                        />
+
+                                    </div>
+                                    <div className="fields">
+                                        <TextArea
+                                            type="text"
+                                            label="Remarks"
+                                            // rows="2"
+                                            name="remarks"
+                                            value={this.state.remarks}
+                                            // onChange={this.handleChange}
+                                            className="form-control right_13"
+
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="btn__holder">
+                                <Button
+                                    type="submit"
+                                    className="btn btn-primary"
+                                    onClick={this.handleSubmit}
                                 >
-                                    <div className="title-display">
-                                        <div className="title"> Customer Receipt </div>
-                                    </div>
-                                    <div className="form__wrapper">
-                                        <div className="form__left">
-                                            <div className="fields">
-                                                <Input
-                                                    className="form-control marginleft_70"
-                                                    // style={{
-                                                    //     marginLeft: "-70px",
-                                                    //     width: "100%",
-                                                    // }}
-                                                    label="Company ID"
-                                                    type="text"
-                                                    id="customerId"
-                                                    name="customerId"
-                                                    onBlur={handleBlur}
-                                                    onChange={handleChange}
-                                                    value={values.customerId}
-                                                    isError
-                                                    errorMsg={errors.customerId}
-                                                />
-                                                <span className="error-msg">{errors.customerId && touched.customerId && errors.customerId}</span>
+                                    Save
+                                </Button>
+                                <input type="reset" value="Clear" className="btn btn-secondary" />
 
-                                            </div>
+                            </div>
+                        </form>
 
-                                            <div className="fields">
-                                                <Input
-                                                    type="text"
-                                                    label="Company Name"
-                                                    // style={{
-                                                    //     marginLeft: "-70px",
-                                                    //     width: "100%",
-                                                    // }}
-                                                    className="form-control marginleft_70"
-                                                    name="companyName"
-                                                    id="companyName"
-                                                    onBlur={handleBlur}
-                                                    onChange={handleChange}
-                                                    value={values.companyName}
-                                                    isError
-                                                    errorMsg={errors.companyName}
-                                                />
-                                                <span className="error-msg">{errors.companyName && touched.companyName && errors.companyName}</span>
-
-                                            </div>
-                                            <div className="fields">
-                                                <div className="input-fields">
-                                                    <label htmlFor="" className="label">
-                                                        Phone
-                                                    </label>
-                                                    <PhoneInput
-                                                        className="form-control marginleft_70"
-                                                        // value={phone}
-                                                        name="mobileNumber"
-                                                        international
-                                                        defaultCountry="IN"
-                                                    // onChange={setPhone}
-                                                    />
-                                                </div>
-                                            </div>
-                                            <div className="fields">
-                                                <Select
-                                                    label="Install"
-                                                    placeholder="Select Installation No."
-                                                    options={BillNo}
-                                                    defaultValue={BillNo[0]}
-                                                    className="select-control Install-select"
-                                                />
-                                            </div>
-                                        </div>
-                                        {/* Left Side End */}
-                                        {/* Right Side Start */}
-                                        <div className="form__right">
-                                            <div className="fields">
-                                                <Select
-                                                    label="PayMode"
-                                                    options={payMode}
-                                                    className="select-control source-select"
-                                                    defaultValue={payMode[0]}
-                                                />
-                                            </div>
-
-                                            <div className="fields">
-                                                <Input
-                                                    type="text"
-                                                    label="PaidAmt"
-                                                    name="paidAmt"
-                                                    id="paidAmt"
-                                                    onBlur={handleBlur}
-                                                    onChange={handleChange}
-                                                    value={values.paidAmt}
-                                                    isError
-                                                    errorMsg={errors.paidAmt}
-                                                />
-                                                <span className="error-msg">{errors.paidAmt && touched.paidAmt && errors.paidAmt}</span>
-
-                                            </div>
-                                            <div className="fields">
-                                                <TextArea
-                                                    type="text"
-                                                    label="Remarks"
-                                                    // rows="2"
-                                                    name="remarks"
-                                                    // value={this.state.remarks}
-                                                    onChange={this.handleChange}
-                                                    className="form-control right_13"
-                                                    
-                                                />
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="btn__holder">
-                                        <Button
-                                            type="submit"
-                                            className="btn btn-primary"
-                                            onClick={isSubmitting}
-                                        >
-                                            Save
-                                        </Button>
-                                        <input type="reset" value="Clear" className="btn btn-secondary"
-                                            onClick={this.handleReset} />
-                                    </div>
-                                </form>
-                            )}
-                        </Formik>
-                        {/* </div> */}
-                        <ToastContainer />
-
-                        {/* <Footer /> */}
                     </div>
+                    <Footer />
+
                 </div>
+                <ToastContainer />
+
             </>
 
         );

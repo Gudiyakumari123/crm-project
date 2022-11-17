@@ -41,11 +41,64 @@ const Priority = [
   { value: "Low", label: "Low" },
 ];
 class DealerRegister extends Component {
-  constructor(props) {
-    super(props);
+  // constructor(props) {
+  //   super(props);
 
-    this.initialValues = {
-      dates: "",
+  //   this.initialValues = {
+  //     dates: "",
+  //     companyName: "",
+  //     contactPerson: "",
+  //     nature: "",
+  //     altContact: "",
+  //     city: "",
+  //     email: "",
+  //     remarksDealer: "",
+  //     address: "",
+  //     remarksUser: "",
+  //   };
+  // }
+
+  // handleChange = (e) => {
+  //   const { name, value } = e.target;
+  //   this.setState({
+  //     [name]: value,
+  //   });
+  // };
+
+  // validate = (values) => {
+  //   const errors = {};
+
+  //   if (!values.companyName) {
+  //     errors.companyName = "Enter companyName";
+  //   }
+
+  //   if (!values.contactPerson) {
+  //     errors.contactPerson = "Enter contactPerson";
+  //   }
+  //   if (!values.nature) {
+  //     errors.nature = "Enter nature";
+  //   }
+  //   if (!values.city) {
+  //     errors.city = "Enter city";
+  //   }
+  //   if (!values.email) {
+  //     errors.email = "Enter email";
+  //   }
+  //   return errors;
+
+  // };
+  // handleSubmit = (values, setSubmitting) => {
+  //   setTimeout(() => {
+  //     // alert(JSON.stringify(values, null, 2));
+  //     toast.success("Form submitted");
+  //     setSubmitting(false);
+  //   }, 400);
+  // };
+  // handleReset = () => {
+  //   this.setState(() => this.initialState);
+  // };
+  initialState = {
+    dates: "",
       companyName: "",
       contactPerson: "",
       nature: "",
@@ -55,44 +108,39 @@ class DealerRegister extends Component {
       remarksDealer: "",
       address: "",
       remarksUser: "",
-    };
-  }
+};
+state = this.initialState;
 
-  handleChange = (e) => {
+handleChange = (e) => {
     const { name, value } = e.target;
     this.setState({
       [name]: value,
     });
   };
 
-  validate = (values) => {
-    const errors = {};
+  handleSubmit = (e) => {
+    e.preventDefault();
+    this.validate();
 
-    if (!values.companyName) {
-      errors.companyName = "Enter companyName";
+    if (this.state.customerId ==="" || this.state.contactPerson==="" || this.state.nature==="" || this.state.city===""|| this.state.email==="") {
+      toast.error("Please, Filled all mandatory fields !");
+    } else {
+      toast.success("Form Submitted!");
     }
 
-    if (!values.contactPerson) {
-      errors.contactPerson = "Enter contactPerson";
-    }
-    if (!values.nature) {
-      errors.nature = "Enter nature";
-    }
-    if (!values.city) {
-      errors.city = "Enter city";
-    }
-    if (!values.email) {
-      errors.email = "Enter email";
-    }
-    return errors;
-
+    this.handleReset();
   };
-  handleSubmit = (values, setSubmitting) => {
-    setTimeout(() => {
-      // alert(JSON.stringify(values, null, 2));
-      toast.success("Form submitted");
-      setSubmitting(false);
-    }, 400);
+
+  validate = () => {
+    let name = this.state.customerId;
+    let errors = {};
+    let isValid = true;
+
+    if (!this.state.customerId) {
+      isValid = false;
+      errors["name"] = "Enter Valid Value";
+    }
+    return isValid;
   };
   handleReset = () => {
     this.setState(() => this.initialState);
@@ -105,26 +153,8 @@ class DealerRegister extends Component {
         <Header />
         <SubHeader />
         <div className="form__container">
-          <Formik
-            initialValues={this.initialValues}
-            validate={(values) => this.validate(values)}
-            onSubmit={(values, { setSubmitting }) =>
-              this.handleSubmit(values, setSubmitting)
-            }
-          >
-            {({
-              values,
-              errors,
-              touched,
-              handleChange,
-              handleBlur,
-              handleSubmit,
-              isSubmitting
-              /* and other goodies */
-            }) => (
               <form
                 onReset={this.handleReset}
-                onSubmit={handleSubmit}
                 className="form__content">
                 <div className="title-display">
                   <div className="title"> Dealer Registration </div>
@@ -138,7 +168,7 @@ class DealerRegister extends Component {
                         name="dates"
                         className="form-control marginleft_70"
                       // value={this.state.dates}
-                      // onChange={this.handleChange}
+                      // onChange={this.this.handleChange}
                       />
                     </div>
 
@@ -159,13 +189,11 @@ class DealerRegister extends Component {
                         className="form-control marginleft_70"
                         name="companyName"
                         id="companyName"
-                        onBlur={handleBlur}
-                        onChange={handleChange}
-                        value={values.companyName}
+                        onChange={this.handleChange}
+                        value={this.state.companyName}
                         isError
-                        errorMsg={errors.companyName}
+                        errorMsg={this.state.companyName===""}
                       />
-                      <span className="error-msg">{errors.companyName && touched.companyName && errors.companyName}</span>
 
                     </div>
 
@@ -176,13 +204,11 @@ class DealerRegister extends Component {
                         className="form-control marginleft_70"
                         name="contactPerson"
                         id="contactPerson"
-                        onBlur={handleBlur}
-                        onChange={handleChange}
-                        value={values.contactPerson}
+                        onChange={this.handleChange}
+                        value={this.state.contactPerson}
                         isError
-                        errorMsg={errors.contactPerson}
+                        errorMsg={this.state.contactPerson===""}
                       />
-                      <span className="error-msg">{errors.contactPerson && touched.contactPerson && errors.contactPerson}</span>
 
                     </div>
                     <div className="fields">
@@ -193,13 +219,11 @@ class DealerRegister extends Component {
 
                         name="nature"
                         id="nature"
-                        onBlur={handleBlur}
-                        onChange={handleChange}
-                        value={values.nature}
+                        onChange={this.handleChange}
+                        value={this.state.nature}
                         isError
-                        errorMsg={errors.nature}
+                        errorMsg={this.state.nature===""}
                       />
-                      <span className="error-msg">{errors.nature && touched.nature && errors.nature}</span>
 
 
                     </div>
@@ -216,13 +240,11 @@ class DealerRegister extends Component {
                         label="Area/City"
                         name="city"
                         id="city"
-                        onBlur={handleBlur}
-                        onChange={handleChange}
-                        value={values.city}
+                        onChange={this.handleChange}
+                        value={this.state.city}
                         isError
-                        errorMsg={errors.city}
+                        errorMsg={this.state.city===""}
                       />
-                      <span className="error-msg">{errors.city && touched.city && errors.city}</span>
 
                     </div>
 
@@ -232,14 +254,11 @@ class DealerRegister extends Component {
                         label="Email"
                         name="email"
                         id="email"
-                        onBlur={handleBlur}
-                        onChange={handleChange}
-                        value={values.email}
+                        onChange={this.handleChange}
+                        value={this.state.email}
                         isError
-                        errorMsg={errors.email}
+                        errorMsg={this.state.email===""}
                       />
-                      <span className="error-msg">{errors.email && touched.email && errors.email}</span>
-
                     </div>
 
                     <div className="fields">
@@ -250,7 +269,7 @@ class DealerRegister extends Component {
                         name="remarksDealer"
                         placeholder="Remarks by Dealer"
                         // value={this.state.remarksDealer}
-                        // onChange={this.handleChange}
+                        // onChange={this.this.handleChange}
                         className="form-control right_13"
 
                       />
@@ -263,7 +282,7 @@ class DealerRegister extends Component {
                         className="form-control right_13"
 
                         // value={this.state.address}
-                        // onChange={this.handleChange}
+                        // onChange={this.this.handleChange}
                         isError
                       />
                     </div>
@@ -276,7 +295,7 @@ class DealerRegister extends Component {
                         name="remarksUser"
                         placeholder="Remarks by remarksUser"
                         // value={this.state.remarksUser}
-                        // onChange={this.handleChange}
+                        // onChange={this.this.handleChange}
 
                         className="form-control right_13"
                       />
@@ -287,15 +306,13 @@ class DealerRegister extends Component {
                   <Button
                     type="submit"
                     className="btn btn-primary"
-                    onClick={isSubmitting}
+                    onClick={this.handleSubmit}
                   >
                     Save
                   </Button>
                   <input type="reset" value="Clear" className="btn btn-secondary" />
                 </div>
               </form>
-            )}
-          </Formik>
         </div>
         <ToastContainer />
         <Footer />
