@@ -74,9 +74,10 @@
       margin-left: 25px;
     }
 
-    // @include for-big-desktop-up {
-    //   margin-left: 18px;
-    // }
+      @include for-desktop-up {
+        width: 100%;
+        margin-left: 0px;
+      }
   }
 
   .altphone-style {
@@ -93,7 +94,8 @@
     }
 
     @include for-desktop-up {
-      margin-left: 11px;
+      width: 100%;
+      margin-left: 0px;
     }
   }
 
@@ -281,9 +283,11 @@ select {
 
       }
 
-      // @include for-desktop-up {
-      //   margin-left: -50px;
-      // }
+      @include for-desktop-up {
+        width: 100%;
+        margin-left: 0px;
+        // margin-left: -50px;
+      }
 
       // @include for-big-desktop-up {
       //   margin-left: -55px;
@@ -302,9 +306,10 @@ select {
 
       }
 
-      // @include for-desktop-up {
-      //   margin-left: -70px;
-      // }
+      @include for-desktop-up {
+        width: 100%;
+        margin-left: 0px;
+      }
 
       // @include for-big-desktop-up {
       //   margin-left: -55px;

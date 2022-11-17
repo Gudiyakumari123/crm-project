@@ -4,12 +4,8 @@ import { useFormik } from "formik";
 import csc from "country-state-city";
 import Select from "react-select";
 
-const Religion = [
-  { value: "Hindu", label: "Hindu" },
-  { value: "Muslim", label: "Muslim" },
-  { value: "Others", label: "Others" },
-];
-function NationTry() {
+
+const NationTry = ({ props, country, options, onChange }) => {
   const addressFromik = useFormik({
     initialValues: {
       country: "India",
@@ -36,35 +32,29 @@ function NationTry() {
       .map((city) => ({ label: city.name, value: city.id, ...city }));
   const { values, setFieldValue, setValues } = addressFromik;
 
+  console.log("Country::", values)
+
   return (
     <>
-      {/* <div className="field__row"> */}
-        {/* <div className="fields">
-          <Select
-            label="Religion"
-            options={Religion}
-            className="select-control religion-select"
-          />
-        </div> */}
-        <div className="input-fields">
-          <label htmlFor="" className="label">
-            Nationality
-            {/* <div className="require"></div> */}
-          </label>
-          <Select
-            id="country"
-            name="country"
-            className="react-select country-select1 "
-            options={updatedCountries}
-            value={values.country}
-            onChange={(value) => {
-              setFieldValue("country", value);
-              setFieldValue("state", null);
-              setFieldValue("city", null);
-            }}
-          />
-        </div>
-      {/* </div> */}
+      <div className="input-fields">
+        <label htmlFor="" className="label">
+          Nationality
+          {/* <div className="require"></div> */}
+        </label>
+        <Select
+          id="country"
+          name="country"
+          className="react-select country-select1 "
+          options={updatedCountries}
+          value={values.country}
+          onChange={(value) => {
+            setFieldValue("country", value);
+            setFieldValue("state", null);
+            setFieldValue("city", null);
+          }}
+          {...props}
+        />
+      </div>
     </>
   );
 }

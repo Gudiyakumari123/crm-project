@@ -182,11 +182,12 @@ class CustomerReceipt extends React.Component {
                                     </div>
                                     <div className="fields">
                                         <TextArea
+                                        // required
                                             type="text"
                                             label="Remarks"
                                             // rows="2"
                                             name="remarks"
-                                            value={this.state.remarks}
+                                            // value={this.state.remarks}
                                             // onChange={this.handleChange}
                                             className="form-control right_13"
 

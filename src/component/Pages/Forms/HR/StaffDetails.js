@@ -76,7 +76,8 @@ class Staff extends Component {
   state = {
     newUser: { firstName: "", lastName: "" },
   };
-  handleFirstName(e) {
+
+  handleFirstName = (e) => {
     let value = e.target.value;
     this.setState((prevState) => ({
       newUser: {
@@ -85,7 +86,7 @@ class Staff extends Component {
       },
     }));
   }
-  handleLastName(e) {
+  handleLastName = (e) => {
     let value = e.target.value;
     this.setState((prevState) => ({
       newUser: {
@@ -95,14 +96,15 @@ class Staff extends Component {
     }));
   }
 
-  getEmailId() {
+  getEmailId = () => {
     return (
       this.state.newUser.firstName.toLowerCase() +
       "." +
       this.state.newUser.lastName.toLowerCase() +
-      "@selromsoft.in"
+      "@selromsoft" + ""
     );
   }
+
 
 
   render() {
@@ -110,7 +112,11 @@ class Staff extends Component {
     const futureDate = date.getDate();
     date.setDate(futureDate);
     const defaultValue = date.toLocaleDateString("en-CA");
+
     return (
+
+
+
       <>
         <Header />
         <SubHeader />
@@ -123,10 +129,10 @@ class Staff extends Component {
               <div className="form__left">
                 <div className="field__row">
                   <div className="fields">
-                    <Input 
-                        className="form-control staff_details_style"
-                    type="text"
-                     label="Entry No"
+                    <Input
+                      className="form-control staff_details_style"
+                      type="text"
+                      label="Entry No"
                       readOnly="true" />
                   </div>
                   <div className="fields">
@@ -171,9 +177,9 @@ class Staff extends Component {
                   <div className="fields">
                     <Input
                       className="form-control staff_id_style"
-                    type="text" 
-                    label="Employee Id"
-                     readOnly="true" />
+                      type="text"
+                      label="Employee Id"
+                      readOnly="true" />
                   </div>
                   <div className="fields">
                     <Input type="date" label="Date Of Join" />
@@ -190,17 +196,17 @@ class Staff extends Component {
                 <div className="field__row">
                   <div className="fields">
                     <Input
-                        className="form-control staff_details_style"
+                      className="form-control staff_details_style"
                       type="text"
                       label="First Name"
-                      onChange={this.handleFirstName.bind(this)}
+                      onChange={this.handleFirstName}
                     />
                   </div>
                   <div className="fields">
                     <Input
                       type="text"
                       label="Last Name"
-                      onChange={this.handleLastName.bind(this)}
+                      onChange={this.handleLastName}
                     />
                   </div>
                 </div>
@@ -248,11 +254,14 @@ class Staff extends Component {
                       className="select-control gender-select"
                     />
                   </div>
-                 
-                  <Nationality />
+
+                  <Nationality
+                  // onChange={(e) => console.log("Hello")}
+                  // value={this.props.values.country}
+                  />
 
                 </div>
-                
+
 
                 <div className="fields">
                   <TextArea
@@ -265,21 +274,22 @@ class Staff extends Component {
                 <div className="field__row">
                   <div className="fields">
                     <Input
-                        className="form-control city_style"
+                      className="form-control city_style"
                       type="text"
                       label="Area/City"
-                   
+
                     />
                   </div>
                   <div className="fields">
                     <Input type="text" label="Pin Code" />
                   </div>
                 </div>
-                <Country />
+                <Country
+                />
                 <Try />
               </div>
               <div className="form__right">
-                <div className="fields">
+                <div className="fields ">
                   <Input
                     type="text"
                     label="Email"
