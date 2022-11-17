@@ -93,7 +93,7 @@ class ReInstall extends Component {
     e.preventDefault();
     this.validate();
 
-    if (this.state.customerId === "") {
+    if (this.state.customerId === "" || this.state.companyName || this.state.city) {
       toast.error("Please, Filled all mandatory fields !");
     } else {
       toast.success("Form Submitted!");
@@ -215,24 +215,26 @@ class ReInstall extends Component {
                       type="text"
                       label="Cust Id"
                       name="customerId"
+                      id="customerId"
                       value={this.state.customerId}
                       onChange={this.handleChange}
                       isError
-                    // errorMsg={formErrors.customerId}
+                      errorMsg={this.state.customerId ===""}
+
                     />
-                    {/* <p className="show-errors-left"> {formErrors.customerId} </p> */}
                   </div>
                   <div className="fields">
                     <Input
                       type="text"
                       label="Company"
                       name="companyName"
+                      id="companyName"
                       value={this.state.companyName}
                       onChange={this.handleChange}
                       isError
-                    // errorMsg={formErrors.companyName}
+                      errorMsg={this.state.companyName ===""}
+
                     />
-                    {/* <p className="show-errors-left"> {formErrors.companyName} </p> */}
                   </div>
                 </div>
 
@@ -245,12 +247,13 @@ class ReInstall extends Component {
                       type="text"
                       label="Phone"
                       name="Phone"
-                      id="Phone"
+                      // id="Phone"
 
-                      onChange={this.handleChange}
-                      value={this.state.Phone}
+                      // onChange={this.handleChange}
+                      // value={this.state.Phone}
                       isError
-                      errorMsg={this.state.Phone}
+                      // errorMsg={this.state.Phone ===""}
+
                     />
                   </div>
                   <div className="fields">
@@ -259,11 +262,11 @@ class ReInstall extends Component {
                       label="City"
                       name="city"
                       id="city"
-
                       onChange={this.handleChange}
                       value={this.state.city}
                       isError
-                      errorMsg={this.state.city}
+                      errorMsg={this.state.city ===""}
+
                     />
 
                   </div>

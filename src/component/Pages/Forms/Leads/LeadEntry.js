@@ -205,22 +205,24 @@ class LeadEntry extends Component {
                       type="text"
                       label="Company"
                       name="companyName"
+                      id="companyName"
                       value={this.state.companyName}
                       onChange={this.handleChange}
-
                       isError
+                      errorMsg={this.state.companyName ===""}
                     />
                   </div>
                   <div className="fields">
                     <Input
                       className="form-control countperson-style "
                       type="text"
-                      label="ContPerson"
+                      label="contperson"
                       name="contperson"
                       value={this.state.contperson}
                       onChange={this.handleChange}
-
                       isError
+                      errorMsg={this.state.contperson ===""}
+
                     />
                   </div>
                 </div>
@@ -262,6 +264,7 @@ class LeadEntry extends Component {
                     value={this.state.email}
                     onChange={this.handleChange}
                     isError
+                    errorMsg={this.state.email ===""}
                   />
                 </div>
                 <div className="fields">
