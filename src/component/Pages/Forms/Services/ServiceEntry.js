@@ -4,7 +4,7 @@ import Header from "../../../../shared/Header/Header";
 import SubHeader from "../../../../shared/SubHeader/SubHeader";
 import Footer from "../../../../shared/Footer/Footer";
 import { Button } from "react-bootstrap";
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer, toast } from "react-toastify";
 import PhoneAlt from "../../../../shared/Reusable/Phone&Alt";
 
 // Reusable Component
@@ -107,13 +107,12 @@ handleChange = (e) => {
                         // value={this.state.date}
                         // onChange={this.handleChange}
                         className="form-control marginleft_70"
-
                       />
                     </div>
                     <div className="field__row">
                       <div className="fields">
                         <Input
-                        className="form-control cust_id_left"
+                          className="form-control cust_id_left"
                           type="text"
                           label="Cust Id"
                           name="customerId"
@@ -124,7 +123,6 @@ handleChange = (e) => {
                           errorMsg={this.state.customerId ===""}
 
                         />
-
                       </div>
                       <div className="fields">
                         <Input
@@ -138,12 +136,10 @@ handleChange = (e) => {
                           isError
                           errorMsg={this.state.companyName===""}
                         />
-
                       </div>
                     </div>
 
                     <PhoneAlt />
-                    
 
                     <div className="fields">
                       <Select
@@ -168,7 +164,6 @@ handleChange = (e) => {
                         isError
                         errorMsg={this.state.software===""}
                       />
-
                     </div>
 
                     <div className="fields">
@@ -195,7 +190,6 @@ handleChange = (e) => {
                         // onChange={this.handleChange}
 
                         className="form-control right_13"
-
                       />
                     </div>
 
@@ -224,9 +218,6 @@ handleChange = (e) => {
                         // onChange={this.handleChange}
 
                         className="form-control date-style"
-
-                       
-
                       />
                     </div>
                     <div className="fields">
@@ -234,8 +225,8 @@ handleChange = (e) => {
                         label="Remarks"
                         className="form-control right_13"
                         name="remarks"
-                      // value={this.state.remarks}
-                      // onChange={this.handleChange}
+                        // value={this.state.remarks}
+                        // onChange={this.handleChange}
                       />
                     </div>
                   </div>
@@ -248,11 +239,11 @@ handleChange = (e) => {
                   >
                     Save
                   </Button>
-                  <input type="reset" value="Clear"
+                  <input
+                    type="reset"
+                    value="Clear"
                     className="btn btn-secondary"
-
                   />
-
                 </div>
               </form>
         </div>
@@ -260,7 +251,6 @@ handleChange = (e) => {
         <Footer />
       </>
     );
-  };
-};
+  }
+}
 export default ServiceEntry;
-

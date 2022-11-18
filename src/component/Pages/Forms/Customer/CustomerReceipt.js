@@ -22,15 +22,15 @@ import "react-phone-number-input/style.css";
 import { Formik } from "formik";
 
 const BillNo = [
-    { value: "Bill No 1", label: "Bill No 1" },
-    { value: "Bill No 2", label: "Bill No 2" },
-    { value: "Bill No 3", label: "Bill No 3" },
+  { value: "Bill No 1", label: "Bill No 1" },
+  { value: "Bill No 2", label: "Bill No 2" },
+  { value: "Bill No 3", label: "Bill No 3" },
 ];
 
 const payMode = [
-    { value: "Cash", label: "Cash" },
-    { value: "Card", label: "Card" },
-    { value: "UPI", label: "UPI" },
+  { value: "Cash", label: "Cash" },
+  { value: "Card", label: "Card" },
+  { value: "UPI", label: "UPI" },
 ];
 
 class CustomerReceipt extends React.Component {

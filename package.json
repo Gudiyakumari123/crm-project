@@ -36,6 +36,7 @@
     "react-select-country-list": "^2.2.3",
     "react-to-pdf": "^0.0.14",
     "react-toastify": "^9.0.8",
+    "reactstrap": "^9.1.5",
     "resolve-url-loader": "^5.0.0",
     "sass": "^1.55.0",
     "use-interval": "^1.4.0",
