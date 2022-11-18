@@ -165,15 +165,18 @@
 
           @include for-phone-only {
             width: 100%;
+            margin-left: -2px;
           }
 
           @include for-tablet-landscape-up {
             width: 100%;
+            margin-left: 2px;
 
           }
 
           @include for-desktop-up {
            width: 100%;
+           margin: 2px;
           }
 
         }
@@ -207,7 +210,8 @@
           }
 
           @include for-desktop-up {
-            // gap:0;
+            gap:2px;
+
           }
 
           // @include for-big-desktop-up {
@@ -297,6 +301,18 @@
         Input {
           width: 65%;
           margin-bottom: 5px;
+
+          @include for-phone-only{
+            margin: 0;
+            width: 100%;
+          }
+          @include for-tablet-landscape-up{
+            margin-left: 2px;
+            width: 100%;
+          }
+          @include for-desktop-up{
+            width: 100%;
+          }
         }
 
         .three__row {
@@ -634,7 +650,7 @@
      
 
       .status-select-right {
-        margin-left: 50px;
+        margin-left: 43px;
 
         @include for-phone-only {
           margin: 0;
@@ -925,6 +941,7 @@
 
         @include for-phone-only {
           margin: 0;
+          width: 100%;
         }
 
         @include for-tablet-landscape-up {
@@ -971,6 +988,21 @@
         }
 
       }
+
+      .dealer_id{
+        margin-left: 42px;
+
+        @include for-phone-only{
+          margin: 0;
+        }
+        @include for-tablet-landscape-up{
+          margin: 0;
+        }
+        @include for-desktop-up{
+          margin: 0;
+        }
+      }
+
 
     }
 

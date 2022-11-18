@@ -8,6 +8,7 @@
   // background-color: #b7e4ef14;
   margin-bottom: 1rem;
   box-shadow: 0 2px 4px 0px #0000001a;
+  // overflow-y:scroll;
   @include for-phone-only {
     display: none;
   }

@@ -281,10 +281,11 @@ class LeadEntry extends Component {
                     <div className="field__row">
                       <div className="fields">
                         <Input
+                        className="form-control dealer_id"
                           label="DealerId"
                           type="number"
                           name="dealerId"
-                          style={{ marginLeft: "42px" }}
+                          // style={{ marginLeft: "42px" }}
                         />
                       </div>
                       <div className="fields">

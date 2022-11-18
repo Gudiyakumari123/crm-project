@@ -457,7 +457,7 @@ class ReInstall extends Component {
                   <div className="fields">
                     <Select
                       options={payMode}
-                      className="select-control status-select"
+                      className="select-control status-select-right"
                       label="PayMode"
                       defaultValue={payMode[0]}
                       isError
