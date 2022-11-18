@@ -222,3 +222,4 @@ const PaymentDesign = () => {
 };
 
 export default PaymentDesign;
+

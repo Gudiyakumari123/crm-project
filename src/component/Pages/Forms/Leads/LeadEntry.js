@@ -23,71 +23,115 @@ import {
   Status,
 } from "../../../../data/crm-constants";
 
-const Category1 = ["WonderPOS", "Healthy Fly", "Edu Fly"];
-const Softwares = {
-  "WonderPOS": [
-    "General Retail & Wholesale",
-    "Pharmacy Retail & Wholesale",
-    "Restaurant",
-    "Hypermarket",
-    "Supermarket",
-    "Department Stores",
-    "Kirana /Grocery Retail & Wholesale",
-    "FMCC Distribution",
-    "Jewellery Retail & Wholesale",
-    "Hallmarking Centre Software",
-    "Gas Agency",
-    "Readymade Retail & Wholesale",
-    "Textiles Retail & Wholesale",
-    "Fruits & Vegetables",
-    "Rice Traders / Mundy",
-    "Fancy Store",
-    "Footwear Shop",
-    "Mobile Sales & Service",
-    "Computer Sales & Service",
-    "Electrical Shop",
-    "Spa & Saloon",
-    "Laundry / Dry Clean",
-    "Books Shop",
-    "Florists",
-    "Home Decor & Furniture",
-    "Optical Shop",
-    "Stationery Shop",
-    "Toys & Gift Shop",
-    "Watches",
-    "Home Appliances",
-    "Surgical",
-    "Chemists & Druggists",
-    "Auto Parts",
-    "Fertilizer & Agro Products",
-    "Hardware Shop",
-    "Sports & Fitness",
-    "Tyre",
-    "Vessel Shop",
-    "Oil Shop",
-    "Paints Shop",
-    "Water Companies",
-    "Pizza Shop",
-    "Coffee Shop",
-    "Bakery",
-    "Sweet Shop",
-    "Bar /Pubs",
-    "Ice Cream Shop",
-    "Juice Shop",
-    "Tea Shop",
-    "Food Court",
-    "Auto Finance",
-    "Jewellery Loan",
-    "Crackers Shop",
-  ],
-  "Healthy Fly": [
-    "Hospital",
-    "Multi-Specialty Hospital",
-    "Clinic / Homecare",
-    "Ayurvedic Hospital",
-  ],
-  "Edu Fly": ["School", "College / University", "Study Centre / Institute"],
-};
+
+const CategoryList = [
+  { value: "Wonder POS", label: "Wonder POS" },
+  { value: "Health Fly", label: "Health Fly" },
+  { value: "Edu Fly", label: "Edu Fly" },
+]
+
+const WonderPOSList = [
+  { value: "General Retail & Wholesale", label: "General Retail & Wholesale" },
+  { value: "Pharmacy Retail & Wholesale", label: "Pharmacy Retail & Wholesale" },
+  { value: "Restaurant", label: "Restaurant" },
+  { value: "Hypermarket", label: "Hypermarket" },
+  { value: "Supermarket", label: "Supermarket" },
+  { value: "FMCC Distribution", label: "FMCC Distribution" },
+  { value: "Jewellery Retail & Wholesale", label: "Jewellery Retail & Wholesale" },
+  { value: "Hallmarking Centre Software", label: "Hallmarking Centre Software" },
+  { value: "Gas Agency", label: "Gas Agency" },
+  { value: "Readymade Retail & Wholesale", label: "Readymade Retail & Wholesale" },
+  { value: "Textiles Retail & Wholesale", label: "Textiles Retail & Wholesale" },
+  { value: "Fruits & Vegetables", label: "Fruits & Vegetables" },
+  { value: "Rice Traders / Mundy", label: "Rice Traders / Mundy" },
+  { value: "Fancy Store", label: "Fancy Store" },
+  { value: "Footwear Shop", label: "Footwear Shop" },
+  { value: "Mobile Sales & Service", label: "Mobile Sales & Service" },
+  { value: "Computer Sales & Service", label: "Computer Sales & Service" },
+  { value: "Electrical Shop", label: "Electrical Shop" },
+  { value: "Spa & Saloon", label: "Spa & Saloon" },
+  { value: "Laundry / Dry Clean", label: "Laundry / Dry Clean" },
+  { value: "Books Shop", label: "Books Shop" },
+  { value: "Florists", label: "Florists" },
+  { value: "Home Decor & Furniture", label: "Home Decor & Furniture" },
+  { value: "Optical Shop", label: "Optical Shop" },
+  { value: "Stationery Shop", label: "Stationery Shop" },
+  { value: "Toys & Gift Shop", label: "Third" },
+  { value: "Watches", label: "Watches" },
+  { value: "Home Appliances", label: "Home Appliances" },
+  { value: "Surgical", label: "Surgical" },
+  { value: "Chemists & Druggists", label: "Chemists & Druggists" },
+  { value: "Auto Parts", label: "Auto Parts" },
+  { value: "Fertilizer & Agro Products", label: "Fertilizer & Agro Products" },
+  { value: "Hardware Shop", label: "Hardware Shop" },
+  { value: "Sports & Fitness", label: "Sports & Fitness" },
+  { value: "Tyre", label: "Tyre" },
+  { value: " Vessel Shop", label: " Vessel Shop" },
+  { value: "Oil Shop", label: "Oil Shop" },
+  { value: "Paints Shop", label: "Paints Shop" },
+  { value: "Water Companies", label: "Water Companies" },
+  { value: "Pizza Shop", label: "Pizza Shop" },
+  { value: "Coffee Shop", label: "Coffee Shop" },
+  { value: "Bakery", label: "Bakery" },
+  { value: "Sweet Shop", label: "Sweet Shop" },
+  { value: "Bar /Pubs", label: "Bar /Pubs" },
+  { value: "Ice Cream Shop", label: "Ice Cream Shop" },
+  { value: "Juice Shop", label: "Juice Shop" },
+  { value: "Tea Shop", label: "Tea Shop" },
+  { value: "Food Court", label: "Food Court" },
+  { value: "Auto Finance", label: "Auto Finance" },
+  { value: "Jewellery Loan", label: "Jewellery Loan" },
+  { value: "Crackers Shop", label: "Crackers Shop" },
+]
+
+const HealthFlyList = [
+  { value: "Hospital", label: "Hospital" },
+  { value: "Multi-Specialty Hospital", label: "Multi-Specialty Hospital" },
+  { value: "Clinic / Homecare", label: "Clinic / Homecare" },
+  { value: "Ayurvedic Hospital", label: "Ayurvedic Hospital" },
+]
+
+const EduFlyList = [
+  { value: "School", label: "School" },
+  { value: "College / University", label: "College / University" },
+  { value: "Study Centre / Institute", label: "Study Centre / Institute" },
+]
+
+
+const WonderPOS = () => {
+  return (
+    <>
+      <Select
+        label="Software"
+        options={WonderPOSList}
+        defaultValue={WonderPOSList[0]}
+      />
+    </>
+  )
+}
+const HealthFly = () => {
+  return (
+    <>
+      <Select
+        label="Software"
+        options={HealthFlyList}
+        defaultValue={HealthFlyList[0]}
+      />
+    </>
+  )
+}
+const EduFly = () => {
+  return (
+    <>
+      <Select
+        label="Software"
+        options={EduFlyList}
+        defaultValue={EduFlyList[0]}
+      />
+    </>
+  )
+}
+
 class LeadEntry extends Component {
   initialState = {
     companyName: "",
@@ -100,7 +144,7 @@ class LeadEntry extends Component {
     other: "",
     date: "",
     remark: "",
-    selectedState: "",
+    selectedState: [],
     sourceOption: {},
     softwareOption: {},
   };
@@ -117,7 +161,7 @@ class LeadEntry extends Component {
     e.preventDefault();
     this.validate();
 
-    if (this.state.companyName === "" || this.state.contperson === ""  || this.state.email === "") {
+    if (this.state.companyName === "" || this.state.contperson === "" || this.state.email === "") {
       toast.error("Please, Filled all mandatory fields !");
     } else {
       toast.success("Form Submitted!");
@@ -147,10 +191,10 @@ class LeadEntry extends Component {
     })
   }
 
-  handleSoftwareChange = (e) => {
+  handleSoftwareChange = (newValue) => {
     this.setState({
       ...this.state,
-      softwareOption: e.target.value
+      softwareOption: newValue
     })
     console.log("Value::", this.state.softwareOption)
   }
@@ -171,32 +215,25 @@ class LeadEntry extends Component {
             <div className="form__wrapper">
               <div className="form__left">
                 <div className="fields">
-                  <div className="select">
-                    <label htmlFor="" className="label">
-                      Category
-                    </label>
-                    <select onChange={this.handleSoftwareChange}
-                    value={this.state.softwareOption}
-                    >
-                      {Category1.map((values) => {
-                        return <option>{values}</option>;
-                      })}
-                    </select>
-                  </div>
+                  <Select
+                    label="Category"
+                    options={CategoryList}
+                    onChange={this.handleSoftwareChange}
+                    defaultValue={CategoryList[0]}
+                  />
                 </div>
                 <div className="fields">
-                  <div className="select">
-                    <label htmlFor="" className="label">
-                      Software
-                    </label>
-                    {this.state.selectedState && (
-                      <select>
-                        {Softwares[this.state.selectedState].map((values) => {
-                          return <option>{values}</option>;
-                        })}
-                      </select>
-                    )}
-                  </div>
+                  {
+                    this.state.softwareOption.value === "Wonder POS" ? <><WonderPOS /></> : null
+                  }
+                  {
+                    this.state.softwareOption.value === "Health Fly" ? <><HealthFly /></> : null
+                  }
+                  {
+                    this.state.softwareOption.value === "Edu Fly" ? <><EduFly /></> : null
+                  }
+
+
                 </div>
                 <div className="field__row">
                   <div className="fields">
@@ -209,7 +246,7 @@ class LeadEntry extends Component {
                       value={this.state.companyName}
                       onChange={this.handleChange}
                       isError
-                      errorMsg={this.state.companyName ===""}
+                      errorMsg={this.state.companyName === ""}
                     />
                   </div>
                   <div className="fields">
@@ -221,7 +258,7 @@ class LeadEntry extends Component {
                       value={this.state.contperson}
                       onChange={this.handleChange}
                       isError
-                      errorMsg={this.state.contperson ===""}
+                      errorMsg={this.state.contperson === ""}
 
                     />
                   </div>
@@ -239,7 +276,7 @@ class LeadEntry extends Component {
                     value={this.state.area}
                     onChange={this.handleChange}
 
-                   
+
                   />
                 </div>
                 <div className="fields">
@@ -248,7 +285,7 @@ class LeadEntry extends Component {
                     type="text"
                     label="Address"
                     name="address"
-                   
+
                     value={this.state.address}
                     onChange={this.handleChange}
 
@@ -264,7 +301,7 @@ class LeadEntry extends Component {
                     value={this.state.email}
                     onChange={this.handleChange}
                     isError
-                    errorMsg={this.state.email ===""}
+                    errorMsg={this.state.email === ""}
                   />
                 </div>
                 <div className="fields">
@@ -281,11 +318,11 @@ class LeadEntry extends Component {
                     <div className="field__row">
                       <div className="fields">
                         <Input
-                        className="form-control dealer_id"
+                          className="form-control dealer_id"
                           label="DealerId"
                           type="number"
                           name="dealerId"
-                          // style={{ marginLeft: "42px" }}
+                        // style={{ marginLeft: "42px" }}
                         />
                       </div>
                       <div className="fields">
@@ -316,7 +353,7 @@ class LeadEntry extends Component {
                   <div className="fields">
                     <Select
                       options={ConversionRatio}
-                      className="select-control"
+                      className="select-control  status-select"
                       label="Ratio"
                       defaultValue={ConversionRatio[0]}
                     />

@@ -76,6 +76,8 @@
           width: 100%;
           margin-bottom: 5px;
           position: relative;
+
+         
         }
         .field__row {
           width: 100%;
@@ -241,7 +243,7 @@
         }
 
         .status-select {
-          margin-left: 47px;
+          margin-left: 50px;
   
           @include for-phone-only {
             margin-left: 2px;
@@ -276,19 +278,14 @@
 
         @include for-tablet-landscape-up {
           flex-direction: column;
-
-
         }
 
-        // @include for-desktop-up {
-        //   margin-left: -13px;
-        //   width: 100%;
-        // }
+        @include for-desktop-up {
+          // margin-left: -13px;
+          width: 100%;
+        }
 
-        // @include for-big-desktop-up {
-        //   margin-left: -17px;
-        // }
-
+      
 
 
         label {
@@ -299,7 +296,7 @@
         }
 
         Input {
-          width: 65%;
+          width: 100%;
           margin-bottom: 5px;
 
           @include for-phone-only{
@@ -317,6 +314,7 @@
 
         .three__row {
           margin-left: 50px;
+          // margin-right: 5px;
 
           @include for-phone-only {
             margin: 0;
@@ -331,15 +329,44 @@
 
           }
 
-          // @include for-desktop-up {
-          //   // margin-left: 0px;
-          // }
+          @include for-desktop-up {
+            margin-left: 0px;
+          }
 
-          // @include for-big-desktop-up {
-          //   // width: 50%;
-          //   min-width: 35%;
-          // }
 
+        }
+
+        .net_amt{
+          margin-left: 33px;
+
+          @include for-phone-only{
+            margin: 0;
+            width: 100%;
+          }
+          @include for-tablet-landscape-up{
+            margin: 0;
+            width: 100%;
+          }
+          @include for-desktop-up{
+            margin-left: 2px;
+            // width: 100%;
+            // background-color: red;
+          }
+        }
+
+        .gst_per{
+          margin-left: 42px;
+          // background-color: red;
+
+          @include for-phone-only{
+            margin: 0;
+          }
+          @include for-tablet-landscape-up{
+            margin: 0;
+          }
+          @include for-desktop-up{
+            margin: 0;
+          }
         }
       }
 
@@ -934,6 +961,7 @@
 
       .amount_paid_style {
         margin-left: 38px;
+        // width: 100%;
       }
 
       .countperson-style {
