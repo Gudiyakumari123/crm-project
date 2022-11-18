@@ -215,13 +215,7 @@
             gap:2px;
 
           }
-
-          // @include for-big-desktop-up {
-          //   // width: 50%;
-          //   //  gap:0;
-          // }
         }
-
 
         .education-select {
           width: 100%;
@@ -269,7 +263,6 @@
         display: flex;
         align-items: center;
         gap: 14px;
-        // margin-left: 10px;
 
         @include for-phone-only {
           flex-direction: column;
@@ -281,18 +274,12 @@
         }
 
         @include for-desktop-up {
-          // margin-left: -13px;
           width: 100%;
         }
-
-      
-
 
         label {
           width: 25%;
           white-space: nowrap;
-
-
         }
 
         Input {
@@ -314,13 +301,10 @@
 
         .three__row {
           margin-left: 50px;
-          // margin-right: 5px;
 
           @include for-phone-only {
             margin: 0;
             width: 100%;
-            // margin-left: -10px;
-            // margin-bottom: -5px;
           }
 
           @include for-tablet-landscape-up {
@@ -332,7 +316,6 @@
           @include for-desktop-up {
             margin-left: 0px;
           }
-
 
         }
 
@@ -349,14 +332,12 @@
           }
           @include for-desktop-up{
             margin-left: 2px;
-            // width: 100%;
-            // background-color: red;
+            
           }
         }
 
         .gst_per{
           margin-left: 42px;
-          // background-color: red;
 
           @include for-phone-only{
             margin: 0;
@@ -371,7 +352,6 @@
       }
 
       .department-select {
-        // margin-left: 7px;
         width: 100%;
 
         @include for-phone-only {
@@ -386,16 +366,7 @@
         @include for-desktop-up {
           margin-left: 30px;
         }
-
-        // @include for-big-desktop-up {
-        //   margin-left: 290px;
-        //   background-color: red;
-        // }
-
       }
-
-
-
       .report-select {
         width: 100%;
         margin-left: 10px;
@@ -466,25 +437,6 @@
         }
       }
 
-      // .education-select {
-      //   width: 100%;
-      //   margin-left: 12px;
-
-      //   @include for-phone-only {
-      //     margin: 0;
-      //   }
-
-      //   @include for-tablet-landscape-up {
-      //     margin: 0;
-
-      //   }
-
-      //   @include for-desktop-up {
-      //     width: 100%;
-      //   }
-      // }
-
-
       .designation-select {
         width: 100%;
         margin-left: -71px;
@@ -499,15 +451,9 @@
         }
 
         @include for-desktop-up {
-
           margin-left: 0px;
-
-
         }
       }
-
-
-
       .report-select {
         width: 100%;
         margin-left: -71px;
@@ -522,10 +468,7 @@
         }
 
         @include for-desktop-up {
-          // white-space: nowrap;
           margin-left: 0px;
-
-
         }
       }
 
@@ -543,11 +486,8 @@
         }
 
         @include for-desktop-up {
-          // white-space: nowrap;
           width: 100%;
           margin-left: 0px;
-
-
         }
       }
 
@@ -563,7 +503,6 @@
         @include for-tablet-landscape-up {
           margin: 0;
           width: 100%;
-
         }
 
         @include for-desktop-up {
@@ -574,7 +513,6 @@
 
       .marital-select {
         width: 100%;
-        // margin-left: -4px;
 
         @include for-phone-only {
           margin: 0;
@@ -691,8 +629,6 @@
         @include for-desktop-up {
           margin: 0;
         }
-
-
       }
 
       .Install-select {
@@ -740,14 +676,7 @@
         margin-left: 110px;
       }
 
-      .left__21 {
-        // width: "300%";
-        // margin-left: -100px;
-        // background-color: red;
-      }
-
       .right_13 {
-        // background-color: red;
         width: 100%;
         margin-left: 12px;
 
@@ -794,10 +723,6 @@
           margin-left: -2px;
           width: 100%;
         }
-
-        // @include for-big-desktop-up {
-        //   margin-left: 15px;
-        // }
       }
 
       .company_style {
@@ -816,10 +741,6 @@
           width: 100%;
           margin-left: 2px;
         }
-
-        // @include for-big-desktop-up {
-        //   margin-left: 5px;
-        // }
       }
 
       .staff_details_style {
@@ -852,7 +773,6 @@
         }
 
         @include for-desktop-up {
-          // width: 60%;
           margin-left: 0px;
         }
       }
@@ -870,7 +790,6 @@
         }
 
         @include for-desktop-up {
-          // width: 60%;
           margin-left: 0px;
         }
       }
@@ -931,7 +850,6 @@
       }
 
       .marginleft_70 {
-        // background-color: red;
         margin-left: -70px;
         width: 100%;
 
@@ -947,10 +865,6 @@
         @include for-desktop-up {
           margin-left: 0px;
         }
-
-        // @include for-big-desktop-up {
-        //   margin-left: -70px;
-        // }
       }
 
      
@@ -961,7 +875,6 @@
 
       .amount_paid_style {
         margin-left: 38px;
-        // width: 100%;
       }
 
       .countperson-style {
